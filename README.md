@@ -1,0 +1,2 @@
+# UpmVersionManager
+Upmリポジトリー用
