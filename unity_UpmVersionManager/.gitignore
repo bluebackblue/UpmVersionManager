@@ -1,0 +1,13 @@
+/.vs
+/.vsconfig
+/Library
+/Logs
+/obj
+/Temp
+/Exe
+/WebGL
+/*.log
+/*.apk
+/*.csproj
+/*.sln
+/*.user
