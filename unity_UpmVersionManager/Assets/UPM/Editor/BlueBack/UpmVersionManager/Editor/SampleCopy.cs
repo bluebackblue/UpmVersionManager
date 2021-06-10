@@ -20,7 +20,7 @@ namespace BlueBack.UpmVersionManager.Editor
             s_process = new System.Diagnostics.Process();
             {
                 s_process.StartInfo.FileName = UnityEngine.Application.dataPath + "/Editor/VersionManager/SampleCopy.bat";
-                s_process.StartInfo.Arguments = Setting.PACKAGE_NAME;
+                //TODO:s_process.StartInfo.Arguments = Setting.PACKAGE_NAME;
                 s_process.StartInfo.WindowStyle = System.Diagnostics.ProcessWindowStyle.Normal;
                 s_process.StartInfo.UseShellExecute = true;
                 s_process.Exited += ExitProcess;
