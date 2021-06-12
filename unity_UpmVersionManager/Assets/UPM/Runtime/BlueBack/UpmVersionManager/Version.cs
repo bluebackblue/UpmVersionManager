@@ -7,9 +7,9 @@
 */
 
 
-/** blueback.UpmVersionManager
+/** BlueBack.UpmVersionManager
 */
-namespace blueback.UpmVersionManager
+namespace BlueBack.UpmVersionManager
 {
 	/** Version
 	*/
@@ -17,7 +17,7 @@ namespace blueback.UpmVersionManager
 	{
 		/** version
 		*/
-		public const string packageversion = "0.0.2";
+		public const string packageversion = "0.0.3";
 
 		/** GetPackageVersion
 		*/

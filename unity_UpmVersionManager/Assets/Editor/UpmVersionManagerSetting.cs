@@ -28,7 +28,7 @@ namespace Editor
 			BlueBack.UpmVersionManager.Editor.Object_Setting.Param t_param = new BlueBack.UpmVersionManager.Editor.Object_Setting.Param();
 			{
 				//author_name
-				t_param.author_name = "blueback";
+				t_param.author_name = "BlueBack";
 
 				//author_url
 				t_param.author_url = "https://github.com/bluebackblue";
@@ -37,7 +37,7 @@ namespace Editor
 				t_param.package_name = "UpmVersionManager";
 
 				//getpackageversion
-				t_param.getpackageversion = blueback.UpmVersionManager.Version.GetPackageVersion;
+				t_param.getpackageversion = BlueBack.UpmVersionManager.Version.GetPackageVersion;
 
 				//packagejson_unity
 				t_param.packagejson_unity = "2020.1";
