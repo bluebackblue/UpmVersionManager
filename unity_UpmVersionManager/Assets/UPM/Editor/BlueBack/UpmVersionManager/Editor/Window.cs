@@ -61,6 +61,7 @@ namespace BlueBack.UpmVersionManager.Editor
 		*/
 		public void Button_Reload()
 		{
+			Object_RootUssUxml.CreateFile(true);
 			s_window.OnEnable();
 		}
 
@@ -121,15 +122,13 @@ namespace BlueBack.UpmVersionManager.Editor
 		*/
 		public void Button_Server_Json()
 		{
-			Object_RootServerJson.CreateInstance();
-			if(Object_RootServerJson.GetInstance() != null){
-				Object_RootServerJson.GetInstance().DownloadAndSave();
-				s_window.OnEnable();
-			}else{
-				#if(DEF_BLUEBACK_UPMVERSIONMANAGER_ASSERT)
-				DebugTool.Assert(false);
-				#endif
+			if(Object_RootServerJson.GetInstance() == null){
+				Object_RootServerJson.CreateInstance();
 			}
+
+			Object_RootServerJson.GetInstance().DownloadAndSave();
+			Object_RootServerJson.GetInstance().Load();
+			s_window.OnEnable();
 		}
 
 		/** Button_Readme_Md
@@ -137,6 +136,7 @@ namespace BlueBack.UpmVersionManager.Editor
 		public void Button_Readme_Md(string a_version)
 		{
 			Object_RootReadmeMd.Save(a_version);
+			Object_RootReadmeMd.GetInstance().Load();
 			s_window.OnEnable();
 		}
 

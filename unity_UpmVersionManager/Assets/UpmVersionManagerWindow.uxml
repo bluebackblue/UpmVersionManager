@@ -50,7 +50,7 @@
 	<Label text=" "/>
 
 	<Box class="row">
-	  <Label class="way3" text="README.md"/>
+	  <Label class="way3" text="Root/README.md"/>
 	  <Label class="way3" name="label_readme" text="---" />
 	</Box>
 	<Box class="row">

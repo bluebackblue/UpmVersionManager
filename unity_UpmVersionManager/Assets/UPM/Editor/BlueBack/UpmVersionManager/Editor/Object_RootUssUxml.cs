@@ -107,7 +107,7 @@ namespace BlueBack.UpmVersionManager.Editor
 			"	<Label text=\" \"/>",
 			"",
 			"	<Box class=\"row\">",
-			"	  <Label class=\"way3\" text=\"README.md\"/>",
+			"	  <Label class=\"way3\" text=\"Root/README.md\"/>",
 			"	  <Label class=\"way3\" name=\"label_readme\" text=\"---\" />",
 			"	</Box>",
 			"	<Box class=\"row\">",
@@ -138,12 +138,12 @@ namespace BlueBack.UpmVersionManager.Editor
 
 		/** CreateFile
 		*/
-		public static void CreateFile()	
+		public static void CreateFile(bool a_must)	
 		{
 			//uss
 			{
 				string t_path = "UpmVersionManagerWindow.uss";
-				if(BlueBack.AssetLib.Editor.ExistFile.IsExistFileFromAssetsPath(t_path) == true){
+				if((a_must == true)||(BlueBack.AssetLib.Editor.ExistFile.IsExistFileFromAssetsPath(t_path) == true)){
 					System.Text.StringBuilder t_stringbuilder = new System.Text.StringBuilder();
 					foreach(string t_item in USS){
 						t_stringbuilder.Append(t_item);
@@ -160,7 +160,7 @@ namespace BlueBack.UpmVersionManager.Editor
 			//uxml
 			{
 				string t_path = "UpmVersionManagerWindow.uxml";
-				if(BlueBack.AssetLib.Editor.ExistFile.IsExistFileFromAssetsPath(t_path) == true){
+				if((a_must == true)||(BlueBack.AssetLib.Editor.ExistFile.IsExistFileFromAssetsPath(t_path) == true)){
 				System.Text.StringBuilder t_stringbuilder = new System.Text.StringBuilder();
 					foreach(string t_item in UXML){
 						t_stringbuilder.Append(t_item);

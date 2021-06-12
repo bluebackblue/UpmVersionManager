@@ -22,7 +22,7 @@ namespace Editor
 		static UpmVersionManagerSetting()
 		{
 			//Object_RootUssUxml
-			BlueBack.UpmVersionManager.Editor.Object_RootUssUxml.CreateFile();
+			BlueBack.UpmVersionManager.Editor.Object_RootUssUxml.CreateFile(false);
 
 			BlueBack.UpmVersionManager.Editor.Object_Setting.CreateInstance();
 			BlueBack.UpmVersionManager.Editor.Object_Setting.Param t_param = new BlueBack.UpmVersionManager.Editor.Object_Setting.Param();
