@@ -33,19 +33,19 @@ namespace Editor
 				//author_url
 				t_param.author_url = "https://github.com/bluebackblue";
 
-				//package_name
+				//■package_name
 				t_param.package_name = "UpmVersionManager";
 
-				//getpackageversion
-				t_param.getpackageversion = BlueBack.UpmVersionManager.Version.GetPackageVersion;
+				//■getpackageversion
+				t_param.getpackageversion = BlueBack.AssetLib.Version.GetPackageVersion;
 
 				//packagejson_unity
 				t_param.packagejson_unity = "2020.1";
 
-				//packagejson_discription
+				//■packagejson_discription
 				t_param.packagejson_discription = "UPMバージョン操作";
 
-				//packagejson_keyword
+				//■packagejson_keyword
 				t_param.packagejson_keyword = new string[]{
 					"upm"
 				};
@@ -69,12 +69,10 @@ namespace Editor
 					"",
 				};
 
-				/** readme_md
-				*/
+				//■readme_md
 				t_param.object_root_readme_md = new BlueBack.UpmVersionManager.Editor.Object_Setting.Creator_Type[]{
 
-					/** 概要。
-					*/
+					//概要。
 					(in BlueBack.UpmVersionManager.Editor.Object_Setting.Creator_Argument a_argument) => {
 						return new string[]{
 							"# " + a_argument.param.author_name + "." + a_argument.param.package_name,
@@ -83,8 +81,7 @@ namespace Editor
 						};
 					},
 
-					/** ライセンス。
-					*/
+					//ライセンス。
 					(in BlueBack.UpmVersionManager.Editor.Object_Setting.Creator_Argument a_argument) => {
 						return new string[]{
 							"## ライセンス",
@@ -93,8 +90,7 @@ namespace Editor
 						};
 					},
 
-					/** 依存。
-					*/
+					//依存。
 					(in BlueBack.UpmVersionManager.Editor.Object_Setting.Creator_Argument a_argument) => {
 						return new string[]{
 							"## 外部依存 / 使用ライセンス等",
@@ -105,8 +101,7 @@ namespace Editor
 						};
 					},
 
-					/** 動作確認。
-					*/
+					//動作確認。
 					(in BlueBack.UpmVersionManager.Editor.Object_Setting.Creator_Argument a_argument) => {
 						return new string[]{
 							"## 動作確認",
@@ -114,8 +109,7 @@ namespace Editor
 						};
 					},
 
-					/** UPM。
-					*/
+					//UPM。
 					(in BlueBack.UpmVersionManager.Editor.Object_Setting.Creator_Argument a_argument) => {
 						return new string[]{
 							"## UPM",
@@ -126,8 +120,7 @@ namespace Editor
 						};
 					},
 
-					/** インストール。 
-					*/
+					//インストール。 
 					(in BlueBack.UpmVersionManager.Editor.Object_Setting.Creator_Argument a_argument) => {
 						return new string[]{
 							"## Unityへの追加方法",
@@ -143,8 +136,7 @@ namespace Editor
 						};
 					},
 
-					/** 例。
-					*/
+					//例。
 					#if(false)
 					(in BlueBack.UpmVersionManager.Editor.Object_Setting.Creator_Argument a_argument) => {
 						return new string[]{
@@ -154,6 +146,7 @@ namespace Editor
 						};
 					},
 					#endif
+
 				};
 			}
 

@@ -56,7 +56,7 @@ namespace BlueBack.UpmVersionManager
 
 		/** LogProc
 		*/
-		#if(DEF_BLUEBACK_UPMVERSIONMANAGER_ASSERT)
+		#if(DEF_BLUEBACK_UPMVERSIONMANAGER_LOG)
 		public static void LogProc(string a_message)
 		{
 			UnityEngine.Debug.Log(a_message);
