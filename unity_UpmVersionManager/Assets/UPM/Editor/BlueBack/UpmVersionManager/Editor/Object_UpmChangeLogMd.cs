@@ -34,7 +34,9 @@ namespace BlueBack.UpmVersionManager.Editor
 					string t_path = "UPM/CHANGELOG.md";
 					string t_text = t_stringbuilder.ToString();
 					BlueBack.AssetLib.Editor.SaveText.SaveUtf8TextToAssetsPath(t_text,t_path,false,BlueBack.AssetLib.LineFeedOption.CRLF);
-					UnityEngine.Debug.Log("save : " + t_path);
+					#if(DEF_BLUEBACK_UPMVERSIONMANAGER_LOG)
+					DebugTool.LogProc("save : " + t_path);
+					#endif
 				}
 
 				BlueBack.AssetLib.Editor.RefreshAsset.Refresh();

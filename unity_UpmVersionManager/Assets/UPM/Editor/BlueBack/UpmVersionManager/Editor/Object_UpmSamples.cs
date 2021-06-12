@@ -49,7 +49,9 @@ namespace BlueBack.UpmVersionManager.Editor
 						//SaveBinary
 						string t_path = t_to_path + t_path_list[ii].Substring(t_from_path.Length);
 						BlueBack.AssetLib.Editor.SaveBinary.SaveBinaryToAssetsPath(t_binary,t_path);
-						UnityEngine.Debug.Log("copy : " + t_path);
+						#if(DEF_BLUEBACK_UPMVERSIONMANAGER_LOG)
+						DebugTool.LogProc("copy : " + t_path);
+						#endif
 					}
 				}
 			}else{

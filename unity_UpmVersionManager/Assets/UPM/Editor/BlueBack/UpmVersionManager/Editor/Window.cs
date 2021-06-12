@@ -25,10 +25,8 @@ namespace BlueBack.UpmVersionManager.Editor
 		[UnityEditor.MenuItem("UpmVersionManager/Open")]
 		public static void MenuItem_Open()
 		{
-			UnityEngine.Debug.Log("Window.MenuItem_Open");
 			s_window = (Window)UnityEditor.EditorWindow.GetWindow(typeof(Window));
 			if(s_window != null){
-				UnityEngine.Debug.Log("Window.Show");
 				s_window.Show();
 			}
 		}
@@ -38,8 +36,6 @@ namespace BlueBack.UpmVersionManager.Editor
 		[UnityEditor.MenuItem("UpmVersionManager/Close")]
 		public static void MenuItem_Close()
 		{
-			UnityEngine.Debug.Log("Window.MenuItem_Close");
-
 			if(s_window != null){
 				s_window.Close();
 				s_window = null;
@@ -50,7 +46,9 @@ namespace BlueBack.UpmVersionManager.Editor
 		*/
 		public Window()
 		{
-			UnityEngine.Debug.Log("Window.constructor");
+			#if(DEF_BLUEBACK_UPMVERSIONMANAGER_LOG)
+			DebugTool.LogProc("Window.constructor");
+			#endif
 
 			//s_window
 			s_window = this;
@@ -155,7 +153,9 @@ namespace BlueBack.UpmVersionManager.Editor
 		*/
 		private void OnEnable()
 		{
-			UnityEngine.Debug.Log("Window.OnEnable");
+			#if(DEF_BLUEBACK_UPMVERSIONMANAGER_LOG)
+			DebugTool.LogProc("Window.OnEnable");
+			#endif
 
 			//「readme.md」。
 			if(Object_RootReadmeMd.GetInstance() == null){
@@ -169,7 +169,7 @@ namespace BlueBack.UpmVersionManager.Editor
 				Object_RootServerJson.GetInstance().Load();
 			}
 
-			/*try*/{
+			{
 				UnityEngine.UIElements.VisualElement t_root = s_window.rootVisualElement;
 				{
 					t_root.Clear();
@@ -375,7 +375,9 @@ namespace BlueBack.UpmVersionManager.Editor
 									t_button.AddToClassList("red");
 								}
 							}else{
-								UnityEngine.Debug.LogError("null");
+								#if(DEF_BLUEBACK_UPMVERSIONMANAGER_ASSERT)
+								DebugTool.Assert(false);
+								#endif
 							}
 
 							//「package.json」作成。
@@ -386,11 +388,7 @@ namespace BlueBack.UpmVersionManager.Editor
 					}
 				}
 				#endif
-			}/*catch(System.Exception t_exception){
-				#if(DEF_BLUEBACK_UPMVERSIONMANAGER_ASSERT)
-				DebugTool.Assert(false,t_exception.Message);
-				#endif
-			}*/
+			}
 		}
 	}
 }

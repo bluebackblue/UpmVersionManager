@@ -1,18 +1,14 @@
 # blueback.UpmVersionManager
-アセット操作
-* パッケージの作成
-* アセットバンドルの作成
-* プレハブ、アセット、テキストのセーブロード
-* テキストのエンコードデコード
-* ディレクトリの作成、削除
-* ファイル名、ディレクトリ名の列挙、検索
-* STLのセーブロード
+UPMバージョン操作
+* package.json出力
 
 ## ライセンス
 MIT License
 * https://github.com/bluebackblue/UpmVersionManager/blob/main/LICENSE
 
 ## 外部依存 / 使用ライセンス等
+* https://github.com/bluebackblue/AssetLib
+* https://github.com/bluebackblue/JsonItem
 
 ## 動作確認
 Unity 2020.2.0b14
@@ -33,8 +29,4 @@ Unity 2020.2.0b14
 Gitクライアントがインストールされている必要がある。
 * https://docs.unity3d.com/ja/current/Manual/upm-git.html
 * https://git-scm.com/
-
-## 例
-```
-```
 

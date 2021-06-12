@@ -7,10 +7,10 @@
 */
 
 
-/** BlueBack.UpmVersionManager.Editor
+/** Editor
 */
 #if(UNITY_EDITOR)
-namespace BlueBack.UpmVersionManager.Editor
+namespace Editor
 {
 	/** UpmVersionManagerSetting
 	*/
@@ -21,7 +21,8 @@ namespace BlueBack.UpmVersionManager.Editor
 		*/
 		static UpmVersionManagerSetting()
 		{
-			Object_RootUssUxml.CreateFile();
+			//Object_RootUssUxml
+			BlueBack.UpmVersionManager.Editor.Object_RootUssUxml.CreateFile();
 
 			BlueBack.UpmVersionManager.Editor.Object_Setting.CreateInstance();
 			BlueBack.UpmVersionManager.Editor.Object_Setting.Param t_param = new BlueBack.UpmVersionManager.Editor.Object_Setting.Param();
@@ -42,7 +43,7 @@ namespace BlueBack.UpmVersionManager.Editor
 				t_param.packagejson_unity = "2020.1";
 
 				//packagejson_discription
-				t_param.packagejson_discription = "アセット操作";
+				t_param.packagejson_discription = "UPMバージョン操作";
 
 				//packagejson_keyword
 				t_param.packagejson_keyword = new string[]{
@@ -62,7 +63,7 @@ namespace BlueBack.UpmVersionManager.Editor
 					"",
 					*/
 
-					"## [0.0.1] - 2021-03-30",
+					"## [0.0.1] - 2021-06-13",
 					"### Changes",
 					"- Init",
 					"",
@@ -70,27 +71,21 @@ namespace BlueBack.UpmVersionManager.Editor
 
 				/** readme_md
 				*/
-				t_param.object_root_readme_md = new Object_Setting.Creator_Type[]{
+				t_param.object_root_readme_md = new BlueBack.UpmVersionManager.Editor.Object_Setting.Creator_Type[]{
 
 					/** 概要。
 					*/
-					(in Object_Setting.Creator_Argument a_argument) => {
+					(in BlueBack.UpmVersionManager.Editor.Object_Setting.Creator_Argument a_argument) => {
 						return new string[]{
 							"# " + a_argument.param.author_name + "." + a_argument.param.package_name,
-							"アセット操作",
-							"* パッケージの作成",
-							"* アセットバンドルの作成",
-							"* プレハブ、アセット、テキストのセーブロード",
-							"* テキストのエンコードデコード",
-							"* ディレクトリの作成、削除",
-							"* ファイル名、ディレクトリ名の列挙、検索",
-							"* STLのセーブロード",
+							"UPMバージョン操作",
+							"* package.json出力",
 						};
 					},
 
 					/** ライセンス。
 					*/
-					(in Object_Setting.Creator_Argument a_argument) => {
+					(in BlueBack.UpmVersionManager.Editor.Object_Setting.Creator_Argument a_argument) => {
 						return new string[]{
 							"## ライセンス",
 							"MIT License",
@@ -100,18 +95,19 @@ namespace BlueBack.UpmVersionManager.Editor
 
 					/** 依存。
 					*/
-					(in Object_Setting.Creator_Argument a_argument) => {
+					(in BlueBack.UpmVersionManager.Editor.Object_Setting.Creator_Argument a_argument) => {
 						return new string[]{
 							"## 外部依存 / 使用ライセンス等",
-							//"* " + AUTHOR_URL + "/" + "AssetLib",
+							"* " + a_argument.param.author_url + "/" + "AssetLib",
+							"* " + a_argument.param.author_url + "/" + "JsonItem",
 							//"### サンプルのみ",
-							//"* " + AUTHOR_URL + "/" + "AssetLib",
+							//"* " + a_argument.param.author_url + "/" + "AssetLib",
 						};
 					},
 
 					/** 動作確認。
 					*/
-					(in Object_Setting.Creator_Argument a_argument) => {
+					(in BlueBack.UpmVersionManager.Editor.Object_Setting.Creator_Argument a_argument) => {
 						return new string[]{
 							"## 動作確認",
 							"Unity " + UnityEngine.Application.unityVersion,
@@ -120,7 +116,7 @@ namespace BlueBack.UpmVersionManager.Editor
 
 					/** UPM。
 					*/
-					(in Object_Setting.Creator_Argument a_argument) => {
+					(in BlueBack.UpmVersionManager.Editor.Object_Setting.Creator_Argument a_argument) => {
 						return new string[]{
 							"## UPM",
 							"### 最新",
@@ -132,7 +128,7 @@ namespace BlueBack.UpmVersionManager.Editor
 
 					/** インストール。 
 					*/
-					(in Object_Setting.Creator_Argument a_argument) => {
+					(in BlueBack.UpmVersionManager.Editor.Object_Setting.Creator_Argument a_argument) => {
 						return new string[]{
 							"## Unityへの追加方法",
 							"* Unity起動",
@@ -149,13 +145,15 @@ namespace BlueBack.UpmVersionManager.Editor
 
 					/** 例。
 					*/
-					(in Object_Setting.Creator_Argument a_argument) => {
+					#if(false)
+					(in BlueBack.UpmVersionManager.Editor.Object_Setting.Creator_Argument a_argument) => {
 						return new string[]{
 							"## 例",
 							"```",
 							"```",
 						};
 					},
+					#endif
 				};
 			}
 

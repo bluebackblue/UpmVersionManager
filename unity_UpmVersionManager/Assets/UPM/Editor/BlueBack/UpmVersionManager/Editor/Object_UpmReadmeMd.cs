@@ -24,21 +24,28 @@ namespace BlueBack.UpmVersionManager.Editor
 
 				//「UPM/README.md」。
 				{
-					string[] t_readme_md = new string[]{
-						"#" + Object_Setting.GetInstance().param.author_name + "." + Object_Setting.GetInstance().param.package_name,
-						Object_Setting.GetInstance().param.author_url + "/" + Object_Setting.GetInstance().param.package_name,
-					};
-
-					System.Text.StringBuilder t_stringbuilder = new System.Text.StringBuilder(1024);
-					foreach(string t_line in t_readme_md){
-						t_stringbuilder.Append(t_line);
-						t_stringbuilder.Append("\n");
+					System.Text.StringBuilder t_stringbuilder = new System.Text.StringBuilder();
+					{
+						Object_Setting.Creator_Argument t_argument = new Object_Setting.Creator_Argument(
+							Object_Setting.GetInstance().param.getpackageversion(),
+							Object_Setting.GetInstance().param
+						);
+						foreach(Object_Setting.Creator_Type t_creator in Object_Setting.GetInstance().param.object_root_readme_md){
+							string[] t_list = t_creator(in t_argument);
+							foreach(string t_line in t_list){
+								t_stringbuilder.Append(t_line);
+								t_stringbuilder.Append("\n");
+							}
+							t_stringbuilder.Append("\n");
+						}
 					}
 
 					string t_path = "UPM/README.md";
 					string t_text = t_stringbuilder.ToString();
-					BlueBack.AssetLib.Editor.SaveText.SaveUtf8TextToAssetsPath(t_text,"UPM/README.md",false,BlueBack.AssetLib.LineFeedOption.CRLF);
-					UnityEngine.Debug.Log("save : " + t_path);
+					BlueBack.AssetLib.Editor.SaveText.SaveUtf8TextToAssetsPath(t_text,t_path,false,BlueBack.AssetLib.LineFeedOption.CRLF);
+					#if(DEF_BLUEBACK_UPMVERSIONMANAGER_LOG)
+					DebugTool.LogProc("save : " + t_path);
+					#endif
 				}
 
 				BlueBack.AssetLib.Editor.RefreshAsset.Refresh();

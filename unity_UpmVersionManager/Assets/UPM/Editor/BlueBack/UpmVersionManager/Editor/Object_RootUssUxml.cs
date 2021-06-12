@@ -140,33 +140,37 @@ namespace BlueBack.UpmVersionManager.Editor
 		*/
 		public static void CreateFile()	
 		{
-			System.Text.StringBuilder t_stringbuilder = new System.Text.StringBuilder();
-
+			//uss
 			{
-				t_stringbuilder.Clear();
-				foreach(string t_item in USS){
-					t_stringbuilder.Append(t_item);
-					t_stringbuilder.Append("\n");
-				}
-
 				string t_path = "UpmVersionManagerWindow.uss";
 				if(BlueBack.AssetLib.Editor.ExistFile.IsExistFileFromAssetsPath(t_path) == true){
+					System.Text.StringBuilder t_stringbuilder = new System.Text.StringBuilder();
+					foreach(string t_item in USS){
+						t_stringbuilder.Append(t_item);
+						t_stringbuilder.Append("\n");
+					}
+
 					BlueBack.AssetLib.Editor.SaveText.SaveUtf8TextToAssetsPath(t_stringbuilder.ToString(),t_path,false,AssetLib.LineFeedOption.CRLF);
-					UnityEngine.Debug.Log("save : " + t_path);
+					#if(DEF_BLUEBACK_UPMVERSIONMANAGER_LOG)
+					DebugTool.LogProc("save : " + t_path);
+					#endif
 				}
 			}
 
+			//uxml
 			{
-				t_stringbuilder.Clear();
-				foreach(string t_item in UXML){
-					t_stringbuilder.Append(t_item);
-					t_stringbuilder.Append("\n");
-				}
-
 				string t_path = "UpmVersionManagerWindow.uxml";
 				if(BlueBack.AssetLib.Editor.ExistFile.IsExistFileFromAssetsPath(t_path) == true){
+				System.Text.StringBuilder t_stringbuilder = new System.Text.StringBuilder();
+					foreach(string t_item in UXML){
+						t_stringbuilder.Append(t_item);
+						t_stringbuilder.Append("\n");
+					}
+
 					BlueBack.AssetLib.Editor.SaveText.SaveUtf8TextToAssetsPath(t_stringbuilder.ToString(),t_path,false,AssetLib.LineFeedOption.CRLF);
-					UnityEngine.Debug.Log("save : " + t_path);
+					#if(DEF_BLUEBACK_UPMVERSIONMANAGER_LOG)
+					DebugTool.LogProc("save : " + t_path);
+					#endif
 				}
 			}
 		}

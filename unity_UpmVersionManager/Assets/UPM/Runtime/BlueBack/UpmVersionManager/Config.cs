@@ -21,6 +21,13 @@ namespace BlueBack.UpmVersionManager
 		public delegate void ErrorProcType(System.Exception a_exception,string a_message);
 		public static ErrorProcType ERRORPROC = DebugTool.ErrorProc;
 		#endif
+
+		/** LOGPROC
+		*/
+		#if(DEF_BLUEBACK_UPMVERSIONMANAGER_LOG)
+		public delegate void LogProcType(string a_message);
+		public static LogProcType LOGPROC = DebugTool.LogProc;
+		#endif
 	}
 }
 

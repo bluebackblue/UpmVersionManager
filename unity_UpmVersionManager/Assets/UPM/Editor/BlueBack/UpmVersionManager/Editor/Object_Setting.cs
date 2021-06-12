@@ -121,8 +121,11 @@ namespace BlueBack.UpmVersionManager.Editor
 		*/
 		public void Set(Param a_param)
 		{
-			UnityEngine.Debug.Log("Object_Setting.Set");
 			this.param = a_param;
+
+			#if(DEF_BLUEBACK_UPMVERSIONMANAGER_LOG)
+			DebugTool.LogProc("Object_Setting.Set");
+			#endif
 		}
 	}
 }

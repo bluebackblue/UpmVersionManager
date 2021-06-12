@@ -73,7 +73,9 @@ namespace BlueBack.UpmVersionManager.Editor
 
 					string t_path = "UPM/Runtime/" + Object_Setting.GetInstance().param.author_name + "/" + Object_Setting.GetInstance().param.package_name + "/Version.cs";
 					string t_text = BlueBack.AssetLib.Editor.SaveScript.SaveScriptToAssetsPath(null,t_path,HEAD,null,null,null,t_replace_list,false,BlueBack.AssetLib.LineFeedOption.CRLF);
-					UnityEngine.Debug.Log("save : " + t_path);
+					#if(DEF_BLUEBACK_UPMVERSIONMANAGER_LOG)
+					DebugTool.LogProc("save : " + t_path);
+					#endif
 				}
 
 				BlueBack.AssetLib.Editor.RefreshAsset.Refresh();

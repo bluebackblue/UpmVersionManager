@@ -61,7 +61,9 @@ namespace BlueBack.UpmVersionManager.Editor
 				{
 					string t_path = "../../README.md";
 					string t_text = BlueBack.AssetLib.Editor.LoadText.LoadTextFromAssetsPath(t_path,System.Text.Encoding.GetEncoding("utf-8"));
-					UnityEngine.Debug.Log("load : " + t_path);
+					#if(DEF_BLUEBACK_UPMVERSIONMANAGER_LOG)
+					DebugTool.LogProc("load : " + t_path);
+					#endif
 
 					string[] t_text_list = t_text.Split(new char[]{'\r','\n'});
 					string t_url = (Object_Setting.GetInstance().param.author_url + "/" + Object_Setting.GetInstance().param.package_name + ".git?path=unity_" + Object_Setting.GetInstance().param.package_name + "/Assets/UPM").Replace(":","\\:").Replace("/","\\/").Replace(".","\\.").Replace("?","\\?").Replace("=","\\=");
@@ -113,7 +115,9 @@ namespace BlueBack.UpmVersionManager.Editor
 					string t_path = "../../README.md";
 					string t_text = t_stringbuilder.ToString();
 					BlueBack.AssetLib.Editor.SaveText.SaveUtf8TextToAssetsPath(t_text,t_path,false,BlueBack.AssetLib.LineFeedOption.CRLF);
-					UnityEngine.Debug.Log("save : " + t_path);
+					#if(DEF_BLUEBACK_UPMVERSIONMANAGER_LOG)
+					DebugTool.LogProc("save : " + t_path);
+					#endif
 				}
 
 				BlueBack.AssetLib.Editor.RefreshAsset.Refresh();
