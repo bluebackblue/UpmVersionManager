@@ -1,2 +1,2 @@
-#BlueBack.AssetLib
-https://github.com/bluebackblue/AssetLib
+#blueback.UpmVersionManager
+https://github.com/bluebackblue/UpmVersionManager
