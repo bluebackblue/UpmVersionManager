@@ -54,7 +54,7 @@ namespace BlueBack.UpmVersionManager.Editor
 			s_window = this;
 
 			//タイトル。
-			this.titleContent.text = "VersionManager";
+			this.titleContent.text = "UpmVersionManager";
 		}
 
 		/** ボタン。リロード。
