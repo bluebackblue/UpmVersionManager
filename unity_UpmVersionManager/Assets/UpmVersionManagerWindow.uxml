@@ -8,9 +8,9 @@
 
   <Style src="UpmVersionManagerWindow.uss" />
 
-  <!-- リロード -->
+  <!-- label_1 -->
   <Box>
-	<Button name="reload" text="ReLoad" />
+	<Button name="label_1" text="----" />
 	<Label text=" "/>
 	<Label text=" "/>
   </Box>
@@ -18,61 +18,63 @@
 
   <Box>
 
+	<!-- label_2 -->
 	<Box class="row">
-	  <Button class="way3" name="upm_changelog_md" text="UPM/CHANGELOG.md" />
-	  <Button class="way3" name="upm_documentation" text="UPM/Documentation~" />
-	  <Button class="way3" name="upm_readme_md" text="UPM/README.md" />
+	  <Button class="way3" name="label_2_1" text="----" />
+	  <Button class="way3" name="label_2_2" text="----" />
+	  <Button class="way3" name="label_2_3" text="----" />
 	</Box>
 
+	<!-- label_3 -->
 	<Box class="row">
-	  <Button class="way3"  name="samplecopy" text="SampleCopy" />
-	  <Button class="way3"  name="converttoutf8" text="ConvertToUtf8" />
-	  <Button class="way3"  name="openbrowser" text="OpenBrowser" />
+	  <Button class="way3"  name="label_3_1" text="----" />
+	  <Button class="way3"  name="label_3_2" text="----" />
+	  <Button class="way3"  name="label_3_3" text="----" />
 	</Box>
 
   </Box>
 
-  <!-- server.json -->
+  <!-- label_a -->
   <Box>
 	<Label text=" "/>
 	<Label text=" "/>
 
 	<Box class="row">
-	  <Label class="way3" text="server.json" />
-	  <Label class="way3" name="label_server" text="---" />
+	  <Label class="way3" name="label_a_title" text="----" />
+	  <Label class="way3" name="label_a_value" text="----" />
 	</Box>
-	<Button name="button_server" text="---" />
+	<Button name="label_a_button" text="---" />
   </Box>
 
-  <!-- readme.md -->
+  <!-- label_b -->
   <Box>
 	<Label text=" "/>
 	<Label text=" "/>
 
 	<Box class="row">
-	  <Label class="way3" text="Root/README.md"/>
-	  <Label class="way3" name="label_readme" text="---" />
+	  <Label class="way3" name="label_b_title" text="----" />
+	  <Label class="way3" name="label_b_value" text="----" />
 	</Box>
 	<Box class="row">
-	  <Button class="way3" name="button_readme_0" text="---" />
-	  <Button class="way3" name="button_readme_1" text="---" />
-	  <Button class="way3" name="button_readme_2" text="---" />
+	  <Button class="way3" name="label_b_button_1" text="--" />
+	  <Button class="way3" name="label_b_button_2" text="--" />
+	  <Button class="way3" name="label_b_button_3" text="--" />
 	</Box>
   </Box>
 
-  <!-- UPM/package.json -->
+  <!-- label_c -->
   <Box>
 	<Label text=" "/>
 	<Label text=" "/>
 
 	<Box class="row">
-	  <Label class="way3" text="UPM/package.json"/>
-	  <Label class="way3" name="label_package" text="---" />
+	  <Label class="way3" name="label_c_title" text="----" />
+	  <Label class="way3" name="label_c_value" text="----" />
 	</Box>
 	<Box class="row">
-	  <Button class="way3" name="button_package_0" text="---" />
-	  <Button class="way3" name="button_package_1" text="---" />
-	  <Button class="way3" name="button_package_2" text="---" />
+	  <Button class="way3" name="label_c_button_1" text="----" />
+	  <Button class="way3" name="label_c_button_2" text="----" />
+	  <Button class="way3" name="label_c_button_3" text="----" />
 	</Box>
   </Box>
 

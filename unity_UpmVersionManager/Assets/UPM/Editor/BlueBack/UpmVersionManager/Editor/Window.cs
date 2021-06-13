@@ -57,19 +57,11 @@ namespace BlueBack.UpmVersionManager.Editor
 			this.titleContent.text = "UpmVersionManager";
 		}
 
-		/** ボタン。リロード。
+		/** ボタン。ＵＳＳＵＸＭＬ作成。
 		*/
-		public void Button_Reload()
+		public void Button_CreateUssUxmll()
 		{
 			Object_RootUssUxml.CreateFile(true);
-			s_window.OnEnable();
-		}
-
-		/** ボタン。サンプルコピー。
-		*/
-		public void Button_SampleCopy()
-		{
-			Object_UpmSamples.Copy();
 			s_window.OnEnable();
 		}
 
@@ -77,6 +69,7 @@ namespace BlueBack.UpmVersionManager.Editor
 		*/
 		public void Button_OpenBrowser()
 		{
+			Object_RootUssUxml.CreateFile(true);
 			if(Object_Setting.GetInstance() != null){
 				UnityEngine.Application.OpenURL(Object_Setting.GetInstance().param.author_url + "/" + Object_Setting.GetInstance().param.package_name);
 			}else{
@@ -90,31 +83,10 @@ namespace BlueBack.UpmVersionManager.Editor
 		*/
 		public void Button_ConvertToUtf8()
 		{
+			#if(DEF_BLUEBACK_UPMVERSIONMANAGER_LOG)
+			DebugTool.LogProc("ConvertToUtf8");
+			#endif
 			BlueBack.AssetLib.Editor.ConvertText.ConvertTextToUtf8FromAssetsPath("",".*","^.*\\.cs$",false,BlueBack.AssetLib.LineFeedOption.CRLF);
-			s_window.OnEnable();
-		}
-
-		/** ボタン。「UPM/CHANGELOG.md」。
-		*/
-		public void Button_Upm_ChangeLog_Md()
-		{
-			Object_UpmChangeLogMd.Save();
-			s_window.OnEnable();
-		}
-
-		/** ボタン。「UPM/Documentation」。
-		*/
-		public void Button_Upm_Documentation()
-		{
-			Object_UpmDocumentation.Save();
-			s_window.OnEnable();
-		}
-
-		/** ボタン。「UPM/README.md」。
-		*/
-		public void Button_Upm_Readme_Md()
-		{
-			Object_UpmReadmeMd.Save();
 			s_window.OnEnable();
 		}
 
@@ -144,6 +116,12 @@ namespace BlueBack.UpmVersionManager.Editor
 		*/
 		public void Button_Upm_Package_Json(string a_version)
 		{
+			Object_UpmSamples.Copy();
+			
+			Object_UpmChangeLogMd.Save();
+
+			Object_UpmDocumentation.Save(a_version);
+			Object_UpmReadmeMd.Save(a_version);
 			Object_UpmVersionCs.Save(a_version);
 			Object_UpmPackageJson.Save(a_version);
 			s_window.OnEnable();
@@ -181,212 +159,252 @@ namespace BlueBack.UpmVersionManager.Editor
 					t_root.Add(t_root_element);
 				}
 
-				//リロードボタン。
+				//ＵＳＳＵＸＭＬ。
 				{
-					UnityEngine.UIElements.Button t_button = UnityEngine.UIElements.UQueryExtensions.Q<UnityEngine.UIElements.Button>(t_root,"reload");
+					UnityEngine.UIElements.Button t_button = UnityEngine.UIElements.UQueryExtensions.Q<UnityEngine.UIElements.Button>(t_root,"label_1");
 					if(t_button != null){
+						t_button.text = "[CreateUssUxml]";
 						t_button.clickable.clicked += () => {
-							s_window.Button_Reload();
-						};
-					}
-				}
-
-				//サンプルコピー。
-				{
-					UnityEngine.UIElements.Button t_button = UnityEngine.UIElements.UQueryExtensions.Q<UnityEngine.UIElements.Button>(t_root,"samplecopy");
-					if(t_button != null){
-						t_button.clickable.clicked += () => {
-							s_window.Button_SampleCopy();
-						};
-					}
-				}
-
-				//ブラウザを開く。
-				{
-					UnityEngine.UIElements.Button t_button = UnityEngine.UIElements.UQueryExtensions.Q<UnityEngine.UIElements.Button>(t_root,"openbrowser");
-					if(t_button != null){
-						t_button.clickable.clicked += () => {
-							s_window.Button_OpenBrowser();
+							s_window.Button_CreateUssUxmll();
 						};
 					}
 				}
 
 				//ＵＴＦ８にコンバート。
 				{
-					UnityEngine.UIElements.Button t_button = UnityEngine.UIElements.UQueryExtensions.Q<UnityEngine.UIElements.Button>(t_root,"converttoutf8");
+					UnityEngine.UIElements.Button t_button = UnityEngine.UIElements.UQueryExtensions.Q<UnityEngine.UIElements.Button>(t_root,"label_2_1");
 					if(t_button != null){
+						t_button.text = "[ConvertToUtf8]";
 						t_button.clickable.clicked += () => {
 							s_window.Button_ConvertToUtf8();
 						};
 					}
 				}
 
-				//「UPM/CAHGELOG.md」。
+				//ブラウザを開く。
 				{
-					UnityEngine.UIElements.Button t_button = UnityEngine.UIElements.UQueryExtensions.Q<UnityEngine.UIElements.Button>(t_root,"upm_changelog_md");
+					UnityEngine.UIElements.Button t_button = UnityEngine.UIElements.UQueryExtensions.Q<UnityEngine.UIElements.Button>(t_root,"label_2_2");
 					if(t_button != null){
+						t_button.text = "[OpenBrowser]";
 						t_button.clickable.clicked += () => {
-							s_window.Button_Upm_ChangeLog_Md();
+							s_window.Button_OpenBrowser();
 						};
 					}
 				}
 
-				//「UPM/Documentation~」。
 				{
-					UnityEngine.UIElements.Button t_button = UnityEngine.UIElements.UQueryExtensions.Q<UnityEngine.UIElements.Button>(t_root,"upm_documentation");
+					UnityEngine.UIElements.Button t_button = UnityEngine.UIElements.UQueryExtensions.Q<UnityEngine.UIElements.Button>(t_root,"label_2_3");
 					if(t_button != null){
+						/*
+						t_button.text = "[]";
 						t_button.clickable.clicked += () => {
-							s_window.Button_Upm_Documentation();
+							s_window.Button_SampleCopy();
 						};
+						*/
 					}
 				}
 
-				//「UPM/README.md」。
 				{
-					UnityEngine.UIElements.Button t_button = UnityEngine.UIElements.UQueryExtensions.Q<UnityEngine.UIElements.Button>(t_root,"upm_readme_md");
+					UnityEngine.UIElements.Button t_button = UnityEngine.UIElements.UQueryExtensions.Q<UnityEngine.UIElements.Button>(t_root,"label_3_1");
 					if(t_button != null){
+						/*
+						t_button.text = "[]";
 						t_button.clickable.clicked += () => {
-							s_window.Button_Upm_Readme_Md();
+							s_window.Button_SampleCopy();
 						};
+						*/
+					}
+				}
+
+				{
+					UnityEngine.UIElements.Button t_button = UnityEngine.UIElements.UQueryExtensions.Q<UnityEngine.UIElements.Button>(t_root,"label_3_2");
+					if(t_button != null){
+						/*
+						t_button.text = "[]";
+						t_button.clickable.clicked += () => {
+							s_window.Button_SampleCopy();
+						};
+						*/
+					}
+				}
+
+				{
+					UnityEngine.UIElements.Button t_button = UnityEngine.UIElements.UQueryExtensions.Q<UnityEngine.UIElements.Button>(t_root,"label_3_3");
+					if(t_button != null){
+						/*
+						t_button.text = "[]";
+						t_button.clickable.clicked += () => {
+							s_window.Button_SampleCopy();
+						};
+						*/
 					}
 				}
 
 				//「server.json」。
 				{
-					UnityEngine.UIElements.Label t_label = UnityEngine.UIElements.UQueryExtensions.Q<UnityEngine.UIElements.Label>(t_root,"label_server");
-					if(t_label != null){
-						t_label.text = Object_RootServerJson.GetInstance().status.time;
-					}
-				}
-
-				//「server.json」。
-				{
+					//タイトル。
 					{
-						UnityEngine.UIElements.Button t_button = UnityEngine.UIElements.UQueryExtensions.Q<UnityEngine.UIElements.Button>(t_root,"button_server");
-						if(t_button != null){
-							t_button.text = Object_RootServerJson.GetInstance().status.lasttag;
-							t_button.AddToClassList("red");
-
-							t_button.clickable.clicked += () => {
-								s_window.Button_Server_Json();
-							};
+						UnityEngine.UIElements.Label t_label = UnityEngine.UIElements.UQueryExtensions.Q<UnityEngine.UIElements.Label>(t_root,"label_a_title");
+						if(t_label != null){
+							t_label.text = "[server.json]";
 						}
 					}
-				}
 
-				//「readme.md」。
-				{
-					UnityEngine.UIElements.Label t_label = UnityEngine.UIElements.UQueryExtensions.Q<UnityEngine.UIElements.Label>(t_root,"label_readme");
-					if(t_label != null){
-						t_label.text = Object_RootReadmeMd.GetInstance().version;
+					//値。
+					{
+						UnityEngine.UIElements.Label t_label = UnityEngine.UIElements.UQueryExtensions.Q<UnityEngine.UIElements.Label>(t_root,"label_a_value");
+						if(t_label != null){
+							t_label.text = Object_RootServerJson.GetInstance().status.time;
+						}
 					}
-				}
 
-				//「readme.md」。
-				{
-					for(int ii=0;ii<3;ii++){
-						UnityEngine.UIElements.Button t_button = UnityEngine.UIElements.UQueryExtensions.Q<UnityEngine.UIElements.Button>(t_root,"button_readme_" + ii.ToString());
-						if(t_button != null){
-
-							string[] t_version_split = Object_RootServerJson.GetInstance().status.lasttag.Split('.');
-							int t_version_split_item2 = int.Parse(t_version_split[2]);
-
-							string t_version;
-
-							switch(ii){
-							case 0:
-								{
-									t_version = string.Format("{0}.{1}.{2}",t_version_split[0],t_version_split[1],t_version_split_item2 - 1);
-								}break;
-							case 1:
-								{
-									t_version = string.Format("{0}.{1}.{2}",t_version_split[0],t_version_split[1],t_version_split_item2);
-								}break;
-							case 2:
-								{
-									t_version = string.Format("{0}.{1}.{2}",t_version_split[0],t_version_split[1],t_version_split_item2 + 1);
-								}break;
-							default:
-								{
-									t_version = "";
-									UnityEngine.Debug.Assert(false);
-								}break;
-							}
-
-							t_button.text = t_version;
-							if(t_version == Object_RootReadmeMd.GetInstance().version){
+					//ボタン。
+					{
+						{
+							UnityEngine.UIElements.Button t_button = UnityEngine.UIElements.UQueryExtensions.Q<UnityEngine.UIElements.Button>(t_root,"label_a_button");
+							if(t_button != null){
+								t_button.text = Object_RootServerJson.GetInstance().status.lasttag;
 								t_button.AddToClassList("red");
+								t_button.clickable.clicked += () => {
+									s_window.Button_Server_Json();
+								};
 							}
-
-							//「readme.md」作成。
-							t_button.clickable.clicked += () => {
-								s_window.Button_Readme_Md(t_version);
-							};
 						}
 					}
 				}
 
-				//「package.json」。
+				//「readme.md」。
 				{
-					UnityEngine.UIElements.Label t_label = UnityEngine.UIElements.UQueryExtensions.Q<UnityEngine.UIElements.Label>(t_root,"label_package");
-					if(t_label != null){
-						if(Object_Setting.GetInstance().param.getpackageversion != null){
-							t_label.text = Object_Setting.GetInstance().param.getpackageversion();
-						}else{
-							t_label.text = "null";
+					//タイトル。
+					{
+						UnityEngine.UIElements.Label t_label = UnityEngine.UIElements.UQueryExtensions.Q<UnityEngine.UIElements.Label>(t_root,"label_b_title");
+						if(t_label != null){
+							t_label.text ="[Root/README.md]";
 						}
 					}
-				}
 
-				//「package.json」。
-				{
-					for(int ii=0;ii<3;ii++){
-						UnityEngine.UIElements.Button t_button = UnityEngine.UIElements.UQueryExtensions.Q<UnityEngine.UIElements.Button>(t_root,"button_package_" + ii.ToString());
-						if(t_button != null){
+					//値。
+					{
+						UnityEngine.UIElements.Label t_label = UnityEngine.UIElements.UQueryExtensions.Q<UnityEngine.UIElements.Label>(t_root,"label_b_value");
+						if(t_label != null){
+							t_label.text = Object_RootReadmeMd.GetInstance().version;
+						}
+					}
 
-							string[] t_version_split = Object_RootServerJson.GetInstance().status.lasttag.Split('.');
-							int t_version_split_item2 = int.Parse(t_version_split[2]);
+					//ボタン。
+					{
+						for(int ii=0;ii<3;ii++){
+							UnityEngine.UIElements.Button t_button = UnityEngine.UIElements.UQueryExtensions.Q<UnityEngine.UIElements.Button>(t_root,"label_b_button_" + (ii + 1).ToString());
+							if(t_button != null){
 
-							string t_version;
+								string[] t_version_split = Object_RootServerJson.GetInstance().status.lasttag.Split('.');
+								int t_version_split_item2 = int.Parse(t_version_split[2]);
 
-							switch(ii){
-							case 0:
-								{
-									t_version = string.Format("{0}.{1}.{2}",t_version_split[0],t_version_split[1],t_version_split_item2 - 1);
-								}break;
-							case 1:
-								{
-									t_version = string.Format("{0}.{1}.{2}",t_version_split[0],t_version_split[1],t_version_split_item2);
-								}break;
-							case 2:
-								{
-									t_version = string.Format("{0}.{1}.{2}",t_version_split[0],t_version_split[1],t_version_split_item2 + 1);
-								}break;
-							default:
-								{
-									t_version = "";
-									UnityEngine.Debug.Assert(false);
-								}break;
-							}
+								string t_version;
 
-							t_button.text = t_version;
-							if(Object_Setting.GetInstance().param.getpackageversion != null){
-								if(t_version == Object_Setting.GetInstance().param.getpackageversion()){
+								switch(ii){
+								case 0:
+									{
+										t_version = string.Format("{0}.{1}.{2}",t_version_split[0],t_version_split[1],t_version_split_item2 - 1);
+									}break;
+								case 1:
+									{
+										t_version = string.Format("{0}.{1}.{2}",t_version_split[0],t_version_split[1],t_version_split_item2);
+									}break;
+								case 2:
+									{
+										t_version = string.Format("{0}.{1}.{2}",t_version_split[0],t_version_split[1],t_version_split_item2 + 1);
+									}break;
+								default:
+									{
+										t_version = "";
+										UnityEngine.Debug.Assert(false);
+									}break;
+								}
+
+								t_button.text = t_version;
+								if(t_version == Object_RootReadmeMd.GetInstance().version){
 									t_button.AddToClassList("red");
 								}
-							}else{
-								#if(DEF_BLUEBACK_UPMVERSIONMANAGER_ASSERT)
-								DebugTool.Assert(false);
-								#endif
-							}
 
-							//「package.json」作成。
-							t_button.clickable.clicked += () => {
-								s_window.Button_Upm_Package_Json(t_version);
-							};
+								//「readme.md」作成。
+								t_button.clickable.clicked += () => {
+									s_window.Button_Readme_Md(t_version);
+								};
+							}
 						}
 					}
 				}
+
+				//「package.json」。
+				{
+					//タイトル。
+					{
+						UnityEngine.UIElements.Label t_label = UnityEngine.UIElements.UQueryExtensions.Q<UnityEngine.UIElements.Label>(t_root,"label_c_title");
+						if(t_label != null){
+							t_label.text = "[UPM/package.json]";
+						}
+					}
+
+					//値。
+					{
+						UnityEngine.UIElements.Label t_label = UnityEngine.UIElements.UQueryExtensions.Q<UnityEngine.UIElements.Label>(t_root,"label_c_value");
+						if(t_label != null){
+							t_label.text = Object_Setting.GetInstance().param.getpackageversion();
+						}
+					}
+
+					//ボタン。
+					{
+						for(int ii=0;ii<3;ii++){
+							UnityEngine.UIElements.Button t_button = UnityEngine.UIElements.UQueryExtensions.Q<UnityEngine.UIElements.Button>(t_root,"label_c_button_" + (ii + 1).ToString());
+							if(t_button != null){
+
+								string[] t_version_split = Object_RootServerJson.GetInstance().status.lasttag.Split('.');
+								int t_version_split_item2 = int.Parse(t_version_split[2]);
+
+								string t_version;
+
+								switch(ii){
+								case 0:
+									{
+										t_version = string.Format("{0}.{1}.{2}",t_version_split[0],t_version_split[1],t_version_split_item2 - 1);
+									}break;
+								case 1:
+									{
+										t_version = string.Format("{0}.{1}.{2}",t_version_split[0],t_version_split[1],t_version_split_item2);
+									}break;
+								case 2:
+									{
+										t_version = string.Format("{0}.{1}.{2}",t_version_split[0],t_version_split[1],t_version_split_item2 + 1);
+									}break;
+								default:
+									{
+										t_version = "";
+										UnityEngine.Debug.Assert(false);
+									}break;
+								}
+
+								t_button.text = t_version;
+								if(Object_Setting.GetInstance().param.getpackageversion != null){
+									if(t_version == Object_Setting.GetInstance().param.getpackageversion()){
+										t_button.AddToClassList("red");
+									}
+								}else{
+									#if(DEF_BLUEBACK_UPMVERSIONMANAGER_ASSERT)
+									DebugTool.Assert(false);
+									#endif
+								}
+
+								//「package.json」作成。
+								t_button.clickable.clicked += () => {
+									s_window.Button_Upm_Package_Json(t_version);
+								};
+							}
+						}
+					}
+				}
+
 				#endif
 			}
 		}

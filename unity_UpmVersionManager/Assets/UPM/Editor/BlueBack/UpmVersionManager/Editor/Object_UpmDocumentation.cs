@@ -18,7 +18,7 @@ namespace BlueBack.UpmVersionManager.Editor
 	{
 		/** Save
 		*/
-		public static void Save()
+		public static void Save(string a_version)
 		{
 			if(Object_Setting.GetInstance() != null){
 
@@ -34,7 +34,7 @@ namespace BlueBack.UpmVersionManager.Editor
 					System.Text.StringBuilder t_stringbuilder = new System.Text.StringBuilder();
 					{
 						Object_Setting.Creator_Argument t_argument = new Object_Setting.Creator_Argument(
-							Object_Setting.GetInstance().param.getpackageversion(),
+							a_version,
 							Object_Setting.GetInstance().param
 						);
 						foreach(Object_Setting.Creator_Type t_creator in Object_Setting.GetInstance().param.object_root_readme_md){

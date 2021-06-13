@@ -1,7 +1,11 @@
 {
     "name": "Samples",
     "rootNamespace": "",
-    "references": [],
+    "references": [
+        "GUID:851ead64da1dd9a40aec33e5244d17a0",
+        "GUID:96df67cbf8a508749b063eade9274e19",
+        "GUID:d9fbbca419fceae48a338c806e9e3d07"
+    ],
     "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": false,

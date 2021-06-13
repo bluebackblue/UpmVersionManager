@@ -52,7 +52,10 @@ namespace Samples.UpmVersionManager.NewProject.Editor
 		[UnityEditor.MenuItem("UpmVersionManager/NewProject")]
 		private static void MenuItem_NewProject()
 		{
-			
+			BlueBack.AssetLib.Editor.CreateDirectory.CreateDirectoryToAssetsPath("Editor");
+
+			BlueBack.AssetLib.Editor.SaveText.SaveUtf8TextToAssetsPath("//TODO:","Editor/UpmVersionManagerSetting.cs",false,BlueBack.AssetLib.LineFeedOption.CRLF);
+
 		}
 	}
 	#endif
