@@ -52,6 +52,7 @@ namespace Samples.UpmVersionManager.NewProject.Editor
 		[UnityEditor.MenuItem("UpmVersionManager/NewProject")]
 		private static void MenuItem_NewProject()
 		{
+			/*
 			string t_package_name = "NewProject";
 			string t_owner_name = "Owner_Name";
 
@@ -76,7 +77,7 @@ namespace Samples.UpmVersionManager.NewProject.Editor
 			}
 
 			//Samples
-			BlueBack.AssetLib.Editor.CreateDirectory.CreateDirectoryToAssetsPath("Samples/" + t_package_name + "/000");
+			BlueBack.AssetLib.Editor.CreateDirectory.CreateDirectoryToAssetsPath("Samples/" + t_package_name + "/000/Exsample");
 
 			//UPM
 			BlueBack.AssetLib.Editor.CreateDirectory.CreateDirectoryToAssetsPath("UPM/Editor/" + t_owner_name + "/" + t_package_name + "/Editor");
@@ -126,6 +127,7 @@ namespace Samples.UpmVersionManager.NewProject.Editor
 			if(BlueBack.AssetLib.Editor.ExistFile.IsExistFileFromAssetsPath(t_path_server_json) == false){
 				BlueBack.AssetLib.Editor.SaveText.SaveUtf8TextToAssetsPath("",t_path_server_json,false,BlueBack.AssetLib.LineFeedOption.CRLF);
 			}
+			*/
 		}
 	}
 	#endif
