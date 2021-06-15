@@ -25,6 +25,7 @@ namespace BlueBack.UpmVersionManager.Editor
 		[UnityEditor.MenuItem("UpmVersionManager/Open")]
 		public static void MenuItem_Open()
 		{
+			Object_RootUssUxml.CreateFile(true);
 			s_window = (Window)UnityEditor.EditorWindow.GetWindow(typeof(Window));
 			if(s_window != null){
 				s_window.Show();
@@ -69,7 +70,6 @@ namespace BlueBack.UpmVersionManager.Editor
 		*/
 		public void Button_OpenBrowser()
 		{
-			Object_RootUssUxml.CreateFile(true);
 			if(Object_Setting.GetInstance() != null){
 				UnityEngine.Application.OpenURL(Object_Setting.GetInstance().param.author_url + "/" + Object_Setting.GetInstance().param.package_name);
 			}else{
