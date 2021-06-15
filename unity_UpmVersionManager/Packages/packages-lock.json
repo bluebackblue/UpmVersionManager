@@ -5,14 +5,14 @@
       "depth": 0,
       "source": "git",
       "dependencies": {},
-      "hash": "fb3e30fbc9ed6d51a9ed87297cc9befdbe3526e6"
+      "hash": "39a79d281044e793ee4be4c05f17da87f7c10baa"
     },
     "blueback.jsonitem": {
       "version": "https://github.com/bluebackblue/JsonItem.git?path=unity_JsonItem/Assets/UPM",
       "depth": 0,
       "source": "git",
       "dependencies": {},
-      "hash": "45f9ed03fe85b836ade13d075778b3d8aebedb34"
+      "hash": "cc5a37cee3c1d5649cfe30b9293a7b2bd2376685"
     },
     "com.unity.collab-proxy": {
       "version": "1.3.9",
