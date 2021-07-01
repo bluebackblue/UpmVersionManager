@@ -50,6 +50,11 @@ namespace Editor
 					"upm"
 				};
 
+				//■packagejson_dependencies
+				t_param.packagejson_dependencies = new System.Collections.Generic.Dictionary<string,string>(){
+					{"blueback.code","https://github.com/bluebackblue/Code"}
+				};
+
 				/** changelog
 				*/
 				t_param.changelog = new string[]{

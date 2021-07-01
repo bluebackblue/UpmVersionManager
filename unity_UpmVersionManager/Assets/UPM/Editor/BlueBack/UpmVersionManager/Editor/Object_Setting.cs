@@ -97,6 +97,10 @@ namespace BlueBack.UpmVersionManager.Editor
 			*/
 			public string[] packagejson_keyword;
 
+			/** packagejson_dependencies
+			*/
+			public System.Collections.Generic.Dictionary<string,string> packagejson_dependencies;
+
 			/** changelog
 			*/
 			public string[] changelog;

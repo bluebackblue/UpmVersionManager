@@ -150,9 +150,7 @@ namespace BlueBack.UpmVersionManager.Editor
 						t_jsonobject.keyword = Object_Setting.GetInstance().param.packagejson_keyword;
 				
 						//dependencies
-						t_jsonobject.dependencies = new System.Collections.Generic.Dictionary<string,string>();
-						{
-						}
+						t_jsonobject.dependencies = Object_Setting.GetInstance().param.packagejson_dependencies;
 
 						//samples
 						t_jsonobject.samples = new System.Collections.Generic.List<JsonObject.Samples>();
