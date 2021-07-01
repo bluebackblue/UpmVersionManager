@@ -52,7 +52,7 @@ namespace Editor
 
 				//■packagejson_dependencies
 				t_param.packagejson_dependencies = new System.Collections.Generic.Dictionary<string,string>(){
-					{"blueback.code","https://github.com/bluebackblue/Code.git?path=unity_Code/Assets/UPM"}
+					//{"blueback.xxxxx","https://github.com/bluebackblue/xxxxx"},
 				};
 
 				/** changelog
