@@ -66,6 +66,19 @@ namespace BlueBack.UpmVersionManager.Editor
 			s_window.OnEnable();
 		}
 
+		/** ボタン。パッケージロック削除。
+		*/
+		public void Button_DeletePackageLock()
+		{
+			if(Object_Setting.GetInstance() != null){
+				BlueBack.AssetLib.Editor.DeleteFile.TryDeleteFileFromAssetsPath("../Packages/packages-lock.json");
+			}else{
+				#if(DEF_BLUEBACK_UPMVERSIONMANAGER_ASSERT)
+				DebugTool.Assert(false);
+				#endif
+			}
+		}
+
 		/** ボタン。オープンブラウザー。
 		*/
 		public void Button_OpenBrowser()
@@ -192,15 +205,14 @@ namespace BlueBack.UpmVersionManager.Editor
 					}
 				}
 
+				//パッケージロックを削除。
 				{
 					UnityEngine.UIElements.Button t_button = UnityEngine.UIElements.UQueryExtensions.Q<UnityEngine.UIElements.Button>(t_root,"label_2_3");
 					if(t_button != null){
-						/*
-						t_button.text = "[]";
+						t_button.text = "[DeletePacakgeLock]";
 						t_button.clickable.clicked += () => {
-							s_window.Button_SampleCopy();
+							s_window.Button_DeletePackageLock();
 						};
-						*/
 					}
 				}
 
