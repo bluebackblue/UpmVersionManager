@@ -66,6 +66,21 @@ namespace BlueBack.UpmVersionManager.Editor
 			s_window.OnEnable();
 		}
 
+		/** ボタン。ディレクトリを開く。
+		*/
+		public void Button_OpenDirectory()
+		{
+			if(Object_Setting.GetInstance() != null){
+				UnityEditor.CommandExecuteContext t_xe = new UnityEditor.CommandExecuteContext();
+
+				System.Diagnostics.Process.Start(UnityEngine.Application.dataPath + "/../../");
+			}else{
+				#if(DEF_BLUEBACK_UPMVERSIONMANAGER_ASSERT)
+				DebugTool.Assert(false);
+				#endif
+			}
+		}
+
 		/** ボタン。パッケージロック削除。
 		*/
 		public void Button_DeletePackageLock()
@@ -99,7 +114,7 @@ namespace BlueBack.UpmVersionManager.Editor
 			#if(DEF_BLUEBACK_UPMVERSIONMANAGER_LOG)
 			DebugTool.LogProc("ConvertToUtf8");
 			#endif
-			BlueBack.AssetLib.Editor.ConvertText.ConvertTextToUtf8FromAssetsPath("",".*","^.*\\.cs$",false,BlueBack.AssetLib.LineFeedOption.CRLF);
+			BlueBack.AssetLib.Editor.ConvertText.ConvertTextToUtf8FromAssetsPath("",".*","^.*\\.(cs|meta|mesh|prefab|json|asmdef)$",false,BlueBack.AssetLib.LineFeedOption.CRLF);
 			s_window.OnEnable();
 		}
 
@@ -219,12 +234,10 @@ namespace BlueBack.UpmVersionManager.Editor
 				{
 					UnityEngine.UIElements.Button t_button = UnityEngine.UIElements.UQueryExtensions.Q<UnityEngine.UIElements.Button>(t_root,"label_3_1");
 					if(t_button != null){
-						/*
-						t_button.text = "[]";
+						t_button.text = "[OpenDirectory]";
 						t_button.clickable.clicked += () => {
-							s_window.Button_SampleCopy();
+							s_window.Button_OpenDirectory();
 						};
-						*/
 					}
 				}
 

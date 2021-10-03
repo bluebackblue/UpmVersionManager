@@ -83,41 +83,6 @@ namespace BlueBack.UpmVersionManager.Editor
 			public System.Collections.Generic.List<Samples> samples;
 		}
 
-		/** HEAD
-		*/
-		private readonly static string[] HEAD = new string[]{
-			"",
-			"",
-			"/**",
-			" * Copyright (c) blueback",
-			" * Released under the MIT License",
-			" * @brief バージョン。",
-			"*/",
-			"",
-			"",
-			"/** <<namespace_comment>>",
-			"*/",
-			"namespace <<namespace_name>>",
-			"{",
-			"	/** Version",
-			"	*/",
-			"	public class Version",
-			"	{",
-			"		/** version",
-			"		*/",
-			"		public const string packageversion = \"<<version>>\";",
-			"",
-			"		/** GetPackageVersion",
-			"		*/",
-			"		public string GetPackageVersion()",
-			"		{",
-			"			return packageversion;",
-			"		}",
-			"	}",
-			"}",
-			"",
-		};
-
 		/** Save
 		*/
 		public static void Save(string a_version)

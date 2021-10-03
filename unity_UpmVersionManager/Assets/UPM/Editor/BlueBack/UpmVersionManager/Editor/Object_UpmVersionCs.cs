@@ -24,7 +24,7 @@ namespace BlueBack.UpmVersionManager.Editor
 
 		/** Save
 		*/
-		public static void Save(string a_version)
+		public static void Save(string a_packageversion)
 		{
 			if(Object_Setting.GetInstance() != null){
 				//「UPM/Runtime/.../Version.cs」。
@@ -49,9 +49,13 @@ namespace BlueBack.UpmVersionManager.Editor
 						"	*/",
 						"	public class Version",
 						"	{",
-						"		/** version",
+						"		/** packagename",
 						"		*/",
-						"		public const string packageversion = \"<<version>>\";",
+						"		public const string packagename = \"<<packagename>>\";",
+						"",
+						"		/** packageversion",
+						"		*/",
+						"		public const string packageversion = \"<<packageversion>>\";",
 						"",
 						"		/** GetPackageVersion",
 						"		*/",
@@ -64,11 +68,13 @@ namespace BlueBack.UpmVersionManager.Editor
 						"",
 					});
 
+
 					System.Collections.Generic.Dictionary<string,string> t_replace_list = new System.Collections.Generic.Dictionary<string,string>();
 					{
 						t_replace_list.Add("<<namespace_name>>",Object_Setting.GetInstance().param.author_name + "." + Object_Setting.GetInstance().param.package_name);
 						t_replace_list.Add("<<namespace_comment>>",Object_Setting.GetInstance().param.author_name + "." + Object_Setting.GetInstance().param.package_name);
-						t_replace_list.Add("<<version>>",a_version);
+						t_replace_list.Add("<<packagename>>",Object_Setting.GetInstance().param.package_name);
+						t_replace_list.Add("<<packageversion>>",a_packageversion);
 					}
 
 					string t_path = "UPM/Runtime/" + Object_Setting.GetInstance().param.author_name + "/" + Object_Setting.GetInstance().param.package_name + "/Version.cs";

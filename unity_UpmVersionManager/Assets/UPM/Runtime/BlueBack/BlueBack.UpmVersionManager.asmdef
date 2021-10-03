@@ -1,6 +1,6 @@
 {
     "name": "BlueBack.UpmVersionManager",
-    "rootNamespace": "",
+    "rootNamespace": "BlueBack.UpmVersionManager",
     "references": [],
     "includePlatforms": [],
     "excludePlatforms": [],

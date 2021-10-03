@@ -1,6 +1,6 @@
 {
     "name": "BlueBack.UpmVersionManager.Editor",
-    "rootNamespace": "",
+    "rootNamespace": "BlueBack.UpmVersionManager.Editor",
     "references": [
         "GUID:45b6869402c84fc4a9cdd753ad93262b",
         "GUID:851ead64da1dd9a40aec33e5244d17a0",
@@ -13,7 +13,7 @@
     ],
     "excludePlatforms": [],
     "allowUnsafeCode": false,
-    "overrideReferences": true,
+    "overrideReferences": false,
     "precompiledReferences": [],
     "autoReferenced": true,
     "defineConstraints": [],
