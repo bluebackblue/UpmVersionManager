@@ -60,27 +60,15 @@ namespace BlueBack.UpmVersionManager.Editor
 				//load
 				{
 					string t_path = "../../README.md";
-					string t_text = BlueBack.AssetLib.Editor.LoadText.LoadTextFromAssetsPath(t_path,System.Text.Encoding.GetEncoding("utf-8"));
+					string t_text = BlueBack.AssetLib.Editor.LoadText.LoadTextFromAssetsPath(t_path,System.Text.Encoding.UTF8);
 					#if(DEF_BLUEBACK_UPMVERSIONMANAGER_LOG)
 					DebugTool.LogProc("load : " + t_path);
 					#endif
 
-					string[] t_text_list = t_text.Split(new char[]{'\r','\n'});
-					string t_url = (Object_Setting.GetInstance().param.author_url + "/" + Object_Setting.GetInstance().param.package_name + ".git?path=unity_" + Object_Setting.GetInstance().param.package_name + "/Assets/UPM").Replace(":","\\:").Replace("/","\\/").Replace(".","\\.").Replace("?","\\?").Replace("=","\\=");
-					System.Text.RegularExpressions.Regex t_regex = new System.Text.RegularExpressions.Regex("\\* " + t_url + "\\#" + "(?<version>.*)");
-					foreach(string t_text_line in t_text_list){
-						System.Text.RegularExpressions.Match t_match = t_regex.Match(t_text_line);
-						if(t_match.Success == true){
-							System.Text.RegularExpressions.GroupCollection t_group_collection = t_match.Groups;
-							foreach(System.Text.RegularExpressions.Group t_group in t_group_collection){
-								if(t_group.Success == true){
-									if(t_group.Name == "version"){
-										this.version = t_group.Value;
-									}
-								}
-							}
-						}
-					}
+					string t_url = (Object_Setting.GetInstance().param.author_url + "/" + Object_Setting.GetInstance().param.package_name + ".git?path=unity_" + Object_Setting.GetInstance().param.package_name + "/Assets/UPM#").Replace(":","\\:").Replace("/","\\/").Replace(".","\\.").Replace("?","\\?").Replace("=","\\=").Replace("#","\\#");
+					this.version = System.Text.RegularExpressions.Regex.Replace(t_text,"^(?<before>[\\d\\D\\n\\r]*)(?<version_before>\\n\\* " +  t_url + ")(?<version>[0-9\\.]*)(?<after>[\\d\\D\\n\\r]*)$",(System.Text.RegularExpressions.Match a_a_match)=>{
+						return a_a_match.Groups["version"].Value;
+					},System.Text.RegularExpressions.RegexOptions.Multiline);
 				}
 			}else{
 				#if(DEF_BLUEBACK_UPMVERSIONMANAGER_ASSERT)

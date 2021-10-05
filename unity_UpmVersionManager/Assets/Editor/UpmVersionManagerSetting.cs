@@ -55,6 +55,21 @@ namespace Editor
 					//{"blueback.xxxxx","https://github.com/bluebackblue/xxxxx"},
 				};
 
+				
+				//■asmdef_reference
+				t_param.asmdef_reference = new string[]{
+
+				};
+			
+				//■editorasmdef_reference
+				t_param.editorasmdef_reference = new string[]{
+					"BlueBack.UpmVersionManager",
+					"BlueBack.AssetLib",
+					"BlueBack.AssetLib.Editor",
+					"BlueBack.JsonItem",
+					"BlueBack.Code",
+				};
+
 				/** changelog
 				*/
 				t_param.changelog = new string[]{

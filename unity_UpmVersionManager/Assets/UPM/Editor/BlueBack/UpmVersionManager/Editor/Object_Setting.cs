@@ -101,6 +101,14 @@ namespace BlueBack.UpmVersionManager.Editor
 			*/
 			public System.Collections.Generic.Dictionary<string,string> packagejson_dependencies;
 
+			/** asmdef_reference
+			*/
+			public string[] asmdef_reference;
+			
+			/** editorasmdef_reference
+			*/
+			public string[] editorasmdef_reference;
+
 			/** changelog
 			*/
 			public string[] changelog;
@@ -108,7 +116,6 @@ namespace BlueBack.UpmVersionManager.Editor
 			/** object_root_readme_md
 			*/
 			public Creator_Type[] object_root_readme_md;
-
 		}
 
 		/** param

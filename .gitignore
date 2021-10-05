@@ -1,2 +1,17 @@
 /*/Assets/UPM/package-lock.json.meta
 /*/Assets/UPM/package-lock.json
+/*/Assets/server.json
+/*/Assets/server.json.meta
+/*/.vs
+/*/.vsconfig
+/*/Library
+/*/Logs
+/*/obj
+/*/Temp
+/*/Exe
+/*/WebGL
+/*/*.log
+/*/*.apk
+/*/*.csproj
+/*/*.sln
+/*/*.user

@@ -1,4 +1,4 @@
-	
+
 
 /**
  * Copyright (c) blueback
@@ -25,9 +25,9 @@ namespace BlueBack.UpmVersionManager.Editor
 			if(t_version == null){
 				DebugTool.EditorLogError("GetLastReleaseNameFromGitHub : connect error");
 			}else if(t_version.Length <= 0){
-				UnityEditor.PackageManager.Client.Add("https://github.com/bluebackblue/" + Version.packagename + ".git?path=unity_" + Version.packagename + "/Assets/UPM");
+				UnityEditor.PackageManager.Client.Add("https://github.com/bluebackblue/UpmVersionManager.git?path=unity_UpmVersionManager/Assets/UPM");
 			}else{
-				UnityEditor.PackageManager.Client.Add("https://github.com/bluebackblue/" + Version.packagename + ".git?path=unity_" + Version.packagename + "/Assets/UPM#" + t_version);
+				UnityEditor.PackageManager.Client.Add("https://github.com/bluebackblue/UpmVersionManager.git?path=unity_UpmVersionManager/Assets/UPM#" + t_version);
 			}
 		}
 

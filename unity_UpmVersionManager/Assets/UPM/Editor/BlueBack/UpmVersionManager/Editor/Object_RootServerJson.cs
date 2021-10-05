@@ -90,7 +90,7 @@ namespace BlueBack.UpmVersionManager.Editor
 				//download
 				{
 					string t_path_download = "https://api.github.com/repos/bluebackblue/" + Object_Setting.GetInstance().param.package_name + "/releases/latest";
-					string t_jsonstring_download = BlueBack.AssetLib.Editor.LoadText.TryLoadTextFromUrl(t_path_download,null,System.Text.Encoding.GetEncoding("utf-8"));
+					string t_jsonstring_download = BlueBack.AssetLib.Editor.LoadText.TryLoadTextFromUrl(t_path_download,null,System.Text.Encoding.UTF8);
 					#if(DEF_BLUEBACK_UPMVERSIONMANAGER_LOG)
 					DebugTool.LogProc("download : " + t_path_download);
 					#endif

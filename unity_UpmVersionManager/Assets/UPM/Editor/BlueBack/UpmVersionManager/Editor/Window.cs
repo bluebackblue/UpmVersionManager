@@ -71,9 +71,7 @@ namespace BlueBack.UpmVersionManager.Editor
 		public void Button_OpenDirectory()
 		{
 			if(Object_Setting.GetInstance() != null){
-				UnityEditor.CommandExecuteContext t_xe = new UnityEditor.CommandExecuteContext();
-
-				System.Diagnostics.Process.Start(UnityEngine.Application.dataPath + "/../../");
+				System.Diagnostics.Process.Start("explorer","/select," + (UnityEngine.Application.dataPath + "/../").Replace("/","\\"));
 			}else{
 				#if(DEF_BLUEBACK_UPMVERSIONMANAGER_ASSERT)
 				DebugTool.Assert(false);
@@ -148,10 +146,12 @@ namespace BlueBack.UpmVersionManager.Editor
 			
 			Object_UpmChangeLogMd.Save();
 
+			Object_UpmAsmdef.Save();
 			Object_UpmDocumentation.Save(a_version);
 			Object_UpmReadmeMd.Save(a_version);
 			Object_UpmVersionCs.Save(a_version);
 			Object_UpmPackageJson.Save(a_version);
+			Object_UpmUpdatePackage.Save();
 			s_window.OnEnable();
 		}
 
@@ -231,6 +231,7 @@ namespace BlueBack.UpmVersionManager.Editor
 					}
 				}
 
+				//ディレクトリを開く。
 				{
 					UnityEngine.UIElements.Button t_button = UnityEngine.UIElements.UQueryExtensions.Q<UnityEngine.UIElements.Button>(t_root,"label_3_1");
 					if(t_button != null){
