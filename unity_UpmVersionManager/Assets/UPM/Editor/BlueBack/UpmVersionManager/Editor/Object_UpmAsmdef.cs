@@ -55,7 +55,7 @@ namespace BlueBack.UpmVersionManager.Editor
 						System.Collections.Generic.List<string> t_filename_list = new System.Collections.Generic.List<string>();
 						{
 							t_filename_list.AddRange(BlueBack.AssetLib.Editor.FindFile.FindFileListFromFullPath(UnityEngine.Application.dataPath,".*","^.*\\.asmdef$"));
-							System.Collections.Generic.List<UnityEditor.PackageManager.PackageInfo> t_packagelist = BlueBack.AssetLib.Editor.PackageList.CreatePackageList(false,false);
+							System.Collections.Generic.List<UnityEditor.PackageManager.PackageInfo> t_packagelist = BlueBack.AssetLib.Editor.PackageList.CreatePackageList(true,false);
 							foreach(UnityEditor.PackageManager.PackageInfo t_pacakge in t_packagelist){
 								t_filename_list.AddRange(BlueBack.AssetLib.Editor.FindFile.FindFileListFromFullPath(t_pacakge.resolvedPath,".*","^.*\\.asmdef$"));
 							}
