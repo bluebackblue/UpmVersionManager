@@ -224,9 +224,9 @@ namespace BlueBack.UpmVersionManager.Editor
 				{
 					UnityEngine.UIElements.Button t_button = UnityEngine.UIElements.UQueryExtensions.Q<UnityEngine.UIElements.Button>(t_root,"label_2_3");
 					if(t_button != null){
-						t_button.text = "[DeletePacakgeLock]";
+						t_button.text = "[OpenDirectory]";
 						t_button.clickable.clicked += () => {
-							s_window.Button_DeletePackageLock();
+							s_window.Button_OpenDirectory();
 						};
 					}
 				}
@@ -235,9 +235,9 @@ namespace BlueBack.UpmVersionManager.Editor
 				{
 					UnityEngine.UIElements.Button t_button = UnityEngine.UIElements.UQueryExtensions.Q<UnityEngine.UIElements.Button>(t_root,"label_3_1");
 					if(t_button != null){
-						t_button.text = "[OpenDirectory]";
+						t_button.text = "[DeletePacakgeLock]";
 						t_button.clickable.clicked += () => {
-							s_window.Button_OpenDirectory();
+							s_window.Button_DeletePackageLock();
 						};
 					}
 				}

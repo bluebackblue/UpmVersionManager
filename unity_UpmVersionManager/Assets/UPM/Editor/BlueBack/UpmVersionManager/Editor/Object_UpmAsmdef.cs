@@ -129,7 +129,7 @@ namespace BlueBack.UpmVersionManager.Editor
 							name = Object_Setting.GetInstance().param.author_name + "." + Object_Setting.GetInstance().param.package_name + ".Editor",
 							rootNamespace = Object_Setting.GetInstance().param.author_name + "." + Object_Setting.GetInstance().param.package_name + ".Editor",
 							references =  new string[Object_Setting.GetInstance().param.editorasmdef_reference.Length],
-							includePlatforms = new string[0],
+							includePlatforms = new string[]{"Editor"},
 							excludePlatforms = new string[0],
 							allowUnsafeCode = false,
 							overrideReferences = false,
