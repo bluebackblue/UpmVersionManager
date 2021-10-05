@@ -14,6 +14,7 @@ namespace BlueBack.UpmVersionManager.Editor
 {
 	/** UpdatePackage
 	*/
+	#if(!DEF_USER_BLUEBACK_UPMVERSIONMANAGER)
 	public class UpdatePackage
 	{
 		/** MenuItem_BlueBack_UpmVersionManager_UpdatePackage
@@ -88,6 +89,7 @@ namespace BlueBack.UpmVersionManager.Editor
 			}
 		}
 	}
+	#endif
 }
 #endif
 
