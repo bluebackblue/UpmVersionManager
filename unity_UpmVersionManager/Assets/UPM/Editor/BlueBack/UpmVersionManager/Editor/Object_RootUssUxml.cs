@@ -154,7 +154,7 @@ namespace BlueBack.UpmVersionManager.Editor
 
 					BlueBack.AssetLib.Editor.SaveText.SaveUtf8TextToAssetsPath(t_stringbuilder.ToString(),t_path,false,AssetLib.LineFeedOption.CRLF);
 					#if(DEF_BLUEBACK_UPMVERSIONMANAGER_LOG)
-					DebugTool.LogProc("save : " + t_path);
+					DebugTool.Log("save : " + t_path);
 					#endif
 				}
 			}
@@ -171,7 +171,7 @@ namespace BlueBack.UpmVersionManager.Editor
 
 					BlueBack.AssetLib.Editor.SaveText.SaveUtf8TextToAssetsPath(t_stringbuilder.ToString(),t_path,false,AssetLib.LineFeedOption.CRLF);
 					#if(DEF_BLUEBACK_UPMVERSIONMANAGER_LOG)
-					DebugTool.LogProc("save : " + t_path);
+					DebugTool.Log("save : " + t_path);
 					#endif
 				}
 			}

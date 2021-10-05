@@ -109,7 +109,7 @@ namespace BlueBack.UpmVersionManager.Editor
 
 						//author
 						t_jsonobject.author.name = Object_Setting.GetInstance().param.author_name;
-						t_jsonobject.author.url = "https://github.com/bluebackblue";
+						t_jsonobject.author.url =  Object_Setting.GetInstance().param.git_url +  Object_Setting.GetInstance().param.git_author;
 				
 						//keyword
 						t_jsonobject.keyword = Object_Setting.GetInstance().param.packagejson_keyword;
@@ -138,7 +138,7 @@ namespace BlueBack.UpmVersionManager.Editor
 						string t_jsonstring = BlueBack.JsonItem.Convert.ObjectToJsonString<JsonObject>(t_jsonobject);
 						BlueBack.AssetLib.Editor.SaveText.SaveUtf8TextToAssetsPath(t_jsonstring,t_path,false,BlueBack.AssetLib.LineFeedOption.CRLF);
 						#if(DEF_BLUEBACK_UPMVERSIONMANAGER_LOG)
-						DebugTool.LogProc("save : " + t_path);
+						DebugTool.Log("save : " + t_path);
 						#endif
 					}
 				}

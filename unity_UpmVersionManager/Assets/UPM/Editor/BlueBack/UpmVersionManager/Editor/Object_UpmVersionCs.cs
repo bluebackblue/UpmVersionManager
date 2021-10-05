@@ -35,15 +35,15 @@ namespace BlueBack.UpmVersionManager.Editor
 						"",
 						"",
 						"/**",
-						" * Copyright (c) blueback",
+						" * Copyright (c) <<authorname>>",
 						" * Released under the MIT License",
-						" * @brief バージョン。",
+						" * @brief バージョン。自動生成。",
 						"*/",
 						"",
 						"",
-						"/** <<namespace_comment>>",
+						"/** <<AuthorName>>.<<PackageName>>",
 						"*/",
-						"namespace <<namespace_name>>",
+						"namespace <<AuthorName>>.<<PackageName>>",
 						"{",
 						"	/** Version",
 						"	*/",
@@ -51,7 +51,7 @@ namespace BlueBack.UpmVersionManager.Editor
 						"	{",
 						"		/** packagename",
 						"		*/",
-						"		public const string packagename = \"<<packagename>>\";",
+						"		public const string packagename = \"<<PackageName>>\";",
 						"",
 						"		/** packageversion",
 						"		*/",
@@ -71,9 +71,11 @@ namespace BlueBack.UpmVersionManager.Editor
 
 					System.Collections.Generic.Dictionary<string,string> t_replace_list = new System.Collections.Generic.Dictionary<string,string>();
 					{
-						t_replace_list.Add("<<namespace_name>>",Object_Setting.GetInstance().param.author_name + "." + Object_Setting.GetInstance().param.package_name);
-						t_replace_list.Add("<<namespace_comment>>",Object_Setting.GetInstance().param.author_name + "." + Object_Setting.GetInstance().param.package_name);
-						t_replace_list.Add("<<packagename>>",Object_Setting.GetInstance().param.package_name);
+						t_replace_list.Add("<<PACKAGENAME>>",Object_Setting.GetInstance().param.package_name.ToUpper());
+						t_replace_list.Add("<<PackageName>>",Object_Setting.GetInstance().param.package_name);
+						t_replace_list.Add("<<AUTHORNAME>>",Object_Setting.GetInstance().param.author_name.ToUpper());
+						t_replace_list.Add("<<AuthorName>>",Object_Setting.GetInstance().param.author_name);
+						t_replace_list.Add("<<authorname>>",Object_Setting.GetInstance().param.author_name.ToLower());
 						t_replace_list.Add("<<packageversion>>",a_packageversion);
 					}
 
@@ -84,7 +86,7 @@ namespace BlueBack.UpmVersionManager.Editor
 					BlueBack.AssetLib.Editor.SaveText.SaveUtf8TextToAssetsPath(t_stringbuilder.ToString(),t_path,false,BlueBack.AssetLib.LineFeedOption.CRLF);
 
 					#if(DEF_BLUEBACK_UPMVERSIONMANAGER_LOG)
-					DebugTool.LogProc("save : " + t_path);
+					DebugTool.Log("save : " + t_path);
 					#endif
 				}
 

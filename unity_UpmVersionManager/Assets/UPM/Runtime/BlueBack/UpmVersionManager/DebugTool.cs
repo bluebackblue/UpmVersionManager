@@ -15,32 +15,10 @@ namespace BlueBack.UpmVersionManager
 	*/
 	public class DebugTool
 	{
-		/** Assert
+		/** ASSERTPROC
 		*/
 		#if(DEF_BLUEBACK_UPMVERSIONMANAGER_ASSERT)
-		public static void Assert(bool a_flag,System.Exception a_exception = null)
-		{
-			if(a_flag != true){
-				Config.ERRORPROC(a_exception,null);
-			}
-		}
-		#endif
-
-		/** Assert
-		*/
-		#if(DEF_BLUEBACK_UPMVERSIONMANAGER_ASSERT)
-		public static void Assert(bool a_flag,string a_message)
-		{
-			if(a_flag != true){
-				Config.ERRORPROC(null,a_message);
-			}
-		}
-		#endif
-
-		/** ErrorProc
-		*/
-		#if(DEF_BLUEBACK_UPMVERSIONMANAGER_ASSERT)
-		public static void ErrorProc(System.Exception a_exception,string a_message)
+		public static void DefaultAssertProc(System.Exception a_exception,string a_message)
 		{
 			if(a_message != null){
 				UnityEngine.Debug.LogError(a_message);
@@ -52,14 +30,47 @@ namespace BlueBack.UpmVersionManager
 
 			UnityEngine.Debug.Assert(false);
 		}
+		public delegate void AssertProcType(System.Exception a_exception,string a_message);
+		public static AssertProcType s_AssertProc = DefaultAssertProc;
 		#endif
 
-		/** LogProc
+		/** LOGPROC
 		*/
 		#if(DEF_BLUEBACK_UPMVERSIONMANAGER_LOG)
-		public static void LogProc(string a_message)
+		public static void DefaultLogProc(string a_message)
 		{
 			UnityEngine.Debug.Log(a_message);
+		}
+		public delegate void LogProcType(string a_message);
+		public static LogProcType s_LogProc = DebugTool.DefaultLogProc;
+		#endif
+
+		/** Assert
+		*/
+		#if(DEF_BLUEBACK_UPMVERSIONMANAGER_ASSERT)
+		public static void Assert(bool a_flag,System.Exception a_exception = null)
+		{
+			if(a_flag != true){
+				s_AssertProc(a_exception,null);
+			}
+		}
+		#endif
+
+		/** Assert
+		*/
+		#if(DEF_BLUEBACK_UPMVERSIONMANAGER_ASSERT)
+		public static void Assert(bool a_flag,string a_message)
+		{
+			if(a_flag != true){
+				s_AssertProc(null,a_message);
+			}
+		}
+		#endif
+
+		#if(DEF_BLUEBACK_UPMVERSIONMANAGER_LOG)
+		public static void Log(string a_message)
+		{
+			s_LogProc(a_message);
 		}
 		#endif
 

@@ -35,34 +35,34 @@ namespace BlueBack.UpmVersionManager.Editor
 						"",
 						"",
 						"/**",
-						" * Copyright (c) blueback",
+						" * Copyright (c) <<authorname>>",
 						" * Released under the MIT License",
-						" * @brief パッケージ更新。",
+						" * @brief パッケージ更新。自動生成。",
 						"*/",
 						"",
 						"",
-						"/** <<namespace_comment>>",
+						"/** <<AuthorName>>.<<PackageName>>.Editor",
 						"*/",
 						"#if(UNITY_EDITOR)",
-						"namespace <<namespace_name>>",
+						"namespace <<AuthorName>>.<<PackageName>>.Editor",
 						"{",
 						"	/** UpdatePackage",
 						"	*/",
-						"	#if(!DEF_USER_BLUEBACK_UPMVERSIONMANAGER)",
+						"	#if(!DEF_USER_<<AUTHORNAME>>_<<PACKAGENAME>>)",
 						"	public class UpdatePackage",
 						"	{",
-						"		/** MenuItem_BlueBack_<<packagename>>_UpdatePackage",
+						"		/** MenuItem_<<AuthorName>>_<<PackageName>>_UpdatePackage",
 						"		*/",
-						"		[UnityEditor.MenuItem(\"BlueBack/<<packagename>>/UpdatePackage\")]",
-						"		public static void MenuItem_BlueBack_<<packagename>>_UpdatePackage()",
+						"		[UnityEditor.MenuItem(\"<<AuthorName>>/<<PackageName>>/UpdatePackage\")]",
+						"		public static void MenuItem_<<AuthorName>>_<<PackageName>>_UpdatePackage()",
 						"		{",
-						"			string t_version = GetLastReleaseNameFromGitHub(\"bluebackblue\",Version.packagename);",
+						"			string t_version = GetLastReleaseNameFromGitHub(\"<<gitauthorname>>\",Version.packagename);",
 						"			if(t_version == null){",
 						"				DebugTool.EditorLogError(\"GetLastReleaseNameFromGitHub : connect error\");",
 						"			}else if(t_version.Length <= 0){",
-						"				UnityEditor.PackageManager.Client.Add(\"https://github.com/bluebackblue/<<packagename>>.git?path=unity_<<packagename>>/Assets/UPM\");",
+						"				UnityEditor.PackageManager.Client.Add(\"<<giturl>><<gitauthorname>>/<<PackageName>>.git?path=unity_<<PackageName>>/Assets/UPM\");",
 						"			}else{",
-						"				UnityEditor.PackageManager.Client.Add(\"https://github.com/bluebackblue/<<packagename>>.git?path=unity_<<packagename>>/Assets/UPM#\" + t_version);",
+						"				UnityEditor.PackageManager.Client.Add(\"<<giturl>><<gitauthorname>>/<<PackageName>>.git?path=unity_<<PackageName>>/Assets/UPM#\" + t_version);",
 						"			}",
 						"		}",
 						"",
@@ -132,9 +132,13 @@ namespace BlueBack.UpmVersionManager.Editor
 
 					System.Collections.Generic.Dictionary<string,string> t_replace_list = new System.Collections.Generic.Dictionary<string,string>();
 					{
-						t_replace_list.Add("<<namespace_name>>",Object_Setting.GetInstance().param.author_name + "." + Object_Setting.GetInstance().param.package_name + ".Editor");
-						t_replace_list.Add("<<namespace_comment>>",Object_Setting.GetInstance().param.author_name + "." + Object_Setting.GetInstance().param.package_name + ".Editor");
-						t_replace_list.Add("<<packagename>>",Object_Setting.GetInstance().param.package_name);
+						t_replace_list.Add("<<PACKAGENAME>>",Object_Setting.GetInstance().param.package_name.ToUpper());
+						t_replace_list.Add("<<PackageName>>",Object_Setting.GetInstance().param.package_name);
+						t_replace_list.Add("<<AUTHORNAME>>",Object_Setting.GetInstance().param.author_name.ToUpper());
+						t_replace_list.Add("<<AuthorName>>",Object_Setting.GetInstance().param.author_name);
+						t_replace_list.Add("<<authorname>>",Object_Setting.GetInstance().param.author_name.ToLower());
+						t_replace_list.Add("<<gitauthorname>>",Object_Setting.GetInstance().param.git_author);
+						t_replace_list.Add("<<giturl>>",Object_Setting.GetInstance().param.git_url);
 					}
 
 					string t_path = "UPM/Editor/" + Object_Setting.GetInstance().param.author_name + "/" + Object_Setting.GetInstance().param.package_name + "/Editor/UpdatePackage.cs";
@@ -144,7 +148,7 @@ namespace BlueBack.UpmVersionManager.Editor
 					BlueBack.AssetLib.Editor.SaveText.SaveUtf8TextToAssetsPath(t_stringbuilder.ToString(),t_path,false,BlueBack.AssetLib.LineFeedOption.CRLF);
 
 					#if(DEF_BLUEBACK_UPMVERSIONMANAGER_LOG)
-					DebugTool.LogProc("save : " + t_path);
+					DebugTool.Log("save : " + t_path);
 					#endif
 				}
 

@@ -73,9 +73,13 @@ namespace BlueBack.UpmVersionManager.Editor
 			*/
 			public string author_name;
 
-			/** author_url
+			/** git_url
 			*/
-			public string author_url;
+			public string git_url;
+
+			/** git_author
+			*/
+			public string git_author;
 
 			/** package_name
 			*/
@@ -135,7 +139,7 @@ namespace BlueBack.UpmVersionManager.Editor
 			this.param = a_param;
 
 			#if(DEF_BLUEBACK_UPMVERSIONMANAGER_LOG)
-			DebugTool.LogProc("Object_Setting.Set");
+			DebugTool.Log("Object_Setting.Set");
 			#endif
 		}
 	}

@@ -48,7 +48,7 @@ namespace BlueBack.UpmVersionManager.Editor
 		public Window()
 		{
 			#if(DEF_BLUEBACK_UPMVERSIONMANAGER_LOG)
-			DebugTool.LogProc("Window.constructor");
+			DebugTool.Log("Window.constructor");
 			#endif
 
 			//s_window
@@ -97,7 +97,7 @@ namespace BlueBack.UpmVersionManager.Editor
 		public void Button_OpenBrowser()
 		{
 			if(Object_Setting.GetInstance() != null){
-				UnityEngine.Application.OpenURL(Object_Setting.GetInstance().param.author_url + "/" + Object_Setting.GetInstance().param.package_name);
+				UnityEngine.Application.OpenURL(Object_Setting.GetInstance().param.git_url + Object_Setting.GetInstance().param.git_author + "/" + Object_Setting.GetInstance().param.package_name);
 			}else{
 				#if(DEF_BLUEBACK_UPMVERSIONMANAGER_ASSERT)
 				DebugTool.Assert(false);
@@ -110,7 +110,7 @@ namespace BlueBack.UpmVersionManager.Editor
 		public void Button_ConvertToUtf8()
 		{
 			#if(DEF_BLUEBACK_UPMVERSIONMANAGER_LOG)
-			DebugTool.LogProc("ConvertToUtf8");
+			DebugTool.Log("ConvertToUtf8");
 			#endif
 			BlueBack.AssetLib.Editor.ConvertText.ConvertTextToUtf8FromAssetsPath("",".*","^.*\\.(cs|meta|mesh|prefab|json|asmdef)$",false,BlueBack.AssetLib.LineFeedOption.CRLF);
 			s_window.OnEnable();
@@ -160,7 +160,7 @@ namespace BlueBack.UpmVersionManager.Editor
 		private void OnEnable()
 		{
 			#if(DEF_BLUEBACK_UPMVERSIONMANAGER_LOG)
-			DebugTool.LogProc("Window.OnEnable");
+			DebugTool.Log("Window.OnEnable");
 			#endif
 
 			//「readme.md」。

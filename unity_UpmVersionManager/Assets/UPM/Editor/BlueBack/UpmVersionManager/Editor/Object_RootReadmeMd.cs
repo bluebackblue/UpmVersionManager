@@ -62,10 +62,10 @@ namespace BlueBack.UpmVersionManager.Editor
 					string t_path = "../../README.md";
 					string t_text = BlueBack.AssetLib.Editor.LoadText.LoadTextFromAssetsPath(t_path,System.Text.Encoding.UTF8);
 					#if(DEF_BLUEBACK_UPMVERSIONMANAGER_LOG)
-					DebugTool.LogProc("load : " + t_path);
+					DebugTool.Log("load : " + t_path);
 					#endif
 
-					string t_url = (Object_Setting.GetInstance().param.author_url + "/" + Object_Setting.GetInstance().param.package_name + ".git?path=unity_" + Object_Setting.GetInstance().param.package_name + "/Assets/UPM#").Replace(":","\\:").Replace("/","\\/").Replace(".","\\.").Replace("?","\\?").Replace("=","\\=").Replace("#","\\#");
+					string t_url = (Object_Setting.GetInstance().param.git_url + Object_Setting.GetInstance().param.git_author + "/" + Object_Setting.GetInstance().param.package_name + ".git?path=unity_" + Object_Setting.GetInstance().param.package_name + "/Assets/UPM#").Replace(":","\\:").Replace("/","\\/").Replace(".","\\.").Replace("?","\\?").Replace("=","\\=").Replace("#","\\#");
 					this.version = System.Text.RegularExpressions.Regex.Replace(t_text,"^(?<before>[\\d\\D\\n\\r]*)(?<version_before>\\n\\* " +  t_url + ")(?<version>[0-9\\.]*)(?<after>[\\d\\D\\n\\r]*)$",(System.Text.RegularExpressions.Match a_a_match)=>{
 						return a_a_match.Groups["version"].Value;
 					},System.Text.RegularExpressions.RegexOptions.Multiline);
@@ -104,7 +104,7 @@ namespace BlueBack.UpmVersionManager.Editor
 					string t_text = t_stringbuilder.ToString();
 					BlueBack.AssetLib.Editor.SaveText.SaveUtf8TextToAssetsPath(t_text,t_path,false,BlueBack.AssetLib.LineFeedOption.CRLF);
 					#if(DEF_BLUEBACK_UPMVERSIONMANAGER_LOG)
-					DebugTool.LogProc("save : " + t_path);
+					DebugTool.Log("save : " + t_path);
 					#endif
 				}
 

@@ -7,15 +7,13 @@ MIT License
 * https://github.com/bluebackblue/UpmVersionManager/blob/main/LICENSE
 
 ## 外部依存 / 使用ライセンス等
-* https://github.com/bluebackblue/AssetLib
-* https://github.com/bluebackblue/JsonItem
 
 ## 動作確認
 Unity 2021.1.11f1
 
 ## UPM
 ### 最新
-* https://github.com/bluebackblue/UpmVersionManager.git?path=unity_UpmVersionManager/Assets/UPM#0.0.16
+* https://github.com/bluebackblue/UpmVersionManager.git?path=unity_UpmVersionManager/Assets/UPM#0.0.17
 ### 開発
 * https://github.com/bluebackblue/UpmVersionManager.git?path=unity_UpmVersionManager/Assets/UPM
 
