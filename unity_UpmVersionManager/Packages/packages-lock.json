@@ -1,11 +1,11 @@
 {
   "dependencies": {
     "blueback.assetlib": {
-      "version": "https://github.com/bluebackblue/AssetLib.git?path=unity_AssetLib/Assets/UPM#0.0.29",
+      "version": "https://github.com/bluebackblue/AssetLib.git?path=unity_AssetLib/Assets/UPM#0.0.31",
       "depth": 0,
       "source": "git",
       "dependencies": {},
-      "hash": "c3aaed067c9ededb9a115a6f0a259091cb66d6b3"
+      "hash": "81942fe02205bd295c39da3db23dc800350e62dd"
     },
     "blueback.code": {
       "version": "https://github.com/bluebackblue/Code.git?path=unity_Code/Assets/UPM",
