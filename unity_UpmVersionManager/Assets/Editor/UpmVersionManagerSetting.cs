@@ -71,23 +71,23 @@ namespace Editor
 					reference_list = new BlueBack.UpmVersionManager.Editor.Object_Setting.Param.AsmdefReferenceItem[]{
 						new BlueBack.UpmVersionManager.Editor.Object_Setting.Param.AsmdefReferenceItem(){
 							package_name = "BlueBack.UpmVersionManager",
-							url = t_param.git_url + "<<package_name>>",
+							url = t_param.git_url + t_param.git_author + "/UpmVersionManager",
 						},
 						new BlueBack.UpmVersionManager.Editor.Object_Setting.Param.AsmdefReferenceItem(){
 							package_name = "BlueBack.AssetLib",
-							url = t_param.git_url + "<<package_name>>",
+							url = t_param.git_url + t_param.git_author + "/AssetLib",
 						},
 						new BlueBack.UpmVersionManager.Editor.Object_Setting.Param.AsmdefReferenceItem(){
 							package_name = "BlueBack.AssetLib.Editor",
-							url = t_param.git_url + "<<package_name>>",
+							url = t_param.git_url + t_param.git_author + "/AssetLib",
 						},
 						new BlueBack.UpmVersionManager.Editor.Object_Setting.Param.AsmdefReferenceItem(){
 							package_name = "BlueBack.JsonItem",
-							url = t_param.git_url + "<<package_name>>",
+							url = t_param.git_url + t_param.git_author + "/JsonItem",
 						},
 						new BlueBack.UpmVersionManager.Editor.Object_Setting.Param.AsmdefReferenceItem(){
 							package_name = "BlueBack.Code",
-							url = t_param.git_url + "<<package_name>>",
+							url = t_param.git_url + t_param.git_author + "/Code",
 						},
 					},
 					versiondefine_list = new BlueBack.UpmVersionManager.Editor.Object_Setting.Param.AsmdefVersionDefineItem[]{
@@ -99,27 +99,17 @@ namespace Editor
 					reference_list = new BlueBack.UpmVersionManager.Editor.Object_Setting.Param.AsmdefReferenceItem[]{
 						new BlueBack.UpmVersionManager.Editor.Object_Setting.Param.AsmdefReferenceItem(){
 							package_name = "BlueBack.AssetLib",
-							url = t_param.git_url + "<<package_name>>",
+							url = t_param.git_url + t_param.git_author + "/AssetLib",
 						},
 						new BlueBack.UpmVersionManager.Editor.Object_Setting.Param.AsmdefReferenceItem(){
 							package_name = "BlueBack.AssetLib.Editor",
-							url = t_param.git_url + "<<package_name>>",
+							url = t_param.git_url + t_param.git_author + "/AssetLib",
 						},
 
 					},
 					versiondefine_list = new BlueBack.UpmVersionManager.Editor.Object_Setting.Param.AsmdefVersionDefineItem[]{
 					},
 				};
-
-				for(int ii=0;ii<t_param.asmdef_runtime.reference_list.Length;ii++){
-					t_param.asmdef_runtime.reference_list[ii].url = t_param.asmdef_runtime.reference_list[ii].url.Replace("<<package_name>>",t_param.asmdef_runtime.reference_list[ii].package_name);
-				}
-				for(int ii=0;ii<t_param.asmdef_editor.reference_list.Length;ii++){
-					t_param.asmdef_editor.reference_list[ii].url = t_param.asmdef_editor.reference_list[ii].url.Replace("<<package_name>>",t_param.asmdef_editor.reference_list[ii].package_name);
-				}
-				for(int ii=0;ii<t_param.asmdef_sample.reference_list.Length;ii++){
-					t_param.asmdef_sample.reference_list[ii].url = t_param.asmdef_sample.reference_list[ii].url.Replace("<<package_name>>",t_param.asmdef_sample.reference_list[ii].package_name);
-				}
 
 				//changelog
 				t_param.changelog = new string[]{
@@ -166,20 +156,33 @@ namespace Editor
 						System.Collections.Generic.List<string> t_list = new System.Collections.Generic.List<string>();
 						t_list.Add("## 外部依存 / 使用ライセンス等");
 
-						//runtine
-						for(int ii=0;ii<a_argument.param.asmdef_runtime.reference_list.Length;ii++){
-							t_list.Add("* " + a_argument.param.asmdef_runtime.reference_list[ii].url);
-						}
+						{
+							System.Collections.Generic.HashSet<string> t_url_list = new System.Collections.Generic.HashSet<string>();
 
-						//editor
-						for(int ii=0;ii<a_argument.param.asmdef_editor.reference_list.Length;ii++){
-							t_list.Add("* " + a_argument.param.asmdef_editor.reference_list[ii].url);
+							//runtine
+							for(int ii=0;ii<a_argument.param.asmdef_runtime.reference_list.Length;ii++){
+								t_url_list.Add("* " + a_argument.param.asmdef_runtime.reference_list[ii].url);
+							}
+
+							//editor
+							for(int ii=0;ii<a_argument.param.asmdef_editor.reference_list.Length;ii++){
+								t_url_list.Add("* " + a_argument.param.asmdef_editor.reference_list[ii].url);
+							}
+
+							t_list.AddRange(t_url_list);
 						}
 
 						t_list.Add("### サンプルのみ");
+						
+						{
+							System.Collections.Generic.HashSet<string> t_url_list = new System.Collections.Generic.HashSet<string>();
 
-						for(int ii=0;ii<a_argument.param.asmdef_sample.reference_list.Length;ii++){
-							t_list.Add("* " + a_argument.param.asmdef_sample.reference_list[ii].url);
+							//sample
+							for(int ii=0;ii<a_argument.param.asmdef_sample.reference_list.Length;ii++){
+								t_url_list.Add("* " + a_argument.param.asmdef_sample.reference_list[ii].url);
+							}
+
+							t_list.AddRange(t_url_list);
 						}
 
 						return t_list.ToArray();
