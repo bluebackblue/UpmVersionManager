@@ -24,7 +24,7 @@ namespace BlueBack.UpmVersionManager.Editor
 
 		/** Save
 		*/
-		public static void Save(string a_packageversion)
+		public static void Save(string a_version)
 		{
 			if(Object_Setting.GetInstance() != null){
 				//「UPM/Runtime/.../Version.cs」。
@@ -76,7 +76,7 @@ namespace BlueBack.UpmVersionManager.Editor
 						t_replace_list.Add("<<AUTHORNAME>>",Object_Setting.GetInstance().param.author_name.ToUpper());
 						t_replace_list.Add("<<AuthorName>>",Object_Setting.GetInstance().param.author_name);
 						t_replace_list.Add("<<authorname>>",Object_Setting.GetInstance().param.author_name.ToLower());
-						t_replace_list.Add("<<packageversion>>",a_packageversion);
+						t_replace_list.Add("<<packageversion>>",a_version);
 					}
 
 					string t_path = "UPM/Runtime/" + Object_Setting.GetInstance().param.author_name + "/" + Object_Setting.GetInstance().param.package_name + "/Version.cs";

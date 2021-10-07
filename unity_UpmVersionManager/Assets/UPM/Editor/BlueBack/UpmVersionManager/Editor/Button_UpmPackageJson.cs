@@ -81,6 +81,7 @@ namespace BlueBack.UpmVersionManager.Editor
 			Object_UpmDocumentation.Save(a_version);
 			Object_UpmReadmeMd.Save(a_version);
 			Object_UpmVersionCs.Save(a_version);
+			Object_UpmDebugToolCs.Save();
 			Object_UpmPackageJson.Save(a_version);
 			Object_UpmUpdatePackage.Save();
 

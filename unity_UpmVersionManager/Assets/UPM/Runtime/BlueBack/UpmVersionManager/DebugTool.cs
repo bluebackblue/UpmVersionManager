@@ -3,7 +3,7 @@
 /**
  * Copyright (c) blueback
  * Released under the MIT License
- * @brief デバッグツール。
+ * @brief デバッグツール。自動生成。
 */
 
 
@@ -15,7 +15,7 @@ namespace BlueBack.UpmVersionManager
 	*/
 	public class DebugTool
 	{
-		/** ASSERTPROC
+		/** s_AssertProc
 		*/
 		#if(DEF_BLUEBACK_UPMVERSIONMANAGER_ASSERT)
 		public static void DefaultAssertProc(System.Exception a_exception,string a_message)
@@ -34,7 +34,7 @@ namespace BlueBack.UpmVersionManager
 		public static AssertProcType s_AssertProc = DefaultAssertProc;
 		#endif
 
-		/** LOGPROC
+		/** s_LogProc
 		*/
 		#if(DEF_BLUEBACK_UPMVERSIONMANAGER_LOG)
 		public static void DefaultLogProc(string a_message)

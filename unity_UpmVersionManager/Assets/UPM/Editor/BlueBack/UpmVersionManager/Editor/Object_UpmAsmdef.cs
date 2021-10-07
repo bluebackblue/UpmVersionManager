@@ -32,6 +32,7 @@ namespace BlueBack.UpmVersionManager.Editor
 				{
 					//ＧＵＩＤを列挙。
 					System.Collections.Generic.Dictionary<string,string> t_guid_list = new System.Collections.Generic.Dictionary<string,string>();
+
 					{
 						//「*.asmdef」を列挙。
 						System.Collections.Generic.List<string> t_filename_list = new System.Collections.Generic.List<string>();
@@ -53,10 +54,6 @@ namespace BlueBack.UpmVersionManager.Editor
 										string t_guid = BlueBack.AssetLib.Editor.LoadGuid.LoadGuidFromFullPath(t_filename + ".meta",System.Text.Encoding.UTF8);
 										if(t_guid != null){
 											t_guid_list.Add(t_asmdef_reference_item.package_name,t_guid);
-										}else{
-											#if(DEF_BLUEBACK_UPMVERSIONMANAGER_ASSERT)
-											DebugTool.Assert(false,"guid==null");
-											#endif
 										}
 									}
 								}
@@ -69,10 +66,6 @@ namespace BlueBack.UpmVersionManager.Editor
 										string t_guid = BlueBack.AssetLib.Editor.LoadGuid.LoadGuidFromFullPath(t_filename + ".meta",System.Text.Encoding.UTF8);
 										if(t_guid != null){
 											t_guid_list.Add(t_asmdef_reference_item.package_name,t_guid);
-										}else{
-											#if(DEF_BLUEBACK_UPMVERSIONMANAGER_ASSERT)
-											DebugTool.Assert(false,"guid==null");
-											#endif
 										}
 									}
 								}
@@ -85,10 +78,6 @@ namespace BlueBack.UpmVersionManager.Editor
 										string t_guid = BlueBack.AssetLib.Editor.LoadGuid.LoadGuidFromFullPath(t_filename + ".meta",System.Text.Encoding.UTF8);
 										if(t_guid != null){
 											t_guid_list.Add(t_asmdef_reference_item.package_name,t_guid);
-										}else{
-											#if(DEF_BLUEBACK_UPMVERSIONMANAGER_ASSERT)
-											DebugTool.Assert(false,"guid==null");
-											#endif
 										}
 									}
 								}
@@ -170,9 +159,15 @@ namespace BlueBack.UpmVersionManager.Editor
 			string t_jsonitem_string = BlueBack.JsonItem.Convert.ObjectToJsonString(t_asmdef);
 			BlueBack.AssetLib.Editor.CreateDirectory.CreateDirectoryToAssetsPath(System.IO.Path.GetDirectoryName(a_path));
 			BlueBack.AssetLib.Editor.SaveText.SaveUtf8TextToAssetsPath(t_jsonitem_string,a_path,false,BlueBack.AssetLib.LineFeedOption.CRLF);
+			BlueBack.AssetLib.Editor.RefreshAsset.Refresh();
 			#if(DEF_BLUEBACK_UPMVERSIONMANAGER_LOG)
 			DebugTool.Log("save : " + a_path);
 			#endif
+
+			if(a_guid_list.ContainsKey(a_name) == false){
+				string t_guid = BlueBack.AssetLib.Editor.LoadGuid.LoadGuidFromAssetsPath(a_path + ".meta",System.Text.Encoding.UTF8);
+				a_guid_list.Add(a_name,t_guid);
+			}
 		}
 	}
 }
