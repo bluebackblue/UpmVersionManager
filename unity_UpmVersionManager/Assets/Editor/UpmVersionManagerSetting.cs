@@ -150,9 +150,8 @@ namespace Editor
 					(in BlueBack.UpmVersionManager.Editor.Object_Setting.Creator_Argument a_argument) => {
 						return new string[]{
 							"# " + a_argument.param.author_name + "." + a_argument.param.package_name,
-							"xxxxx操作",
-							"* xxxxxxxxxxxxxxxx",
-							"* xxxxxxxxxxxxxxxx",
+							"UPMバージョン操作",
+							"* package.json出力",
 						};
 					},
 

@@ -1,7 +1,6 @@
 # BlueBack.UpmVersionManager
-xxxxx操作
-* xxxxxxxxxxxxxxxx
-* xxxxxxxxxxxxxxxx
+UPMバージョン操作
+* package.json出力
 
 ## ライセンス
 MIT License
