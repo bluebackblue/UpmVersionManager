@@ -27,6 +27,9 @@ namespace BlueBack.UpmVersionManager.Editor
 				//DeleteDirectory
 				BlueBack.AssetLib.Editor.DeleteDirectory.TryDeleteDirectoryFromAssetsPath(t_to_path);
 
+				//CreateDirectory
+				BlueBack.AssetLib.Editor.CreateDirectory.CreateDirectoryToAssetsPath(t_from_path);
+
 				{
 					//DirectoryNameList
 					System.Collections.Generic.List<string> t_path_list = BlueBack.AssetLib.Editor.DirectoryNameList.CreateAllDirectoryNameListFromAssetsPath(t_from_path);

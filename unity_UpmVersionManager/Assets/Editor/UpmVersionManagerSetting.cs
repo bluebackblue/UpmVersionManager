@@ -61,6 +61,9 @@ namespace Editor
 					//{"xxxxx.xxxxx","https://github.com/xxxxx/xxxxx"},
 				};
 
+				//root_readmemd_path
+				t_param.root_readmemd_path = "../../README.md";
+
 				//asmdef_runtime
 				t_param.asmdef_runtime = new BlueBack.UpmVersionManager.Editor.Object_Setting.Param.AsmdefItem{
 					reference_list = new BlueBack.UpmVersionManager.Editor.Object_Setting.Param.AsmdefReferenceItem[]{

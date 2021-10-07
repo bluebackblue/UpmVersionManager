@@ -112,8 +112,8 @@ namespace BlueBack.UpmVersionManager.Editor
 
 					//asmdef_sample
 					{
-						string t_name = "Samples";
-						string t_path = "Samples/Samples.asmdef";
+						string t_name = "Samples/" + Object_Setting.GetInstance().param.package_name;
+						string t_path = "Samples/" + Object_Setting.GetInstance().param.package_name + "/Samples " + Object_Setting.GetInstance().param.package_name + ".asmdef";
 						Inner_CreateAsmdef(t_guid_list,in Object_Setting.GetInstance().param.asmdef_sample,t_path,t_name);
 					}
 				}
@@ -167,9 +167,8 @@ namespace BlueBack.UpmVersionManager.Editor
 				}
 			}
 
-			BlueBack.AssetLib.Editor.CreateDirectory.CreateDirectoryToAssetsPath(System.IO.Path.GetDirectoryName(a_path));
-
 			string t_jsonitem_string = BlueBack.JsonItem.Convert.ObjectToJsonString(t_asmdef);
+			BlueBack.AssetLib.Editor.CreateDirectory.CreateDirectoryToAssetsPath(System.IO.Path.GetDirectoryName(a_path));
 			BlueBack.AssetLib.Editor.SaveText.SaveUtf8TextToAssetsPath(t_jsonitem_string,a_path,false,BlueBack.AssetLib.LineFeedOption.CRLF);
 			#if(DEF_BLUEBACK_UPMVERSIONMANAGER_LOG)
 			DebugTool.Log("save : " + a_path);

@@ -58,7 +58,9 @@ namespace BlueBack.UpmVersionManager.Editor
 						"		{",
 						"			string t_version = GetLastReleaseNameFromGitHub(\"<<gitauthorname>>\",Version.packagename);",
 						"			if(t_version == null){",
+						"				#if(UNITY_EDITOR)",
 						"				DebugTool.EditorLogError(\"GetLastReleaseNameFromGitHub : connect error\");",
+						"				#endif",
 						"			}else if(t_version.Length <= 0){",
 						"				UnityEditor.PackageManager.Client.Add(\"<<giturl>><<gitauthorname>>/<<PackageName>>.git?path=<<GitPath>>\");",
 						"			}else{",
@@ -83,7 +85,9 @@ namespace BlueBack.UpmVersionManager.Editor
 						"								if(t_webrequest.downloadHandler.text != null){",
 						"									t_text = t_webrequest.downloadHandler.text;",
 						"								}",
+						"								#if(UNITY_EDITOR)",
 						"								DebugTool.EditorLogError(a_url + \" : \" + t_webrequest.error + \" : \" + t_text);",
+						"								#endif",
 						"								return null;",
 						"							}else{",
 						"								return t_webrequest.downloadHandler.data;",
@@ -110,15 +114,21 @@ namespace BlueBack.UpmVersionManager.Editor
 						"					if(t_text != null){",
 						"						return t_text;",
 						"					}else{",
+						"						#if(UNITY_EDITOR)",
 						"						DebugTool.EditorLogError(a_auther + \" : \" + a_reposname + \" : text == null\");",
+						"						#endif",
 						"						return null;",
 						"					}",
 						"				}else{",
+						"					#if(UNITY_EDITOR)",
 						"					DebugTool.EditorLogError(a_auther + \" : \" + a_reposname + \" : binary == null\");",
+						"					#endif",
 						"					return null;",
 						"				}",
 						"			}catch(System.Exception t_exception){",
+						"				#if(UNITY_EDITOR)",
 						"				DebugTool.EditorLogError(a_auther + \" : \" + a_reposname + \" : \" + t_exception.Message + \"\\n\" + t_exception.StackTrace);",
+						"				#endif",
 						"				return null;",
 						"			}",
 						"		}",
@@ -144,10 +154,9 @@ namespace BlueBack.UpmVersionManager.Editor
 
 					string t_path = "UPM/Editor/" + Object_Setting.GetInstance().param.author_name + "/" + Object_Setting.GetInstance().param.package_name + "/Editor/UpdatePackage.cs";
 
-					BlueBack.AssetLib.Editor.CreateDirectory.CreateDirectoryToAssetsPath(System.IO.Path.GetDirectoryName(t_path));
-
 					System.Text.StringBuilder t_stringbuilder = new System.Text.StringBuilder();
 					BlueBack.Code.Convert.Replace(t_stringbuilder,t_replace_list,t_template);
+					BlueBack.AssetLib.Editor.CreateDirectory.CreateDirectoryToAssetsPath(System.IO.Path.GetDirectoryName(t_path));
 					BlueBack.AssetLib.Editor.SaveText.SaveUtf8TextToAssetsPath(t_stringbuilder.ToString(),t_path,false,BlueBack.AssetLib.LineFeedOption.CRLF);
 
 					#if(DEF_BLUEBACK_UPMVERSIONMANAGER_LOG)

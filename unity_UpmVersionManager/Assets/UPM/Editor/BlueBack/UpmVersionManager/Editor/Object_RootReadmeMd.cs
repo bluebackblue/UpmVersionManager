@@ -59,20 +59,24 @@ namespace BlueBack.UpmVersionManager.Editor
 
 				//load
 				{
-					string t_path = "../../README.md";
-					string t_text = BlueBack.AssetLib.Editor.LoadText.LoadTextFromAssetsPath(t_path,System.Text.Encoding.UTF8).Replace("\r","");
-					#if(DEF_BLUEBACK_UPMVERSIONMANAGER_LOG)
-					DebugTool.Log("load : " + t_path);
-					#endif
-
-					string t_url = (Object_Setting.GetInstance().param.git_url + Object_Setting.GetInstance().param.git_author + "/" + Object_Setting.GetInstance().param.package_name + ".git?path=" + Object_Setting.GetInstance().param.git_path + "#").Replace(":","\\:").Replace("/","\\/").Replace(".","\\.").Replace("?","\\?").Replace("=","\\=").Replace("#","\\#");
-					System.Text.RegularExpressions.Match t_match = System.Text.RegularExpressions.Regex.Match(t_text,"^(?<before>[\\d\\D\\n\\r]*" + t_url + ")(?<version>[0-9\\.]*)(?<after>[\\d\\D\\n\\r]*)$",System.Text.RegularExpressions.RegexOptions.Multiline);
-					if(t_match.Success == true){
-						this.version = t_match.Groups["version"].Value;
-					}else{
-						#if(DEF_BLUEBACK_UPMVERSIONMANAGER_ASSERT)
-						DebugTool.Assert(false);
+					string t_path = Object_Setting.GetInstance().param.root_readmemd_path;
+					string t_text = BlueBack.AssetLib.Editor.LoadText.TryLoadTextFromAssetsPath(t_path,System.Text.Encoding.UTF8);
+					if(t_text != null){
+						#if(DEF_BLUEBACK_UPMVERSIONMANAGER_LOG)
+						DebugTool.Log("load : " + t_path);
 						#endif
+
+						string t_url = (Object_Setting.GetInstance().param.git_url + Object_Setting.GetInstance().param.git_author + "/" + Object_Setting.GetInstance().param.package_name + ".git?path=" + Object_Setting.GetInstance().param.git_path + "#").Replace(":","\\:").Replace("/","\\/").Replace(".","\\.").Replace("?","\\?").Replace("=","\\=").Replace("#","\\#");
+						System.Text.RegularExpressions.Match t_match = System.Text.RegularExpressions.Regex.Match(t_text,"^(?<before>[\\d\\D\\n\\r]*" + t_url + ")(?<version>[0-9\\.]*)(?<after>[\\d\\D\\n\\r]*)$",System.Text.RegularExpressions.RegexOptions.Multiline);
+						if(t_match.Success == true){
+							this.version = t_match.Groups["version"].Value;
+						}else{
+							#if(DEF_BLUEBACK_UPMVERSIONMANAGER_ASSERT)
+							DebugTool.Assert(false);
+							#endif
+							this.version = "0.0.-1";
+						}
+					}else{
 						this.version = "0.0.-1";
 					}
 				}
@@ -106,7 +110,7 @@ namespace BlueBack.UpmVersionManager.Editor
 						}
 					}
 
-					string t_path = "../../README.md";
+					string t_path = Object_Setting.GetInstance().param.root_readmemd_path;
 					string t_text = t_stringbuilder.ToString();
 					BlueBack.AssetLib.Editor.SaveText.SaveUtf8TextToAssetsPath(t_text,t_path,false,BlueBack.AssetLib.LineFeedOption.CRLF);
 					#if(DEF_BLUEBACK_UPMVERSIONMANAGER_LOG)

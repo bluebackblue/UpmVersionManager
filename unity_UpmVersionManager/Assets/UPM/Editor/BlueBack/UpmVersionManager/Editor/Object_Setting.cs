@@ -152,6 +152,10 @@ namespace BlueBack.UpmVersionManager.Editor
 			*/
 			public System.Collections.Generic.Dictionary<string,string> packagejson_dependencies;
 
+			/** root_readmemd_path
+			*/
+			public string root_readmemd_path;
+
 			/** asmdef_runtime
 			*/
 			public AsmdefItem asmdef_runtime;

@@ -78,6 +78,9 @@ namespace Samples.UpmVersionManager.NewProject.Editor
 				"					//{\"xxxxx.xxxxx\",\"https://github.com/xxxxx/xxxxx\"},",
 				"				};",
 				"",
+				"				//root_readmemd_path",
+				"				t_param.root_readmemd_path = \"<<root_readmemd_path>>\";",
+				"",
 				"				//asmdef_runtime",
 				"				t_param.asmdef_runtime = new BlueBack.UpmVersionManager.Editor.Object_Setting.Param.AsmdefItem{",
 				"					reference_list = new BlueBack.UpmVersionManager.Editor.Object_Setting.Param.AsmdefReferenceItem[]{",
@@ -255,6 +258,9 @@ namespace Samples.UpmVersionManager.NewProject.Editor
 
 						//説明。
 						t_replace_list.Add("<<discription>>",t_param.discription);
+
+						//ルート用「README.md」パス。
+						t_replace_list.Add("<<root_readmemd_path>>",t_param.root_readmemd_path);
 
 						//キーワード。
 						{

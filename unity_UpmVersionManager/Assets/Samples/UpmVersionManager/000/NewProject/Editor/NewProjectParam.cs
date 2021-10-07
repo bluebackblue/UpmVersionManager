@@ -34,6 +34,10 @@ namespace Samples.UpmVersionManager.NewProject.Editor
 		*/
 		public string discription;
 
+		/** ルート用「README.md」パス。
+		*/
+		public string root_readmemd_path;
+
 		/** キーワード。
 		*/
 		public string[] keyword;
@@ -51,6 +55,7 @@ namespace Samples.UpmVersionManager.NewProject.Editor
 				git_path = "xxxx/Assets/UPM",
 				getversionproc = "null",
 				discription = "説明",
+				root_readmemd_path = "../../README.md",
 				keyword = new string[]{},
 			};
 		}

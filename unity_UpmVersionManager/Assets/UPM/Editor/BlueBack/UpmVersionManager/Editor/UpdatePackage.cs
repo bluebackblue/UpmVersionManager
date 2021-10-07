@@ -24,7 +24,9 @@ namespace BlueBack.UpmVersionManager.Editor
 		{
 			string t_version = GetLastReleaseNameFromGitHub("bluebackblue",Version.packagename);
 			if(t_version == null){
+				#if(UNITY_EDITOR)
 				DebugTool.EditorLogError("GetLastReleaseNameFromGitHub : connect error");
+				#endif
 			}else if(t_version.Length <= 0){
 				UnityEditor.PackageManager.Client.Add("https://github.com/bluebackblue/UpmVersionManager.git?path=unity_UpmVersionManager/Assets/UPM");
 			}else{
@@ -49,7 +51,9 @@ namespace BlueBack.UpmVersionManager.Editor
 								if(t_webrequest.downloadHandler.text != null){
 									t_text = t_webrequest.downloadHandler.text;
 								}
+								#if(UNITY_EDITOR)
 								DebugTool.EditorLogError(a_url + " : " + t_webrequest.error + " : " + t_text);
+								#endif
 								return null;
 							}else{
 								return t_webrequest.downloadHandler.data;
@@ -76,15 +80,21 @@ namespace BlueBack.UpmVersionManager.Editor
 					if(t_text != null){
 						return t_text;
 					}else{
+						#if(UNITY_EDITOR)
 						DebugTool.EditorLogError(a_auther + " : " + a_reposname + " : text == null");
+						#endif
 						return null;
 					}
 				}else{
+					#if(UNITY_EDITOR)
 					DebugTool.EditorLogError(a_auther + " : " + a_reposname + " : binary == null");
+					#endif
 					return null;
 				}
 			}catch(System.Exception t_exception){
+				#if(UNITY_EDITOR)
 				DebugTool.EditorLogError(a_auther + " : " + a_reposname + " : " + t_exception.Message + "\n" + t_exception.StackTrace);
+				#endif
 				return null;
 			}
 		}

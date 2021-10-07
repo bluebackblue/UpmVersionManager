@@ -136,6 +136,7 @@ namespace BlueBack.UpmVersionManager.Editor
 					{
 						string t_path = "UPM/package.json";
 						string t_jsonstring = BlueBack.JsonItem.Convert.ObjectToJsonString<JsonObject>(t_jsonobject);
+						BlueBack.AssetLib.Editor.CreateDirectory.CreateDirectoryToAssetsPath(System.IO.Path.GetDirectoryName(t_path));
 						BlueBack.AssetLib.Editor.SaveText.SaveUtf8TextToAssetsPath(t_jsonstring,t_path,false,BlueBack.AssetLib.LineFeedOption.CRLF);
 						#if(DEF_BLUEBACK_UPMVERSIONMANAGER_LOG)
 						DebugTool.Log("save : " + t_path);

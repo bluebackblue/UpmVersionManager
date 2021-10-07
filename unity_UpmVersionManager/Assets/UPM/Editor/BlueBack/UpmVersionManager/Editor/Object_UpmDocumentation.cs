@@ -25,8 +25,7 @@ namespace BlueBack.UpmVersionManager.Editor
 				//「UPM/Documentation~」
 				{
 					string t_path = "UPM/Documentation~";
-					BlueBack.AssetLib.Editor.DeleteDirectory.DeleteDirectoryFromAssetsPath(t_path);
-					BlueBack.AssetLib.Editor.CreateDirectory.CreateDirectoryToAssetsPath(t_path);
+					BlueBack.AssetLib.Editor.DeleteDirectory.TryDeleteDirectoryFromAssetsPath(t_path);
 				}
 
 				//「UPM/Documentation~/<<author_name>>.<<package_name>>.md」。
@@ -49,6 +48,7 @@ namespace BlueBack.UpmVersionManager.Editor
 
 					string t_path = "UPM/Documentation~/" + Object_Setting.GetInstance().param.author_name + "." + Object_Setting.GetInstance().param.package_name + ".md";
 					string t_text = t_stringbuilder.ToString();
+					BlueBack.AssetLib.Editor.CreateDirectory.CreateDirectoryToAssetsPath(System.IO.Path.GetDirectoryName(t_path));
 					BlueBack.AssetLib.Editor.SaveText.SaveUtf8TextToAssetsPath(t_text,t_path,false,BlueBack.AssetLib.LineFeedOption.CRLF);
 					#if(DEF_BLUEBACK_UPMVERSIONMANAGER_LOG)
 					DebugTool.Log("save : " + t_path);

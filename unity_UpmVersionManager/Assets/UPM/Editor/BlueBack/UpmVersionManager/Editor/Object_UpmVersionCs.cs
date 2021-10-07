@@ -83,6 +83,7 @@ namespace BlueBack.UpmVersionManager.Editor
 
 					System.Text.StringBuilder t_stringbuilder = new System.Text.StringBuilder();
 					BlueBack.Code.Convert.Replace(t_stringbuilder,t_replace_list,t_template);
+					BlueBack.AssetLib.Editor.CreateDirectory.CreateDirectoryToAssetsPath(System.IO.Path.GetDirectoryName(t_path));
 					BlueBack.AssetLib.Editor.SaveText.SaveUtf8TextToAssetsPath(t_stringbuilder.ToString(),t_path,false,BlueBack.AssetLib.LineFeedOption.CRLF);
 
 					#if(DEF_BLUEBACK_UPMVERSIONMANAGER_LOG)
