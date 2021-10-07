@@ -60,15 +60,21 @@ namespace BlueBack.UpmVersionManager.Editor
 				//load
 				{
 					string t_path = "../../README.md";
-					string t_text = BlueBack.AssetLib.Editor.LoadText.LoadTextFromAssetsPath(t_path,System.Text.Encoding.UTF8);
+					string t_text = BlueBack.AssetLib.Editor.LoadText.LoadTextFromAssetsPath(t_path,System.Text.Encoding.UTF8).Replace("\r","");
 					#if(DEF_BLUEBACK_UPMVERSIONMANAGER_LOG)
 					DebugTool.Log("load : " + t_path);
 					#endif
 
-					string t_url = (Object_Setting.GetInstance().param.git_url + Object_Setting.GetInstance().param.git_author + "/" + Object_Setting.GetInstance().param.package_name + ".git?path=unity_" + Object_Setting.GetInstance().param.package_name + "/Assets/UPM#").Replace(":","\\:").Replace("/","\\/").Replace(".","\\.").Replace("?","\\?").Replace("=","\\=").Replace("#","\\#");
-					this.version = System.Text.RegularExpressions.Regex.Replace(t_text,"^(?<before>[\\d\\D\\n\\r]*)(?<version_before>\\n\\* " +  t_url + ")(?<version>[0-9\\.]*)(?<after>[\\d\\D\\n\\r]*)$",(System.Text.RegularExpressions.Match a_a_match)=>{
-						return a_a_match.Groups["version"].Value;
-					},System.Text.RegularExpressions.RegexOptions.Multiline);
+					string t_url = (Object_Setting.GetInstance().param.git_url + Object_Setting.GetInstance().param.git_author + "/" + Object_Setting.GetInstance().param.package_name + ".git?path=" + Object_Setting.GetInstance().param.git_path + "#").Replace(":","\\:").Replace("/","\\/").Replace(".","\\.").Replace("?","\\?").Replace("=","\\=").Replace("#","\\#");
+					System.Text.RegularExpressions.Match t_match = System.Text.RegularExpressions.Regex.Match(t_text,"^(?<before>[\\d\\D\\n\\r]*" + t_url + ")(?<version>[0-9\\.]*)(?<after>[\\d\\D\\n\\r]*)$",System.Text.RegularExpressions.RegexOptions.Multiline);
+					if(t_match.Success == true){
+						this.version = t_match.Groups["version"].Value;
+					}else{
+						#if(DEF_BLUEBACK_UPMVERSIONMANAGER_ASSERT)
+						DebugTool.Assert(false);
+						#endif
+						this.version = "0.0.-1";
+					}
 				}
 			}else{
 				#if(DEF_BLUEBACK_UPMVERSIONMANAGER_ASSERT)

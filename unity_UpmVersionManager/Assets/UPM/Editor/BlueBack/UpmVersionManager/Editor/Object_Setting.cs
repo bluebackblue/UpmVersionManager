@@ -124,6 +124,10 @@ namespace BlueBack.UpmVersionManager.Editor
 			*/
 			public string git_author;
 
+			/** git_path
+			*/
+			public string git_path;
+
 			/** package_name
 			*/
 			public string package_name;

@@ -60,9 +60,9 @@ namespace BlueBack.UpmVersionManager.Editor
 						"			if(t_version == null){",
 						"				DebugTool.EditorLogError(\"GetLastReleaseNameFromGitHub : connect error\");",
 						"			}else if(t_version.Length <= 0){",
-						"				UnityEditor.PackageManager.Client.Add(\"<<giturl>><<gitauthorname>>/<<PackageName>>.git?path=unity_<<PackageName>>/Assets/UPM\");",
+						"				UnityEditor.PackageManager.Client.Add(\"<<giturl>><<gitauthorname>>/<<PackageName>>.git?path=<<GitPath>>\");",
 						"			}else{",
-						"				UnityEditor.PackageManager.Client.Add(\"<<giturl>><<gitauthorname>>/<<PackageName>>.git?path=unity_<<PackageName>>/Assets/UPM#\" + t_version);",
+						"				UnityEditor.PackageManager.Client.Add(\"<<giturl>><<gitauthorname>>/<<PackageName>>.git?path=<<GitPath>>#\" + t_version);",
 						"			}",
 						"		}",
 						"",
@@ -139,6 +139,7 @@ namespace BlueBack.UpmVersionManager.Editor
 						t_replace_list.Add("<<authorname>>",Object_Setting.GetInstance().param.author_name.ToLower());
 						t_replace_list.Add("<<gitauthorname>>",Object_Setting.GetInstance().param.git_author);
 						t_replace_list.Add("<<giturl>>",Object_Setting.GetInstance().param.git_url);
+						t_replace_list.Add("<<GitPath>>",Object_Setting.GetInstance().param.git_path);
 					}
 
 					string t_path = "UPM/Editor/" + Object_Setting.GetInstance().param.author_name + "/" + Object_Setting.GetInstance().param.package_name + "/Editor/UpdatePackage.cs";

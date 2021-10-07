@@ -53,20 +53,24 @@ namespace Samples.UpmVersionManager.NewProject.Editor
 				"				//git_author",
 				"				t_param.git_author = \"<<git_author>>\";",
 				"",
+				"				//git_path",
+				"				t_param.git_path = \"<<git_path>>\";",
+				"",
 				"				//package_name",
 				"				t_param.package_name = \"<<Package_Name>>\";",
 				"",
 				"				//getpackageversion",
-				"				t_param.getpackageversion = <<Author_Name>>.<<Package_Name>>.Version.GetPackageVersion;",
+				"				t_param.getpackageversion = <<getversionproc>>;",
 				"",
 				"				//packagejson_unity",
 				"				t_param.packagejson_unity = \"<<NEED_UNITY_VERSION>>\";",
 				"",
 				"				//packagejson_discription",
-				"				t_param.packagejson_discription = \"xxxxxxxxxxxxxxxx\";",
+				"				t_param.packagejson_discription = \"<<discription>>\";",
 				"",
 				"				//packagejson_keyword",
 				"				t_param.packagejson_keyword = new string[]{",
+				"					<<keyword>>",
 				"				};",
 				"",
 				"				//packagejson_dependencies",
@@ -152,9 +156,9 @@ namespace Samples.UpmVersionManager.NewProject.Editor
 				"						return new string[]{",
 				"							\"## UPM\",",
 				"							\"### 最新\",",
-				"							\"* \" + a_argument.param.git_url + a_argument.param.git_author + \"/\" + a_argument.param.package_name + \".git?path=unity_\" + a_argument.param.package_name + \"/Assets/UPM#\" + a_argument.version,",
+				"							\"* \" + a_argument.param.git_url + a_argument.param.git_author + \"/\" + a_argument.param.package_name + \".git?path=\" + a_argument.param.git_path + \"#\" + a_argument.version,",
 				"							\"### 開発\",",
-				"							\"* \" + a_argument.param.git_url + a_argument.param.git_author + \"/\" + a_argument.param.package_name + \".git?path=unity_\" + a_argument.param.package_name + \"/Assets/UPM\",",
+				"							\"* \" + a_argument.param.git_url + a_argument.param.git_author + \"/\" + a_argument.param.package_name + \".git?path=\" + a_argument.param.git_path,",
 				"						};",
 				"					},",
 				"",
@@ -198,30 +202,73 @@ namespace Samples.UpmVersionManager.NewProject.Editor
 
 			System.Collections.Generic.Dictionary<string,string> t_replace_list = new System.Collections.Generic.Dictionary<string,string>();
 			{
-				//対応ユニティー。
-				t_replace_list.Add("<<NEED_UNITY_VERSION>>","2020.1");
+				string t_path = "Editor/NewProjectParam.json";
 
-				//管理名。
-				t_replace_list.Add("<<Author_Name>>","BlueBack");
-				t_replace_list.Add("<<author_name>>","blueback".ToLower());
-
-				//ＧＩＴ。
-				t_replace_list.Add("<<git_url>>","https://github.com/");
-				t_replace_list.Add("<<git_author>>","bluebackblue");
-
-				//日付。
-				t_replace_list.Add("<<DATE>>",System.DateTime.Today.ToString("yyyy-MM-dd"));
-
-				//パッケージ名。
-				string t_package_name = null;
+				NewProjectParam t_param = NewProjectParam.CreateDefault();
 				{
-					string[] t_path_list = UnityEngine.Application.dataPath.Split(new char[]{'/','\\'});
-					t_package_name = t_path_list[t_path_list.Length - 3];
-					UnityEngine.Debug.Log("package_name == " + t_package_name);
-				}
-				t_replace_list.Add("<<Package_Name>>",t_package_name);
-				t_replace_list.Add("<<PACKAGE_NAME>>",t_package_name.ToUpper());
+					bool t_para_success = false;
+					string t_jsonstring = BlueBack.AssetLib.Editor.LoadText.TryLoadTextFromAssetsPath(t_path,System.Text.Encoding.UTF8);
+					if(t_jsonstring != null){
+						t_jsonstring = BlueBack.JsonItem.Normalize.Convert(t_jsonstring);
+						if(t_jsonstring != null){
+							t_param = BlueBack.JsonItem.Convert.JsonStringToObject<NewProjectParam>(t_jsonstring);
+							t_para_success = true;
+							{
+								if(t_param.package_name == null){
+									t_para_success = false;
+								}
+								if(t_param.author_name == null){
+									t_para_success = false;
+								}
+								if(t_para_success == false){
+									t_param = NewProjectParam.CreateDefault();
+								}
+							}
+						}
+					}
 
+					if(t_para_success == false){
+						string t_text = BlueBack.JsonItem.Pretty.Convert(BlueBack.JsonItem.Convert.ObjectToJsonString<NewProjectParam>(t_param),"   ");
+						BlueBack.AssetLib.Editor.CreateDirectory.CreateDirectoryToAssetsPath(System.IO.Path.GetDirectoryName(t_path));
+						BlueBack.AssetLib.Editor.SaveText.SaveUtf8TextToAssetsPath(t_text,t_path,false,BlueBack.AssetLib.LineFeedOption.CRLF);
+					}
+
+					{
+						//パッケージ名。
+						t_replace_list.Add("<<Package_Name>>",t_param.package_name);
+						t_replace_list.Add("<<PACKAGE_NAME>>",t_param.package_name.ToUpper());
+
+						//対応ユニティー。
+						t_replace_list.Add("<<NEED_UNITY_VERSION>>",t_param.need_unity_version);
+
+						//管理名。
+						t_replace_list.Add("<<Author_Name>>",t_param.author_name);
+						t_replace_list.Add("<<author_name>>",t_param.author_name.ToLower());
+
+						//ＧＩＴ。
+						t_replace_list.Add("<<git_url>>",t_param.git_url);
+						t_replace_list.Add("<<git_author>>",t_param.git_author);
+						t_replace_list.Add("<<git_path>>",t_param.git_path);
+
+						//バージョン取得関数。
+						t_replace_list.Add("<<getversionproc>>",t_param.getversionproc);
+
+						//説明。
+						t_replace_list.Add("<<discription>>",t_param.discription);
+
+						//キーワード。
+						{
+							string t_keyword_list = "";
+							foreach(string t_keyword in t_param.keyword){
+								t_keyword_list += "\"" + t_keyword + "\",";
+							}
+							t_replace_list.Add("<<keyword>>",t_keyword_list);
+						}
+
+						//日付。
+						t_replace_list.Add("<<DATE>>",System.DateTime.Today.ToString("yyyy-MM-dd"));
+					}
+				}
 			}
 
 			System.Text.StringBuilder t_stringbuilder = new System.Text.StringBuilder();
@@ -237,12 +284,12 @@ namespace Samples.UpmVersionManager.NewProject.Editor
 			}
 
 			{
-
 				//path
 				string t_path = "Editor/UpmVersionManagerSetting.cs";
 
 				BlueBack.AssetLib.Editor.CreateDirectory.CreateDirectoryToAssetsPath(System.IO.Path.GetDirectoryName(t_path));
 				BlueBack.AssetLib.Editor.SaveText.SaveUtf8TextToAssetsPath(t_stringbuilder.ToString(),"Editor/UpmVersionManagerSetting.cs",false,BlueBack.AssetLib.LineFeedOption.CRLF);
+				BlueBack.AssetLib.Editor.RefreshAsset.Refresh();
 			}
 		}
 	}
