@@ -71,7 +71,7 @@ namespace Samples.UpmVersionManager.NewProject.Editor
 				"",
 				"				//packagejson_dependencies",
 				"				t_param.packagejson_dependencies = new System.Collections.Generic.Dictionary<string,string>(){",
-				"					//{\"blueback.xxxxx\",\"https://github.com/xxxxx/xxxxx\"},",
+				"					//{\"xxxxx.xxxxx\",\"https://github.com/xxxxx/xxxxx\"},",
 				"				};",
 				"",
 				"				//asmdef_runtime",

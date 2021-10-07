@@ -105,7 +105,6 @@ namespace Editor
 							package_name = "BlueBack.AssetLib.Editor",
 							url = t_param.git_url + t_param.git_author + "/AssetLib",
 						},
-
 					},
 					versiondefine_list = new BlueBack.UpmVersionManager.Editor.Object_Setting.Param.AsmdefVersionDefineItem[]{
 					},
