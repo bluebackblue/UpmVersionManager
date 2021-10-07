@@ -98,27 +98,10 @@ namespace Samples.UpmVersionManager.NewProject.Editor
 				"					},",
 				"				};",
 				"",
-				"				for(int ii=0;ii<t_param.asmdef_runtime.reference_list.Length;ii++){",
-				"					t_param.asmdef_runtime.reference_list[ii].url = t_param.asmdef_runtime.reference_list[ii].url.Replace(\"<<package_name>>\",t_param.asmdef_runtime.reference_list[ii].package_name);",
-				"				}",
-				"				for(int ii=0;ii<t_param.asmdef_editor.reference_list.Length;ii++){",
-				"					t_param.asmdef_editor.reference_list[ii].url = t_param.asmdef_editor.reference_list[ii].url.Replace(\"<<package_name>>\",t_param.asmdef_editor.reference_list[ii].package_name);",
-				"				}",
-				"				for(int ii=0;ii<t_param.asmdef_sample.reference_list.Length;ii++){",
-				"					t_param.asmdef_sample.reference_list[ii].url = t_param.asmdef_sample.reference_list[ii].url.Replace(\"<<package_name>>\",t_param.asmdef_sample.reference_list[ii].package_name);",
-				"				}",
-				"",
 				"				//changelog",
 				"				t_param.changelog = new string[]{",
 				"					\"# Changelog\",",
 				"					\"\",",
-				"",
-				"					/*",
-				"					\"## [0.0.0] - 0000-00-00\",",
-				"					\"### Changes\",",
-				"					\"- xxxxxx\",",
-				"					\"\",",
-				"					*/",
 				"",
 				"					\"## [0.0.1] - <<DATE>>\",",
 				"					\"### Changes\",",
@@ -151,7 +134,7 @@ namespace Samples.UpmVersionManager.NewProject.Editor
 				"					//依存。",
 				"					(in BlueBack.UpmVersionManager.Editor.Object_Setting.Creator_Argument a_argument) => {",
 				"						System.Collections.Generic.List<string> t_list = new System.Collections.Generic.List<string>();",
-				"						t_list.Add(\"## 外部依存 / 使用ライセンス等\");",
+				"						t_list.Add(\"## 依存 / 使用ライセンス等\");",
 				"						t_list.AddRange(BlueBack.UpmVersionManager.Editor.Object_Setting.Create_RootReadMd_Asmdef_Dependence(a_argument));",
 				"						return t_list.ToArray();",
 				"					},",
@@ -241,8 +224,8 @@ namespace Samples.UpmVersionManager.NewProject.Editor
 
 			}
 
+			System.Text.StringBuilder t_stringbuilder = new System.Text.StringBuilder();
 			{
-				System.Text.StringBuilder t_stringbuilder = new System.Text.StringBuilder();
 				for(int ii=0;ii<t_text_list.Length;ii++){
 					string t_text = t_text_list[ii];
 					foreach(System.Collections.Generic.KeyValuePair<string,string> t_pair in t_replace_list){
@@ -251,7 +234,14 @@ namespace Samples.UpmVersionManager.NewProject.Editor
 					t_stringbuilder.Append(t_text);
 					t_stringbuilder.Append('\n');
 				}
+			}
 
+			{
+
+				//path
+				string t_path = "Editor/UpmVersionManagerSetting.cs";
+
+				BlueBack.AssetLib.Editor.CreateDirectory.CreateDirectoryToAssetsPath(System.IO.Path.GetDirectoryName(t_path));
 				BlueBack.AssetLib.Editor.SaveText.SaveUtf8TextToAssetsPath(t_stringbuilder.ToString(),"Editor/UpmVersionManagerSetting.cs",false,BlueBack.AssetLib.LineFeedOption.CRLF);
 			}
 		}
