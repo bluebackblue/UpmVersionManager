@@ -112,7 +112,7 @@ namespace BlueBack.UpmVersionManager.Editor
 
 					//asmdef_sample
 					{
-						string t_name = "Samples/" + Object_Setting.GetInstance().param.package_name;
+						string t_name = "Samples." + Object_Setting.GetInstance().param.package_name;
 						string t_path = "Samples/" + Object_Setting.GetInstance().param.package_name + "/Samples " + Object_Setting.GetInstance().param.package_name + ".asmdef";
 						Inner_CreateAsmdef(t_guid_list,in Object_Setting.GetInstance().param.asmdef_sample,t_path,t_name);
 					}
