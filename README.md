@@ -1,6 +1,7 @@
 # BlueBack.UpmVersionManager
-UPMバージョン操作
-* package.json出力
+xxxxx操作
+* xxxxxxxxxxxxxxxx
+* xxxxxxxxxxxxxxxx
 
 ## ライセンス
 MIT License
@@ -22,7 +23,7 @@ Unity 2021.1.11f1
 
 ## UPM
 ### 最新
-* https://github.com/bluebackblue/UpmVersionManager.git?path=unity_UpmVersionManager/Assets/UPM#0.0.25
+* https://github.com/bluebackblue/UpmVersionManager.git?path=unity_UpmVersionManager/Assets/UPM#0.0.26
 ### 開発
 * https://github.com/bluebackblue/UpmVersionManager.git?path=unity_UpmVersionManager/Assets/UPM
 

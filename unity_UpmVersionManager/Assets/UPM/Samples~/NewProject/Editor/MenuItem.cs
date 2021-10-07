@@ -60,7 +60,19 @@ namespace Samples.UpmVersionManager.NewProject.Editor
 				"				t_param.package_name = \"<<Package_Name>>\";",
 				"",
 				"				//getpackageversion",
-				"				t_param.getpackageversion = <<getversionproc>>;",
+				"				t_param.getpackageversion = ()=>{",
+				"					System.Type t_type = System.Type.GetType(\"<<Author_Name>>.<<Package_Name>>.Version,<<Author_Name>>.<<Package_Name>>\");",
+				"					if(t_type != null){",
+				"						System.Reflection.MethodInfo t_methodinfo = t_type.GetMethod(\"GetPackageVersion\",System.Reflection.BindingFlags.Static|System.Reflection.BindingFlags.Public);",
+				"						if(t_methodinfo != null){",
+				"							System.Object t_object = t_methodinfo.Invoke(null,null);",
+				"							if(t_object is string){",
+				"								return (string) t_object;",
+				"							}",
+				"						}",
+				"					}",
+				"					return \"0.0.-1\";",
+				"				};",
 				"",
 				"				//packagejson_unity",
 				"				t_param.packagejson_unity = \"<<NEED_UNITY_VERSION>>\";",
@@ -256,9 +268,6 @@ namespace Samples.UpmVersionManager.NewProject.Editor
 						t_replace_list.Add("<<git_url>>",t_param.git_url);
 						t_replace_list.Add("<<git_author>>",t_param.git_author);
 						t_replace_list.Add("<<git_path>>",t_param.git_path);
-
-						//バージョン取得関数。
-						t_replace_list.Add("<<getversionproc>>",t_param.getversionproc);
 
 						//説明。
 						t_replace_list.Add("<<discription>>",t_param.discription);

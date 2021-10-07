@@ -3,7 +3,6 @@
       "upm"
    ],
    "discription":"UPMバージョン操作",
-   "getversionproc":"BlueBack.UpmVersionManager.Version.GetPackageVersion",
    "git_path":"unity_UpmVersionManager/Assets/UPM",
    "git_author":"bluebackblue",
    "git_url":"https://github.com/",

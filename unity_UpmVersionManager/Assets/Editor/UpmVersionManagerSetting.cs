@@ -43,7 +43,19 @@ namespace Editor
 				t_param.package_name = "UpmVersionManager";
 
 				//getpackageversion
-				t_param.getpackageversion = BlueBack.UpmVersionManager.Version.GetPackageVersion;
+				t_param.getpackageversion = ()=>{
+					System.Type t_type = System.Type.GetType("BlueBack.UpmVersionManager.Version,BlueBack.UpmVersionManager");
+					if(t_type != null){
+						System.Reflection.MethodInfo t_methodinfo = t_type.GetMethod("GetPackageVersion",System.Reflection.BindingFlags.Static|System.Reflection.BindingFlags.Public);
+						if(t_methodinfo != null){
+							System.Object t_object = t_methodinfo.Invoke(null,null);
+							if(t_object is string){
+								return (string) t_object;
+							}
+						}
+					}
+					return "0.0.-1";
+				};
 
 				//packagejson_unity
 				t_param.packagejson_unity = "2020.1";
@@ -125,7 +137,7 @@ namespace Editor
 					"# Changelog",
 					"",
 
-					"## [0.0.1] - 2021-10-06",
+					"## [0.0.1] - 2021-10-08",
 					"### Changes",
 					"- Init",
 					"",
@@ -138,8 +150,9 @@ namespace Editor
 					(in BlueBack.UpmVersionManager.Editor.Object_Setting.Creator_Argument a_argument) => {
 						return new string[]{
 							"# " + a_argument.param.author_name + "." + a_argument.param.package_name,
-							"UPMバージョン操作",
-							"* package.json出力",
+							"xxxxx操作",
+							"* xxxxxxxxxxxxxxxx",
+							"* xxxxxxxxxxxxxxxx",
 						};
 					},
 
