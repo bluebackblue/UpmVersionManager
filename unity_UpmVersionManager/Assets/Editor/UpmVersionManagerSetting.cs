@@ -93,8 +93,7 @@ namespace Editor
 					versiondefine_list = new BlueBack.UpmVersionManager.Editor.Object_Setting.Param.AsmdefVersionDefineItem[]{
 					},
 				};
-					
-					
+
 				//asmdef_sample
 				t_param.asmdef_sample = new BlueBack.UpmVersionManager.Editor.Object_Setting.Param.AsmdefItem{
 					reference_list = new BlueBack.UpmVersionManager.Editor.Object_Setting.Param.AsmdefReferenceItem[]{
@@ -240,4 +239,5 @@ namespace Editor
 	}
 }
 #endif
+
 

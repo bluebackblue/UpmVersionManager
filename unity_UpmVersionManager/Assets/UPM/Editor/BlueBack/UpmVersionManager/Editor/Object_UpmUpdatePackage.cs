@@ -143,6 +143,8 @@ namespace BlueBack.UpmVersionManager.Editor
 
 					string t_path = "UPM/Editor/" + Object_Setting.GetInstance().param.author_name + "/" + Object_Setting.GetInstance().param.package_name + "/Editor/UpdatePackage.cs";
 
+					BlueBack.AssetLib.Editor.CreateDirectory.CreateDirectoryToAssetsPath(System.IO.Path.GetDirectoryName(t_path));
+
 					System.Text.StringBuilder t_stringbuilder = new System.Text.StringBuilder();
 					BlueBack.Code.Convert.Replace(t_stringbuilder,t_replace_list,t_template);
 					BlueBack.AssetLib.Editor.SaveText.SaveUtf8TextToAssetsPath(t_stringbuilder.ToString(),t_path,false,BlueBack.AssetLib.LineFeedOption.CRLF);

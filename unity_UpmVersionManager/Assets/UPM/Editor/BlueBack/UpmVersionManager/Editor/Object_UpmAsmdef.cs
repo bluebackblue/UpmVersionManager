@@ -167,6 +167,8 @@ namespace BlueBack.UpmVersionManager.Editor
 				}
 			}
 
+			BlueBack.AssetLib.Editor.CreateDirectory.CreateDirectoryToAssetsPath(System.IO.Path.GetDirectoryName(a_path));
+
 			string t_jsonitem_string = BlueBack.JsonItem.Convert.ObjectToJsonString(t_asmdef);
 			BlueBack.AssetLib.Editor.SaveText.SaveUtf8TextToAssetsPath(t_jsonitem_string,a_path,false,BlueBack.AssetLib.LineFeedOption.CRLF);
 			#if(DEF_BLUEBACK_UPMVERSIONMANAGER_LOG)
