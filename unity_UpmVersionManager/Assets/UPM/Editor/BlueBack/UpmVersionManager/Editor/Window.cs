@@ -77,7 +77,8 @@ namespace BlueBack.UpmVersionManager.Editor
 				Object_RootServerJson.CreateInstance();
 				Object_RootServerJson.GetInstance().Load();
 			}
-
+			Object_RootServerJson.GetInstance().Check();
+				
 			{
 				UnityEngine.UIElements.VisualElement t_root = s_window.rootVisualElement;
 				{

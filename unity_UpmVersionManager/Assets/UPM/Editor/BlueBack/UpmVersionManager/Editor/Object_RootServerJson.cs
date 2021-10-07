@@ -63,6 +63,21 @@ namespace BlueBack.UpmVersionManager.Editor
 		{
 		}
 
+		/** Check
+		*/
+		public void Check()
+		{
+			if(this.status.lasttag != null){
+				if(this.status.lasttag.Length > 0){
+					return;
+				}
+			}
+
+			//dummy
+			this.status.lasttag = "0.0.-1";
+			this.status.time = "---";
+		}
+
 		/** Load
 		*/
 		public void Load()
@@ -76,7 +91,7 @@ namespace BlueBack.UpmVersionManager.Editor
 				#endif
 			}else{
 				//dummy
-				this.status.lasttag = "0.0.-1";
+				this.status.lasttag = null;
 				this.status.time = "---";
 			}
 		}
@@ -92,13 +107,13 @@ namespace BlueBack.UpmVersionManager.Editor
 					string t_path_download = "https://api.github.com/repos/" + Object_Setting.GetInstance().param.git_author + "/" + Object_Setting.GetInstance().param.package_name + "/releases/latest";
 					string t_jsonstring_download = BlueBack.AssetLib.Editor.LoadText.TryLoadTextFromUrl(t_path_download,null,System.Text.Encoding.UTF8);
 					#if(DEF_BLUEBACK_UPMVERSIONMANAGER_LOG)
-					DebugTool.Log("download : " + t_path_download);
+					DebugTool.Log("download : " + t_path_download + " : " + t_jsonstring_download);
 					#endif
 					
 					t_jsonstring_download = BlueBack.JsonItem.Normalize.Convert(t_jsonstring_download);
 					BlueBack.JsonItem.JsonItem t_jsonitem = new BlueBack.JsonItem.JsonItem(t_jsonstring_download);
-					if(this.status.lasttag != t_jsonitem.GetItem("name").GetStringData()){
-						this.status.lasttag = t_jsonitem.GetItem("name").GetStringData();
+					if(this.status.lasttag != t_jsonitem.GetItem("tag_name").GetStringData()){
+						this.status.lasttag = t_jsonitem.GetItem("tag_name").GetStringData();
 						this.status.time = System.DateTime.Now.ToString();
 
 						//save
