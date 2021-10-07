@@ -189,6 +189,47 @@ namespace BlueBack.UpmVersionManager.Editor
 			DebugTool.Log("Object_Setting.Set");
 			#endif
 		}
+
+		/** 依存。自動生成。
+		*/
+		public static System.Collections.Generic.List<string> Create_RootReadMd_Asmdef_Dependence(in BlueBack.UpmVersionManager.Editor.Object_Setting.Creator_Argument a_argument)
+		{
+			System.Collections.Generic.List<string> t_list = new System.Collections.Generic.List<string>();
+
+			t_list.Add("### ランタイム");
+
+			//runtine
+			{
+				System.Collections.Generic.HashSet<string> t_url_list = new System.Collections.Generic.HashSet<string>();
+				for(int ii=0;ii<a_argument.param.asmdef_runtime.reference_list.Length;ii++){
+					t_url_list.Add("* " + a_argument.param.asmdef_runtime.reference_list[ii].url);
+				}
+			}
+
+			t_list.Add("### エディター");
+
+			//editor
+			{
+				System.Collections.Generic.HashSet<string> t_url_list = new System.Collections.Generic.HashSet<string>();
+				for(int ii=0;ii<a_argument.param.asmdef_editor.reference_list.Length;ii++){
+					t_url_list.Add("* " + a_argument.param.asmdef_editor.reference_list[ii].url);
+				}
+				t_list.AddRange(t_url_list);
+			}
+
+			t_list.Add("### サンプル");
+			
+			//sample
+			{
+				System.Collections.Generic.HashSet<string> t_url_list = new System.Collections.Generic.HashSet<string>();
+				for(int ii=0;ii<a_argument.param.asmdef_sample.reference_list.Length;ii++){
+					t_url_list.Add("* " + a_argument.param.asmdef_sample.reference_list[ii].url);
+				}
+				t_list.AddRange(t_url_list);
+			}
+
+			return t_list;
+		}
 	}
 }
 #endif

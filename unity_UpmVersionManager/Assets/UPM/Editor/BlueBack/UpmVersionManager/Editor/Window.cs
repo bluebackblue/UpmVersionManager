@@ -146,9 +146,9 @@ namespace BlueBack.UpmVersionManager.Editor
 
 					//値。
 					{
-						UnityEngine.UIElements.Label t_label = UnityEngine.UIElements.UQueryExtensions.Q<UnityEngine.UIElements.Label>(t_root,"label_b_value");
-						if(t_label != null){
-							t_label.text = Object_RootReadmeMd.GetInstance().version;
+						UnityEngine.UIElements.TextField t_textfield = UnityEngine.UIElements.UQueryExtensions.Q<UnityEngine.UIElements.TextField>(t_root,"textfield_b_value");
+						if(t_textfield != null){
+							t_textfield.value = Object_RootReadmeMd.GetInstance().version;
 						}
 					}
 
@@ -172,9 +172,9 @@ namespace BlueBack.UpmVersionManager.Editor
 
 					//値。
 					{
-						UnityEngine.UIElements.Label t_label = UnityEngine.UIElements.UQueryExtensions.Q<UnityEngine.UIElements.Label>(t_root,"label_c_value");
-						if(t_label != null){
-							t_label.text = Object_Setting.GetInstance().param.getpackageversion();
+						UnityEngine.UIElements.TextField t_textfield = UnityEngine.UIElements.UQueryExtensions.Q<UnityEngine.UIElements.TextField>(t_root,"textfield_c_value");
+						if(t_textfield != null){
+							t_textfield.value = Object_Setting.GetInstance().param.getpackageversion();
 						}
 					}
 
