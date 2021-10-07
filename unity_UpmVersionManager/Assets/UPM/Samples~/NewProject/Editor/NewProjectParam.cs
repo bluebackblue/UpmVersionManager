@@ -1,0 +1,59 @@
+
+
+/** Samples.UpmVersionManager.NewProject.Editor
+*/
+namespace Samples.UpmVersionManager.NewProject.Editor
+{
+	/** NewProjectParam
+	*/
+	public struct NewProjectParam
+	{
+		/** package_name
+		*/
+		public string package_name;
+
+		/** 対応するユニティーバージョン。
+		*/
+		public string need_unity_version;
+
+		/** 管理者名。
+		*/
+		public string author_name;
+
+		/** ＧＩＴ。
+		*/
+		public string git_url;
+		public string git_author;
+		public string git_path;
+
+		/** バージョン取得関数。
+		*/
+		public string getversionproc;
+
+		/** 説明。
+		*/
+		public string discription;
+
+		/** キーワード。
+		*/
+		public string[] keyword;
+
+		/** CreateDefault
+		*/
+		public static NewProjectParam CreateDefault()
+		{
+			return new NewProjectParam(){
+				package_name = "xxxxx",
+				need_unity_version = "2020.1",
+				author_name = "xxxxx",
+				git_url = "https://github.com/",
+				git_author = "xxxxx",
+				git_path = "xxxx/Assets/UPM",
+				getversionproc = "null",
+				discription = "説明",
+				keyword = new string[]{},
+			};
+		}
+	}
+}
+
