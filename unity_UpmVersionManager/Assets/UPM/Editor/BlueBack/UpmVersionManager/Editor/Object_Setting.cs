@@ -69,6 +69,49 @@ namespace BlueBack.UpmVersionManager.Editor
 		*/
 		public class Param
 		{
+			/** AsmdefReferenceItem
+			*/
+			public struct AsmdefReferenceItem
+			{
+				/** package_name
+				*/
+				public string package_name;
+
+				/** url
+				*/
+				public string url;
+			}
+
+			/** AsmdefVersionDefineItem
+			*/
+			public struct AsmdefVersionDefineItem
+			{
+				/** name
+				*/
+				public string name;
+
+				/** define
+				*/
+				public string define;
+
+				/** expression
+				*/
+				public string expression;
+			}
+
+			/** AsmdefItem
+			*/
+			public struct AsmdefItem
+			{
+				/** reference_list
+				*/
+				public AsmdefReferenceItem[] reference_list;
+
+				/** versiondefine_list
+				*/
+				public AsmdefVersionDefineItem[] versiondefine_list;
+			}
+
 			/** author_name
 			*/
 			public string author_name;
@@ -105,13 +148,17 @@ namespace BlueBack.UpmVersionManager.Editor
 			*/
 			public System.Collections.Generic.Dictionary<string,string> packagejson_dependencies;
 
-			/** asmdef_reference
+			/** asmdef_runtime
 			*/
-			public string[] asmdef_reference;
+			public AsmdefItem asmdef_runtime;
 			
-			/** editorasmdef_reference
+			/** asmdef_editor
 			*/
-			public string[] editorasmdef_reference;
+			public AsmdefItem asmdef_editor;
+
+			/** asmdef_sample
+			*/
+			public AsmdefItem asmdef_sample;
 
 			/** changelog
 			*/

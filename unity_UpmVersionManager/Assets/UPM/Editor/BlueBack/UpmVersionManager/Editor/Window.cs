@@ -18,7 +18,7 @@ namespace BlueBack.UpmVersionManager.Editor
 	{
 		/** s_window
 		*/
-		private static Window s_window = null;
+		public static Window s_window = null;
 
 		/** 開く。
 		*/
@@ -58,106 +58,9 @@ namespace BlueBack.UpmVersionManager.Editor
 			this.titleContent.text = "UpmVersionManager";
 		}
 
-		/** ボタン。ＵＳＳＵＸＭＬ作成。
-		*/
-		public void Button_CreateUssUxmll()
-		{
-			Object_RootUssUxml.CreateFile(true);
-			s_window.OnEnable();
-		}
-
-		/** ボタン。ディレクトリを開く。
-		*/
-		public void Button_OpenDirectory()
-		{
-			if(Object_Setting.GetInstance() != null){
-				System.Diagnostics.Process.Start("explorer","/select," + (UnityEngine.Application.dataPath + "/../").Replace("/","\\"));
-			}else{
-				#if(DEF_BLUEBACK_UPMVERSIONMANAGER_ASSERT)
-				DebugTool.Assert(false);
-				#endif
-			}
-		}
-
-		/** ボタン。パッケージロック削除。
-		*/
-		public void Button_DeletePackageLock()
-		{
-			if(Object_Setting.GetInstance() != null){
-				BlueBack.AssetLib.Editor.DeleteFile.TryDeleteFileFromAssetsPath("../Packages/packages-lock.json");
-			}else{
-				#if(DEF_BLUEBACK_UPMVERSIONMANAGER_ASSERT)
-				DebugTool.Assert(false);
-				#endif
-			}
-		}
-
-		/** ボタン。オープンブラウザー。
-		*/
-		public void Button_OpenBrowser()
-		{
-			if(Object_Setting.GetInstance() != null){
-				UnityEngine.Application.OpenURL(Object_Setting.GetInstance().param.git_url + Object_Setting.GetInstance().param.git_author + "/" + Object_Setting.GetInstance().param.package_name);
-			}else{
-				#if(DEF_BLUEBACK_UPMVERSIONMANAGER_ASSERT)
-				DebugTool.Assert(false);
-				#endif
-			}
-		}
-
-		/** ボタン。コンバート。ＵＴＦ８。
-		*/
-		public void Button_ConvertToUtf8()
-		{
-			#if(DEF_BLUEBACK_UPMVERSIONMANAGER_LOG)
-			DebugTool.Log("ConvertToUtf8");
-			#endif
-			BlueBack.AssetLib.Editor.ConvertText.ConvertTextToUtf8FromAssetsPath("",".*","^.*\\.(cs|meta|mesh|prefab|json|asmdef)$",false,BlueBack.AssetLib.LineFeedOption.CRLF);
-			s_window.OnEnable();
-		}
-
-		/** ボタン。「server.json」。
-		*/
-		public void Button_Server_Json()
-		{
-			if(Object_RootServerJson.GetInstance() == null){
-				Object_RootServerJson.CreateInstance();
-			}
-
-			Object_RootServerJson.GetInstance().DownloadAndSave();
-			Object_RootServerJson.GetInstance().Load();
-			s_window.OnEnable();
-		}
-
-		/** Button_Readme_Md
-		*/
-		public void Button_Readme_Md(string a_version)
-		{
-			Object_RootReadmeMd.Save(a_version);
-			Object_RootReadmeMd.GetInstance().Load();
-			s_window.OnEnable();
-		}
-
-		/** Button_Upm_Package_Json
-		*/
-		public void Button_Upm_Package_Json(string a_version)
-		{
-			Object_UpmSamples.Copy();
-			
-			Object_UpmChangeLogMd.Save();
-
-			Object_UpmAsmdef.Save();
-			Object_UpmDocumentation.Save(a_version);
-			Object_UpmReadmeMd.Save(a_version);
-			Object_UpmVersionCs.Save(a_version);
-			Object_UpmPackageJson.Save(a_version);
-			Object_UpmUpdatePackage.Save();
-			s_window.OnEnable();
-		}
-
 		/** OnEnable
 		*/
-		private void OnEnable()
+		public void OnEnable()
 		{
 			#if(DEF_BLUEBACK_UPMVERSIONMANAGER_LOG)
 			DebugTool.Log("Window.OnEnable");
@@ -188,83 +91,25 @@ namespace BlueBack.UpmVersionManager.Editor
 				}
 
 				//ＵＳＳＵＸＭＬ。
-				{
-					UnityEngine.UIElements.Button t_button = UnityEngine.UIElements.UQueryExtensions.Q<UnityEngine.UIElements.Button>(t_root,"label_1");
-					if(t_button != null){
-						t_button.text = "[CreateUssUxml]";
-						t_button.clickable.clicked += () => {
-							s_window.Button_CreateUssUxmll();
-						};
-					}
-				}
+				Button_CreateUssUxml.Initialize(UnityEngine.UIElements.UQueryExtensions.Q<UnityEngine.UIElements.Button>(t_root,"label_1"));
 
 				//ＵＴＦ８にコンバート。
-				{
-					UnityEngine.UIElements.Button t_button = UnityEngine.UIElements.UQueryExtensions.Q<UnityEngine.UIElements.Button>(t_root,"label_2_1");
-					if(t_button != null){
-						t_button.text = "[ConvertToUtf8]";
-						t_button.clickable.clicked += () => {
-							s_window.Button_ConvertToUtf8();
-						};
-					}
-				}
+				Button_ConvertToUtf8.Initialize(UnityEngine.UIElements.UQueryExtensions.Q<UnityEngine.UIElements.Button>(t_root,"label_2_1"));
 
 				//ブラウザを開く。
-				{
-					UnityEngine.UIElements.Button t_button = UnityEngine.UIElements.UQueryExtensions.Q<UnityEngine.UIElements.Button>(t_root,"label_2_2");
-					if(t_button != null){
-						t_button.text = "[OpenBrowser]";
-						t_button.clickable.clicked += () => {
-							s_window.Button_OpenBrowser();
-						};
-					}
-				}
-
-				//パッケージロックを削除。
-				{
-					UnityEngine.UIElements.Button t_button = UnityEngine.UIElements.UQueryExtensions.Q<UnityEngine.UIElements.Button>(t_root,"label_2_3");
-					if(t_button != null){
-						t_button.text = "[OpenDirectory]";
-						t_button.clickable.clicked += () => {
-							s_window.Button_OpenDirectory();
-						};
-					}
-				}
+				Button_OpenBrowser.Initialize(UnityEngine.UIElements.UQueryExtensions.Q<UnityEngine.UIElements.Button>(t_root,"label_2_2"));
 
 				//ディレクトリを開く。
-				{
-					UnityEngine.UIElements.Button t_button = UnityEngine.UIElements.UQueryExtensions.Q<UnityEngine.UIElements.Button>(t_root,"label_3_1");
-					if(t_button != null){
-						t_button.text = "[DeletePacakgeLock]";
-						t_button.clickable.clicked += () => {
-							s_window.Button_DeletePackageLock();
-						};
-					}
-				}
+				Button_OpenDirectory.Initialize(UnityEngine.UIElements.UQueryExtensions.Q<UnityEngine.UIElements.Button>(t_root,"label_2_3"));
 
-				{
-					UnityEngine.UIElements.Button t_button = UnityEngine.UIElements.UQueryExtensions.Q<UnityEngine.UIElements.Button>(t_root,"label_3_2");
-					if(t_button != null){
-						/*
-						t_button.text = "[]";
-						t_button.clickable.clicked += () => {
-							s_window.Button_SampleCopy();
-						};
-						*/
-					}
-				}
+				//パッケージロックを削除。
+				Button_DeletePacakgeLock.Initialize(UnityEngine.UIElements.UQueryExtensions.Q<UnityEngine.UIElements.Button>(t_root,"label_3_1"));
 
-				{
-					UnityEngine.UIElements.Button t_button = UnityEngine.UIElements.UQueryExtensions.Q<UnityEngine.UIElements.Button>(t_root,"label_3_3");
-					if(t_button != null){
-						/*
-						t_button.text = "[]";
-						t_button.clickable.clicked += () => {
-							s_window.Button_SampleCopy();
-						};
-						*/
-					}
-				}
+				//ダミー。
+				Button_Dummy.Initialize(UnityEngine.UIElements.UQueryExtensions.Q<UnityEngine.UIElements.Button>(t_root,"label_3_2"));
+
+				//ダミー。
+				Button_Dummy.Initialize(UnityEngine.UIElements.UQueryExtensions.Q<UnityEngine.UIElements.Button>(t_root,"label_3_3"));
 
 				//「server.json」。
 				{
@@ -285,18 +130,7 @@ namespace BlueBack.UpmVersionManager.Editor
 					}
 
 					//ボタン。
-					{
-						{
-							UnityEngine.UIElements.Button t_button = UnityEngine.UIElements.UQueryExtensions.Q<UnityEngine.UIElements.Button>(t_root,"label_a_button");
-							if(t_button != null){
-								t_button.text = Object_RootServerJson.GetInstance().status.lasttag;
-								t_button.AddToClassList("red");
-								t_button.clickable.clicked += () => {
-									s_window.Button_Server_Json();
-								};
-							}
-						}
-					}
+					Button_ServerJson.Initialize(UnityEngine.UIElements.UQueryExtensions.Q<UnityEngine.UIElements.Button>(t_root,"label_a_button"));
 				}
 
 				//「readme.md」。
@@ -320,44 +154,7 @@ namespace BlueBack.UpmVersionManager.Editor
 					//ボタン。
 					{
 						for(int ii=0;ii<3;ii++){
-							UnityEngine.UIElements.Button t_button = UnityEngine.UIElements.UQueryExtensions.Q<UnityEngine.UIElements.Button>(t_root,"label_b_button_" + (ii + 1).ToString());
-							if(t_button != null){
-
-								string[] t_version_split = Object_RootServerJson.GetInstance().status.lasttag.Split('.');
-								int t_version_split_item2 = int.Parse(t_version_split[2]);
-
-								string t_version;
-
-								switch(ii){
-								case 0:
-									{
-										t_version = string.Format("{0}.{1}.{2}",t_version_split[0],t_version_split[1],t_version_split_item2 - 1);
-									}break;
-								case 1:
-									{
-										t_version = string.Format("{0}.{1}.{2}",t_version_split[0],t_version_split[1],t_version_split_item2);
-									}break;
-								case 2:
-									{
-										t_version = string.Format("{0}.{1}.{2}",t_version_split[0],t_version_split[1],t_version_split_item2 + 1);
-									}break;
-								default:
-									{
-										t_version = "";
-										UnityEngine.Debug.Assert(false);
-									}break;
-								}
-
-								t_button.text = t_version;
-								if(t_version == Object_RootReadmeMd.GetInstance().version){
-									t_button.AddToClassList("red");
-								}
-
-								//「readme.md」作成。
-								t_button.clickable.clicked += () => {
-									s_window.Button_Readme_Md(t_version);
-								};
-							}
+							Button_RootReadmeMd.Initialize(UnityEngine.UIElements.UQueryExtensions.Q<UnityEngine.UIElements.Button>(t_root,"label_b_button_" + (ii + 1).ToString()),ii);
 						}
 					}
 				}
@@ -383,50 +180,7 @@ namespace BlueBack.UpmVersionManager.Editor
 					//ボタン。
 					{
 						for(int ii=0;ii<3;ii++){
-							UnityEngine.UIElements.Button t_button = UnityEngine.UIElements.UQueryExtensions.Q<UnityEngine.UIElements.Button>(t_root,"label_c_button_" + (ii + 1).ToString());
-							if(t_button != null){
-
-								string[] t_version_split = Object_RootServerJson.GetInstance().status.lasttag.Split('.');
-								int t_version_split_item2 = int.Parse(t_version_split[2]);
-
-								string t_version;
-
-								switch(ii){
-								case 0:
-									{
-										t_version = string.Format("{0}.{1}.{2}",t_version_split[0],t_version_split[1],t_version_split_item2 - 1);
-									}break;
-								case 1:
-									{
-										t_version = string.Format("{0}.{1}.{2}",t_version_split[0],t_version_split[1],t_version_split_item2);
-									}break;
-								case 2:
-									{
-										t_version = string.Format("{0}.{1}.{2}",t_version_split[0],t_version_split[1],t_version_split_item2 + 1);
-									}break;
-								default:
-									{
-										t_version = "";
-										UnityEngine.Debug.Assert(false);
-									}break;
-								}
-
-								t_button.text = t_version;
-								if(Object_Setting.GetInstance().param.getpackageversion != null){
-									if(t_version == Object_Setting.GetInstance().param.getpackageversion()){
-										t_button.AddToClassList("red");
-									}
-								}else{
-									#if(DEF_BLUEBACK_UPMVERSIONMANAGER_ASSERT)
-									DebugTool.Assert(false);
-									#endif
-								}
-
-								//「package.json」作成。
-								t_button.clickable.clicked += () => {
-									s_window.Button_Upm_Package_Json(t_version);
-								};
-							}
+							Button_UpmPackageJson.Initialize(UnityEngine.UIElements.UQueryExtensions.Q<UnityEngine.UIElements.Button>(t_root,"label_c_button_" + (ii + 1).ToString()),ii);
 						}
 					}
 				}
