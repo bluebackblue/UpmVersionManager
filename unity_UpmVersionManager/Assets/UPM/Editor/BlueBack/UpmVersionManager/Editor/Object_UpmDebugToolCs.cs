@@ -128,18 +128,10 @@ namespace BlueBack.UpmVersionManager.Editor
 						"	}",
 						"}",
 						"",
-
 					});
 
-
 					System.Collections.Generic.Dictionary<string,string> t_replace_list = new System.Collections.Generic.Dictionary<string,string>();
-					{
-						t_replace_list.Add("<<PACKAGENAME>>",Object_Setting.GetInstance().param.package_name.ToUpper());
-						t_replace_list.Add("<<PackageName>>",Object_Setting.GetInstance().param.package_name);
-						t_replace_list.Add("<<AUTHORNAME>>",Object_Setting.GetInstance().param.author_name.ToUpper());
-						t_replace_list.Add("<<AuthorName>>",Object_Setting.GetInstance().param.author_name);
-						t_replace_list.Add("<<authorname>>",Object_Setting.GetInstance().param.author_name.ToLower());
-					}
+					Object_Setting.GetInstance().AddReplaceList(t_replace_list);
 
 					string t_path = "UPM/Runtime/" + Object_Setting.GetInstance().param.author_name + "/" + Object_Setting.GetInstance().param.package_name + "/DebugTool.cs";
 

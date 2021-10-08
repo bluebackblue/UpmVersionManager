@@ -59,21 +59,6 @@ namespace Samples.UpmVersionManager.NewProject.Editor
 				"				//package_name",
 				"				t_param.package_name = \"<<Package_Name>>\";",
 				"",
-				"				//getpackageversion",
-				"				t_param.getpackageversion = ()=>{",
-				"					System.Type t_type = System.Type.GetType(\"<<Author_Name>>.<<Package_Name>>.Version,<<Author_Name>>.<<Package_Name>>\");",
-				"					if(t_type != null){",
-				"						System.Reflection.MethodInfo t_methodinfo = t_type.GetMethod(\"GetPackageVersion\",System.Reflection.BindingFlags.Static|System.Reflection.BindingFlags.Public);",
-				"						if(t_methodinfo != null){",
-				"							System.Object t_object = t_methodinfo.Invoke(null,null);",
-				"							if(t_object is string){",
-				"								return (string) t_object;",
-				"							}",
-				"						}",
-				"					}",
-				"					return \"0.0.-1\";",
-				"				};",
-				"",
 				"				//packagejson_unity",
 				"				t_param.packagejson_unity = \"<<NEED_UNITY_VERSION>>\";",
 				"",
@@ -105,8 +90,8 @@ namespace Samples.UpmVersionManager.NewProject.Editor
 				"				t_param.asmdef_editor = new BlueBack.UpmVersionManager.Editor.Object_Setting.Param.AsmdefItem{",
 				"					reference_list = new BlueBack.UpmVersionManager.Editor.Object_Setting.Param.AsmdefReferenceItem[]{",
 				"						new BlueBack.UpmVersionManager.Editor.Object_Setting.Param.AsmdefReferenceItem(){",
-				"						package_name = \"<<Author_Name>>.<<Package_Name>>\",",
-				"						url = t_param.git_url + t_param.git_author + \"/<<Package_Name>>\",",
+				"							package_name = \"<<Author_Name>>.<<Package_Name>>\",",
+				"							url = \"<<git_url>><<git_author>>/<<Package_Name>>\",",
 				"						},",
 				"					},",
 				"					versiondefine_list = new BlueBack.UpmVersionManager.Editor.Object_Setting.Param.AsmdefVersionDefineItem[]{",
@@ -116,6 +101,10 @@ namespace Samples.UpmVersionManager.NewProject.Editor
 				"				//asmdef_sample",
 				"				t_param.asmdef_sample = new BlueBack.UpmVersionManager.Editor.Object_Setting.Param.AsmdefItem{",
 				"					reference_list = new BlueBack.UpmVersionManager.Editor.Object_Setting.Param.AsmdefReferenceItem[]{",
+				"						new BlueBack.UpmVersionManager.Editor.Object_Setting.Param.AsmdefReferenceItem(){",
+				"							package_name = \"<<Author_Name>>.<<Package_Name>>\",",
+				"							url = \"<<git_url>><<git_author>>/<<Package_Name>>\",",
+				"						},",
 				"					},",
 				"					versiondefine_list = new BlueBack.UpmVersionManager.Editor.Object_Setting.Param.AsmdefVersionDefineItem[]{",
 				"					},",
@@ -139,9 +128,7 @@ namespace Samples.UpmVersionManager.NewProject.Editor
 				"					(in BlueBack.UpmVersionManager.Editor.Object_Setting.Creator_Argument a_argument) => {",
 				"						return new string[]{",
 				"							\"# \" + a_argument.param.author_name + \".\" + a_argument.param.package_name,",
-				"							\"xxxxx操作\",",
-				"							\"* xxxxxxxxxxxxxxxx\",",
-				"							\"* xxxxxxxxxxxxxxxx\",",
+				"							<<overview>>",
 				"						};",
 				"					},",
 				"",
@@ -282,6 +269,22 @@ namespace Samples.UpmVersionManager.NewProject.Editor
 								t_keyword_list += "\"" + t_keyword + "\",";
 							}
 							t_replace_list.Add("<<keyword>>",t_keyword_list);
+						}
+
+						//概要。
+						{
+							string t_overview_list = "";
+							for(int ii=0;ii<t_param.overview.Length;ii++){
+								if(ii == 0){
+									t_overview_list += "\"" + t_param.overview[ii] + "\",";
+								}else{
+									t_overview_list += "							\"" + t_param.overview[ii] + "\",";
+								}
+								if(ii < t_param.overview.Length - 1){
+									t_overview_list += "\n";
+								}
+							}
+							t_replace_list.Add("<<overview>>",t_overview_list);
 						}
 
 						//日付。

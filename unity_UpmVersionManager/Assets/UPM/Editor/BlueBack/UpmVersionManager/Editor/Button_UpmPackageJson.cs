@@ -47,14 +47,8 @@ namespace BlueBack.UpmVersionManager.Editor
 				}
 
 				a_button.text = t_version;
-				if(Object_Setting.GetInstance().param.getpackageversion != null){
-					if(t_version == Object_Setting.GetInstance().param.getpackageversion()){
-						a_button.AddToClassList("red");
-					}
-				}else{
-					#if(DEF_BLUEBACK_UPMVERSIONMANAGER_ASSERT)
-					DebugTool.Assert(false);
-					#endif
+				if(t_version == BlueBack.UpmVersionManager.Editor.Object_Setting.GetInstance().GetPackageVersion()){
+					a_button.AddToClassList("red");
 				}
 
 				//「package.json」作成。

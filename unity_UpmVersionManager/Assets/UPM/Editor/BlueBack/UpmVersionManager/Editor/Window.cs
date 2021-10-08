@@ -174,11 +174,7 @@ namespace BlueBack.UpmVersionManager.Editor
 					{
 						UnityEngine.UIElements.TextField t_textfield = UnityEngine.UIElements.UQueryExtensions.Q<UnityEngine.UIElements.TextField>(t_root,"textfield_c_value");
 						if(t_textfield != null){
-							if(Object_Setting.GetInstance().param.getpackageversion != null){
-								t_textfield.value = Object_Setting.GetInstance().param.getpackageversion();
-							}else{
-								t_textfield.value = "0.0.-1";
-							}
+							t_textfield.value = BlueBack.UpmVersionManager.Editor.Object_Setting.GetInstance().GetPackageVersion();
 						}
 					}
 

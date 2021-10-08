@@ -38,6 +38,10 @@ namespace Samples.UpmVersionManager.NewProject.Editor
 		*/
 		public string[] keyword;
 
+		/** 概要。
+		*/
+		public string[] overview;
+
 		/** CreateDefault
 		*/
 		public static NewProjectParam CreateDefault()
@@ -52,6 +56,11 @@ namespace Samples.UpmVersionManager.NewProject.Editor
 				discription = "説明",
 				root_readmemd_path = "../../README.md",
 				keyword = new string[]{},
+				overview = new string[]{
+					"xxxxx",
+					"* xxxxx",
+					"* xxxxx",
+				},
 			};
 		}
 	}

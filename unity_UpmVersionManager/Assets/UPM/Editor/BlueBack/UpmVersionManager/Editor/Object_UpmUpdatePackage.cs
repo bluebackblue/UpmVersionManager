@@ -56,15 +56,15 @@ namespace BlueBack.UpmVersionManager.Editor
 						"		[UnityEditor.MenuItem(\"<<AuthorName>>/<<PackageName>>/UpdatePackage\")]",
 						"		public static void MenuItem_<<AuthorName>>_<<PackageName>>_UpdatePackage()",
 						"		{",
-						"			string t_version = GetLastReleaseNameFromGitHub(\"<<gitauthorname>>\",Version.packagename);",
+						"			string t_version = GetLastReleaseNameFromGitHub(\"<<gitauthor>>\",Version.packagename);",
 						"			if(t_version == null){",
 						"				#if(UNITY_EDITOR)",
 						"				DebugTool.EditorLogError(\"GetLastReleaseNameFromGitHub : connect error\");",
 						"				#endif",
 						"			}else if(t_version.Length <= 0){",
-						"				UnityEditor.PackageManager.Client.Add(\"<<giturl>><<gitauthorname>>/<<PackageName>>.git?path=<<GitPath>>\");",
+						"				UnityEditor.PackageManager.Client.Add(\"<<giturl>><<gitauthor>>/<<PackageName>>.git?path=<<gitpath>>\");",
 						"			}else{",
-						"				UnityEditor.PackageManager.Client.Add(\"<<giturl>><<gitauthorname>>/<<PackageName>>.git?path=<<GitPath>>#\" + t_version);",
+						"				UnityEditor.PackageManager.Client.Add(\"<<giturl>><<gitauthor>>/<<PackageName>>.git?path=<<gitpath>>#\" + t_version);",
 						"			}",
 						"		}",
 						"",
@@ -139,18 +139,8 @@ namespace BlueBack.UpmVersionManager.Editor
 						"",
 					});
 
-
 					System.Collections.Generic.Dictionary<string,string> t_replace_list = new System.Collections.Generic.Dictionary<string,string>();
-					{
-						t_replace_list.Add("<<PACKAGENAME>>",Object_Setting.GetInstance().param.package_name.ToUpper());
-						t_replace_list.Add("<<PackageName>>",Object_Setting.GetInstance().param.package_name);
-						t_replace_list.Add("<<AUTHORNAME>>",Object_Setting.GetInstance().param.author_name.ToUpper());
-						t_replace_list.Add("<<AuthorName>>",Object_Setting.GetInstance().param.author_name);
-						t_replace_list.Add("<<authorname>>",Object_Setting.GetInstance().param.author_name.ToLower());
-						t_replace_list.Add("<<gitauthorname>>",Object_Setting.GetInstance().param.git_author);
-						t_replace_list.Add("<<giturl>>",Object_Setting.GetInstance().param.git_url);
-						t_replace_list.Add("<<GitPath>>",Object_Setting.GetInstance().param.git_path);
-					}
+					Object_Setting.GetInstance().AddReplaceList(t_replace_list);
 
 					string t_path = "UPM/Editor/" + Object_Setting.GetInstance().param.author_name + "/" + Object_Setting.GetInstance().param.package_name + "/Editor/UpdatePackage.cs";
 

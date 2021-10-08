@@ -2,6 +2,10 @@
    "keyword":[
       "upm"
    ],
+   "overview":[
+	"UPMバージョン操作",
+	"* package.json出力",
+   ]
    "discription":"UPMバージョン操作",
    "git_path":"unity_UpmVersionManager/Assets/UPM",
    "git_author":"bluebackblue",

@@ -132,10 +132,6 @@ namespace BlueBack.UpmVersionManager.Editor
 			*/
 			public string package_name;
 
-			/** getpackageversion
-			*/
-			public System.Func<string> getpackageversion;
-
 			/** packagejson_unity
 			*/
 			public string packagejson_unity;
@@ -198,7 +194,44 @@ namespace BlueBack.UpmVersionManager.Editor
 			#endif
 		}
 
-		/** 依存。自動生成。
+		/** AddReplaceList
+		*/
+		public void AddReplaceList(System.Collections.Generic.Dictionary<string,string> a_replace_list)
+		{
+			//パッケージ名。
+			a_replace_list.Add("<<PACKAGENAME>>",this.param.package_name.ToUpper());
+			a_replace_list.Add("<<PackageName>>",this.param.package_name);
+
+			//管理者名。
+			a_replace_list.Add("<<AUTHORNAME>>",this.param.author_name.ToUpper());
+			a_replace_list.Add("<<AuthorName>>",this.param.author_name);
+			a_replace_list.Add("<<authorname>>",this.param.author_name.ToLower());
+
+			//ＧＩＴ。
+			a_replace_list.Add("<<gitauthor>>",this.param.git_author);
+			a_replace_list.Add("<<giturl>>",this.param.git_url);
+			a_replace_list.Add("<<gitpath>>",this.param.git_path);
+		}
+
+		/** GetSPackageVersion
+		*/
+		public string GetPackageVersion()
+		{
+			System.Type t_type = System.Type.GetType(this.param.author_name + "."  + this.param.package_name + ".Version," + this.param.author_name + "."  + this.param.package_name);
+			if(t_type != null){
+				System.Reflection.MethodInfo t_methodinfo = t_type.GetMethod("GetPackageVersion",System.Reflection.BindingFlags.Static|System.Reflection.BindingFlags.Public);
+				if(t_methodinfo != null){
+					System.Object t_object = t_methodinfo.Invoke(null,null);
+					if(t_object is string){
+						return (string) t_object;
+					}
+				}
+			}
+
+			return "0.0.-1";
+		}
+
+		/** 「object_root_readme_md」。依存。
 		*/
 		public static System.Collections.Generic.List<string> Create_RootReadMd_Asmdef_Dependence(in BlueBack.UpmVersionManager.Editor.Object_Setting.Creator_Argument a_argument)
 		{

@@ -14,6 +14,7 @@ MIT License
 * https://github.com/bluebackblue/JsonItem
 * https://github.com/bluebackblue/Code
 ### サンプル
+* https://github.com/bluebackblue/UpmVersionManager
 * https://github.com/bluebackblue/AssetLib
 * https://github.com/bluebackblue/JsonItem
 
