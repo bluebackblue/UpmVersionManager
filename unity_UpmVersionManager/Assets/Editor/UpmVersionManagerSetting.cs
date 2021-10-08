@@ -105,6 +105,10 @@ namespace Editor
 							url = "https://github.com/bluebackblue/UpmVersionManager",
 						},
 						new BlueBack.UpmVersionManager.Editor.Object_Setting.Param.AsmdefReferenceItem(){
+							package_name = "BlueBack.UpmVersionManager.Editor",
+							url = "https://github.com/bluebackblue/UpmVersionManager",
+						},
+						new BlueBack.UpmVersionManager.Editor.Object_Setting.Param.AsmdefReferenceItem(){
 							package_name = "BlueBack.AssetLib",
 							url = "https://github.com/bluebackblue/AssetLib",
 						},
