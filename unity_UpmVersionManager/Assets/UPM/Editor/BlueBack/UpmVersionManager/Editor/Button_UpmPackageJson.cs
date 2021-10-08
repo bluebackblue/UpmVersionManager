@@ -71,13 +71,13 @@ namespace BlueBack.UpmVersionManager.Editor
 			
 			Object_UpmChangeLogMd.Save();
 
-			Object_UpmAsmdef.Save();
 			Object_UpmDocumentation.Save(a_version);
 			Object_UpmReadmeMd.Save(a_version);
 			Object_UpmVersionCs.Save(a_version);
 			Object_UpmDebugToolCs.Save();
 			Object_UpmPackageJson.Save(a_version);
 			Object_UpmUpdatePackage.Save();
+			Object_UpmAsmdef.Save();
 
 			Window.s_window.OnEnable();
 		}
