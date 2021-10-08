@@ -198,7 +198,6 @@ namespace Samples.UpmVersionManager.NewProject.Editor
 				"						};",
 				"					},",
 				"					#endif",
-				"",
 				"				};",
 				"			}",
 				"		}",
