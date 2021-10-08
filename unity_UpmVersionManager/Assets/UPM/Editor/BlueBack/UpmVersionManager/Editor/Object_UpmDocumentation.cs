@@ -14,53 +14,40 @@ namespace BlueBack.UpmVersionManager.Editor
 {
 	/** Object_UpmDocumentation
 	*/
-	public class Object_UpmDocumentation
+	public static class Object_UpmDocumentation
 	{
 		/** Save
 		*/
 		public static void Save(string a_version)
 		{
-			if(Object_Setting.GetInstance() != null){
+			//path
+			string t_path = "UPM/Documentation~/" + Object_Setting.s_param.author_name + "." + Object_Setting.s_param.package_name + ".md";
 
-				//「UPM/Documentation~」
-				{
-					string t_path = "UPM/Documentation~";
-					BlueBack.AssetLib.Editor.DeleteDirectory.TryDeleteDirectoryFromAssetsPath(t_path);
-				}
+			//TryDeleteDirectoryFromAssetsPath
+			BlueBack.AssetLib.Editor.DeleteDirectory.TryDeleteDirectoryFromAssetsPath("UPM/Documentation~");
 
-				//「UPM/Documentation~/<<author_name>>.<<package_name>>.md」。
-				{
-					System.Text.StringBuilder t_stringbuilder = new System.Text.StringBuilder();
-					{
-						Object_Setting.Creator_Argument t_argument = new Object_Setting.Creator_Argument(
-							a_version,
-							Object_Setting.GetInstance().param
-						);
-						foreach(Object_Setting.Creator_Type t_creator in Object_Setting.GetInstance().param.object_root_readme_md){
-							string[] t_list = t_creator(in t_argument);
-							foreach(string t_line in t_list){
-								t_stringbuilder.Append(t_line);
-								t_stringbuilder.Append("\n");
-							}
-							t_stringbuilder.Append("\n");
-						}
+			//stringbuilder
+			System.Text.StringBuilder t_stringbuilder = new System.Text.StringBuilder();
+			{
+				Object_Setting.Creator_Argument t_argument = new Object_Setting.Creator_Argument(a_version);
+				foreach(Object_Setting.Creator_Type t_creator in Object_Setting.s_param.object_root_readme_md){
+					string[] t_list = t_creator(in t_argument);
+					foreach(string t_line in t_list){
+						t_stringbuilder.Append(t_line);
+						t_stringbuilder.Append("\n");
 					}
-
-					string t_path = "UPM/Documentation~/" + Object_Setting.GetInstance().param.author_name + "." + Object_Setting.GetInstance().param.package_name + ".md";
-					string t_text = t_stringbuilder.ToString();
-					BlueBack.AssetLib.Editor.CreateDirectory.CreateDirectoryToAssetsPath(System.IO.Path.GetDirectoryName(t_path));
-					BlueBack.AssetLib.Editor.SaveText.SaveUtf8TextToAssetsPath(t_text,t_path,false,BlueBack.AssetLib.LineFeedOption.CRLF);
-					#if(DEF_BLUEBACK_UPMVERSIONMANAGER_LOG)
-					DebugTool.Log("save : " + t_path);
-					#endif
+					t_stringbuilder.Append("\n");
 				}
-
-				BlueBack.AssetLib.Editor.RefreshAsset.Refresh();
-			}else{
-				#if(DEF_BLUEBACK_UPMVERSIONMANAGER_ASSERT)
-				DebugTool.Assert(false);
-				#endif
 			}
+
+			//SaveUtf8TextToAssetsPath	
+			BlueBack.AssetLib.Editor.CreateDirectory.CreateDirectoryToAssetsPath(System.IO.Path.GetDirectoryName(t_path));
+			BlueBack.AssetLib.Editor.SaveText.SaveUtf8TextToAssetsPath(t_stringbuilder.ToString(),t_path,false,BlueBack.AssetLib.LineFeedOption.CRLF);
+			BlueBack.AssetLib.Editor.RefreshAsset.Refresh();
+
+			#if(DEF_BLUEBACK_UPMVERSIONMANAGER_LOG)
+			DebugTool.Log("save : " + t_path);
+			#endif
 		}
 	}
 }

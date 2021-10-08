@@ -14,35 +14,11 @@ namespace BlueBack.UpmVersionManager.Editor
 {
 	/** Object_RootServerJson
 	*/
-	public class Object_RootServerJson
+	public static class Object_RootServerJson
 	{
-		/** s_instance
+		/** Status
 		*/
-		private static Object_RootServerJson s_instance;
-
-		/** GetInstance
-		*/
-		public static Object_RootServerJson GetInstance()
-		{
-			return s_instance;
-		}
-
-		/** CreateInstance
-		*/
-		public static void CreateInstance()
-		{
-			if(s_instance == null){
-				s_instance = new Object_RootServerJson();
-			}else{
-				#if(DEF_BLUEBACK_UPMVERSIONMANAGER_ASSERT)
-				DebugTool.Assert(false);
-				#endif
-			}
-		}
-
-		/** Param
-		*/
-		public struct Param
+		public class Status
 		{
 			/** lasttag
 			*/
@@ -55,85 +31,55 @@ namespace BlueBack.UpmVersionManager.Editor
 
 		/** status
 		*/
-		public Param status;
-
-		/** constructor
-		*/
-		private Object_RootServerJson()
-		{
-		}
-
-		/** Check
-		*/
-		public void Check()
-		{
-			if(this.status.lasttag != null){
-				if(this.status.lasttag.Length > 0){
-					return;
-				}
-			}
-
-			//dummy
-			this.status.lasttag = "0.0.-1";
-			this.status.time = "---";
-		}
+		public static Status s_status = null;
 
 		/** Load
 		*/
-		public void Load()
+		public static void Load()
 		{
 			if(BlueBack.AssetLib.Editor.ExistFile.IsExistFileFromAssetsPath("server.json") == true){
 				//load
 				string t_path = "server.json";
-				this.status = BlueBack.JsonItem.Convert.JsonStringToObject<Param>(BlueBack.AssetLib.Editor.LoadText.LoadTextFromAssetsPath(t_path,System.Text.Encoding.UTF8));
+				s_status = BlueBack.JsonItem.Convert.JsonStringToObject<Status>(BlueBack.AssetLib.Editor.LoadText.LoadTextFromAssetsPath(t_path,System.Text.Encoding.UTF8));
 				#if(DEF_BLUEBACK_UPMVERSIONMANAGER_LOG)
 				DebugTool.Log("load : " + t_path);
 				#endif
 			}else{
 				//dummy
-				this.status.lasttag = null;
-				this.status.time = "---";
+				s_status = new Status();
+				s_status.lasttag = "0.0.-1";
+				s_status.time = "---";
 			}
 		}
 
 		/** DownloadAndSave
 		*/
-		public void DownloadAndSave()
+		public static void DownloadAndSave()
 		{
-			if(Object_Setting.GetInstance() != null){
-
-				//download
-				{
-					string t_path_download = "https://api.github.com/repos/" + Object_Setting.GetInstance().param.git_author + "/" + Object_Setting.GetInstance().param.package_name + "/releases/latest";
-					string t_jsonstring_download = BlueBack.AssetLib.Editor.LoadText.TryLoadTextFromUrl(t_path_download,null,System.Text.Encoding.UTF8);
-					#if(DEF_BLUEBACK_UPMVERSIONMANAGER_LOG)
-					DebugTool.Log("download : " + t_path_download + " : " + t_jsonstring_download);
-					#endif
+			string t_path_download = "https://api.github.com/repos/" + Object_Setting.s_param.git_author + "/" + Object_Setting.s_param.package_name + "/releases/latest";
+			string t_jsonstring_download = BlueBack.AssetLib.Editor.LoadText.TryLoadTextFromUrl(t_path_download,null,System.Text.Encoding.UTF8);
+			#if(DEF_BLUEBACK_UPMVERSIONMANAGER_LOG)
+			DebugTool.Log("download : " + t_path_download + " : " + t_jsonstring_download);
+			#endif
 					
-					t_jsonstring_download = BlueBack.JsonItem.Normalize.Convert(t_jsonstring_download);
-					BlueBack.JsonItem.JsonItem t_jsonitem = new BlueBack.JsonItem.JsonItem(t_jsonstring_download);
-					if(this.status.lasttag != t_jsonitem.GetItem("tag_name").GetStringData()){
-						this.status.lasttag = t_jsonitem.GetItem("tag_name").GetStringData();
-						this.status.time = System.DateTime.Now.ToString();
+			t_jsonstring_download = BlueBack.JsonItem.Normalize.Convert(t_jsonstring_download);
+			BlueBack.JsonItem.JsonItem t_jsonitem = new BlueBack.JsonItem.JsonItem(t_jsonstring_download);
+			if(s_status.lasttag != t_jsonitem.GetItem("tag_name").GetStringData()){
+				s_status.lasttag = t_jsonitem.GetItem("tag_name").GetStringData();
+				s_status.time = System.DateTime.Now.ToString();
 
-						//save
-						{
-							string t_path = "server.json";
-							string t_jsonstring_save = BlueBack.JsonItem.Convert.ObjectToJsonString<Param>(this.status);
-							BlueBack.AssetLib.Editor.SaveText.SaveUtf8TextToAssetsPath(t_jsonstring_save,t_path,false,BlueBack.AssetLib.LineFeedOption.CRLF);
-							#if(DEF_BLUEBACK_UPMVERSIONMANAGER_LOG)
-							DebugTool.Log("save : " + t_path);
-							#endif
-						}
-					}
+				//save
+				{
+					string t_path = "server.json";
+					string t_jsonstring_save = BlueBack.JsonItem.Convert.ObjectToJsonString<Status>(s_status);
+					BlueBack.AssetLib.Editor.SaveText.SaveUtf8TextToAssetsPath(t_jsonstring_save,t_path,false,BlueBack.AssetLib.LineFeedOption.CRLF);
+					#if(DEF_BLUEBACK_UPMVERSIONMANAGER_LOG)
+					DebugTool.Log("save : " + t_path);
+					#endif
 				}
-
-				BlueBack.AssetLib.Editor.RefreshAsset.Refresh();
-			}else{
-				#if(DEF_BLUEBACK_UPMVERSIONMANAGER_ASSERT)
-				DebugTool.Assert(false);
-				#endif
 			}
+
+			BlueBack.AssetLib.Editor.RefreshAsset.Refresh();
 		}
 	}
 }

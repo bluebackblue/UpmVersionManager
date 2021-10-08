@@ -14,7 +14,7 @@ namespace BlueBack.UpmVersionManager.Editor
 {
 	/** Window
 	*/
-	public class Window : UnityEditor.EditorWindow
+	public sealed class Window : UnityEditor.EditorWindow
 	{
 		/** s_window
 		*/
@@ -25,7 +25,7 @@ namespace BlueBack.UpmVersionManager.Editor
 		[UnityEditor.MenuItem("UpmVersionManager/Open")]
 		public static void MenuItem_Open()
 		{
-			Object_RootUssUxml.CreateFile(true);
+			Object_RootUssUxml.Save(true);
 			s_window = (Window)UnityEditor.EditorWindow.GetWindow(typeof(Window));
 			if(s_window != null){
 				s_window.Show();
@@ -65,20 +65,7 @@ namespace BlueBack.UpmVersionManager.Editor
 			#if(DEF_BLUEBACK_UPMVERSIONMANAGER_LOG)
 			DebugTool.Log("Window.OnEnable");
 			#endif
-
-			//「readme.md」。
-			if(Object_RootReadmeMd.GetInstance() == null){
-				Object_RootReadmeMd.CreateInstance();
-				Object_RootReadmeMd.GetInstance().Load();
-			}
-
-			//「Root/server.json」。
-			if(Object_RootServerJson.GetInstance() == null){
-				Object_RootServerJson.CreateInstance();
-				Object_RootServerJson.GetInstance().Load();
-			}
-			Object_RootServerJson.GetInstance().Check();
-				
+			
 			{
 				UnityEngine.UIElements.VisualElement t_root = s_window.rootVisualElement;
 				{
@@ -126,7 +113,11 @@ namespace BlueBack.UpmVersionManager.Editor
 					{
 						UnityEngine.UIElements.Label t_label = UnityEngine.UIElements.UQueryExtensions.Q<UnityEngine.UIElements.Label>(t_root,"label_a_value");
 						if(t_label != null){
-							t_label.text = Object_RootServerJson.GetInstance().status.time;
+							if(Object_RootServerJson.s_status == null){
+								Object_RootServerJson.Load();
+							}
+
+							t_label.text = Object_RootServerJson.s_status.time;
 						}
 					}
 
@@ -148,7 +139,10 @@ namespace BlueBack.UpmVersionManager.Editor
 					{
 						UnityEngine.UIElements.TextField t_textfield = UnityEngine.UIElements.UQueryExtensions.Q<UnityEngine.UIElements.TextField>(t_root,"textfield_b_value");
 						if(t_textfield != null){
-							t_textfield.value = Object_RootReadmeMd.GetInstance().version;
+							if(Object_RootReadmeMd.s_version == null){
+								Object_RootReadmeMd.Load();
+							}
+							t_textfield.value = Object_RootReadmeMd.s_version;
 						}
 					}
 
@@ -174,7 +168,7 @@ namespace BlueBack.UpmVersionManager.Editor
 					{
 						UnityEngine.UIElements.TextField t_textfield = UnityEngine.UIElements.UQueryExtensions.Q<UnityEngine.UIElements.TextField>(t_root,"textfield_c_value");
 						if(t_textfield != null){
-							t_textfield.value = BlueBack.UpmVersionManager.Editor.Object_Setting.GetInstance().GetPackageVersion();
+							t_textfield.value = Object_Setting.GetPackageVersion();
 						}
 					}
 

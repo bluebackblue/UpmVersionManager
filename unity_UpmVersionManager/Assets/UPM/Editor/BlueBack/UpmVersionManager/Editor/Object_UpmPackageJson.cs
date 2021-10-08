@@ -14,11 +14,11 @@ namespace BlueBack.UpmVersionManager.Editor
 {
 	/** Object_UpmPackageJson
 	*/
-	public class Object_UpmPackageJson
+	public static class Object_UpmPackageJson
 	{
-		/** JsonObject
+		/** Package
 		*/
-		private struct JsonObject
+		private struct Package
 		{
 			/** Author
 			*/
@@ -87,69 +87,61 @@ namespace BlueBack.UpmVersionManager.Editor
 		*/
 		public static void Save(string a_version)
 		{
-			if(Object_Setting.GetInstance() != null){
-				//「UPM/package.json」。
+			//path
+			string t_path = "UPM/package.json";
+
+			//package
+			Package t_package;
+			{
+				//name
+				t_package.name = (Object_Setting.s_param.author_name + "." + Object_Setting.s_param.package_name).ToLower();
+
+				//displayName
+				t_package.displayName = Object_Setting.s_param.package_name;
+
+				//version
+				t_package.version = a_version;
+
+				//unity
+				t_package.unity = Object_Setting.s_param.packagejson_unity;
+
+				//discription
+				t_package.discription = Object_Setting.s_param.packagejson_discription;
+
+				//author
+				t_package.author.name = Object_Setting.s_param.author_name;
+				t_package.author.url =  Object_Setting.s_param.git_url +  Object_Setting.s_param.git_author;
+				
+				//keyword
+				t_package.keyword = Object_Setting.s_param.packagejson_keyword;
+				
+				//dependencies
+				t_package.dependencies = Object_Setting.s_param.packagejson_dependencies;
+
+				//samples
+				t_package.samples = new System.Collections.Generic.List<Package.Samples>();
 				{
-					JsonObject t_jsonobject;
-					{
-						//name
-						t_jsonobject.name = (Object_Setting.GetInstance().param.author_name + "." + Object_Setting.GetInstance().param.package_name).ToLower();
-
-						//displayName
-						t_jsonobject.displayName = Object_Setting.GetInstance().param.package_name;
-
-						//version
-						t_jsonobject.version = a_version;
-
-						//unity
-						t_jsonobject.unity = Object_Setting.GetInstance().param.packagejson_unity;
-
-						//discription
-						t_jsonobject.discription = Object_Setting.GetInstance().param.packagejson_discription;
-
-						//author
-						t_jsonobject.author.name = Object_Setting.GetInstance().param.author_name;
-						t_jsonobject.author.url =  Object_Setting.GetInstance().param.git_url +  Object_Setting.GetInstance().param.git_author;
-				
-						//keyword
-						t_jsonobject.keyword = Object_Setting.GetInstance().param.packagejson_keyword;
-				
-						//dependencies
-						t_jsonobject.dependencies = Object_Setting.GetInstance().param.packagejson_dependencies;
-
-						//samples
-						t_jsonobject.samples = new System.Collections.Generic.List<JsonObject.Samples>();
+					string t_path_sampletop = "Samples/" + Object_Setting.s_param.package_name + "/000";
+					System.Collections.Generic.List<string> t_sample_directory_list = BlueBack.AssetLib.Editor.DirectoryNameList.CreateOnlyTopDirectoryNameListFromAssetsPath(t_path_sampletop);
+					for(int ii=0;ii<t_sample_directory_list.Count;ii++){
+						Package.Samples t_sample_item = new Package.Samples();
 						{
-							string t_path = "Samples/" + Object_Setting.GetInstance().param.package_name + "/000";
-							System.Collections.Generic.List<string> t_sample_directory_list = BlueBack.AssetLib.Editor.DirectoryNameList.CreateOnlyTopDirectoryNameListFromAssetsPath(t_path);
-							for(int ii=0;ii<t_sample_directory_list.Count;ii++){
-								JsonObject.Samples t_sample_item = new JsonObject.Samples();
-								{
-									t_sample_item.path = "Samples~/" + t_sample_directory_list[ii];
-									t_sample_item.displayName = t_sample_directory_list[ii];
-								}
-								t_jsonobject.samples.Add(t_sample_item);
-							}
+							t_sample_item.path = "Samples~/" + t_sample_directory_list[ii];
+							t_sample_item.displayName = t_sample_directory_list[ii];
 						}
-					}
-
-					{
-						string t_path = "UPM/package.json";
-						string t_jsonstring = BlueBack.JsonItem.Convert.ObjectToJsonString<JsonObject>(t_jsonobject);
-						BlueBack.AssetLib.Editor.CreateDirectory.CreateDirectoryToAssetsPath(System.IO.Path.GetDirectoryName(t_path));
-						BlueBack.AssetLib.Editor.SaveText.SaveUtf8TextToAssetsPath(t_jsonstring,t_path,false,BlueBack.AssetLib.LineFeedOption.CRLF);
-						#if(DEF_BLUEBACK_UPMVERSIONMANAGER_LOG)
-						DebugTool.Log("save : " + t_path);
-						#endif
+						t_package.samples.Add(t_sample_item);
 					}
 				}
-
-				BlueBack.AssetLib.Editor.RefreshAsset.Refresh();
-			}else{
-				#if(DEF_BLUEBACK_UPMVERSIONMANAGER_ASSERT)
-				DebugTool.Assert(false);
-				#endif
 			}
+
+			//SaveUtf8TextToAssetsPath
+			BlueBack.AssetLib.Editor.CreateDirectory.CreateDirectoryToAssetsPath(System.IO.Path.GetDirectoryName(t_path));
+			BlueBack.AssetLib.Editor.SaveText.SaveUtf8TextToAssetsPath(BlueBack.JsonItem.Convert.ObjectToJsonString<Package>(t_package),t_path,false,BlueBack.AssetLib.LineFeedOption.CRLF);
+			BlueBack.AssetLib.Editor.RefreshAsset.Refresh();
+
+			#if(DEF_BLUEBACK_UPMVERSIONMANAGER_LOG)
+			DebugTool.Log("save : " + t_path);
+			#endif
 		}
 	}
 }

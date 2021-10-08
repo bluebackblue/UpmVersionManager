@@ -14,34 +14,30 @@ namespace BlueBack.UpmVersionManager.Editor
 {
 	/** Object_UpmChangeLogMd
 	*/
-	public class Object_UpmChangeLogMd
+	public static class Object_UpmChangeLogMd
 	{
 		/** Save
 		*/
 		public static void Save()
 		{
-			if(Object_Setting.GetInstance() != null){
-				//「UPM/CHANGELOG.md」。
-				{
-					string[] t_readme_md = Object_Setting.GetInstance().param.changelog;
+			//path
+			string t_path = "UPM/CHANGELOG.md";
 
-					System.Text.StringBuilder t_stringbuilder = new System.Text.StringBuilder(1024);
-					foreach(string t_line in t_readme_md){
-						t_stringbuilder.Append(t_line);
-						t_stringbuilder.Append("\n");
-					}
-
-					string t_path = "UPM/CHANGELOG.md";
-					string t_text = t_stringbuilder.ToString();
-					BlueBack.AssetLib.Editor.CreateDirectory.CreateDirectoryToAssetsPath(System.IO.Path.GetDirectoryName(t_path));
-					BlueBack.AssetLib.Editor.SaveText.SaveUtf8TextToAssetsPath(t_text,t_path,false,BlueBack.AssetLib.LineFeedOption.CRLF);
-					#if(DEF_BLUEBACK_UPMVERSIONMANAGER_LOG)
-					DebugTool.Log("save : " + t_path);
-					#endif
-				}
-
-				BlueBack.AssetLib.Editor.RefreshAsset.Refresh();
+			//stringbuilder
+			System.Text.StringBuilder t_stringbuilder = new System.Text.StringBuilder(1024);
+			foreach(string t_line in Object_Setting.s_param.changelog){
+				t_stringbuilder.Append(t_line);
+				t_stringbuilder.Append("\n");
 			}
+
+			//SaveUtf8TextToAssetsPath
+			BlueBack.AssetLib.Editor.CreateDirectory.CreateDirectoryToAssetsPath(System.IO.Path.GetDirectoryName(t_path));
+			BlueBack.AssetLib.Editor.SaveText.SaveUtf8TextToAssetsPath(t_stringbuilder.ToString(),t_path,false,BlueBack.AssetLib.LineFeedOption.CRLF);
+			BlueBack.AssetLib.Editor.RefreshAsset.Refresh();
+
+			#if(DEF_BLUEBACK_UPMVERSIONMANAGER_LOG)
+			DebugTool.Log("save : " + t_path);
+			#endif
 		}
 	}
 }

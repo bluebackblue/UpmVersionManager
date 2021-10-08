@@ -14,7 +14,7 @@ namespace BlueBack.UpmVersionManager.Editor
 {
 	/** Window
 	*/
-	public class Button_DeletePacakgeLock
+	public static class Button_DeletePacakgeLock
 	{
 		/** Initialize
 		*/
@@ -23,11 +23,9 @@ namespace BlueBack.UpmVersionManager.Editor
 			if(a_button != null){
 				a_button.text = "[DeletePacakgeLock]";
 				a_button.clickable.clicked += () => {
-
 					#if(DEF_BLUEBACK_UPMVERSIONMANAGER_LOG)
 					DebugTool.Log("DeletePacakgeLock");
 					#endif
-
 					On();
 				};
 			}
@@ -37,13 +35,7 @@ namespace BlueBack.UpmVersionManager.Editor
 		*/
 		private static void On()
 		{
-			if(Object_Setting.GetInstance() != null){
-				BlueBack.AssetLib.Editor.DeleteFile.TryDeleteFileFromAssetsPath("../Packages/packages-lock.json");
-			}else{
-				#if(DEF_BLUEBACK_UPMVERSIONMANAGER_ASSERT)
-				DebugTool.Assert(false);
-				#endif
-			}
+			BlueBack.AssetLib.Editor.DeleteFile.TryDeleteFileFromAssetsPath("../Packages/packages-lock.json");
 		}
 	}
 }

@@ -14,7 +14,7 @@ namespace BlueBack.UpmVersionManager.Editor
 {
 	/** Window
 	*/
-	public class Button_ServerJson
+	public static class Button_ServerJson
 	{
 		/** Initialize
 		*/
@@ -23,7 +23,11 @@ namespace BlueBack.UpmVersionManager.Editor
 			if(a_button != null){
 				a_button.text = "[ServerJson]";
 
-				a_button.text = Object_RootServerJson.GetInstance().status.lasttag;
+				if(Object_RootServerJson.s_status == null){
+					Object_RootServerJson.Load();
+				}
+
+				a_button.text = Object_RootServerJson.s_status.lasttag;
 				a_button.AddToClassList("red");
 
 				a_button.clickable.clicked += () => {
@@ -41,12 +45,8 @@ namespace BlueBack.UpmVersionManager.Editor
 		*/
 		private static void On()
 		{
-			if(Object_RootServerJson.GetInstance() == null){
-				Object_RootServerJson.CreateInstance();
-			}
-
-			Object_RootServerJson.GetInstance().DownloadAndSave();
-			Object_RootServerJson.GetInstance().Load();
+			Object_RootServerJson.DownloadAndSave();
+			Object_RootServerJson.Load();
 			Window.s_window.OnEnable();
 		}
 	}

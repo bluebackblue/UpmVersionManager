@@ -14,105 +14,99 @@ namespace BlueBack.UpmVersionManager.Editor
 {
 	/** Object_UpmAsmdef
 	*/
-	public class Object_UpmAsmdef
+	public static class Object_UpmAsmdef
 	{
-		/** constructor
-		*/
-		public Object_UpmAsmdef()
-		{
-		}
-
 		/** Save
 		*/
 		public static void Save()
 		{
-			if(Object_Setting.GetInstance() != null){
+			//guid_list
+			System.Collections.Generic.Dictionary<string,string> t_guid_list = Inner_CreateGuidList();
 
-				//「UPM/Runtime/.../*.asmdef」。
+			//asmdef_runtime
+			{
+				string t_name = Object_Setting.s_param.author_name + "." + Object_Setting.s_param.package_name;
+				string t_path = "UPM/Runtime/" + Object_Setting.s_param.author_name + "/" + Object_Setting.s_param.package_name + "/" +  Object_Setting.s_param.author_name + "." + Object_Setting.s_param.package_name + ".asmdef";
+				Inner_CreateAsmdef(t_guid_list,in Object_Setting.s_param.asmdef_runtime,t_path,t_name);
+			}
+
+			//asmdef_editor
+			{
+				string t_name = Object_Setting.s_param.author_name + "." + Object_Setting.s_param.package_name + ".Editor";
+				string t_path = "UPM/Editor/" + Object_Setting.s_param.author_name + "/" + Object_Setting.s_param.package_name + "/Editor/" +  Object_Setting.s_param.author_name + "." + Object_Setting.s_param.package_name + ".Editor.asmdef";
+				Inner_CreateAsmdef(t_guid_list,in Object_Setting.s_param.asmdef_editor,t_path,t_name);
+			}
+
+			//asmdef_sample
+			{
+				string t_name = "Samples." + Object_Setting.s_param.package_name;
+				string t_path = "Samples/" + Object_Setting.s_param.package_name + "/Samples." + Object_Setting.s_param.package_name + ".asmdef";
+				Inner_CreateAsmdef(t_guid_list,in Object_Setting.s_param.asmdef_sample,t_path,t_name);
+			}
+
+			BlueBack.AssetLib.Editor.RefreshAsset.Refresh();
+		}
+
+		/** Inner_CreateGuidList
+		*/
+		private static System.Collections.Generic.Dictionary<string,string> Inner_CreateGuidList()
+		{
+			//ＧＵＩＤを列挙。
+			System.Collections.Generic.Dictionary<string,string> t_guid_list = new System.Collections.Generic.Dictionary<string,string>();
+
+			{
+				//「*.asmdef」を列挙。
+				System.Collections.Generic.List<string> t_filename_list = new System.Collections.Generic.List<string>();
 				{
-					//ＧＵＩＤを列挙。
-					System.Collections.Generic.Dictionary<string,string> t_guid_list = new System.Collections.Generic.Dictionary<string,string>();
-
-					{
-						//「*.asmdef」を列挙。
-						System.Collections.Generic.List<string> t_filename_list = new System.Collections.Generic.List<string>();
-						{
-							t_filename_list.AddRange(BlueBack.AssetLib.Editor.FindFile.FindFileListFromFullPath(UnityEngine.Application.dataPath,".*","^.*\\.asmdef$"));
-							System.Collections.Generic.List<UnityEditor.PackageManager.PackageInfo> t_packagelist = BlueBack.AssetLib.Editor.PackageList.CreatePackageList(true,false);
-							foreach(UnityEditor.PackageManager.PackageInfo t_pacakge in t_packagelist){
-								t_filename_list.AddRange(BlueBack.AssetLib.Editor.FindFile.FindFileListFromFullPath(t_pacakge.resolvedPath,".*","^.*\\.asmdef$"));
-							}
-						}
-
-						foreach(string t_filename in t_filename_list){
-							BlueBack.JsonItem.JsonItem t_jsonitem = new JsonItem.JsonItem(BlueBack.JsonItem.Normalize.Convert(BlueBack.AssetLib.Editor.LoadText.LoadTextFromFullPath(t_filename,System.Text.Encoding.UTF8)));
-							
-							//asmdef_runtime
-							foreach(Object_Setting.Param.AsmdefReferenceItem t_asmdef_reference_item in Object_Setting.GetInstance().param.asmdef_runtime.reference_list){
-								if(t_asmdef_reference_item.package_name ==  t_jsonitem.GetItem("name").GetStringData()){
-									if(t_guid_list.ContainsKey(t_asmdef_reference_item.package_name) == false){
-										string t_guid = BlueBack.AssetLib.Editor.LoadGuid.LoadGuidFromFullPath(t_filename + ".meta",System.Text.Encoding.UTF8);
-										if(t_guid != null){
-											t_guid_list.Add(t_asmdef_reference_item.package_name,t_guid);
-										}
-									}
-								}
-							}
-
-							//asmdef_editor
-							foreach(Object_Setting.Param.AsmdefReferenceItem t_asmdef_reference_item in Object_Setting.GetInstance().param.asmdef_editor.reference_list){
-								if(t_asmdef_reference_item.package_name ==  t_jsonitem.GetItem("name").GetStringData()){
-									if(t_guid_list.ContainsKey(t_asmdef_reference_item.package_name) == false){
-										string t_guid = BlueBack.AssetLib.Editor.LoadGuid.LoadGuidFromFullPath(t_filename + ".meta",System.Text.Encoding.UTF8);
-										if(t_guid != null){
-											t_guid_list.Add(t_asmdef_reference_item.package_name,t_guid);
-										}
-									}
-								}
-							}
-
-							//asmdef_sample
-							foreach(Object_Setting.Param.AsmdefReferenceItem t_asmdef_reference_item in Object_Setting.GetInstance().param.asmdef_sample.reference_list){
-								if(t_asmdef_reference_item.package_name ==  t_jsonitem.GetItem("name").GetStringData()){
-									if(t_guid_list.ContainsKey(t_asmdef_reference_item.package_name) == false){
-										string t_guid = BlueBack.AssetLib.Editor.LoadGuid.LoadGuidFromFullPath(t_filename + ".meta",System.Text.Encoding.UTF8);
-										if(t_guid != null){
-											t_guid_list.Add(t_asmdef_reference_item.package_name,t_guid);
-										}
-									}
-								}
-							}
-						}
-					}
-
-					//asmdef_runtime
-					{
-						string t_name = Object_Setting.GetInstance().param.author_name + "." + Object_Setting.GetInstance().param.package_name;
-						string t_path = "UPM/Runtime/" + Object_Setting.GetInstance().param.author_name + "/" + Object_Setting.GetInstance().param.package_name + "/" +  Object_Setting.GetInstance().param.author_name + "." + Object_Setting.GetInstance().param.package_name + ".asmdef";
-						Inner_CreateAsmdef(t_guid_list,in Object_Setting.GetInstance().param.asmdef_runtime,t_path,t_name);
-					}
-
-					//asmdef_editor
-					{
-						string t_name = Object_Setting.GetInstance().param.author_name + "." + Object_Setting.GetInstance().param.package_name + ".Editor";
-						string t_path = "UPM/Editor/" + Object_Setting.GetInstance().param.author_name + "/" + Object_Setting.GetInstance().param.package_name + "/Editor/" +  Object_Setting.GetInstance().param.author_name + "." + Object_Setting.GetInstance().param.package_name + ".Editor.asmdef";
-						Inner_CreateAsmdef(t_guid_list,in Object_Setting.GetInstance().param.asmdef_editor,t_path,t_name);
-					}
-
-					//asmdef_sample
-					{
-						string t_name = "Samples." + Object_Setting.GetInstance().param.package_name;
-						string t_path = "Samples/" + Object_Setting.GetInstance().param.package_name + "/Samples." + Object_Setting.GetInstance().param.package_name + ".asmdef";
-						Inner_CreateAsmdef(t_guid_list,in Object_Setting.GetInstance().param.asmdef_sample,t_path,t_name);
+					t_filename_list.AddRange(BlueBack.AssetLib.Editor.FindFile.FindFileListFromFullPath(UnityEngine.Application.dataPath,".*","^.*\\.asmdef$"));
+					System.Collections.Generic.List<UnityEditor.PackageManager.PackageInfo> t_packagelist = BlueBack.AssetLib.Editor.PackageList.CreatePackageList(true,false);
+					foreach(UnityEditor.PackageManager.PackageInfo t_pacakge in t_packagelist){
+						t_filename_list.AddRange(BlueBack.AssetLib.Editor.FindFile.FindFileListFromFullPath(t_pacakge.resolvedPath,".*","^.*\\.asmdef$"));
 					}
 				}
 
-				BlueBack.AssetLib.Editor.RefreshAsset.Refresh();
-			}else{
-				#if(DEF_BLUEBACK_UPMVERSIONMANAGER_ASSERT)
-				DebugTool.Assert(false);
-				#endif
+				foreach(string t_filename in t_filename_list){
+					BlueBack.JsonItem.JsonItem t_jsonitem = new JsonItem.JsonItem(BlueBack.JsonItem.Normalize.Convert(BlueBack.AssetLib.Editor.LoadText.LoadTextFromFullPath(t_filename,System.Text.Encoding.UTF8)));
+							
+					//asmdef_runtime
+					foreach(Object_Setting.Param.AsmdefReferenceItem t_asmdef_reference_item in Object_Setting.s_param.asmdef_runtime.reference_list){
+						if(t_asmdef_reference_item.package_name ==  t_jsonitem.GetItem("name").GetStringData()){
+							if(t_guid_list.ContainsKey(t_asmdef_reference_item.package_name) == false){
+								string t_guid = BlueBack.AssetLib.Editor.LoadGuid.LoadGuidFromFullPath(t_filename + ".meta",System.Text.Encoding.UTF8);
+								if(t_guid != null){
+									t_guid_list.Add(t_asmdef_reference_item.package_name,t_guid);
+								}
+							}
+						}
+					}
+
+					//asmdef_editor
+					foreach(Object_Setting.Param.AsmdefReferenceItem t_asmdef_reference_item in Object_Setting.s_param.asmdef_editor.reference_list){
+						if(t_asmdef_reference_item.package_name ==  t_jsonitem.GetItem("name").GetStringData()){
+							if(t_guid_list.ContainsKey(t_asmdef_reference_item.package_name) == false){
+								string t_guid = BlueBack.AssetLib.Editor.LoadGuid.LoadGuidFromFullPath(t_filename + ".meta",System.Text.Encoding.UTF8);
+								if(t_guid != null){
+									t_guid_list.Add(t_asmdef_reference_item.package_name,t_guid);
+								}
+							}
+						}
+					}
+
+					//asmdef_sample
+					foreach(Object_Setting.Param.AsmdefReferenceItem t_asmdef_reference_item in Object_Setting.s_param.asmdef_sample.reference_list){
+						if(t_asmdef_reference_item.package_name ==  t_jsonitem.GetItem("name").GetStringData()){
+							if(t_guid_list.ContainsKey(t_asmdef_reference_item.package_name) == false){
+								string t_guid = BlueBack.AssetLib.Editor.LoadGuid.LoadGuidFromFullPath(t_filename + ".meta",System.Text.Encoding.UTF8);
+								if(t_guid != null){
+									t_guid_list.Add(t_asmdef_reference_item.package_name,t_guid);
+								}
+							}
+						}
+					}
+				}
 			}
+
+			return t_guid_list;
 		}
 
 		/** Inner_CreateAsmdef

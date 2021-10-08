@@ -13,7 +13,7 @@ namespace BlueBack.UpmVersionManager
 {
 	/** DebugTool
 	*/
-	public class DebugTool
+	public static class DebugTool
 	{
 		/** s_AssertProc
 		*/

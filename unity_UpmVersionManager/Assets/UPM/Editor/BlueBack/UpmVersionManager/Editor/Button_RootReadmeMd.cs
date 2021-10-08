@@ -14,14 +14,18 @@ namespace BlueBack.UpmVersionManager.Editor
 {
 	/** Window
 	*/
-	public class Button_RootReadmeMd
+	public static class Button_RootReadmeMd
 	{
 		/** Initialize
 		*/
 		public static void Initialize(UnityEngine.UIElements.Button a_button,int a_index)
 		{
 			if(a_button != null){
-				string[] t_version_split = Object_RootServerJson.GetInstance().status.lasttag.Split('.');
+				if(Object_RootServerJson.s_status == null){
+					Object_RootServerJson.Load();
+				}
+
+				string[] t_version_split = Object_RootServerJson.s_status.lasttag.Split('.');
 				int t_version_split_item2 = int.Parse(t_version_split[2]);
 
 				string t_version;
@@ -47,7 +51,12 @@ namespace BlueBack.UpmVersionManager.Editor
 				}
 
 				a_button.text = t_version;
-				if(t_version == Object_RootReadmeMd.GetInstance().version){
+
+				if(Object_RootReadmeMd.s_version == null){
+					Object_RootReadmeMd.Load();
+				}
+
+				if(t_version == Object_RootReadmeMd.s_version){
 					a_button.AddToClassList("red");
 				}
 
@@ -68,7 +77,7 @@ namespace BlueBack.UpmVersionManager.Editor
 		private static void On(string a_version)
 		{
 			Object_RootReadmeMd.Save(a_version);
-			Object_RootReadmeMd.GetInstance().Load();
+			Object_RootReadmeMd.Load();
 			Window.s_window.OnEnable();
 
 		}

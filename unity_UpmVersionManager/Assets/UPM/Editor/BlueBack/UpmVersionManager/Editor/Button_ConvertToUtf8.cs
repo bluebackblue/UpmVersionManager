@@ -14,7 +14,7 @@ namespace BlueBack.UpmVersionManager.Editor
 {
 	/** Window
 	*/
-	public class Button_ConvertToUtf8
+	public static class Button_ConvertToUtf8
 	{
 		/** Initialize
 		*/
@@ -23,11 +23,9 @@ namespace BlueBack.UpmVersionManager.Editor
 			if(a_button != null){
 				a_button.text = "[ConvertToUtf8]";
 				a_button.clickable.clicked += () => {
-
 					#if(DEF_BLUEBACK_UPMVERSIONMANAGER_LOG)
 					DebugTool.Log("ConvertToUtf8");
 					#endif
-
 					On();
 				};
 			}

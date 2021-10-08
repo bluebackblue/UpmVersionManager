@@ -14,7 +14,7 @@ namespace BlueBack.UpmVersionManager.Editor
 {
 	/** Window
 	*/
-	public class Button_CreateUssUxml
+	public static class Button_CreateUssUxml
 	{
 		/** Initialize
 		*/
@@ -23,11 +23,9 @@ namespace BlueBack.UpmVersionManager.Editor
 			if(a_button != null){
 				a_button.text = "[CreateUssUxml]";
 				a_button.clickable.clicked += () => {
-
 					#if(DEF_BLUEBACK_UPMVERSIONMANAGER_LOG)
 					DebugTool.Log("CreateUssUxml");
 					#endif
-
 					On();
 				};
 			}
@@ -37,7 +35,7 @@ namespace BlueBack.UpmVersionManager.Editor
 		*/
 		private static void On()
 		{
-			Object_RootUssUxml.CreateFile(true);
+			Object_RootUssUxml.Save(true);
 			Window.s_window.OnEnable();
 		}
 	}

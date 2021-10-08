@@ -14,24 +14,20 @@ namespace BlueBack.UpmVersionManager.Editor
 {
 	/** Window
 	*/
-	public class Button_Dummy
+	public static class Button_Dummy
 	{
 		/** Initialize
 		*/
 		public static void Initialize(UnityEngine.UIElements.Button a_button)
 		{
 			if(a_button != null){
-				/*
 				a_button.text = "[----]";
 				a_button.clickable.clicked += () => {
-
 					#if(DEF_BLUEBACK_UPMVERSIONMANAGER_LOG)
 					DebugTool.Log("----");
 					#endif
-
 					On();
 				};
-				*/
 			}
 		}
 

@@ -12,9 +12,9 @@
 #if(UNITY_EDITOR)
 namespace BlueBack.UpmVersionManager.Editor
 {
-	/** Window
+	/** Button_OpenDirectory
 	*/
-	public class Button_OpenDirectory
+	public static class Button_OpenDirectory
 	{
 		/** Initialize
 		*/
@@ -23,11 +23,9 @@ namespace BlueBack.UpmVersionManager.Editor
 			if(a_button != null){
 				a_button.text = "[OpenDirectory]";
 				a_button.clickable.clicked += () => {
-
 					#if(DEF_BLUEBACK_UPMVERSIONMANAGER_LOG)
 					DebugTool.Log("OpenDirectory");
 					#endif
-
 					On();
 				};
 			}
@@ -37,13 +35,7 @@ namespace BlueBack.UpmVersionManager.Editor
 		*/
 		private static void On()
 		{
-			if(Object_Setting.GetInstance() != null){
-				System.Diagnostics.Process.Start("explorer","/select," + (UnityEngine.Application.dataPath + "/../").Replace("/","\\"));
-			}else{
-				#if(DEF_BLUEBACK_UPMVERSIONMANAGER_ASSERT)
-				DebugTool.Assert(false);
-				#endif
-			}
+			System.Diagnostics.Process.Start("explorer","/select," + (UnityEngine.Application.dataPath + "/../").Replace("/","\\"));
 		}
 	}
 }
