@@ -21,7 +21,7 @@ namespace BlueBack.UpmVersionManager
 
 		/** packageversion
 		*/
-		public const string packageversion = "0.0.37";
+		public const string packageversion = "0.0.38";
 
 		/** GetPackageVersion
 		*/
