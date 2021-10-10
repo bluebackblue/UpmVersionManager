@@ -3,7 +3,7 @@
 /**
  * Copyright (c) blueback
  * Released under the MIT License
- * @brief 「UPM/Documentation~/<<author_name>>.<<NameSpace_Package>>.md」。
+ * @brief 「UPM/Documentation~/<<NameSpace_Author>>.<<NameSpace_Package>>.md」。
 */
 
 

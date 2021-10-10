@@ -1,6 +1,6 @@
 # BlueBack.UpmVersionManager
-* UPMバージョン操作
-* * package.json出力
+UPMバージョン操作
+* package.json出力
 
 ## ライセンス
 MIT License
@@ -14,6 +14,7 @@ MIT License
 * https://github.com/bluebackblue/UpmJsonItem
 * https://github.com/bluebackblue/UpmCode
 ### サンプル
+* https://github.com/bluebackblue/UpmVersionManager
 * https://github.com/bluebackblue/UpmAssetLib
 * https://github.com/bluebackblue/UpmJsonItem
 

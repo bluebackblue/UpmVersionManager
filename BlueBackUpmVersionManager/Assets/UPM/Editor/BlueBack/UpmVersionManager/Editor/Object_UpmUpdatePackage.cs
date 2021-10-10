@@ -3,7 +3,7 @@
 /**
  * Copyright (c) blueback
  * Released under the MIT License
- * @brief 「UPM/Editor/<<author_name>>/<<NameSpace_Package>>/Editor/UpdatePackage.cs」。
+ * @brief 「UPM/Editor/<<NameSpace_Author>>/<<NameSpace_Package>>/Editor/UpdatePackage.cs」。
 */
 
 

@@ -107,7 +107,7 @@ namespace BlueBack.UpmVersionManager.Editor
 			System.Collections.Generic.List<string> t_list = new System.Collections.Generic.List<string>();
 			{
 				for(int ii=0;ii<s_projectparam.discription_detal.Length;ii++){
-					t_list.Add("* " + s_projectparam.discription_detal[ii]);
+					t_list.Add(s_projectparam.discription_detal[ii]);
 				}
 			}
 			return t_list;

@@ -18,7 +18,7 @@ namespace Samples.UpmVersionManager.NewProject.Editor
 				"",
 				"",
 				"/**",
-				" * Copyright (c) <<author_name>>",
+				" * Copyright (c) blueback",
 				" * Released under the MIT License",
 				" * @brief 設定。",
 				"*/",
@@ -117,7 +117,7 @@ namespace Samples.UpmVersionManager.NewProject.Editor
 				"					};",
 				"				},",
 				"				#endif",
-				"			}",
+				"			};",
 				"		}",
 				"	}",
 				"}",
@@ -125,98 +125,12 @@ namespace Samples.UpmVersionManager.NewProject.Editor
 				"",
 			};
 
+			//projectparam
+			BlueBack.UpmVersionManager.Editor.ProjectParam t_projectparam = BlueBack.UpmVersionManager.Editor.ProjectParam.Load();
+
+			//replace_list
 			System.Collections.Generic.Dictionary<string,string> t_replace_list = new System.Collections.Generic.Dictionary<string,string>();
 			{
-				string t_path = "Editor/NewProjectParam.json";
-
-				NewProjectParam t_param = NewProjectParam.CreateDefault();
-				{
-					bool t_para_success = false;
-					string t_jsonstring = BlueBack.AssetLib.Editor.LoadText.TryLoadTextFromAssetsPath(t_path,System.Text.Encoding.UTF8);
-					if(t_jsonstring != null){
-						t_jsonstring = BlueBack.JsonItem.Normalize.Convert(t_jsonstring);
-						if(t_jsonstring != null){
-							t_param = BlueBack.JsonItem.Convert.JsonStringToObject<NewProjectParam>(t_jsonstring);
-							t_para_success = true;
-							{
-								if((t_param.namespace_author == null)||(t_param.namespace_package == null)){
-									t_para_success = false;
-								}
-								if(t_para_success == false){
-									t_param = NewProjectParam.CreateDefault();
-								}
-							}
-						}
-					}
-
-					if(t_para_success == false){
-						string t_text = BlueBack.JsonItem.Pretty.Convert(BlueBack.JsonItem.Convert.ObjectToJsonString<NewProjectParam>(t_param),"    ");
-						BlueBack.AssetLib.Editor.CreateDirectory.CreateDirectoryToAssetsPath(System.IO.Path.GetDirectoryName(t_path));
-						BlueBack.AssetLib.Editor.SaveText.SaveUtf8TextToAssetsPath(t_text,t_path,false,BlueBack.AssetLib.LineFeedOption.CRLF);
-					}
-
-					{
-						//ネームスペース。
-						t_replace_list.Add("<<NameSpace_Author>>",t_param.namespace_author);
-						t_replace_list.Add("<<NAMESPACE_AUTHOR>>",t_param.namespace_author.ToUpper());
-						t_replace_list.Add("<<namespace_author>>",t_param.namespace_author.ToLower());
-						t_replace_list.Add("<<NameSpace_Package>>",t_param.namespace_package);
-						t_replace_list.Add("<<NAMESPACE_PACKAGE>>",t_param.namespace_package.ToUpper());
-						t_replace_list.Add("<<namespace_package>>",t_param.namespace_package.ToLower());
-
-						//対応ユニティー。
-						t_replace_list.Add("<<need_unity_version>>",t_param.need_unity_version);
-
-						//ＧＩＴ。
-						t_replace_list.Add("<<git_url>>",t_param.git_url);
-						t_replace_list.Add("<<git_api>>",t_param.git_api);
-						t_replace_list.Add("<<git_path>>",t_param.git_path);
-
-						//説明。
-						t_replace_list.Add("<<discription>>",t_param.discription);
-
-						//ルート用「README.md」パス。
-						t_replace_list.Add("<<root_readmemd_path>>",t_param.root_readmemd_path);
-
-						{
-							t_replace_list.Add("<<asmdef_runtime_reference_list>>","");
-						}
-						{
-							t_replace_list.Add("<<asmdef_editor_reference_list>>","");
-						}
-						{
-							t_replace_list.Add("<<asmdef_sample_reference_list>>","");
-						}
-
-						//キーワード。
-						{
-							string t_keyword_list = "";
-							foreach(string t_keyword in t_param.keyword){
-								t_keyword_list += "\"" + t_keyword + "\",";
-							}
-							t_replace_list.Add("<<keyword>>",t_keyword_list);
-						}
-
-						//概要。
-						{
-							string t_overview_list = "";
-							for(int ii=0;ii<t_param.overview.Length;ii++){
-								if(ii == 0){
-									t_overview_list += "\"" + t_param.overview[ii] + "\",";
-								}else{
-									t_overview_list += "							\"" + t_param.overview[ii] + "\",";
-								}
-								if(ii < t_param.overview.Length - 1){
-									t_overview_list += "\n";
-								}
-							}
-							t_replace_list.Add("<<overview>>",t_overview_list);
-						}
-
-						//日付。
-						t_replace_list.Add("<<DATE>>",System.DateTime.Today.ToString("yyyy-MM-dd"));
-					}
-				}
 			}
 
 			System.Text.StringBuilder t_stringbuilder = new System.Text.StringBuilder();

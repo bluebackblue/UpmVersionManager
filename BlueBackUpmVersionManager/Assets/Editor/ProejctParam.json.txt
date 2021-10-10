@@ -1,5 +1,5 @@
 {
-    "asmdef_sample":{
+    "asmdef_runtime":{
         "define_list":[
             
         ],
@@ -45,11 +45,19 @@
             },
         ]
     },
-    "asmdef_runtime":{
+    "asmdef_sample":{
         "define_list":[
             
         ],
         "reference_list":[
+            {
+                "package_fullname":"BlueBack.UpmVersionManager",
+                "url":"https://github.com/bluebackblue/UpmVersionManager",
+            },
+            {
+                "package_fullname":"BlueBack.UpmVersionManager.Editor",
+                "url":"https://github.com/bluebackblue/UpmVersionManager",
+            },
             {
                 "package_fullname":"BlueBack.AssetLib",
                 "url":"https://github.com/bluebackblue/UpmAssetLib",
