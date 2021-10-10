@@ -17,9 +17,9 @@ namespace BlueBack.UpmVersionManager.Editor
 	#if(!DEF_USER_BLUEBACK_UPMVERSIONMANAGER)
 	public static class UpdatePackage
 	{
-		/** MenuItem_BlueBack_UpmVersionManager_UpdatePackage_" + Version.packageversion)]
+		/** MenuItem_BlueBack_UpmVersionManager_UpdatePackage
 		*/
-		[UnityEditor.MenuItem("BlueBack/UpmVersionManager/UpdatePackage")]
+		[UnityEditor.MenuItem("BlueBack/UpmVersionManager/UpdatePackage " + Version.packageversion)]
 		public static void MenuItem_BlueBack_UpmVersionManager_UpdatePackage()
 		{
 			string t_version = GetLastReleaseNameFromGitHub("<<gitauthor>>",Version.packagename);
