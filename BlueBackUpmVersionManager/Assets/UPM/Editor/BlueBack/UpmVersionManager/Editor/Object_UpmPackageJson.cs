@@ -39,7 +39,7 @@ namespace BlueBack.UpmVersionManager.Editor
 				t_packagejson.unity = Object_Setting.s_projectparam.need_unity_version;
 
 				//discription
-				t_packagejson.discription = Object_Setting.s_projectparam.discription_package;
+				t_packagejson.discription = Object_Setting.s_projectparam.discription_simple;
 
 				//author
 				t_packagejson.author.name = Object_Setting.s_projectparam.namespace_author;

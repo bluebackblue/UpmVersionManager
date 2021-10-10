@@ -32,12 +32,10 @@ namespace Editor
 
 				//概要。
 				(in BlueBack.UpmVersionManager.Editor.Object_Setting.Creator_Argument a_argument) => {
-					return new string[]{
-						"# " + BlueBack.UpmVersionManager.Editor.Object_Setting.s_projectparam.namespace_author + "." + BlueBack.UpmVersionManager.Editor.Object_Setting.s_projectparam.namespace_package,
-						"xxxxx",
-						"* xxxxx",
-						"* xxxxx",
-					};
+					System.Collections.Generic.List<string> t_list = new System.Collections.Generic.List<string>();
+					t_list.Add("# " + BlueBack.UpmVersionManager.Editor.Object_Setting.s_projectparam.namespace_author + "." + BlueBack.UpmVersionManager.Editor.Object_Setting.s_projectparam.namespace_package);
+					t_list.AddRange(BlueBack.UpmVersionManager.Editor.Object_Setting.Create_RootReadMd_Overview(a_argument));
+					return t_list.ToArray();
 				},
 
 				//ライセンス。

@@ -99,11 +99,15 @@ namespace BlueBack.UpmVersionManager.Editor
 			return "0.0.-1";
 		}
 
-		public static System.Collections.Generic.List<string> Create_RootReadMd_Discription(in BlueBack.UpmVersionManager.Editor.Object_Setting.Creator_Argument a_argument)
+		/** 「object_root_readme_md」。概要。
+		*/
+		public static System.Collections.Generic.List<string> Create_RootReadMd_Overview(in BlueBack.UpmVersionManager.Editor.Object_Setting.Creator_Argument a_argument)
 		{
 			System.Collections.Generic.List<string> t_list = new System.Collections.Generic.List<string>();
 			{
-
+				for(int ii=0;ii<s_projectparam.discription_detal.Length;ii++){
+					t_list.Add("* " + s_projectparam.discription_detal[ii]);
+				}
 			}
 			return t_list;
 		}

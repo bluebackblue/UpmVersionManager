@@ -54,8 +54,8 @@ namespace BlueBack.UpmVersionManager.Editor
 
 		/** 説明。
 		*/
-		public string discription_package;
-		public string[] discription_readme;
+		public string discription_simple;
+		public string[] discription_detal;
 
 		/** ルート用「README.md」パス。
 		*/
@@ -64,10 +64,6 @@ namespace BlueBack.UpmVersionManager.Editor
 		/** キーワード。
 		*/
 		public string[] keyword;
-
-		/** 概要。
-		*/
-		public string[] overview;
 
 		/** changelog
 		*/
@@ -83,25 +79,24 @@ namespace BlueBack.UpmVersionManager.Editor
 		*/
 		public ProjectParam()
 		{
-			this.namespace_author = "";
-			this.namespace_package = "";
-			this.need_unity_version = "";
-			this.git_url = "";
-			this.git_api = "";
-			this.git_path = "";
-			this.discription_package = "";
-			this.discription_readme = new string[]{
+			this.namespace_author = "xxxxx";
+			this.namespace_package = "xxxxx";
+			this.need_unity_version = "2020.1";
+			this.git_url = "https://github.com/xxxxx/xxxxx";
+			this.git_api = "https://api.github.com/repos/xxxxx/xxxxx";
+			this.git_path = "xxxxx/Assets/UPM";
+			this.discription_simple = "xxxxx";
+			this.discription_detal = new string[]{
 				"xxxxx",
 				"* xxxxx",
 				"* xxxxx",
 			};
 			this.root_readmemd_path = "";
 			this.keyword = new string[]{"xxxxx"};
-			this.overview = new string[]{"xxxxx"};
 			this.changelog = new string[]{
 				"# Changelog",
 				"",
-				"## [0.0.1] - " + System.DateTime.Today.ToString("yyyy-MM-dd"),
+				"## [0.0.0] - " + System.DateTime.Today.ToString("yyyy-MM-dd"),
 				"### Changes",
 				"- Init",
 				"",

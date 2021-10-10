@@ -23,7 +23,7 @@
             
         ],
         "reference_list":[
-		     {
+            {
                 "package_fullname":"BlueBack.UpmVersionManager",
                 "url":"https://github.com/bluebackblue/UpmVersionManager",
             },
@@ -72,18 +72,15 @@
         "- Init",
         "",
     ],
-    "overview":[
-        "UPMバージョン操作"
-    ],
     "keyword":[
         "upm",
     ],
     "root_readmemd_path":"../../README.md",
-    "discription_readme":[
+    "discription_simple":"UPMバージョン操作",
+    "discription_detal":[
         "UPMバージョン操作",
         "* package.json出力",
     ],
-    "discription_package":"UPMバージョン操作",
     "git_path":"BlueBackUpmVersionManager/Assets/UPM",
     "git_api":"https://api.github.com/repos/bluebackblue/UpmVersionManager",
     "git_url":"https://github.com/bluebackblue/UpmVersionManager",
