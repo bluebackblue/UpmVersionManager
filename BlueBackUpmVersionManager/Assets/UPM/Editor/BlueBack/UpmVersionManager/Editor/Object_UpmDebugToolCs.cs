@@ -29,7 +29,7 @@ namespace BlueBack.UpmVersionManager.Editor
 				"",
 				"",
 				"/**",
-				" * Copyright (c) <<NameSpace_Author>>",
+				" * Copyright (c) <<namespace_author>>",
 				" * Released under the MIT License",
 				" * @brief デバッグツール。自動生成。",
 				"*/",

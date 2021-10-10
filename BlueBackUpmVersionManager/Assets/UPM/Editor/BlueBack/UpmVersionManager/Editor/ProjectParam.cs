@@ -42,10 +42,6 @@ namespace BlueBack.UpmVersionManager.Editor
 		public string namespace_author;
 		public string namespace_package;
 
-		/** 対応するユニティーバージョン。
-		*/
-		public string need_unity_version;
-
 		/** ＧＩＴ。
 		*/
 		public string git_url;
@@ -57,10 +53,6 @@ namespace BlueBack.UpmVersionManager.Editor
 		public string discription_simple;
 		public string[] discription_detal;
 
-		/** ルート用「README.md」パス。
-		*/
-		public string root_readmemd_path;
-
 		/** キーワード。
 		*/
 		public string[] keyword;
@@ -68,6 +60,14 @@ namespace BlueBack.UpmVersionManager.Editor
 		/** changelog
 		*/
 		public string[] changelog;
+
+		/** ルート用「README.md」パス。
+		*/
+		public string root_readmemd_path;
+
+		/** 対応するユニティーバージョン。
+		*/
+		public string need_unity_version;
 
 		/** asmdef
 		*/
@@ -81,7 +81,6 @@ namespace BlueBack.UpmVersionManager.Editor
 		{
 			this.namespace_author = "xxxxx";
 			this.namespace_package = "xxxxx";
-			this.need_unity_version = "2020.1";
 			this.git_url = "https://github.com/xxxxx/xxxxx";
 			this.git_api = "https://api.github.com/repos/xxxxx/xxxxx";
 			this.git_path = "xxxxx/Assets/UPM";
@@ -91,7 +90,6 @@ namespace BlueBack.UpmVersionManager.Editor
 				"* xxxxx",
 				"* xxxxx",
 			};
-			this.root_readmemd_path = "";
 			this.keyword = new string[]{"xxxxx"};
 			this.changelog = new string[]{
 				"# Changelog",
@@ -101,6 +99,8 @@ namespace BlueBack.UpmVersionManager.Editor
 				"- Init",
 				"",
 			};
+			this.root_readmemd_path = "";
+			this.need_unity_version = "2020.1";
 			this.asmdef_runtime = new Asmdef(){
 				reference_list = new Asmdef.Reference[]{},
 				define_list = new Asmdef.Define[]{},
