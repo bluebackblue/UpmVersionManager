@@ -17,7 +17,7 @@ namespace BlueBack.UpmVersionManager.Editor
 	#if(!DEF_USER_BLUEBACK_UPMVERSIONMANAGER)
 	public static class UpdatePackage
 	{
-		/** MenuItem_BlueBack_UpmVersionManager_UpdatePackage
+		/** MenuItem_BlueBack_UpmVersionManager_UpdatePackage_" + Version.packageversion)]
 		*/
 		[UnityEditor.MenuItem("BlueBack/UpmVersionManager/UpdatePackage")]
 		public static void MenuItem_BlueBack_UpmVersionManager_UpdatePackage()

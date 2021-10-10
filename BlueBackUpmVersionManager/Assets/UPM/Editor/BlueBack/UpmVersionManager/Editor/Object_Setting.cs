@@ -51,6 +51,7 @@ namespace BlueBack.UpmVersionManager.Editor
 			//パッケージ名。
 			a_replace_list.Add("<<NAMESPACE_PACKAGE>>",s_projectparam.namespace_package.ToUpper());
 			a_replace_list.Add("<<NameSpace_Package>>",s_projectparam.namespace_package);
+			a_replace_list.Add("<<namespace_package>>",s_projectparam.namespace_package.ToLower());
 
 			//管理者名。
 			a_replace_list.Add("<<NAMESPACE_AUTHOR>>",s_projectparam.namespace_author.ToUpper());

@@ -45,7 +45,7 @@ namespace BlueBack.UpmVersionManager.Editor
 				"	#if(!DEF_USER_<<NAMESPACE_AUTHOR>>_<<NAMESPACE_PACKAGE>>)",
 				"	public static class UpdatePackage",
 				"	{",
-				"		/** MenuItem_<<NameSpace_Author>>_<<NameSpace_Package>>_UpdatePackage",
+				"		/** MenuItem_<<NameSpace_Author>>_<<NameSpace_Package>>_UpdatePackage_\" + Version.packageversion)]",
 				"		*/",
 				"		[UnityEditor.MenuItem(\"<<NameSpace_Author>>/<<NameSpace_Package>>/UpdatePackage\")]",
 				"		public static void MenuItem_<<NameSpace_Author>>_<<NameSpace_Package>>_UpdatePackage()",
