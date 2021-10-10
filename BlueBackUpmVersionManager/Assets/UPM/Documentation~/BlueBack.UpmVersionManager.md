@@ -1,6 +1,7 @@
 # BlueBack.UpmVersionManager
-UPMバージョン操作
-* package.json出力
+xxxxx
+* xxxxx
+* xxxxx
 
 ## ライセンス
 MIT License
@@ -9,12 +10,11 @@ MIT License
 ## 依存 / 使用ライセンス等
 ### ランタイム
 ### エディター
-* https://github.com/bluebackblue/UpmUpmVersionManager
+* https://github.com/bluebackblue/UpmVersionManager
 * https://github.com/bluebackblue/UpmAssetLib
 * https://github.com/bluebackblue/UpmJsonItem
 * https://github.com/bluebackblue/UpmCode
 ### サンプル
-* https://github.com/bluebackblue/UpmVersionManager
 * https://github.com/bluebackblue/UpmAssetLib
 * https://github.com/bluebackblue/UpmJsonItem
 
@@ -23,7 +23,7 @@ Unity 2021.1.11f1
 
 ## UPM
 ### 最新
-* https://github.com/bluebackblue/UpmVersionManager.git?path=BlueBackUpmVersionManager/Assets/UPM#0.0.34
+* https://github.com/bluebackblue/UpmVersionManager.git?path=BlueBackUpmVersionManager/Assets/UPM#0.0.35
 ### 開発
 * https://github.com/bluebackblue/UpmVersionManager.git?path=BlueBackUpmVersionManager/Assets/UPM
 

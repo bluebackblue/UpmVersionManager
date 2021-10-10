@@ -3,7 +3,7 @@
 /**
  * Copyright (c) blueback
  * Released under the MIT License
- * @brief 「UPM/Editor/<<author_name>>/<<package_name>>/Editor/UpdatePackage.cs」。
+ * @brief 「UPM/Editor/<<author_name>>/<<NameSpace_Package>>/Editor/UpdatePackage.cs」。
 */
 
 
@@ -21,7 +21,7 @@ namespace BlueBack.UpmVersionManager.Editor
 		public static void Save()
 		{
 			//path
-			string t_path = "UPM/Editor/" + Object_Setting.s_param.author_name + "/" + Object_Setting.s_param.package_name + "/Editor/UpdatePackage.cs";
+			string t_path = Object_Setting.Reprece("UPM/Editor/<<NameSpace_Author>>/<<NameSpace_Package>>/Editor/UpdatePackage.cs");
 
 			//template
 			System.Collections.Generic.List<string> t_template = new System.Collections.Generic.List<string>();
@@ -29,26 +29,26 @@ namespace BlueBack.UpmVersionManager.Editor
 				"",
 				"",
 				"/**",
-				" * Copyright (c) <<authorname>>",
+				" * Copyright (c) <<NameSpace_Author>>",
 				" * Released under the MIT License",
 				" * @brief パッケージ更新。自動生成。",
 				"*/",
 				"",
 				"",
-				"/** <<AuthorName>>.<<PackageName>>.Editor",
+				"/** <<NameSpace_Author>>.<<NameSpace_Package>>.Editor",
 				"*/",
 				"#if(UNITY_EDITOR)",
-				"namespace <<AuthorName>>.<<PackageName>>.Editor",
+				"namespace <<NameSpace_Author>>.<<NameSpace_Package>>.Editor",
 				"{",
 				"	/** UpdatePackage",
 				"	*/",
-				"	#if(!DEF_USER_<<AUTHORNAME>>_<<PACKAGENAME>>)",
+				"	#if(!DEF_USER_<<NAMESPACE_AUTHOR>>_<<NAMESPACE_PACKAGE>>)",
 				"	public static class UpdatePackage",
 				"	{",
-				"		/** MenuItem_<<AuthorName>>_<<PackageName>>_UpdatePackage",
+				"		/** MenuItem_<<NameSpace_Author>>_<<NameSpace_Package>>_UpdatePackage",
 				"		*/",
-				"		[UnityEditor.MenuItem(\"<<AuthorName>>/<<PackageName>>/UpdatePackage\")]",
-				"		public static void MenuItem_<<AuthorName>>_<<PackageName>>_UpdatePackage()",
+				"		[UnityEditor.MenuItem(\"<<NameSpace_Author>>/<<NameSpace_Package>>/UpdatePackage\")]",
+				"		public static void MenuItem_<<NameSpace_Author>>_<<NameSpace_Package>>_UpdatePackage()",
 				"		{",
 				"			string t_version = GetLastReleaseNameFromGitHub(\"<<gitauthor>>\",Version.packagename);",
 				"			if(t_version == null){",
@@ -56,9 +56,9 @@ namespace BlueBack.UpmVersionManager.Editor
 				"				DebugTool.EditorLogError(\"GetLastReleaseNameFromGitHub : connect error\");",
 				"				#endif",
 				"			}else if(t_version.Length <= 0){",
-				"				UnityEditor.PackageManager.Client.Add(\"<<giturl>><<gitauthor>>/<<PackageName>>.git?path=<<gitpath>>\");",
+				"				UnityEditor.PackageManager.Client.Add(\"<<giturl>>.git?path=<<gitpath>>\");",
 				"			}else{",
-				"				UnityEditor.PackageManager.Client.Add(\"<<giturl>><<gitauthor>>/<<PackageName>>.git?path=<<gitpath>>#\" + t_version);",
+				"				UnityEditor.PackageManager.Client.Add(\"<<giturl>>.git?path=<<gitpath>>#\" + t_version);",
 				"			}",
 				"		}",
 				"",

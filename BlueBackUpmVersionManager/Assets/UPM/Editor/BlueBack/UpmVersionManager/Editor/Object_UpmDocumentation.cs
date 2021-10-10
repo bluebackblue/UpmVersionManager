@@ -3,7 +3,7 @@
 /**
  * Copyright (c) blueback
  * Released under the MIT License
- * @brief 「UPM/Documentation~/<<author_name>>.<<package_name>>.md」。
+ * @brief 「UPM/Documentation~/<<author_name>>.<<NameSpace_Package>>.md」。
 */
 
 
@@ -21,7 +21,7 @@ namespace BlueBack.UpmVersionManager.Editor
 		public static void Save(string a_version)
 		{
 			//path
-			string t_path = "UPM/Documentation~/" + Object_Setting.s_param.author_name + "." + Object_Setting.s_param.package_name + ".md";
+			string t_path = Object_Setting.Reprece("UPM/Documentation~/<<NameSpace_Author>>.<<NameSpace_Package>>.md");
 
 			//TryDeleteDirectoryFromAssetsPath
 			BlueBack.AssetLib.Editor.DeleteDirectory.TryDeleteDirectoryFromAssetsPath("UPM/Documentation~");
@@ -30,7 +30,7 @@ namespace BlueBack.UpmVersionManager.Editor
 			System.Text.StringBuilder t_stringbuilder = new System.Text.StringBuilder();
 			{
 				Object_Setting.Creator_Argument t_argument = new Object_Setting.Creator_Argument(a_version);
-				foreach(Object_Setting.Creator_Type t_creator in Object_Setting.s_param.object_root_readme_md){
+				foreach(Object_Setting.Creator_Type t_creator in Object_Setting.s_object_root_readme_md){
 					string[] t_list = t_creator(in t_argument);
 					foreach(string t_line in t_list){
 						t_stringbuilder.Append(t_line);

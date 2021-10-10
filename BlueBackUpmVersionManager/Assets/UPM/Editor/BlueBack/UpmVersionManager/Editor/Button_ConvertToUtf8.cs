@@ -35,7 +35,7 @@ namespace BlueBack.UpmVersionManager.Editor
 		*/
 		private static void On()
 		{
-			BlueBack.AssetLib.Editor.ConvertText.ConvertTextToUtf8FromAssetsPath("",".*","^.*\\.(cs|meta|mesh|prefab|json|asmdef)$",false,BlueBack.AssetLib.LineFeedOption.CRLF);
+			BlueBack.AssetLib.Editor.ConvertText.ConvertTextToUtf8FromAssetsPath("",".*","^.*\\.(cs|meta|mesh|prefab|json|asmdef|mixer|anim)$",false,BlueBack.AssetLib.LineFeedOption.CRLF);
 			Window.s_window.OnEnable();
 		}
 	}

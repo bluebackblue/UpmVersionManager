@@ -1,7 +1,7 @@
 
 
 /**
- * Copyright (c) blueback
+ * Copyright (c) BlueBack
  * Released under the MIT License
  * @brief バージョン。自動生成。
 */
@@ -21,7 +21,7 @@ namespace BlueBack.UpmVersionManager
 
 		/** packageversion
 		*/
-		public const string packageversion = "0.0.34";
+		public const string packageversion = "0.0.35";
 
 		/** GetPackageVersion
 		*/

@@ -4,6 +4,18 @@
             
         ],
         "reference_list":[
+            {
+                "package_fullname":"BlueBack.AssetLib",
+                "url":"https://github.com/bluebackblue/UpmAssetLib",
+            },
+            {
+                "package_fullname":"BlueBack.AssetLib.Editor",
+                "url":"https://github.com/bluebackblue/UpmAssetLib",
+            },
+            {
+                "package_fullname":"BlueBack.JsonItem",
+                "url":"https://github.com/bluebackblue/UpmJsonItem",
+            },
         ]
     },
     "asmdef_editor":{
@@ -11,26 +23,26 @@
             
         ],
         "reference_list":[
+		     {
+                "package_fullname":"BlueBack.UpmVersionManager",
+                "url":"https://github.com/bluebackblue/UpmVersionManager",
+            },
             {
-			    "package_fullname" = "BlueBack.UpmVersionManager",
-				"url":"https://github.com/bluebackblue/UpmUpmVersionManager",
-			},
+                "package_fullname":"BlueBack.AssetLib",
+                "url":"https://github.com/bluebackblue/UpmAssetLib",
+            },
             {
-			    "package_fullname" = "BlueBack.AssetLib",
-				"url":"https://github.com/bluebackblue/UpmAssetLib",
-			},
+                "package_fullname":"BlueBack.AssetLib.Editor",
+                "url":"https://github.com/bluebackblue/UpmAssetLib",
+            },
             {
-			    "package_fullname" = "BlueBack.AssetLib.Editor",
-				"url":"https://github.com/bluebackblue/UpmAssetLib",
-			},
+                "package_fullname":"BlueBack.JsonItem",
+                "url":"https://github.com/bluebackblue/UpmJsonItem",
+            },
             {
-			    "package_fullname" = "BlueBack.JsonItem",
-				"url":"https://github.com/bluebackblue/UpmJsonItem",
-			},
-            {
-			    "package_fullname" = "BlueBack.Code",
-				"url":"https://github.com/bluebackblue/UpmCode",
-			},
+                "package_fullname":"BlueBack.Code",
+                "url":"https://github.com/bluebackblue/UpmCode",
+            },
         ]
     },
     "asmdef_runtime":{
@@ -39,25 +51,17 @@
         ],
         "reference_list":[
             {
-			    "package_fullname" = "BlueBack.UpmVersionManager",
-				"url":"https://github.com/bluebackblue/UpmVersionManager",
-			},
+                "package_fullname":"BlueBack.AssetLib",
+                "url":"https://github.com/bluebackblue/UpmAssetLib",
+            },
             {
-			    "package_fullname" = "BlueBack.UpmVersionManager.Editor",
-				"url":"https://github.com/bluebackblue/UpmVersionManager",
-			},
+                "package_fullname":"BlueBack.AssetLib.Editor",
+                "url":"https://github.com/bluebackblue/UpmAssetLib",
+            },
             {
-			    "package_fullname" = "BlueBack.AssetLib",
-				"url":"https://github.com/bluebackblue/UpmAssetLib",
-			},
-            {
-			    "package_fullname" = "BlueBack.AssetLib.Editor",
-				"url":"https://github.com/bluebackblue/UpmAssetLib",
-			},
-            {
-			    "package_fullname" = "BlueBack.JsonItem",
-				"url":"https://github.com/bluebackblue/UpmJsonItem",
-			},
+                "package_fullname":"BlueBack.JsonItem",
+                "url":"https://github.com/bluebackblue/UpmJsonItem",
+            },
         ]
     },
     "changelog":[
@@ -66,13 +70,13 @@
         "## [0.0.1] - 2021-10-11",
         "### Changes",
         "- Init",
-        ""
+        "",
     ],
     "overview":[
         "UPMバージョン操作"
     ],
     "keyword":[
-        "upm"
+        "upm",
     ],
     "root_readmemd_path":"../../README.md",
     "discription_readme":[
@@ -81,9 +85,9 @@
     ],
     "discription_package":"UPMバージョン操作",
     "git_path":"BlueBackUpmVersionManager/Assets/UPM",
-    "git_api":"https://api.github.com/repos/bluebackblue/UpmVersionManager/releases/latest",
+    "git_api":"https://api.github.com/repos/bluebackblue/UpmVersionManager",
     "git_url":"https://github.com/bluebackblue/UpmVersionManager",
     "need_unity_version":"2020.1",
     "namespace_package":"UpmVersionManager",
-    "namespace_author":"BlueBack"
+    "namespace_author":"BlueBack",
 }

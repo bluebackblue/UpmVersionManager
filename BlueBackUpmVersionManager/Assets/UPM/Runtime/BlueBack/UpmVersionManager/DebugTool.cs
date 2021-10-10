@@ -1,7 +1,7 @@
 
 
 /**
- * Copyright (c) blueback
+ * Copyright (c) BlueBack
  * Released under the MIT License
  * @brief デバッグツール。自動生成。
 */

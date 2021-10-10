@@ -35,7 +35,9 @@ namespace BlueBack.UpmVersionManager.Editor
 		*/
 		private static void On()
 		{
-			UnityEngine.Application.OpenURL(Object_Setting.s_param.git_url + Object_Setting.s_param.git_author + "/" + Object_Setting.s_param.package_name);
+			Object_Setting.s_projectparam = ProjectParam.Load();
+
+			UnityEngine.Application.OpenURL(Object_Setting.s_projectparam.git_url);
 		}
 	}
 }

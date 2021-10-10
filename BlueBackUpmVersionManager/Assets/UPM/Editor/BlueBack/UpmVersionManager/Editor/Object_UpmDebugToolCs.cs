@@ -3,7 +3,7 @@
 /**
  * Copyright (c) blueback
  * Released under the MIT License
- * @brief 「UPM/Runtime/<<author_name>>/<<package_name>>/Version.cs」。
+ * @brief 「UPM/Runtime/<<author_name>>/<<NameSpace_Package>>/Version.cs」。
 */
 
 
@@ -21,7 +21,7 @@ namespace BlueBack.UpmVersionManager.Editor
 		public static void Save()
 		{
 			//path
-			string t_path = "UPM/Runtime/" + Object_Setting.s_param.author_name + "/" + Object_Setting.s_param.package_name + "/DebugTool.cs";
+			string t_path = Object_Setting.Reprece("UPM/Runtime/<<NameSpace_Author>>/<<NameSpace_Package>>/DebugTool.cs");
 
 			//template
 			System.Collections.Generic.List<string> t_template = new System.Collections.Generic.List<string>();
@@ -29,15 +29,15 @@ namespace BlueBack.UpmVersionManager.Editor
 				"",
 				"",
 				"/**",
-				" * Copyright (c) <<authorname>>",
+				" * Copyright (c) <<NameSpace_Author>>",
 				" * Released under the MIT License",
 				" * @brief デバッグツール。自動生成。",
 				"*/",
 				"",
 				"",
-				"/** <<AuthorName>>.<<PackageName>>",
+				"/** <<NameSpace_Author>>.<<NameSpace_Package>>",
 				"*/",
-				"namespace <<AuthorName>>.<<PackageName>>",
+				"namespace <<NameSpace_Author>>.<<NameSpace_Package>>",
 				"{",
 				"	/** DebugTool",
 				"	*/",
@@ -45,7 +45,7 @@ namespace BlueBack.UpmVersionManager.Editor
 				"	{",
 				"		/** s_AssertProc",
 				"		*/",
-				"		#if(DEF_<<AUTHORNAME>>_<<PACKAGENAME>>_ASSERT)",
+				"		#if(DEF_<<NAMESPACE_AUTHOR>>_<<NAMESPACE_PACKAGE>>_ASSERT)",
 				"		public static void DefaultAssertProc(System.Exception a_exception,string a_message)",
 				"		{",
 				"			if(a_message != null){",
@@ -64,7 +64,7 @@ namespace BlueBack.UpmVersionManager.Editor
 				"",
 				"		/** s_LogProc",
 				"		*/",
-				"		#if(DEF_<<AUTHORNAME>>_<<PACKAGENAME>>_LOG)",
+				"		#if(DEF_<<NAMESPACE_AUTHOR>>_<<NAMESPACE_PACKAGE>>_LOG)",
 				"		public static void DefaultLogProc(string a_message)",
 				"		{",
 				"			UnityEngine.Debug.Log(a_message);",
@@ -75,7 +75,7 @@ namespace BlueBack.UpmVersionManager.Editor
 				"",
 				"		/** Assert",
 				"		*/",
-				"		#if(DEF_<<AUTHORNAME>>_<<PACKAGENAME>>_ASSERT)",
+				"		#if(DEF_<<NAMESPACE_AUTHOR>>_<<NAMESPACE_PACKAGE>>_ASSERT)",
 				"		public static void Assert(bool a_flag,System.Exception a_exception = null)",
 				"		{",
 				"			if(a_flag != true){",
@@ -86,7 +86,7 @@ namespace BlueBack.UpmVersionManager.Editor
 				"",
 				"		/** Assert",
 				"		*/",
-				"		#if(DEF_<<AUTHORNAME>>_<<PACKAGENAME>>_ASSERT)",
+				"		#if(DEF_<<NAMESPACE_AUTHOR>>_<<NAMESPACE_PACKAGE>>_ASSERT)",
 				"		public static void Assert(bool a_flag,string a_message)",
 				"		{",
 				"			if(a_flag != true){",
@@ -95,7 +95,7 @@ namespace BlueBack.UpmVersionManager.Editor
 				"		}",
 				"		#endif",
 				"",
-				"		#if(DEF_<<AUTHORNAME>>_<<PACKAGENAME>>_LOG)",
+				"		#if(DEF_<<NAMESPACE_AUTHOR>>_<<NAMESPACE_PACKAGE>>_LOG)",
 				"		public static void Log(string a_message)",
 				"		{",
 				"			s_LogProc(a_message);",

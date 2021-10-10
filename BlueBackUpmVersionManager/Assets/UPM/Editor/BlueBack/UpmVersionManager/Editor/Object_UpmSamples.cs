@@ -21,7 +21,7 @@ namespace BlueBack.UpmVersionManager.Editor
 		public static void Copy()
 		{
 			//path
-			string t_from_path = "Samples\\" + Object_Setting.s_param.package_name + "\\000";
+			string t_from_path = Object_Setting.Reprece("Samples\\<<NameSpace_Package>>\\000");
 			string t_to_path = "UPM\\Samples~";
 
 			//DeleteDirectory

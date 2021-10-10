@@ -56,12 +56,12 @@ namespace BlueBack.UpmVersionManager.Editor
 		*/
 		public static void DownloadAndSave()
 		{
-			string t_path_download = "https://api.github.com/repos/" + Object_Setting.s_param.git_author + "/" + Object_Setting.s_param.package_name + "/releases/latest";
+			string t_path_download = Object_Setting.s_projectparam.git_api + "/releases/latest";
 			string t_jsonstring_download = BlueBack.AssetLib.Editor.LoadText.TryLoadTextFromUrl(t_path_download,null,System.Text.Encoding.UTF8);
 			#if(DEF_BLUEBACK_UPMVERSIONMANAGER_LOG)
 			DebugTool.Log("download : " + t_path_download + " : " + t_jsonstring_download);
 			#endif
-					
+
 			t_jsonstring_download = BlueBack.JsonItem.Normalize.Convert(t_jsonstring_download);
 			BlueBack.JsonItem.JsonItem t_jsonitem = new BlueBack.JsonItem.JsonItem(t_jsonstring_download);
 			if(s_status.lasttag != t_jsonitem.GetItem("tag_name").GetStringData()){

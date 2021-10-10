@@ -1,7 +1,7 @@
 
 
 /**
- * Copyright (c) blueback
+ * Copyright (c) BlueBack
  * Released under the MIT License
  * @brief パッケージ更新。自動生成。
 */
@@ -22,7 +22,7 @@ namespace BlueBack.UpmVersionManager.Editor
 		[UnityEditor.MenuItem("BlueBack/UpmVersionManager/UpdatePackage")]
 		public static void MenuItem_BlueBack_UpmVersionManager_UpdatePackage()
 		{
-			string t_version = GetLastReleaseNameFromGitHub("bluebackblue",Version.packagename);
+			string t_version = GetLastReleaseNameFromGitHub("<<gitauthor>>",Version.packagename);
 			if(t_version == null){
 				#if(UNITY_EDITOR)
 				DebugTool.EditorLogError("GetLastReleaseNameFromGitHub : connect error");

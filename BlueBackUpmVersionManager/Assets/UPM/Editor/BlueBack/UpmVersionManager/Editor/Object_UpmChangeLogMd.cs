@@ -25,7 +25,7 @@ namespace BlueBack.UpmVersionManager.Editor
 
 			//stringbuilder
 			System.Text.StringBuilder t_stringbuilder = new System.Text.StringBuilder(1024);
-			foreach(string t_line in Object_Setting.s_param.changelog){
+			foreach(string t_line in Object_Setting.s_projectparam.changelog){
 				t_stringbuilder.Append(t_line);
 				t_stringbuilder.Append("\n");
 			}

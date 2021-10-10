@@ -8,24 +8,30 @@ namespace Samples.UpmVersionManager.NewProject.Editor
 	*/
 	public struct NewProjectParam
 	{
-		/** package_name
+		public struct Asmdef
+		{
+			public struct ReferenceList
+			{
+				public string package_fullname;
+				public string url;
+			};
+			public ReferenceList reference_list;
+		};
+
+		/** ネームスペース。
 		*/
-		public string package_name;
+		public string namespace_author;
+		public string namespace_package;
 
 		/** 対応するユニティーバージョン。
 		*/
 		public string need_unity_version;
 
-		/** 管理者名。
-		*/
-		public string author_name;
-
 		/** ＧＩＴ。
 		*/
 		public string git_url;
-		public string git_author;
+		public string git_api;
 		public string git_path;
-		public string git_repos;
 
 		/** 説明。
 		*/
@@ -43,18 +49,23 @@ namespace Samples.UpmVersionManager.NewProject.Editor
 		*/
 		public string[] overview;
 
+		/** asmdef
+		*/
+		public Asmdef[] asmdef_runtime;
+		public Asmdef[] asmdef_editor;
+		public Asmdef[] asmdef_sample;
+
 		/** CreateDefault
 		*/
 		public static NewProjectParam CreateDefault()
 		{
 			return new NewProjectParam(){
-				package_name = "xxxxx",
+				namespace_author = "xxxxx",
+				namespace_package = "xxxxx",
 				need_unity_version = "2020.1",
-				author_name = "xxxxx",
-				git_url = "https://github.com/",
-				git_author = "xxxxx",
+				git_url = "https://github.com/bluebackblue/<<git_repos>>",
+				git_api = "https://api.github.com/repos/bluebackblue/<<git_repos>>",
 				git_path = "xxxx/Assets/UPM",
-				git_repos = "xxxx",
 				discription = "説明",
 				root_readmemd_path = "../../README.md",
 				keyword = new string[]{},
@@ -62,6 +73,30 @@ namespace Samples.UpmVersionManager.NewProject.Editor
 					"xxxxx",
 					"* xxxxx",
 					"* xxxxx",
+				},
+				asmdef_runtime = new Asmdef[]{
+					new Asmdef(){
+						reference_list = new Asmdef.ReferenceList(){
+							package_fullname = "xxxxx",
+							url = "xxxxx",
+						},
+					},
+				},
+				asmdef_editor = new Asmdef[]{
+					new Asmdef(){
+						reference_list = new Asmdef.ReferenceList(){
+							package_fullname = "xxxxx",
+							url = "xxxxx",
+						},
+					},
+				},
+				asmdef_sample = new Asmdef[]{
+					new Asmdef(){
+						reference_list = new Asmdef.ReferenceList(){
+							package_fullname = "xxxxx",
+							url = "xxxxx",
+						},
+					},
 				},
 			};
 		}

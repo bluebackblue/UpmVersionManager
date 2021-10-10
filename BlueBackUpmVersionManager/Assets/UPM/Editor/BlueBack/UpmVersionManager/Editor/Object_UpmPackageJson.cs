@@ -16,73 +16,6 @@ namespace BlueBack.UpmVersionManager.Editor
 	*/
 	public static class Object_UpmPackageJson
 	{
-		/** Package
-		*/
-		private struct Package
-		{
-			/** Author
-			*/
-			public struct Author
-			{
-				/** 名前。
-				*/
-				public string name;
-
-				/** ＵＲＬ。
-				*/
-				public string url;
-			}
-
-			/** Samples
-			*/
-			public struct Samples
-			{
-				/** 表示名。
-				*/
-				public string displayName;
-
-				/** パス。
-				*/
-				public string path;
-			}
-
-			/** 名前。
-			*/
-			public string name;
-
-			/** 表示名。
-			*/
-			public string displayName;
-
-			/** version
-			*/
-			public string version;
-
-			/** unity
-			*/
-			public string unity;
-
-			/** 説明。
-			*/
-			public string discription;
-
-			/** 作者。
-			*/
-			public Author author;
-
-			/** キーワード。
-			*/
-			public string[] keyword;
-
-			/** 依存関係。
-			*/
-			public System.Collections.Generic.Dictionary<string,string> dependencies;
-
-			/** サンプル。
-			*/
-			public System.Collections.Generic.List<Samples> samples;
-		}
-
 		/** Save
 		*/
 		public static void Save(string a_version)
@@ -91,52 +24,54 @@ namespace BlueBack.UpmVersionManager.Editor
 			string t_path = "UPM/package.json";
 
 			//package
-			Package t_package;
+			PackageJson t_packagejson;
 			{
 				//name
-				t_package.name = (Object_Setting.s_param.author_name + "." + Object_Setting.s_param.package_name).ToLower();
+				t_packagejson.name = Object_Setting.Reprece("<<namespace_author>>.<<namespace_package>>");
 
 				//displayName
-				t_package.displayName = Object_Setting.s_param.author_name + " " + Object_Setting.s_param.package_name;
+				t_packagejson.displayName = Object_Setting.Reprece("<<NameSpace_Author>>.<<NameSpace_Package>>");
 
 				//version
-				t_package.version = a_version;
+				t_packagejson.version = a_version;
 
 				//unity
-				t_package.unity = Object_Setting.s_param.packagejson_unity;
+				t_packagejson.unity = Object_Setting.s_projectparam.need_unity_version;
 
 				//discription
-				t_package.discription = Object_Setting.s_param.packagejson_discription;
+				t_packagejson.discription = Object_Setting.s_projectparam.discription_package;
 
 				//author
-				t_package.author.name = Object_Setting.s_param.author_name;
-				t_package.author.url =  Object_Setting.s_param.git_url +  Object_Setting.s_param.git_author;
+				t_packagejson.author.name = Object_Setting.s_projectparam.namespace_author;
+				t_packagejson.author.url =  Object_Setting.s_projectparam.git_url;
 				
 				//keyword
-				t_package.keyword = Object_Setting.s_param.packagejson_keyword;
+				t_packagejson.keyword = Object_Setting.s_projectparam.keyword;
 				
 				//dependencies
-				t_package.dependencies = Object_Setting.s_param.packagejson_dependencies;
+				t_packagejson.dependencies = new System.Collections.Generic.Dictionary<string,string>();
+				{
+				}
 
 				//samples
-				t_package.samples = new System.Collections.Generic.List<Package.Samples>();
+				t_packagejson.samples = new System.Collections.Generic.List<PackageJson.Samples>();
 				{
-					string t_path_sampletop = "Samples/" + Object_Setting.s_param.package_name + "/000";
+					string t_path_sampletop = Object_Setting.Reprece("Samples/<<NameSpace_Package>>/000");
 					System.Collections.Generic.List<string> t_sample_directory_list = BlueBack.AssetLib.Editor.DirectoryNameList.CreateOnlyTopDirectoryNameListFromAssetsPath(t_path_sampletop);
 					for(int ii=0;ii<t_sample_directory_list.Count;ii++){
-						Package.Samples t_sample_item = new Package.Samples();
+						PackageJson.Samples t_sample_item = new PackageJson.Samples();
 						{
 							t_sample_item.path = "Samples~/" + t_sample_directory_list[ii];
 							t_sample_item.displayName = t_sample_directory_list[ii];
 						}
-						t_package.samples.Add(t_sample_item);
+						t_packagejson.samples.Add(t_sample_item);
 					}
 				}
 			}
 
 			//SaveUtf8TextToAssetsPath
 			BlueBack.AssetLib.Editor.CreateDirectory.CreateDirectoryToAssetsPath(System.IO.Path.GetDirectoryName(t_path));
-			BlueBack.AssetLib.Editor.SaveText.SaveUtf8TextToAssetsPath(BlueBack.JsonItem.Convert.ObjectToJsonString<Package>(t_package),t_path,false,BlueBack.AssetLib.LineFeedOption.CRLF);
+			BlueBack.AssetLib.Editor.SaveText.SaveUtf8TextToAssetsPath(BlueBack.JsonItem.Convert.ObjectToJsonString<PackageJson>(t_packagejson),t_path,false,BlueBack.AssetLib.LineFeedOption.CRLF);
 			BlueBack.AssetLib.Editor.RefreshAsset.Refresh();
 
 			#if(DEF_BLUEBACK_UPMVERSIONMANAGER_LOG)

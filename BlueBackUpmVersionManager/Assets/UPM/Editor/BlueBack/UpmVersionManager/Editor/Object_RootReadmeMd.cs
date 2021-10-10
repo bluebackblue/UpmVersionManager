@@ -28,14 +28,14 @@ namespace BlueBack.UpmVersionManager.Editor
 
 			//load
 			{
-				string t_path = Object_Setting.s_param.root_readmemd_path;
+				string t_path = Object_Setting.s_projectparam.root_readmemd_path;
 				string t_text = BlueBack.AssetLib.Editor.LoadText.TryLoadTextFromAssetsPath(t_path,System.Text.Encoding.UTF8);
 				if(t_text != null){
 					#if(DEF_BLUEBACK_UPMVERSIONMANAGER_LOG)
 					DebugTool.Log("load : " + t_path);
 					#endif
 
-					string t_url = (Object_Setting.s_param.git_url + Object_Setting.s_param.git_author + "/" + Object_Setting.s_param.git_repos + ".git?path=" + Object_Setting.s_param.git_path + "#").Replace(":","\\:").Replace("/","\\/").Replace(".","\\.").Replace("?","\\?").Replace("=","\\=").Replace("#","\\#");
+					string t_url = (Object_Setting.s_projectparam.git_url + ".git?path=" + Object_Setting.s_projectparam.git_path + "#").Replace(":","\\:").Replace("/","\\/").Replace(".","\\.").Replace("?","\\?").Replace("=","\\=").Replace("#","\\#");
 					System.Text.RegularExpressions.Match t_match = System.Text.RegularExpressions.Regex.Match(t_text,"^(?<before>[\\d\\D\\n\\r]*" + t_url + ")(?<version>[0-9\\.]*)(?<after>[\\d\\D\\n\\r]*)$",System.Text.RegularExpressions.RegexOptions.Multiline);
 					if(t_match.Success == true){
 						s_version = t_match.Groups["version"].Value;
@@ -60,7 +60,7 @@ namespace BlueBack.UpmVersionManager.Editor
 				System.Text.StringBuilder t_stringbuilder = new System.Text.StringBuilder();
 				{
 					Object_Setting.Creator_Argument t_argument = new Object_Setting.Creator_Argument(a_version);
-					foreach(Object_Setting.Creator_Type t_creator in Object_Setting.s_param.object_root_readme_md){
+					foreach(Object_Setting.Creator_Type t_creator in Object_Setting.s_object_root_readme_md){
 						string[] t_list = t_creator(in t_argument);
 						foreach(string t_line in t_list){
 							t_stringbuilder.Append(t_line);
@@ -70,7 +70,7 @@ namespace BlueBack.UpmVersionManager.Editor
 					}
 				}
 
-				string t_path = Object_Setting.s_param.root_readmemd_path;
+				string t_path = Object_Setting.s_projectparam.root_readmemd_path;
 				string t_text = t_stringbuilder.ToString();
 				BlueBack.AssetLib.Editor.SaveText.SaveUtf8TextToAssetsPath(t_text,t_path,false,BlueBack.AssetLib.LineFeedOption.CRLF);
 				#if(DEF_BLUEBACK_UPMVERSIONMANAGER_LOG)

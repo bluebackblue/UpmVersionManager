@@ -36,147 +36,56 @@ namespace BlueBack.UpmVersionManager.Editor
 		*/
 		public delegate string[] Creator_Type(in Creator_Argument a_argument);
 
-		/** Param
+		/** s_projectparam
 		*/
-		public class Param
-		{
-			/** AsmdefReferenceItem
-			*/
-			public struct AsmdefReferenceItem
-			{
-				/** package_name
-				*/
-				public string package_name;
+		public static ProjectParam s_projectparam;
 
-				/** url
-				*/
-				public string url;
-			}
-
-			/** AsmdefVersionDefineItem
-			*/
-			public struct AsmdefVersionDefineItem
-			{
-				/** name
-				*/
-				public string name;
-
-				/** define
-				*/
-				public string define;
-
-				/** expression
-				*/
-				public string expression;
-			}
-
-			/** AsmdefItem
-			*/
-			public struct AsmdefItem
-			{
-				/** reference_list
-				*/
-				public AsmdefReferenceItem[] reference_list;
-
-				/** versiondefine_list
-				*/
-				public AsmdefVersionDefineItem[] versiondefine_list;
-			}
-
-			/** author_name
-			*/
-			public string author_name;
-
-			/** git_url
-			*/
-			public string git_url;
-
-			/** git_author
-			*/
-			public string git_author;
-
-			/** git_path
-			*/
-			public string git_path;
-
-			/** git_repos
-			*/
-			public string git_repos;
-
-			/** package_name
-			*/
-			public string package_name;
-
-			/** packagejson_unity
-			*/
-			public string packagejson_unity;
-
-			/** packagejson_discription
-			*/
-			public string packagejson_discription;
-
-			/** packagejson_keyword
-			*/
-			public string[] packagejson_keyword;
-
-			/** packagejson_dependencies
-			*/
-			public System.Collections.Generic.Dictionary<string,string> packagejson_dependencies;
-
-			/** root_readmemd_path
-			*/
-			public string root_readmemd_path;
-
-			/** asmdef_runtime
-			*/
-			public AsmdefItem asmdef_runtime;
-			
-			/** asmdef_editor
-			*/
-			public AsmdefItem asmdef_editor;
-
-			/** asmdef_sample
-			*/
-			public AsmdefItem asmdef_sample;
-
-			/** changelog
-			*/
-			public string[] changelog;
-
-			/** object_root_readme_md
-			*/
-			public Creator_Type[] object_root_readme_md;
-		}
-
-		/** param
+		/** s_object_root_readme_md
 		*/
-		public static Param s_param = null;
+		public static Creator_Type[] s_object_root_readme_md;
 
 		/** AddReplaceList
 		*/
 		public static void AddReplaceList(System.Collections.Generic.Dictionary<string,string> a_replace_list)
 		{
 			//パッケージ名。
-			a_replace_list.Add("<<PACKAGENAME>>",s_param.package_name.ToUpper());
-			a_replace_list.Add("<<PackageName>>",s_param.package_name);
+			a_replace_list.Add("<<NAMESPACE_PACKAGE>>",s_projectparam.namespace_package.ToUpper());
+			a_replace_list.Add("<<NameSpace_Package>>",s_projectparam.namespace_package);
 
 			//管理者名。
-			a_replace_list.Add("<<AUTHORNAME>>",s_param.author_name.ToUpper());
-			a_replace_list.Add("<<AuthorName>>",s_param.author_name);
-			a_replace_list.Add("<<authorname>>",s_param.author_name.ToLower());
+			a_replace_list.Add("<<NAMESPACE_AUTHOR>>",s_projectparam.namespace_author.ToUpper());
+			a_replace_list.Add("<<NameSpace_Author>>",s_projectparam.namespace_author);
+			a_replace_list.Add("<<namespace_author>>",s_projectparam.namespace_author.ToLower());
 
 			//ＧＩＴ。
-			a_replace_list.Add("<<gitauthor>>",s_param.git_author);
-			a_replace_list.Add("<<giturl>>",s_param.git_url);
-			a_replace_list.Add("<<gitpath>>",s_param.git_path);
-			a_replace_list.Add("<<gitrepos>>",s_param.git_repos);
+			a_replace_list.Add("<<giturl>>",s_projectparam.git_url);
+			a_replace_list.Add("<<gitapi>>",s_projectparam.git_api);
+			a_replace_list.Add("<<gitpath>>",s_projectparam.git_path);
+		}
+
+		/** 置き換え。
+		*/
+		public static string Reprece(string a_string)
+		{
+			string t_string = a_string;
+			System.Collections.Generic.Dictionary<string,string> t_replace_list = new System.Collections.Generic.Dictionary<string,string>();
+			AddReplaceList(t_replace_list);
+			foreach(System.Collections.Generic.KeyValuePair<string,string> t_pair in t_replace_list){
+				t_string = t_string.Replace(t_pair.Key,t_pair.Value);
+			}
+
+			#if(DEF_BLUEBACK_UPMVERSIONMANAGER_LOG)
+			DebugTool.Log(t_string);
+			#endif
+
+			return t_string;
 		}
 
 		/** GetSPackageVersion
 		*/
 		public static string GetPackageVersion()
 		{
-			System.Type t_type = System.Type.GetType(s_param.author_name + "."  + s_param.package_name + ".Version," + s_param.author_name + "."  + s_param.package_name);
+			System.Type t_type = System.Type.GetType(s_projectparam.namespace_author + "."  + s_projectparam.namespace_package + ".Version," + s_projectparam.namespace_author + "."  + s_projectparam.namespace_package);
 			if(t_type != null){
 				System.Reflection.MethodInfo t_methodinfo = t_type.GetMethod("GetPackageVersion",System.Reflection.BindingFlags.Static|System.Reflection.BindingFlags.Public);
 				if(t_methodinfo != null){
@@ -190,6 +99,15 @@ namespace BlueBack.UpmVersionManager.Editor
 			return "0.0.-1";
 		}
 
+		public static System.Collections.Generic.List<string> Create_RootReadMd_Discription(in BlueBack.UpmVersionManager.Editor.Object_Setting.Creator_Argument a_argument)
+		{
+			System.Collections.Generic.List<string> t_list = new System.Collections.Generic.List<string>();
+			{
+
+			}
+			return t_list;
+		}
+
 		/** 「object_root_readme_md」。依存。
 		*/
 		public static System.Collections.Generic.List<string> Create_RootReadMd_Asmdef_Dependence(in BlueBack.UpmVersionManager.Editor.Object_Setting.Creator_Argument a_argument)
@@ -201,8 +119,8 @@ namespace BlueBack.UpmVersionManager.Editor
 			//runtine
 			{
 				System.Collections.Generic.HashSet<string> t_url_list = new System.Collections.Generic.HashSet<string>();
-				for(int ii=0;ii<s_param.asmdef_runtime.reference_list.Length;ii++){
-					t_url_list.Add("* " + s_param.asmdef_runtime.reference_list[ii].url);
+				for(int ii=0;ii<s_projectparam.asmdef_runtime.reference_list.Length;ii++){
+					t_url_list.Add("* " + s_projectparam.asmdef_runtime.reference_list[ii].url);
 				}
 			}
 
@@ -211,8 +129,8 @@ namespace BlueBack.UpmVersionManager.Editor
 			//editor
 			{
 				System.Collections.Generic.HashSet<string> t_url_list = new System.Collections.Generic.HashSet<string>();
-				for(int ii=0;ii<s_param.asmdef_editor.reference_list.Length;ii++){
-					t_url_list.Add("* " + s_param.asmdef_editor.reference_list[ii].url);
+				for(int ii=0;ii<s_projectparam.asmdef_editor.reference_list.Length;ii++){
+					t_url_list.Add("* " + s_projectparam.asmdef_editor.reference_list[ii].url);
 				}
 				t_list.AddRange(t_url_list);
 			}
@@ -222,8 +140,8 @@ namespace BlueBack.UpmVersionManager.Editor
 			//sample
 			{
 				System.Collections.Generic.HashSet<string> t_url_list = new System.Collections.Generic.HashSet<string>();
-				for(int ii=0;ii<s_param.asmdef_sample.reference_list.Length;ii++){
-					t_url_list.Add("* " + s_param.asmdef_sample.reference_list[ii].url);
+				for(int ii=0;ii<s_projectparam.asmdef_sample.reference_list.Length;ii++){
+					t_url_list.Add("* " + s_projectparam.asmdef_sample.reference_list[ii].url);
 				}
 				t_list.AddRange(t_url_list);
 			}

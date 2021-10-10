@@ -3,7 +3,7 @@
 /**
  * Copyright (c) blueback
  * Released under the MIT License
- * @brief 「UPM/Runtime/<<author_name>>/<<package_name>>/Version.cs」。
+ * @brief 「UPM/Runtime/<<author_name>>/<<NameSpace_Package>>/Version.cs」。
 */
 
 
@@ -21,7 +21,7 @@ namespace BlueBack.UpmVersionManager.Editor
 		public static void Save(string a_packageversion)
 		{
 			//path
-			string t_path = "UPM/Runtime/" + Object_Setting.s_param.author_name + "/" + Object_Setting.s_param.package_name + "/Version.cs";
+			string t_path = Object_Setting.Reprece("UPM/Runtime/<<NameSpace_Author>>/<<NameSpace_Package>>/Version.cs");
 
 			//template
 			System.Collections.Generic.List<string> t_template = new System.Collections.Generic.List<string>();
@@ -29,15 +29,15 @@ namespace BlueBack.UpmVersionManager.Editor
 				"",
 				"",
 				"/**",
-				" * Copyright (c) <<authorname>>",
+				" * Copyright (c) <<NameSpace_Author>>",
 				" * Released under the MIT License",
 				" * @brief バージョン。自動生成。",
 				"*/",
 				"",
 				"",
-				"/** <<AuthorName>>.<<PackageName>>",
+				"/** <<NameSpace_Author>>.<<NameSpace_Package>>",
 				"*/",
-				"namespace <<AuthorName>>.<<PackageName>>",
+				"namespace <<NameSpace_Author>>.<<NameSpace_Package>>",
 				"{",
 				"	/** Version",
 				"	*/",
@@ -45,7 +45,7 @@ namespace BlueBack.UpmVersionManager.Editor
 				"	{",
 				"		/** packagename",
 				"		*/",
-				"		public const string packagename = \"<<PackageName>>\";",
+				"		public const string packagename = \"<<NameSpace_Package>>\";",
 				"",
 				"		/** packageversion",
 				"		*/",

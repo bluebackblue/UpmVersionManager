@@ -72,6 +72,8 @@ namespace BlueBack.UpmVersionManager.Editor
 		*/
 		private static void On(string a_version)
 		{
+			Object_Setting.s_projectparam = ProjectParam.Load();
+
 			Object_UpmSamples.Copy();
 			
 			Object_UpmChangeLogMd.Save();
