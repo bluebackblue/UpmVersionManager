@@ -99,6 +99,10 @@ namespace BlueBack.UpmVersionManager.Editor
 			*/
 			public string git_path;
 
+			/** git_repos
+			*/
+			public string git_repos;
+
 			/** package_name
 			*/
 			public string package_name;
@@ -165,6 +169,7 @@ namespace BlueBack.UpmVersionManager.Editor
 			a_replace_list.Add("<<gitauthor>>",s_param.git_author);
 			a_replace_list.Add("<<giturl>>",s_param.git_url);
 			a_replace_list.Add("<<gitpath>>",s_param.git_path);
+			a_replace_list.Add("<<gitrepos>>",s_param.git_repos);
 		}
 
 		/** GetSPackageVersion

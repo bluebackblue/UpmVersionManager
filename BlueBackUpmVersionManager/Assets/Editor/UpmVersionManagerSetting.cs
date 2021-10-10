@@ -39,6 +39,9 @@ namespace Editor
 				//git_path
 				t_param.git_path = "BlueBackUpmVersionManager/Assets/UPM";
 
+				//git_repos
+				t_param.git_repos = "UpmVersionManager";
+
 				//package_name
 				t_param.package_name = "UpmVersionManager";
 
@@ -74,23 +77,23 @@ namespace Editor
 					reference_list = new BlueBack.UpmVersionManager.Editor.Object_Setting.Param.AsmdefReferenceItem[]{
 						new BlueBack.UpmVersionManager.Editor.Object_Setting.Param.AsmdefReferenceItem(){
 							package_name = "BlueBack.UpmVersionManager",
-							url = "https://github.com/bluebackblue/UpmVersionManager",
+							url = "https://github.com/bluebackblue/UpmUpmVersionManager",
 						},
 						new BlueBack.UpmVersionManager.Editor.Object_Setting.Param.AsmdefReferenceItem(){
 							package_name = "BlueBack.AssetLib",
-							url = "https://github.com/bluebackblue/AssetLib",
+							url = "https://github.com/bluebackblue/UpmAssetLib",
 						},
 						new BlueBack.UpmVersionManager.Editor.Object_Setting.Param.AsmdefReferenceItem(){
 							package_name = "BlueBack.AssetLib.Editor",
-							url = "https://github.com/bluebackblue/AssetLib",
+							url = "https://github.com/bluebackblue/UpmAssetLib",
 						},
 						new BlueBack.UpmVersionManager.Editor.Object_Setting.Param.AsmdefReferenceItem(){
 							package_name = "BlueBack.JsonItem",
-							url = "https://github.com/bluebackblue/JsonItem",
+							url = "https://github.com/bluebackblue/UpmJsonItem",
 						},
 						new BlueBack.UpmVersionManager.Editor.Object_Setting.Param.AsmdefReferenceItem(){
 							package_name = "BlueBack.Code",
-							url = "https://github.com/bluebackblue/Code",
+							url = "https://github.com/bluebackblue/UpmCode",
 						},
 					},
 					versiondefine_list = new BlueBack.UpmVersionManager.Editor.Object_Setting.Param.AsmdefVersionDefineItem[]{
@@ -110,15 +113,15 @@ namespace Editor
 						},
 						new BlueBack.UpmVersionManager.Editor.Object_Setting.Param.AsmdefReferenceItem(){
 							package_name = "BlueBack.AssetLib",
-							url = "https://github.com/bluebackblue/AssetLib",
+							url = "https://github.com/bluebackblue/UpmAssetLib",
 						},
 						new BlueBack.UpmVersionManager.Editor.Object_Setting.Param.AsmdefReferenceItem(){
 							package_name = "BlueBack.AssetLib.Editor",
-							url = "https://github.com/bluebackblue/AssetLib",
+							url = "https://github.com/bluebackblue/UpmAssetLib",
 						},
 						new BlueBack.UpmVersionManager.Editor.Object_Setting.Param.AsmdefReferenceItem(){
 							package_name = "BlueBack.JsonItem",
-							url = "https://github.com/bluebackblue/JsonItem",
+							url = "https://github.com/bluebackblue/UpmJsonItem",
 						},
 					},
 					versiondefine_list = new BlueBack.UpmVersionManager.Editor.Object_Setting.Param.AsmdefVersionDefineItem[]{

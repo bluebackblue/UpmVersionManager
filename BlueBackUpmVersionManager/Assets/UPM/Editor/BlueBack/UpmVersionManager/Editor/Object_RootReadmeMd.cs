@@ -35,7 +35,7 @@ namespace BlueBack.UpmVersionManager.Editor
 					DebugTool.Log("load : " + t_path);
 					#endif
 
-					string t_url = (Object_Setting.s_param.git_url + Object_Setting.s_param.git_author + "/" + Object_Setting.s_param.package_name + ".git?path=" + Object_Setting.s_param.git_path + "#").Replace(":","\\:").Replace("/","\\/").Replace(".","\\.").Replace("?","\\?").Replace("=","\\=").Replace("#","\\#");
+					string t_url = (Object_Setting.s_param.git_url + Object_Setting.s_param.git_author + "/" + Object_Setting.s_param.git_repos + ".git?path=" + Object_Setting.s_param.git_path + "#").Replace(":","\\:").Replace("/","\\/").Replace(".","\\.").Replace("?","\\?").Replace("=","\\=").Replace("#","\\#");
 					System.Text.RegularExpressions.Match t_match = System.Text.RegularExpressions.Regex.Match(t_text,"^(?<before>[\\d\\D\\n\\r]*" + t_url + ")(?<version>[0-9\\.]*)(?<after>[\\d\\D\\n\\r]*)$",System.Text.RegularExpressions.RegexOptions.Multiline);
 					if(t_match.Success == true){
 						s_version = t_match.Groups["version"].Value;

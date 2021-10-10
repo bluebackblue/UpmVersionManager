@@ -10,6 +10,7 @@
    "git_path":"BlueBackUpmVersionManager/Assets/UPM",
    "git_author":"bluebackblue",
    "git_url":"https://github.com/",
+   "git_repos":"UpmVersionManager"
    "author_name":"BlueBack",
    "need_unity_version":"2020.1",
    "package_name":"UpmVersionManager",

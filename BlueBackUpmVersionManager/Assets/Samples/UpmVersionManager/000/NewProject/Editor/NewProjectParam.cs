@@ -25,6 +25,7 @@ namespace Samples.UpmVersionManager.NewProject.Editor
 		public string git_url;
 		public string git_author;
 		public string git_path;
+		public string git_repos;
 
 		/** 説明。
 		*/
@@ -53,6 +54,7 @@ namespace Samples.UpmVersionManager.NewProject.Editor
 				git_url = "https://github.com/",
 				git_author = "xxxxx",
 				git_path = "xxxx/Assets/UPM",
+				git_repos = "xxxx",
 				discription = "説明",
 				root_readmemd_path = "../../README.md",
 				keyword = new string[]{},
