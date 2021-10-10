@@ -97,7 +97,7 @@ namespace BlueBack.UpmVersionManager.Editor
 				t_package.name = (Object_Setting.s_param.author_name + "." + Object_Setting.s_param.package_name).ToLower();
 
 				//displayName
-				t_package.displayName = Object_Setting.s_param.package_name;
+				t_package.displayName = Object_Setting.s_param.author_name + " " + Object_Setting.s_param.package_name;
 
 				//version
 				t_package.version = a_version;

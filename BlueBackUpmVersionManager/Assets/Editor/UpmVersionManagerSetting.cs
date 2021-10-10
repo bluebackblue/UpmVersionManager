@@ -37,7 +37,7 @@ namespace Editor
 				t_param.git_author = "bluebackblue";
 
 				//git_path
-				t_param.git_path = "unity_UpmVersionManager/Assets/UPM";
+				t_param.git_path = "BlueBackUpmVersionManager/Assets/UPM";
 
 				//package_name
 				t_param.package_name = "UpmVersionManager";

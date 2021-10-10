@@ -7,7 +7,7 @@
 	"* package.json出力",
    ]
    "discription":"UPMバージョン操作",
-   "git_path":"unity_UpmVersionManager/Assets/UPM",
+   "git_path":"BlueBackUpmVersionManager/Assets/UPM",
    "git_author":"bluebackblue",
    "git_url":"https://github.com/",
    "author_name":"BlueBack",
