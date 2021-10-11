@@ -4,8 +4,8 @@
 */
 namespace Editor
 {
-	//<< COMMENT>>コメント。
-	//<< BLOACKSTART>>
-	//<< BLOACKEND>>
+	//<< COMMENT>>## 例
+	//<< CS_BLOCK_START>>
+	//<< CS_BLOCK_END>>
 }
 

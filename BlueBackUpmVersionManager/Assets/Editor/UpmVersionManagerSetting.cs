@@ -91,13 +91,11 @@ namespace Editor
 				},
 
 				//例。
-				#if(false)
 				(in BlueBack.UpmVersionManager.Editor.Object_Setting.Creator_Argument a_argument) => {
 					System.Collections.Generic.List<string> t_list = new System.Collections.Generic.List<string>();
 					t_list.AddRange(BlueBack.UpmVersionManager.Editor.Object_Setting.Create_RootReadMd_Exsample(a_argument));
 					return t_list.ToArray();
 				},
-				#endif
 			};
 		}
 	}

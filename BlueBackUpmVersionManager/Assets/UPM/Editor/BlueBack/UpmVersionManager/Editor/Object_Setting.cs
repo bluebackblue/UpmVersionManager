@@ -184,14 +184,27 @@ namespace BlueBack.UpmVersionManager.Editor
 							t_list.Add(t_match.Groups["argument"].Value);
 							continue;
 						}break;
-					case "<<BLOACKSTART>>":
+					case "<<CS_BLOCK_START>>":
+						{
+							t_list.Add("```cs");
+							t_blocknow = true;
+							t_nest = t_match.Groups["nest"].Value.Length;
+							continue;
+						}break;
+					case "<<CS_BLOCK_END>>":
+						{
+							t_list.Add("```");
+							t_blocknow = false;
+							continue;
+						}break;
+					case "<<BLOCK_START>>":
 						{
 							t_list.Add("```");
 							t_blocknow = true;
 							t_nest = t_match.Groups["nest"].Value.Length;
 							continue;
 						}break;
-					case "<<BLOACKEND>>":
+					case "<<BLOCK_END>>":
 						{
 							t_list.Add("```");
 							t_blocknow = false;
