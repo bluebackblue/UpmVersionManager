@@ -125,8 +125,7 @@ namespace BlueBack.UpmVersionManager.Editor
 			});
 
 			//replace_list
-			System.Collections.Generic.Dictionary<string,string> t_replace_list = new System.Collections.Generic.Dictionary<string,string>();
-			Object_Setting.AddReplaceList(t_replace_list);
+			System.Collections.Generic.Dictionary<string,string> t_replace_list = Object_Setting.CreateReplaceList();
 
 			//SaveUtf8TextToAssetsPath
 			System.Text.StringBuilder t_stringbuilder = new System.Text.StringBuilder();

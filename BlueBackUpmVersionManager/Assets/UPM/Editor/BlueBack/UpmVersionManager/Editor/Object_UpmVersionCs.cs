@@ -63,8 +63,7 @@ namespace BlueBack.UpmVersionManager.Editor
 			});
 
 			//replace_list
-			System.Collections.Generic.Dictionary<string,string> t_replace_list = new System.Collections.Generic.Dictionary<string,string>();
-			Object_Setting.AddReplaceList(t_replace_list);
+			System.Collections.Generic.Dictionary<string,string> t_replace_list = Object_Setting.CreateReplaceList();
 			{
 				t_replace_list.Add("<<packageversion>>",a_packageversion);
 			}

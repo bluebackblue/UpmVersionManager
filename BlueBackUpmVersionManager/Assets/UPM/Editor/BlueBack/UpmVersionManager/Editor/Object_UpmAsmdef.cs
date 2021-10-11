@@ -74,11 +74,13 @@ namespace BlueBack.UpmVersionManager.Editor
 							
 					//asmdef_runtime
 					foreach(ProjectParam.Asmdef.Reference t_asmdef_reference_item in Object_Setting.s_projectparam.asmdef_runtime.reference_list){
-						if(t_asmdef_reference_item.package_fullname ==  t_jsonitem.GetItem("name").GetStringData()){
-							if(t_guid_list.ContainsKey(t_asmdef_reference_item.package_fullname) == false){
-								string t_guid = BlueBack.AssetLib.Editor.LoadGuid.LoadGuidFromFullPath(t_filename + ".meta",System.Text.Encoding.UTF8);
-								if(t_guid != null){
-									t_guid_list.Add(t_asmdef_reference_item.package_fullname,t_guid);
+						if(t_asmdef_reference_item.use != null){
+							if(t_asmdef_reference_item.package_fullname ==  t_jsonitem.GetItem("name").GetStringData()){
+								if(t_guid_list.ContainsKey(t_asmdef_reference_item.package_fullname) == false){
+									string t_guid = BlueBack.AssetLib.Editor.LoadGuid.LoadGuidFromFullPath(t_filename + ".meta",System.Text.Encoding.UTF8);
+									if(t_guid != null){
+										t_guid_list.Add(t_asmdef_reference_item.package_fullname,t_guid);
+									}
 								}
 							}
 						}
@@ -86,11 +88,13 @@ namespace BlueBack.UpmVersionManager.Editor
 
 					//asmdef_editor
 					foreach(ProjectParam.Asmdef.Reference t_asmdef_reference_item in Object_Setting.s_projectparam.asmdef_editor.reference_list){
-						if(t_asmdef_reference_item.package_fullname ==  t_jsonitem.GetItem("name").GetStringData()){
-							if(t_guid_list.ContainsKey(t_asmdef_reference_item.package_fullname) == false){
-								string t_guid = BlueBack.AssetLib.Editor.LoadGuid.LoadGuidFromFullPath(t_filename + ".meta",System.Text.Encoding.UTF8);
-								if(t_guid != null){
-									t_guid_list.Add(t_asmdef_reference_item.package_fullname,t_guid);
+						if(t_asmdef_reference_item.use != null){
+							if(t_asmdef_reference_item.package_fullname ==  t_jsonitem.GetItem("name").GetStringData()){
+								if(t_guid_list.ContainsKey(t_asmdef_reference_item.package_fullname) == false){
+									string t_guid = BlueBack.AssetLib.Editor.LoadGuid.LoadGuidFromFullPath(t_filename + ".meta",System.Text.Encoding.UTF8);
+									if(t_guid != null){
+										t_guid_list.Add(t_asmdef_reference_item.package_fullname,t_guid);
+									}
 								}
 							}
 						}
@@ -98,11 +102,13 @@ namespace BlueBack.UpmVersionManager.Editor
 
 					//asmdef_sample
 					foreach(ProjectParam.Asmdef.Reference t_asmdef_reference_item in Object_Setting.s_projectparam.asmdef_sample.reference_list){
-						if(t_asmdef_reference_item.package_fullname ==  t_jsonitem.GetItem("name").GetStringData()){
-							if(t_guid_list.ContainsKey(t_asmdef_reference_item.package_fullname) == false){
-								string t_guid = BlueBack.AssetLib.Editor.LoadGuid.LoadGuidFromFullPath(t_filename + ".meta",System.Text.Encoding.UTF8);
-								if(t_guid != null){
-									t_guid_list.Add(t_asmdef_reference_item.package_fullname,t_guid);
+						if(t_asmdef_reference_item.use != null){
+							if(t_asmdef_reference_item.package_fullname ==  t_jsonitem.GetItem("name").GetStringData()){
+								if(t_guid_list.ContainsKey(t_asmdef_reference_item.package_fullname) == false){
+									string t_guid = BlueBack.AssetLib.Editor.LoadGuid.LoadGuidFromFullPath(t_filename + ".meta",System.Text.Encoding.UTF8);
+									if(t_guid != null){
+										t_guid_list.Add(t_asmdef_reference_item.package_fullname,t_guid);
+									}
 								}
 							}
 						}
@@ -134,26 +140,34 @@ namespace BlueBack.UpmVersionManager.Editor
 
 			//versionDefines
 			{
-				t_asmdef.versionDefines =  new AssetLib.Asmdef.VersionDefine[a_asmdef_item.define_list.Length];
+				System.Collections.Generic.List<AssetLib.Asmdef.VersionDefine> t_define_list = new System.Collections.Generic.List<AssetLib.Asmdef.VersionDefine>();
 				for(int ii=0;ii<a_asmdef_item.define_list.Length;ii++){
-					t_asmdef.versionDefines[ii].name = a_asmdef_item.define_list[ii].package_pathname;
-					t_asmdef.versionDefines[ii].define = a_asmdef_item.define_list[ii].define;
-					t_asmdef.versionDefines[ii].expression = a_asmdef_item.define_list[ii].expression;
+					if(a_asmdef_item.define_list[ii].use != null){
+						t_define_list.Add(new AssetLib.Asmdef.VersionDefine(){
+							name = a_asmdef_item.define_list[ii].package_pathname,
+							define = a_asmdef_item.define_list[ii].define,
+							expression = a_asmdef_item.define_list[ii].expression,
+						});
+					}
 				}
+				t_asmdef.versionDefines = t_define_list.ToArray();
 			}
 
 			//references
 			{
-				t_asmdef.references =  new string[a_asmdef_item.reference_list.Length];
+				System.Collections.Generic.List<string> t_reference_list = new System.Collections.Generic.List<string>();
 				for(int ii=0;ii<a_asmdef_item.reference_list.Length;ii++){
-					if(a_guid_list.TryGetValue(a_asmdef_item.reference_list[ii].package_fullname,out string t_guid) == true){
-						t_asmdef.references[ii] = "GUID:" + t_guid;
-					}else{
-						#if(DEF_BLUEBACK_UPMVERSIONMANAGER_ASSERT)
-						DebugTool.EditorLogError(a_asmdef_item.reference_list[ii].package_fullname);
-						#endif
+					if(a_asmdef_item.reference_list[ii].use != null){
+						if(a_guid_list.TryGetValue(a_asmdef_item.reference_list[ii].package_fullname,out string t_guid) == true){
+							t_reference_list.Add("GUID:" + t_guid);
+						}else{
+							#if(DEF_BLUEBACK_UPMVERSIONMANAGER_ASSERT)
+							DebugTool.EditorLogError(a_asmdef_item.reference_list[ii].package_fullname);
+							#endif
+						}
 					}
 				}
+				t_asmdef.references = t_reference_list.ToArray();
 			}
 
 			string t_jsonitem_string = BlueBack.JsonItem.Convert.ObjectToJsonString(t_asmdef);

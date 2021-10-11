@@ -26,18 +26,6 @@
         "define_list":[
         ],
         "reference_list":[
-            {
-                "package_fullname":"BlueBack.AssetLib",
-                "url":"https://github.com/bluebackblue/UpmAssetLib",
-            },
-            {
-                "package_fullname":"BlueBack.AssetLib.Editor",
-                "url":"https://github.com/bluebackblue/UpmAssetLib",
-            },
-            {
-                "package_fullname":"BlueBack.JsonItem",
-                "url":"https://github.com/bluebackblue/UpmJsonItem",
-            },
         ]
     },
     "asmdef_editor":{
@@ -45,22 +33,27 @@
         ],
         "reference_list":[
             {
+                "use":"use",
                 "package_fullname":"BlueBack.UpmVersionManager",
                 "url":"https://github.com/bluebackblue/UpmVersionManager",
             },
             {
+                "use":"use",
                 "package_fullname":"BlueBack.AssetLib",
                 "url":"https://github.com/bluebackblue/UpmAssetLib",
             },
             {
+                "use":"use",
                 "package_fullname":"BlueBack.AssetLib.Editor",
                 "url":"https://github.com/bluebackblue/UpmAssetLib",
             },
             {
+                "use":"use",
                 "package_fullname":"BlueBack.JsonItem",
                 "url":"https://github.com/bluebackblue/UpmJsonItem",
             },
             {
+                "use":"use",
                 "package_fullname":"BlueBack.Code",
                 "url":"https://github.com/bluebackblue/UpmCode",
             },
@@ -71,24 +64,19 @@
         ],
         "reference_list":[
             {
-                "package_fullname":"BlueBack.UpmVersionManager",
-                "url":"https://github.com/bluebackblue/UpmVersionManager",
-            },
-            {
+                "use":"use",
                 "package_fullname":"BlueBack.UpmVersionManager.Editor",
                 "url":"https://github.com/bluebackblue/UpmVersionManager",
             },
             {
+                "use":"use",
                 "package_fullname":"BlueBack.AssetLib",
                 "url":"https://github.com/bluebackblue/UpmAssetLib",
             },
             {
+                "use":"use",
                 "package_fullname":"BlueBack.AssetLib.Editor",
                 "url":"https://github.com/bluebackblue/UpmAssetLib",
-            },
-            {
-                "package_fullname":"BlueBack.JsonItem",
-                "url":"https://github.com/bluebackblue/UpmJsonItem",
             },
         ]
     },

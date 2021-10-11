@@ -14,12 +14,17 @@ namespace BlueBack.UpmVersionManager.Editor
 {
 	/** UpdatePackage
 	*/
-	#if(!DEF_USER_BLUEBACK_UPMVERSIONMANAGER)
 	public static class UpdatePackage
 	{
+		/** packageversion
+		*/
+		public const string packageversion = Version.packageversion;
+
 		/** MenuItem_BlueBack_UpmVersionManager_UpdatePackage
 		*/
+		#if(!DEF_USER_BLUEBACK_UPMVERSIONMANAGER)
 		[UnityEditor.MenuItem("BlueBack/UpmVersionManager/UpdatePackage " + Version.packageversion)]
+		#endif
 		public static void MenuItem_BlueBack_UpmVersionManager_UpdatePackage()
 		{
 			string t_version = GetLastReleaseNameFromGitHub();
@@ -28,9 +33,9 @@ namespace BlueBack.UpmVersionManager.Editor
 				DebugTool.EditorLogError("GetLastReleaseNameFromGitHub : connect error");
 				#endif
 			}else if(t_version.Length <= 0){
-				UnityEditor.PackageManager.Client.Add(Object_Setting.s_projectparam.git_url + ".git?path=" + Object_Setting.s_projectparam.git_path);
+				UnityEditor.PackageManager.Client.Add("https://github.com/bluebackblue/UpmVersionManager.git?path=BlueBackUpmVersionManager/Assets/UPM");
 			}else{
-				UnityEditor.PackageManager.Client.Add(Object_Setting.s_projectparam.git_url + ".git?path=" + Object_Setting.s_projectparam.git_path + "#" + t_version);
+				UnityEditor.PackageManager.Client.Add("https://github.com/bluebackblue/UpmVersionManager.git?path=BlueBackUpmVersionManager/Assets/UPM#" + t_version);
 			}
 		}
 
@@ -71,7 +76,7 @@ namespace BlueBack.UpmVersionManager.Editor
 		*/
 		private static string GetLastReleaseNameFromGitHub()
 		{
-			string t_url = Object_Setting.s_projectparam.git_api + "/releases/latest";
+			string t_url = "https://api.github.com/repos/bluebackblue/UpmVersionManager/releases/latest";
 
 			try{
 				byte[] t_binary = DownloadBinary(t_url);
@@ -101,7 +106,6 @@ namespace BlueBack.UpmVersionManager.Editor
 			}
 		}
 	}
-	#endif
 }
 #endif
 

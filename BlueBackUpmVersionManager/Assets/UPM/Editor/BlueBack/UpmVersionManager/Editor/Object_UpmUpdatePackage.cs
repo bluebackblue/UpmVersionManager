@@ -42,12 +42,17 @@ namespace BlueBack.UpmVersionManager.Editor
 				"{",
 				"	/** UpdatePackage",
 				"	*/",
-				"	#if(!DEF_USER_<<NAMESPACE_AUTHOR>>_<<NAMESPACE_PACKAGE>>)",
 				"	public static class UpdatePackage",
 				"	{",
+				"		/** packageversion",
+				"		*/",
+				"		public const string packageversion = Version.packageversion;",
+				"",
 				"		/** MenuItem_<<NameSpace_Author>>_<<NameSpace_Package>>_UpdatePackage",
 				"		*/",
+				"		#if(!DEF_USER_<<NAMESPACE_AUTHOR>>_<<NAMESPACE_PACKAGE>>)",
 				"		[UnityEditor.MenuItem(\"<<NameSpace_Author>>/<<NameSpace_Package>>/UpdatePackage \" + Version.packageversion)]",
+				"		#endif",
 				"		public static void MenuItem_<<NameSpace_Author>>_<<NameSpace_Package>>_UpdatePackage()",
 				"		{",
 				"			string t_version = GetLastReleaseNameFromGitHub();",
@@ -56,9 +61,9 @@ namespace BlueBack.UpmVersionManager.Editor
 				"				DebugTool.EditorLogError(\"GetLastReleaseNameFromGitHub : connect error\");",
 				"				#endif",
 				"			}else if(t_version.Length <= 0){",
-				"				UnityEditor.PackageManager.Client.Add(Object_Setting.s_projectparam.git_url + \".git?path=\" + Object_Setting.s_projectparam.git_path);",
+				"				UnityEditor.PackageManager.Client.Add(\"<<git_url>>.git?path=<<git_path>>\");",
 				"			}else{",
-				"				UnityEditor.PackageManager.Client.Add(Object_Setting.s_projectparam.git_url + \".git?path=\" + Object_Setting.s_projectparam.git_path + \"#\" + t_version);",
+				"				UnityEditor.PackageManager.Client.Add(\"<<git_url>>.git?path=<<git_path>>#\" + t_version);",
 				"			}",
 				"		}",
 				"",
@@ -99,7 +104,7 @@ namespace BlueBack.UpmVersionManager.Editor
 				"		*/",
 				"		private static string GetLastReleaseNameFromGitHub()",
 				"		{",
-				"			string t_url = Object_Setting.s_projectparam.git_api + \"/releases/latest\";",
+				"			string t_url = \"<<git_api>>/releases/latest\";",
 				"",
 				"			try{",
 				"				byte[] t_binary = DownloadBinary(t_url);",
@@ -129,15 +134,13 @@ namespace BlueBack.UpmVersionManager.Editor
 				"			}",
 				"		}",
 				"	}",
-				"	#endif",
 				"}",
 				"#endif",
 				"",
 			});
 
 			//replace_list
-			System.Collections.Generic.Dictionary<string,string> t_replace_list = new System.Collections.Generic.Dictionary<string,string>();
-			Object_Setting.AddReplaceList(t_replace_list);
+			System.Collections.Generic.Dictionary<string,string> t_replace_list = Object_Setting.CreateReplaceList();
 
 			//SaveUtf8TextToAssetsPath
 			System.Text.StringBuilder t_stringbuilder = new System.Text.StringBuilder();

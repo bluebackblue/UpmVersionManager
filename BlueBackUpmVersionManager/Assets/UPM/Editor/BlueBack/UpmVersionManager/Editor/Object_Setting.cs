@@ -46,22 +46,26 @@ namespace BlueBack.UpmVersionManager.Editor
 
 		/** AddReplaceList
 		*/
-		public static void AddReplaceList(System.Collections.Generic.Dictionary<string,string> a_replace_list)
+		public static System.Collections.Generic.Dictionary<string,string> CreateReplaceList()
 		{
-			//パッケージ名。
-			a_replace_list.Add("<<NAMESPACE_PACKAGE>>",s_projectparam.namespace_package.ToUpper());
-			a_replace_list.Add("<<NameSpace_Package>>",s_projectparam.namespace_package);
-			a_replace_list.Add("<<namespace_package>>",s_projectparam.namespace_package.ToLower());
+			System.Collections.Generic.Dictionary<string,string> t_replace_list = new System.Collections.Generic.Dictionary<string,string>();
+			{
+				//パッケージ名。
+				t_replace_list.Add("<<NAMESPACE_PACKAGE>>",s_projectparam.namespace_package.ToUpper());
+				t_replace_list.Add("<<NameSpace_Package>>",s_projectparam.namespace_package);
+				t_replace_list.Add("<<namespace_package>>",s_projectparam.namespace_package.ToLower());
 
-			//管理者名。
-			a_replace_list.Add("<<NAMESPACE_AUTHOR>>",s_projectparam.namespace_author.ToUpper());
-			a_replace_list.Add("<<NameSpace_Author>>",s_projectparam.namespace_author);
-			a_replace_list.Add("<<namespace_author>>",s_projectparam.namespace_author.ToLower());
+				//管理者名。
+				t_replace_list.Add("<<NAMESPACE_AUTHOR>>",s_projectparam.namespace_author.ToUpper());
+				t_replace_list.Add("<<NameSpace_Author>>",s_projectparam.namespace_author);
+				t_replace_list.Add("<<namespace_author>>",s_projectparam.namespace_author.ToLower());
 
-			//ＧＩＴ。
-			a_replace_list.Add("<<giturl>>",s_projectparam.git_url);
-			a_replace_list.Add("<<gitapi>>",s_projectparam.git_api);
-			a_replace_list.Add("<<gitpath>>",s_projectparam.git_path);
+				//ＧＩＴ。
+				t_replace_list.Add("<<git_url>>",s_projectparam.git_url);
+				t_replace_list.Add("<<git_api>>",s_projectparam.git_api);
+				t_replace_list.Add("<<git_path>>",s_projectparam.git_path);
+			}
+			return t_replace_list;
 		}
 
 		/** 置き換え。
@@ -69,15 +73,10 @@ namespace BlueBack.UpmVersionManager.Editor
 		public static string Reprece(string a_string)
 		{
 			string t_string = a_string;
-			System.Collections.Generic.Dictionary<string,string> t_replace_list = new System.Collections.Generic.Dictionary<string,string>();
-			AddReplaceList(t_replace_list);
+			System.Collections.Generic.Dictionary<string,string> t_replace_list = CreateReplaceList();
 			foreach(System.Collections.Generic.KeyValuePair<string,string> t_pair in t_replace_list){
 				t_string = t_string.Replace(t_pair.Key,t_pair.Value);
 			}
-
-			#if(DEF_BLUEBACK_UPMVERSIONMANAGER_LOG)
-			DebugTool.Log(t_string);
-			#endif
 
 			return t_string;
 		}
@@ -125,7 +124,9 @@ namespace BlueBack.UpmVersionManager.Editor
 			{
 				System.Collections.Generic.HashSet<string> t_url_list = new System.Collections.Generic.HashSet<string>();
 				for(int ii=0;ii<s_projectparam.asmdef_runtime.reference_list.Length;ii++){
-					t_url_list.Add("* " + s_projectparam.asmdef_runtime.reference_list[ii].url);
+					if(s_projectparam.asmdef_runtime.reference_list[ii].use != null){
+						t_url_list.Add("* " + s_projectparam.asmdef_runtime.reference_list[ii].url);
+					}
 				}
 			}
 
@@ -135,7 +136,9 @@ namespace BlueBack.UpmVersionManager.Editor
 			{
 				System.Collections.Generic.HashSet<string> t_url_list = new System.Collections.Generic.HashSet<string>();
 				for(int ii=0;ii<s_projectparam.asmdef_editor.reference_list.Length;ii++){
-					t_url_list.Add("* " + s_projectparam.asmdef_editor.reference_list[ii].url);
+					if(s_projectparam.asmdef_editor.reference_list[ii].use != null){
+						t_url_list.Add("* " + s_projectparam.asmdef_editor.reference_list[ii].url);
+					}
 				}
 				t_list.AddRange(t_url_list);
 			}
@@ -146,9 +149,64 @@ namespace BlueBack.UpmVersionManager.Editor
 			{
 				System.Collections.Generic.HashSet<string> t_url_list = new System.Collections.Generic.HashSet<string>();
 				for(int ii=0;ii<s_projectparam.asmdef_sample.reference_list.Length;ii++){
-					t_url_list.Add("* " + s_projectparam.asmdef_sample.reference_list[ii].url);
+					if(s_projectparam.asmdef_sample.reference_list[ii].use != null){
+						t_url_list.Add("* " + s_projectparam.asmdef_sample.reference_list[ii].url);
+					}
 				}
 				t_list.AddRange(t_url_list);
+			}
+
+			return t_list;
+		}
+
+		/** 「object_root_readme_md」。例。
+		*/
+		public static System.Collections.Generic.List<string> Create_RootReadMd_Exsample(in BlueBack.UpmVersionManager.Editor.Object_Setting.Creator_Argument a_argument)
+		{
+			System.Collections.Generic.List<string> t_list = new System.Collections.Generic.List<string>();
+
+			string t_file_text = BlueBack.AssetLib.Editor.LoadText.TryLoadTextFromAssetsPath("Editor/Exsample.cs",System.Text.Encoding.UTF8);
+			string[] t_line_list = t_file_text.Replace("\r","").Split('\n');
+
+			System.Text.RegularExpressions.Regex t_regex = new System.Text.RegularExpressions.Regex("^(?<nest>\\t*)\\/\\/(?<command>\\<\\<[A-Z]*\\>\\>)(?<argument>.*)$",System.Text.RegularExpressions.RegexOptions.Multiline);
+
+			bool t_blocknow = false;
+			int t_nest = 0;
+
+			for(int ii=0;ii<t_line_list.Length;ii++){
+				System.Text.RegularExpressions.Match t_match = t_regex.Match(t_line_list[ii]);
+				if(t_match.Success == true){
+
+					#pragma warning disable 0162
+					switch(t_match.Groups["command"].Value){
+					case "<<COMMENT>>":
+						{
+							t_list.Add(t_match.Groups["argument"].Value);
+							continue;
+						}break;
+					case "<<BLOACKSTART>>":
+						{
+							t_list.Add("```");
+							t_blocknow = true;
+							t_nest = t_match.Groups["nest"].Value.Length;
+							continue;
+						}break;
+					case "<<BLOACKEND>>":
+						{
+							t_list.Add("```");
+							t_blocknow = false;
+							continue;
+						}break;
+					}
+					#pragma warning restore
+				}
+
+				if(t_blocknow == true){
+					if(t_line_list[ii].Length >= t_nest){
+						string t_line = t_line_list[ii].Substring(t_nest);
+						t_list.Add(t_line);
+					}
+				}
 			}
 
 			return t_list;
