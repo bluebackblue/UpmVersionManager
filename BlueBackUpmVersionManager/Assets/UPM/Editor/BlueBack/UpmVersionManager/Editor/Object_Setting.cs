@@ -44,7 +44,7 @@ namespace BlueBack.UpmVersionManager.Editor
 		*/
 		public static Creator_Type[] s_object_root_readme_md;
 
-		/** AddReplaceList
+		/** CreateReplaceList
 		*/
 		public static System.Collections.Generic.Dictionary<string,string> CreateReplaceList()
 		{
@@ -77,7 +77,6 @@ namespace BlueBack.UpmVersionManager.Editor
 			foreach(System.Collections.Generic.KeyValuePair<string,string> t_pair in t_replace_list){
 				t_string = t_string.Replace(t_pair.Key,t_pair.Value);
 			}
-
 			return t_string;
 		}
 
@@ -95,7 +94,6 @@ namespace BlueBack.UpmVersionManager.Editor
 					}
 				}
 			}
-
 			return "0.0.-1";
 		}
 
@@ -168,7 +166,7 @@ namespace BlueBack.UpmVersionManager.Editor
 			string t_file_text = BlueBack.AssetLib.Editor.LoadText.TryLoadTextFromAssetsPath("Editor/Exsample.cs",System.Text.Encoding.UTF8);
 			string[] t_line_list = t_file_text.Replace("\r","").Split('\n');
 
-			System.Text.RegularExpressions.Regex t_regex = new System.Text.RegularExpressions.Regex("^(?<nest>\\t*)\\/\\/(?<command>\\<\\<[A-Z]*\\>\\>)(?<argument>.*)$",System.Text.RegularExpressions.RegexOptions.Multiline);
+			System.Text.RegularExpressions.Regex t_regex = new System.Text.RegularExpressions.Regex("^(?<nest>\\t*)\\/\\/(?<command>\\<\\<[a-zA-Z0-9_\\.]*\\>\\>)(?<argument>.*)$",System.Text.RegularExpressions.RegexOptions.Multiline);
 
 			bool t_blocknow = false;
 			int t_nest = 0;

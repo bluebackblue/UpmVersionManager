@@ -7,10 +7,10 @@
     "discription_simple":"UPMバージョン操作",
     "discription_detal":[
         "UPMバージョン操作",
-        "* package.json出力",
+        "* package.json出力"
     ],
     "keyword":[
-        "upm",
+        "upm"
     ],
     "changelog":[
         "# Changelog",
@@ -18,7 +18,7 @@
         "## [0.0.0] - 2021-10-11",
         "### Changes",
         "- Init",
-        "",
+        ""
     ],
     "root_readmemd_path":"../../README.md",
     "need_unity_version":"2020.1",
@@ -35,28 +35,28 @@
             {
                 "use":"use",
                 "package_fullname":"BlueBack.UpmVersionManager",
-                "url":"https://github.com/bluebackblue/UpmVersionManager",
+                "url":"https://github.com/bluebackblue/UpmVersionManager"
             },
             {
                 "use":"use",
                 "package_fullname":"BlueBack.AssetLib",
-                "url":"https://github.com/bluebackblue/UpmAssetLib",
+                "url":"https://github.com/bluebackblue/UpmAssetLib"
             },
             {
                 "use":"use",
                 "package_fullname":"BlueBack.AssetLib.Editor",
-                "url":"https://github.com/bluebackblue/UpmAssetLib",
+                "url":"https://github.com/bluebackblue/UpmAssetLib"
             },
             {
                 "use":"use",
                 "package_fullname":"BlueBack.JsonItem",
-                "url":"https://github.com/bluebackblue/UpmJsonItem",
+                "url":"https://github.com/bluebackblue/UpmJsonItem"
             },
             {
                 "use":"use",
                 "package_fullname":"BlueBack.Code",
-                "url":"https://github.com/bluebackblue/UpmCode",
-            },
+                "url":"https://github.com/bluebackblue/UpmCode"
+            }
         ]
     },
     "asmdef_sample":{
@@ -66,18 +66,18 @@
             {
                 "use":"use",
                 "package_fullname":"BlueBack.UpmVersionManager.Editor",
-                "url":"https://github.com/bluebackblue/UpmVersionManager",
+                "url":"https://github.com/bluebackblue/UpmVersionManager"
             },
             {
                 "use":"use",
                 "package_fullname":"BlueBack.AssetLib",
-                "url":"https://github.com/bluebackblue/UpmAssetLib",
+                "url":"https://github.com/bluebackblue/UpmAssetLib"
             },
             {
                 "use":"use",
                 "package_fullname":"BlueBack.AssetLib.Editor",
-                "url":"https://github.com/bluebackblue/UpmAssetLib",
-            },
+                "url":"https://github.com/bluebackblue/UpmAssetLib"
+            }
         ]
-    },
+    }
 }
