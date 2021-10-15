@@ -46,7 +46,6 @@ namespace BlueBack.UpmVersionManager.Editor
 		private static void On()
 		{
 			Object_Setting.s_projectparam = ProjectParam.Load();
-
 			Object_RootServerJson.DownloadAndSave();
 			Object_RootServerJson.Load();
 			Window.s_window.OnEnable();

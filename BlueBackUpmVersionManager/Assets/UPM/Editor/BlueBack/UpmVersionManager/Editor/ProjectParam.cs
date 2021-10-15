@@ -14,7 +14,7 @@ namespace BlueBack.UpmVersionManager.Editor
 {
 	/** ProjectParam
 	*/
-	public class ProjectParam
+	public sealed class ProjectParam
 	{
 		/** Asmdef
 		*/
@@ -126,24 +126,24 @@ namespace BlueBack.UpmVersionManager.Editor
 		*/
 		public static ProjectParam Load()
 		{
+			//path
 			string t_path = "Editor/ProejctParam.json.txt";
-			#if(DEF_BLUEBACK_UPMVERSIONMANAGER_LOG)
-			DebugTool.Log(t_path);
-			#endif
 
+			//LoadTextWithAssetsPath
 			{
-				string t_jsonstring = BlueBack.AssetLib.Editor.LoadText.TryLoadTextFromAssetsPath(t_path,System.Text.Encoding.UTF8);
-				if(t_jsonstring != null){
-					return BlueBack.JsonItem.Convert.JsonStringToObject<BlueBack.UpmVersionManager.Editor.ProjectParam>(BlueBack.JsonItem.Normalize.Convert(t_jsonstring));
+				BlueBack.AssetLib.MultiResult<bool,string> t_result = BlueBack.AssetLib.Editor.LoadTextWithAssetsPath.TryLoadNoBomUtf8(t_path);
+				if(t_result.result == true){
+					return BlueBack.JsonItem.Convert.JsonStringToObject<BlueBack.UpmVersionManager.Editor.ProjectParam>(BlueBack.JsonItem.Normalize.Convert(t_result.value));
 				}
 			}
 
+			//SaveTextWithAssetsPath
 			{
 				ProjectParam t_projectparam = new ProjectParam();
 				string t_jsonstring = BlueBack.JsonItem.Convert.ObjectToJsonString<ProjectParam>(t_projectparam);
 				t_jsonstring = BlueBack.JsonItem.Pretty.Convert(t_jsonstring,"    ");
-				BlueBack.AssetLib.Editor.SaveText.SaveUtf8TextToAssetsPath(t_jsonstring,t_path,false,BlueBack.AssetLib.LineFeedOption.CRLF);
-				BlueBack.AssetLib.Editor.RefreshAsset.Refresh();
+				BlueBack.AssetLib.Editor.SaveTextWithAssetsPath.SaveNoBomUtf8(t_jsonstring,t_path,BlueBack.AssetLib.LineFeedOption.CRLF);
+				BlueBack.AssetLib.Editor.RefreshAssetDatabase.Refresh();
 				return t_projectparam;
 			}
 		}

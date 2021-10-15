@@ -57,7 +57,7 @@ namespace BlueBack.UpmVersionManager.Editor
 				t_packagejson.samples = new System.Collections.Generic.List<PackageJson.Samples>();
 				{
 					string t_path_sampletop = Object_Setting.Reprece("Samples/<<NameSpace_Package>>/000");
-					System.Collections.Generic.List<string> t_sample_directory_list = BlueBack.AssetLib.Editor.DirectoryNameList.CreateOnlyTopDirectoryNameListFromAssetsPath(t_path_sampletop);
+					System.Collections.Generic.List<string> t_sample_directory_list = BlueBack.AssetLib.Editor.CreateDirectoryNameListWithAssetsPath.CreateTopOnly(t_path_sampletop);
 					for(int ii=0;ii<t_sample_directory_list.Count;ii++){
 						PackageJson.Samples t_sample_item = new PackageJson.Samples();
 						{
@@ -69,10 +69,10 @@ namespace BlueBack.UpmVersionManager.Editor
 				}
 			}
 
-			//SaveUtf8TextToAssetsPath
-			BlueBack.AssetLib.Editor.CreateDirectory.CreateDirectoryToAssetsPath(System.IO.Path.GetDirectoryName(t_path));
-			BlueBack.AssetLib.Editor.SaveText.SaveUtf8TextToAssetsPath(BlueBack.JsonItem.Convert.ObjectToJsonString<PackageJson>(t_packagejson),t_path,false,BlueBack.AssetLib.LineFeedOption.CRLF);
-			BlueBack.AssetLib.Editor.RefreshAsset.Refresh();
+			//SaveTextWithAssetsPath
+			BlueBack.AssetLib.Editor.CreateDirectoryWithAssetsPath.Create(System.IO.Path.GetDirectoryName(t_path));
+			BlueBack.AssetLib.Editor.SaveTextWithAssetsPath.SaveNoBomUtf8(BlueBack.JsonItem.Convert.ObjectToJsonString<PackageJson>(t_packagejson),t_path,BlueBack.AssetLib.LineFeedOption.CRLF);
+			BlueBack.AssetLib.Editor.RefreshAssetDatabase.Refresh();
 
 			#if(DEF_BLUEBACK_UPMVERSIONMANAGER_LOG)
 			DebugTool.Log("save : " + t_path);

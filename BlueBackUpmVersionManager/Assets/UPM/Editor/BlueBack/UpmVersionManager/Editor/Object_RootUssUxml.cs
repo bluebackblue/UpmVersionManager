@@ -143,41 +143,33 @@ namespace BlueBack.UpmVersionManager.Editor
 				"</UXML>",
 			};
 
-			//uss
+			//SaveTextWithAssetsPath
 			{
-				if((a_must == true)||(BlueBack.AssetLib.Editor.ExistFile.IsExistFileFromAssetsPath(t_uss_path) == false)){
+				if((a_must == true)||(BlueBack.AssetLib.Editor.ExistFileWithAssetsPath.Check(t_uss_path) == false)){
 					System.Text.StringBuilder t_stringbuilder = new System.Text.StringBuilder();
 					foreach(string t_item in t_uss_template){
 						t_stringbuilder.Append(t_item);
 						t_stringbuilder.Append("\n");
 					}
 
-					BlueBack.AssetLib.Editor.SaveText.SaveUtf8TextToAssetsPath(t_stringbuilder.ToString(),t_uss_path,false,AssetLib.LineFeedOption.CRLF);
-					
-					#if(DEF_BLUEBACK_UPMVERSIONMANAGER_LOG)
-					DebugTool.Log("save : " + t_uss_path);
-					#endif
+					BlueBack.AssetLib.Editor.SaveTextWithAssetsPath.SaveNoBomUtf8(t_stringbuilder.ToString(),t_uss_path,AssetLib.LineFeedOption.CRLF);		
+					BlueBack.AssetLib.Editor.RefreshAssetDatabase.Refresh();
 				}
 			}
 
-			//uxml
+			//SaveTextWithAssetsPath
 			{
-				if((a_must == true)||(BlueBack.AssetLib.Editor.ExistFile.IsExistFileFromAssetsPath(t_uxml_path) == false)){
+				if((a_must == true)||(BlueBack.AssetLib.Editor.ExistFileWithAssetsPath.Check(t_uxml_path) == false)){
 				System.Text.StringBuilder t_stringbuilder = new System.Text.StringBuilder();
 					foreach(string t_item in t_uxml_template){
 						t_stringbuilder.Append(t_item);
 						t_stringbuilder.Append("\n");
 					}
 
-					BlueBack.AssetLib.Editor.SaveText.SaveUtf8TextToAssetsPath(t_stringbuilder.ToString(),t_uxml_path,false,AssetLib.LineFeedOption.CRLF);
-
-					#if(DEF_BLUEBACK_UPMVERSIONMANAGER_LOG)
-					DebugTool.Log("save : " + t_uxml_path);
-					#endif
+					BlueBack.AssetLib.Editor.SaveTextWithAssetsPath.SaveNoBomUtf8(t_stringbuilder.ToString(),t_uxml_path,AssetLib.LineFeedOption.CRLF);
+					BlueBack.AssetLib.Editor.RefreshAssetDatabase.Refresh();
 				}
 			}
-
-			BlueBack.AssetLib.Editor.RefreshAsset.Refresh();
 		}
 	}
 }

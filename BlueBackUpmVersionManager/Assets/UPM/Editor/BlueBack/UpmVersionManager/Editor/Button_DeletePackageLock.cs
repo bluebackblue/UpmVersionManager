@@ -35,7 +35,7 @@ namespace BlueBack.UpmVersionManager.Editor
 		*/
 		private static void On()
 		{
-			BlueBack.AssetLib.Editor.DeleteFile.TryDeleteFileFromAssetsPath("../Packages/packages-lock.json");
+			BlueBack.AssetLib.Editor.DeleteFileWithAssetsPath.TryDelete("../Packages/packages-lock.json");
 		}
 	}
 }

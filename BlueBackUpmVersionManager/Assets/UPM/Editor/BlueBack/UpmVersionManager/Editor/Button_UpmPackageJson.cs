@@ -73,11 +73,8 @@ namespace BlueBack.UpmVersionManager.Editor
 		private static void On(string a_version)
 		{
 			Object_Setting.s_projectparam = ProjectParam.Load();
-
 			Object_UpmSamples.Copy();
-			
 			Object_UpmChangeLogMd.Save();
-
 			Object_UpmDocumentation.Save(a_version);
 			Object_UpmReadmeMd.Save(a_version);
 			Object_UpmVersionCs.Save(a_version);
@@ -85,7 +82,6 @@ namespace BlueBack.UpmVersionManager.Editor
 			Object_UpmPackageJson.Save(a_version);
 			Object_UpmUpdatePackage.Save();
 			Object_UpmAsmdef.Save();
-
 			Window.s_window.OnEnable();
 		}
 	}

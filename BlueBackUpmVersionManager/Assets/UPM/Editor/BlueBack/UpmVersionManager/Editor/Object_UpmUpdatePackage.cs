@@ -142,16 +142,12 @@ namespace BlueBack.UpmVersionManager.Editor
 			//replace_list
 			System.Collections.Generic.Dictionary<string,string> t_replace_list = Object_Setting.CreateReplaceList();
 
-			//SaveUtf8TextToAssetsPath
+			//SaveTextWithAssetsPath
 			System.Text.StringBuilder t_stringbuilder = new System.Text.StringBuilder();
 			BlueBack.Code.Convert.Replace(t_stringbuilder,t_replace_list,t_template);
-			BlueBack.AssetLib.Editor.CreateDirectory.CreateDirectoryToAssetsPath(System.IO.Path.GetDirectoryName(t_path));
-			BlueBack.AssetLib.Editor.SaveText.SaveUtf8TextToAssetsPath(t_stringbuilder.ToString(),t_path,false,BlueBack.AssetLib.LineFeedOption.CRLF);
-			BlueBack.AssetLib.Editor.RefreshAsset.Refresh();
-
-			#if(DEF_BLUEBACK_UPMVERSIONMANAGER_LOG)
-			DebugTool.Log("save : " + t_path);
-			#endif
+			BlueBack.AssetLib.Editor.CreateDirectoryWithAssetsPath.Create(System.IO.Path.GetDirectoryName(t_path));
+			BlueBack.AssetLib.Editor.SaveTextWithAssetsPath.SaveNoBomUtf8(t_stringbuilder.ToString(),t_path,BlueBack.AssetLib.LineFeedOption.CRLF);
+			BlueBack.AssetLib.Editor.RefreshAssetDatabase.Refresh();
 		}
 	}
 }

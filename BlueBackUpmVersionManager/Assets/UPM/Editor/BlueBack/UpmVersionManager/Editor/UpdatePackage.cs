@@ -76,34 +76,29 @@ namespace BlueBack.UpmVersionManager.Editor
 		*/
 		private static string GetLastReleaseNameFromGitHub()
 		{
+			//url
 			string t_url = "https://api.github.com/repos/bluebackblue/UpmVersionManager/releases/latest";
 
-			try{
-				byte[] t_binary = DownloadBinary(t_url);
-				if(t_binary != null){
-					string t_text = System.Text.Encoding.UTF8.GetString(t_binary,0,t_binary.Length);
-					System.Text.RegularExpressions.Match t_match = System.Text.RegularExpressions.Regex.Match(t_text,".*(?<name>\\\"tag_name\\\")\\s*\\:\\s*\\\"(?<value>[a-zA-Z0-9_\\.]*)\\\".*");
-					t_text = t_match.Groups["value"].Value;
-					if(t_text != null){
-						return t_text;
-					}else{
-						#if(UNITY_EDITOR)
-						DebugTool.EditorLogError(t_url + " : text == null");
-						#endif
-						return null;
-					}
+			//DownloadBinary
+			byte[] t_binary = DownloadBinary(t_url);
+			if(t_binary != null){
+				string t_text = System.Text.Encoding.UTF8.GetString(t_binary,0,t_binary.Length);
+				System.Text.RegularExpressions.Match t_match = System.Text.RegularExpressions.Regex.Match(t_text,".*(?<name>\\\"tag_name\\\")\\s*\\:\\s*\\\"(?<value>[a-zA-Z0-9_\\.]*)\\\".*");
+				t_text = t_match.Groups["value"].Value;
+				if(t_text != null){
+					return t_text;
 				}else{
 					#if(UNITY_EDITOR)
-					DebugTool.EditorLogError(t_url + " : binary == null");
+					DebugTool.EditorLogError(t_url + " : text == null");
 					#endif
 					return null;
 				}
-			}catch(System.Exception t_exception){
-				#if(UNITY_EDITOR)
-				DebugTool.EditorLogError(t_url + " : " + t_exception.Message + "\n" + t_exception.StackTrace);
-				#endif
-				return null;
 			}
+
+			#if(UNITY_EDITOR)
+			DebugTool.EditorLogError(t_url + " : binary == null");
+			#endif
+			return null;
 		}
 	}
 }

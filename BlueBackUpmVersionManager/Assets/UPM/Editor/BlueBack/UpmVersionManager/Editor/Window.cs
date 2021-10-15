@@ -70,7 +70,7 @@ namespace BlueBack.UpmVersionManager.Editor
 				UnityEngine.UIElements.VisualElement t_root = s_window.rootVisualElement;
 				{
 					t_root.Clear();
-					UnityEngine.UIElements.VisualTreeAsset t_visualtree = BlueBack.AssetLib.Editor.LoadAsset.LoadAssetFromAssetsPath<UnityEngine.UIElements.VisualTreeAsset>("UpmVersionManagerWindow.uxml");
+					UnityEngine.UIElements.VisualTreeAsset t_visualtree = BlueBack.AssetLib.Editor.LoadAssetWithAssetsPath.Load<UnityEngine.UIElements.VisualTreeAsset>("UpmVersionManagerWindow.uxml");
 					if(t_visualtree == null){
 						return;
 					}

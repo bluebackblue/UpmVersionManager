@@ -77,7 +77,6 @@ namespace BlueBack.UpmVersionManager.Editor
 		private static void On(string a_version)
 		{
 			Object_Setting.s_projectparam = ProjectParam.Load();
-
 			Object_RootReadmeMd.Save(a_version);
 			Object_RootReadmeMd.Load();
 			Window.s_window.OnEnable();

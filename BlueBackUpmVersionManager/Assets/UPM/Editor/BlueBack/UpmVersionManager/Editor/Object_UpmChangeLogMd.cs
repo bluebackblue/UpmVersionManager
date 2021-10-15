@@ -30,10 +30,10 @@ namespace BlueBack.UpmVersionManager.Editor
 				t_stringbuilder.Append("\n");
 			}
 
-			//SaveUtf8TextToAssetsPath
-			BlueBack.AssetLib.Editor.CreateDirectory.CreateDirectoryToAssetsPath(System.IO.Path.GetDirectoryName(t_path));
-			BlueBack.AssetLib.Editor.SaveText.SaveUtf8TextToAssetsPath(t_stringbuilder.ToString(),t_path,false,BlueBack.AssetLib.LineFeedOption.CRLF);
-			BlueBack.AssetLib.Editor.RefreshAsset.Refresh();
+			//SaveTextWithAssetsPath
+			BlueBack.AssetLib.Editor.CreateDirectoryWithAssetsPath.Create(System.IO.Path.GetDirectoryName(t_path));
+			BlueBack.AssetLib.Editor.SaveTextWithAssetsPath.SaveNoBomUtf8(t_stringbuilder.ToString(),t_path,BlueBack.AssetLib.LineFeedOption.CRLF);
+			BlueBack.AssetLib.Editor.RefreshAssetDatabase.Refresh();
 
 			#if(DEF_BLUEBACK_UPMVERSIONMANAGER_LOG)
 			DebugTool.Log("save : " + t_path);

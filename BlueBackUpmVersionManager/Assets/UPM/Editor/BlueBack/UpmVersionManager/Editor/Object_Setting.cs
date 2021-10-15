@@ -80,7 +80,7 @@ namespace BlueBack.UpmVersionManager.Editor
 			return t_string;
 		}
 
-		/** GetSPackageVersion
+		/** GetPackageVersion
 		*/
 		public static string GetPackageVersion()
 		{
@@ -90,7 +90,7 @@ namespace BlueBack.UpmVersionManager.Editor
 				if(t_methodinfo != null){
 					System.Object t_object = t_methodinfo.Invoke(null,null);
 					if(t_object is string){
-						return (string) t_object;
+						return (string)t_object;
 					}
 				}
 			}
@@ -161,61 +161,64 @@ namespace BlueBack.UpmVersionManager.Editor
 		*/
 		public static System.Collections.Generic.List<string> Create_RootReadMd_Exsample(in BlueBack.UpmVersionManager.Editor.Object_Setting.Creator_Argument a_argument)
 		{
+			//path
+			string t_path = "Editor/Exsample.cs";
+
 			System.Collections.Generic.List<string> t_list = new System.Collections.Generic.List<string>();
-
-			string t_file_text = BlueBack.AssetLib.Editor.LoadText.TryLoadTextFromAssetsPath("Editor/Exsample.cs",System.Text.Encoding.UTF8);
-			string[] t_line_list = t_file_text.Replace("\r","").Split('\n');
-
 			System.Text.RegularExpressions.Regex t_regex = new System.Text.RegularExpressions.Regex("^(?<nest>\\t*)\\/\\/(?<command>\\<\\<[a-zA-Z0-9_\\.]*\\>\\>)(?<argument>.*)$",System.Text.RegularExpressions.RegexOptions.Multiline);
-
 			bool t_blocknow = false;
 			int t_nest = 0;
 
-			for(int ii=0;ii<t_line_list.Length;ii++){
-				System.Text.RegularExpressions.Match t_match = t_regex.Match(t_line_list[ii]);
-				if(t_match.Success == true){
+			//LoadTextWithAssetsPath
+			BlueBack.AssetLib.MultiResult<bool,string> t_result = BlueBack.AssetLib.Editor.LoadTextWithAssetsPath.TryLoadNoBomUtf8(t_path);
+			if(t_result.result == true){
+				string[] t_line_list = t_result.value.Replace("\r","").Split('\n');
+				for(int ii=0;ii<t_line_list.Length;ii++){
+					System.Text.RegularExpressions.Match t_match = t_regex.Match(t_line_list[ii]);
+					if(t_match.Success == true){
 
-					#pragma warning disable 0162
-					switch(t_match.Groups["command"].Value){
-					case "<<COMMENT>>":
-						{
-							t_list.Add(t_match.Groups["argument"].Value);
-							continue;
-						}break;
-					case "<<CS_BLOCK_START>>":
-						{
-							t_list.Add("```cs");
-							t_blocknow = true;
-							t_nest = t_match.Groups["nest"].Value.Length;
-							continue;
-						}break;
-					case "<<CS_BLOCK_END>>":
-						{
-							t_list.Add("```");
-							t_blocknow = false;
-							continue;
-						}break;
-					case "<<BLOCK_START>>":
-						{
-							t_list.Add("```");
-							t_blocknow = true;
-							t_nest = t_match.Groups["nest"].Value.Length;
-							continue;
-						}break;
-					case "<<BLOCK_END>>":
-						{
-							t_list.Add("```");
-							t_blocknow = false;
-							continue;
-						}break;
+						#pragma warning disable 0162
+						switch(t_match.Groups["command"].Value){
+						case "<<COMMENT>>":
+							{
+								t_list.Add(t_match.Groups["argument"].Value);
+								continue;
+							}break;
+						case "<<CS_BLOCK_START>>":
+							{
+								t_list.Add("```cs");
+								t_blocknow = true;
+								t_nest = t_match.Groups["nest"].Value.Length;
+								continue;
+							}break;
+						case "<<CS_BLOCK_END>>":
+							{
+								t_list.Add("```");
+								t_blocknow = false;
+								continue;
+							}break;
+						case "<<BLOCK_START>>":
+							{
+								t_list.Add("```");
+								t_blocknow = true;
+								t_nest = t_match.Groups["nest"].Value.Length;
+								continue;
+							}break;
+						case "<<BLOCK_END>>":
+							{
+								t_list.Add("```");
+								t_blocknow = false;
+								continue;
+							}break;
+						}
+						#pragma warning restore
 					}
-					#pragma warning restore
-				}
 
-				if(t_blocknow == true){
-					if(t_line_list[ii].Length >= t_nest){
-						string t_line = t_line_list[ii].Substring(t_nest);
-						t_list.Add(t_line);
+					if(t_blocknow == true){
+						if(t_line_list[ii].Length >= t_nest){
+							string t_line = t_line_list[ii].Substring(t_nest);
+							t_list.Add(t_line);
+						}
 					}
 				}
 			}
