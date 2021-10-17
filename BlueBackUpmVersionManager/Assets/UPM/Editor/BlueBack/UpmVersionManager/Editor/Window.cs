@@ -66,6 +66,11 @@ namespace BlueBack.UpmVersionManager.Editor
 			DebugTool.Log("Window.OnEnable");
 			#endif
 			
+			Object_Setting.s_projectparam = ProjectParam.Load();
+			if(Object_RootServerJson.s_status == null){
+				Object_RootServerJson.Load();
+			}
+
 			{
 				UnityEngine.UIElements.VisualElement t_root = s_window.rootVisualElement;
 				{
@@ -113,10 +118,6 @@ namespace BlueBack.UpmVersionManager.Editor
 					{
 						UnityEngine.UIElements.Label t_label = UnityEngine.UIElements.UQueryExtensions.Q<UnityEngine.UIElements.Label>(t_root,"label_a_value");
 						if(t_label != null){
-							if(Object_RootServerJson.s_status == null){
-								Object_RootServerJson.Load();
-							}
-
 							t_label.text = Object_RootServerJson.s_status.time;
 						}
 					}

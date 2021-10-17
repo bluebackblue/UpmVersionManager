@@ -3,7 +3,7 @@
 /**
  * Copyright (c) blueback
  * Released under the MIT License
- * @brief ウィンドウ。
+ * @brief ボタン。
 */
 
 
@@ -12,7 +12,7 @@
 #if(UNITY_EDITOR)
 namespace BlueBack.UpmVersionManager.Editor
 {
-	/** Window
+	/** Button_DeletePacakgeLock
 	*/
 	public static class Button_DeletePacakgeLock
 	{
@@ -20,15 +20,19 @@ namespace BlueBack.UpmVersionManager.Editor
 		*/
 		public static void Initialize(UnityEngine.UIElements.Button a_button)
 		{
-			if(a_button != null){
-				a_button.text = "[DeletePacakgeLock]";
-				a_button.clickable.clicked += () => {
-					#if(DEF_BLUEBACK_UPMVERSIONMANAGER_LOG)
-					DebugTool.Log("DeletePacakgeLock");
-					#endif
-					On();
-				};
-			}
+			a_button.text = "[DeletePacakgeLock]";
+			a_button.clickable.clicked += () => {
+				#if(DEF_BLUEBACK_UPMVERSIONMANAGER_LOG)
+				DebugTool.Log("DeletePacakgeLock");
+				#endif
+
+				Object_Setting.s_projectparam = ProjectParam.Load();
+				if(Object_RootServerJson.s_status == null){
+					Object_RootServerJson.Load();
+				}
+
+				On();
+			};
 		}
 
 		/** On

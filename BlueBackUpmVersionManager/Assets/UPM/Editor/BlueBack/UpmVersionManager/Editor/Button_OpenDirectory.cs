@@ -3,7 +3,7 @@
 /**
  * Copyright (c) blueback
  * Released under the MIT License
- * @brief ウィンドウ。
+ * @brief ボタン。
 */
 
 
@@ -20,15 +20,19 @@ namespace BlueBack.UpmVersionManager.Editor
 		*/
 		public static void Initialize(UnityEngine.UIElements.Button a_button)
 		{
-			if(a_button != null){
-				a_button.text = "[OpenDirectory]";
-				a_button.clickable.clicked += () => {
-					#if(DEF_BLUEBACK_UPMVERSIONMANAGER_LOG)
-					DebugTool.Log("OpenDirectory");
-					#endif
-					On();
-				};
-			}
+			a_button.text = "[OpenDirectory]";
+			a_button.clickable.clicked += () => {
+				#if(DEF_BLUEBACK_UPMVERSIONMANAGER_LOG)
+				DebugTool.Log("OpenDirectory");
+				#endif
+
+				Object_Setting.s_projectparam = ProjectParam.Load();
+				if(Object_RootServerJson.s_status == null){
+					Object_RootServerJson.Load();
+				}
+
+				On();
+			};
 		}
 
 		/** On
