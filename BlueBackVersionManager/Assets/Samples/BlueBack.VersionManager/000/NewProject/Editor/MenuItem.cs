@@ -1,8 +1,8 @@
 
 
-/** Samples.NewProject
+/** Samples.VersionManager.NewProject
 */
-namespace Samples.NewProject
+namespace Samples.VersionManager.NewProject
 {
 	/** MenuItem
 	*/

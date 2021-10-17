@@ -39,7 +39,7 @@ namespace BlueBack.VersionManager.Editor
 
 			//asmdef_sample
 			{
-				string t_name = "Samples." + Object_Setting.s_projectparam.namespace_author + "." + Object_Setting.s_projectparam.namespace_package;
+				string t_name = "Samples." + Object_Setting.s_projectparam.namespace_package;
 				string t_path = "Samples/" + Object_Setting.s_projectparam.namespace_author + "." + Object_Setting.s_projectparam.namespace_package + "/Samples." + Object_Setting.s_projectparam.namespace_package + ".asmdef";
 				Inner_CreateAsmdef(t_guid_list,in Object_Setting.s_projectparam.asmdef_sample,t_path,t_name);
 			}
