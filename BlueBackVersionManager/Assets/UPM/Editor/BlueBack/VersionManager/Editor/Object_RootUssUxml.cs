@@ -20,10 +20,6 @@ namespace BlueBack.VersionManager.Editor
 		*/
 		public static void Save(bool a_must)	
 		{
-			//path
-			string t_uss_path = "VersionManagerWindow.uss";
-			string t_uxml_path = "VersionManagerWindow.uxml";
-
 			//template
 			string[] t_uss_template = {
 				"Button",
@@ -68,7 +64,7 @@ namespace BlueBack.VersionManager.Editor
 				"	xsi:schemaLocation=\"UnityEngine.UIElements ../UIElementsSchema/UnityEngine.UIElements.xsd\">",
 				"",
 				"",
-				"  <Style src=\"VersionManagerWindow.uss\" />",
+				"  <Style src=\"" + Window.TEMPLATE_USS + "\" />",
 				"",
 				"  <!-- label_1 -->",
 				"  <Box>",
@@ -145,28 +141,28 @@ namespace BlueBack.VersionManager.Editor
 
 			//SaveTextWithAssetsPath
 			{
-				if((a_must == true)||(BlueBack.AssetLib.Editor.ExistFileWithAssetsPath.Check(t_uss_path) == false)){
+				if((a_must == true)||(BlueBack.AssetLib.Editor.ExistFileWithAssetsPath.Check(Window.TEMPLATE_PATH + Window.TEMPLATE_USS) == false)){
 					System.Text.StringBuilder t_stringbuilder = new System.Text.StringBuilder();
 					foreach(string t_item in t_uss_template){
 						t_stringbuilder.Append(t_item);
 						t_stringbuilder.Append("\n");
 					}
 
-					BlueBack.AssetLib.Editor.SaveTextWithAssetsPath.SaveNoBomUtf8(t_stringbuilder.ToString(),t_uss_path,AssetLib.LineFeedOption.CRLF);		
+					BlueBack.AssetLib.Editor.SaveTextWithAssetsPath.SaveNoBomUtf8(t_stringbuilder.ToString(),Window.TEMPLATE_PATH + Window.TEMPLATE_USS,AssetLib.LineFeedOption.CRLF);		
 					BlueBack.AssetLib.Editor.RefreshAssetDatabase.Refresh();
 				}
 			}
 
 			//SaveTextWithAssetsPath
 			{
-				if((a_must == true)||(BlueBack.AssetLib.Editor.ExistFileWithAssetsPath.Check(t_uxml_path) == false)){
+				if((a_must == true)||(BlueBack.AssetLib.Editor.ExistFileWithAssetsPath.Check(Window.TEMPLATE_PATH + Window.TEMPLATE_UXML) == false)){
 				System.Text.StringBuilder t_stringbuilder = new System.Text.StringBuilder();
 					foreach(string t_item in t_uxml_template){
 						t_stringbuilder.Append(t_item);
 						t_stringbuilder.Append("\n");
 					}
 
-					BlueBack.AssetLib.Editor.SaveTextWithAssetsPath.SaveNoBomUtf8(t_stringbuilder.ToString(),t_uxml_path,AssetLib.LineFeedOption.CRLF);
+					BlueBack.AssetLib.Editor.SaveTextWithAssetsPath.SaveNoBomUtf8(t_stringbuilder.ToString(),Window.TEMPLATE_PATH + Window.TEMPLATE_UXML,AssetLib.LineFeedOption.CRLF);
 					BlueBack.AssetLib.Editor.RefreshAssetDatabase.Refresh();
 				}
 			}

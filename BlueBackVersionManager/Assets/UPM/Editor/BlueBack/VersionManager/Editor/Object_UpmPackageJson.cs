@@ -56,7 +56,7 @@ namespace BlueBack.VersionManager.Editor
 				//samples
 				t_packagejson.samples = new System.Collections.Generic.List<PackageJson.Samples>();
 				{
-					string t_path_sampletop = Object_Setting.Reprece("Samples/<<NameSpace_Package>>/000");
+					string t_path_sampletop = Object_Setting.Reprece("Samples/<<NameSpace_Author>>.<<NameSpace_Package>>/000");
 					System.Collections.Generic.List<string> t_sample_directory_list = BlueBack.AssetLib.Editor.CreateDirectoryNameListWithAssetsPath.CreateTopOnly(t_path_sampletop);
 					for(int ii=0;ii<t_sample_directory_list.Count;ii++){
 						PackageJson.Samples t_sample_item = new PackageJson.Samples();

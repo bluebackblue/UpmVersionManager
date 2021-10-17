@@ -20,6 +20,12 @@ namespace BlueBack.VersionManager.Editor
 		*/
 		public static Window s_window = null;
 
+		/** TEMPLATE
+		*/
+		public const string TEMPLATE_PATH = "Editor/";
+		public const string TEMPLATE_USS = "VersionManagerWindow.uss";
+		public const string TEMPLATE_UXML = "VersionManagerWindow.uxml";
+
 		/** 開く。
 		*/
 		[UnityEditor.MenuItem("VersionManager/Open")]
@@ -75,7 +81,7 @@ namespace BlueBack.VersionManager.Editor
 				UnityEngine.UIElements.VisualElement t_root = s_window.rootVisualElement;
 				{
 					t_root.Clear();
-					UnityEngine.UIElements.VisualTreeAsset t_visualtree = BlueBack.AssetLib.Editor.LoadAssetWithAssetsPath.Load<UnityEngine.UIElements.VisualTreeAsset>("VersionManagerWindow.uxml");
+					UnityEngine.UIElements.VisualTreeAsset t_visualtree = BlueBack.AssetLib.Editor.LoadAssetWithAssetsPath.Load<UnityEngine.UIElements.VisualTreeAsset>(TEMPLATE_PATH + TEMPLATE_UXML);
 					if(t_visualtree == null){
 						return;
 					}
