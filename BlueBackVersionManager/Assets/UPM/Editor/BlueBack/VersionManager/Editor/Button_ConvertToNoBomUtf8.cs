@@ -39,7 +39,7 @@ namespace BlueBack.VersionManager.Editor
 		*/
 		private static void On()
 		{
-			BlueBack.AssetLib.Editor.TextConvertTool.ConvertAll("",".*","^.*\\.(cs|meta|mesh|prefab|json|asmdef|mixer|anim)$",System.Text.Encoding.UTF8,BlueBack.AssetLib.LineFeedOption.CRLF);
+			BlueBack.AssetLib.Editor.TextConvertTool.ConvertAll("",".*","^.*\\.(cs|meta|mesh|prefab|json|asmdef|mixer|anim)$",new System.Text.UTF8Encoding(false),BlueBack.AssetLib.LineFeedOption.CRLF);
 			Window.s_window.OnEnable();
 		}
 	}

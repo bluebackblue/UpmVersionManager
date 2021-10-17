@@ -74,7 +74,7 @@ namespace BlueBack.VersionManager.Editor
 						if(t_asmdef_reference_item.use != null){
 							if(t_asmdef_reference_item.package_fullname ==  t_jsonitem.GetItem("name").GetStringData()){
 								if(t_guid_list.ContainsKey(t_asmdef_reference_item.package_fullname) == false){
-									string t_guid = BlueBack.AssetLib.Editor.LoadGuidWithFullPath.Load(t_filename + ".meta",System.Text.Encoding.UTF8);
+									string t_guid = BlueBack.AssetLib.Editor.LoadGuidWithFullPath.Load(t_filename + ".meta");
 									if(t_guid != null){
 										t_guid_list.Add(t_asmdef_reference_item.package_fullname,t_guid);
 									}
@@ -88,7 +88,7 @@ namespace BlueBack.VersionManager.Editor
 						if(t_asmdef_reference_item.use != null){
 							if(t_asmdef_reference_item.package_fullname ==  t_jsonitem.GetItem("name").GetStringData()){
 								if(t_guid_list.ContainsKey(t_asmdef_reference_item.package_fullname) == false){
-									string t_guid = BlueBack.AssetLib.Editor.LoadGuidWithFullPath.Load(t_filename + ".meta",System.Text.Encoding.UTF8);
+									string t_guid = BlueBack.AssetLib.Editor.LoadGuidWithFullPath.Load(t_filename + ".meta");
 									if(t_guid != null){
 										t_guid_list.Add(t_asmdef_reference_item.package_fullname,t_guid);
 									}
@@ -102,7 +102,7 @@ namespace BlueBack.VersionManager.Editor
 						if(t_asmdef_reference_item.use != null){
 							if(t_asmdef_reference_item.package_fullname ==  t_jsonitem.GetItem("name").GetStringData()){
 								if(t_guid_list.ContainsKey(t_asmdef_reference_item.package_fullname) == false){
-									string t_guid = BlueBack.AssetLib.Editor.LoadGuidWithFullPath.Load(t_filename + ".meta",System.Text.Encoding.UTF8);
+									string t_guid = BlueBack.AssetLib.Editor.LoadGuidWithFullPath.Load(t_filename + ".meta");
 									if(t_guid != null){
 										t_guid_list.Add(t_asmdef_reference_item.package_fullname,t_guid);
 									}
