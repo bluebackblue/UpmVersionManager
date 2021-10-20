@@ -131,7 +131,7 @@ namespace BlueBack.VersionManager.Editor
 
 			//LoadTextWithAssetsPath
 			{
-				BlueBack.AssetLib.MultiResult<bool,string> t_result = BlueBack.AssetLib.Editor.LoadTextWithAssetsPath.TryLoadNoBomUtf8(t_path);
+				BlueBack.AssetLib.MultiResult<bool,string> t_result = BlueBack.AssetLib.Editor.LoadTextWithAssetsPath.TryLoad(t_path);
 				if(t_result.result == true){
 					return BlueBack.JsonItem.Convert.JsonStringToObject<BlueBack.VersionManager.Editor.ProjectParam>(BlueBack.JsonItem.Normalize.Convert(t_result.value));
 				}

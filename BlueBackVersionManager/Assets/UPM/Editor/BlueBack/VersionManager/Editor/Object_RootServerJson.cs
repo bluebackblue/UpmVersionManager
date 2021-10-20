@@ -42,7 +42,7 @@ namespace BlueBack.VersionManager.Editor
 
 			//LoadNoBomUtf8
 			if(BlueBack.AssetLib.Editor.ExistFileWithAssetsPath.Check(t_path) == true){
-				s_status = BlueBack.JsonItem.Convert.JsonStringToObject<Status>(BlueBack.AssetLib.Editor.LoadTextWithAssetsPath.LoadNoBomUtf8(t_path));
+				s_status = BlueBack.JsonItem.Convert.JsonStringToObject<Status>(BlueBack.AssetLib.Editor.LoadTextWithAssetsPath.Load(t_path));
 				return;
 			}
 			

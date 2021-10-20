@@ -29,7 +29,7 @@ namespace BlueBack.VersionManager.Editor
 
 			//LoadTextWithAssetsPath
 			{
-				BlueBack.AssetLib.MultiResult<bool,string> t_result = BlueBack.AssetLib.Editor.LoadTextWithAssetsPath.TryLoadNoBomUtf8(t_path);
+				BlueBack.AssetLib.MultiResult<bool,string> t_result = BlueBack.AssetLib.Editor.LoadTextWithAssetsPath.TryLoad(t_path);
 				if(t_result.result == true){
 					string t_url = (Object_Setting.s_projectparam.git_url + ".git?path=" + Object_Setting.s_projectparam.git_path + "#").Replace(":","\\:").Replace("/","\\/").Replace(".","\\.").Replace("?","\\?").Replace("=","\\=").Replace("#","\\#");
 					System.Text.RegularExpressions.Match t_match = System.Text.RegularExpressions.Regex.Match(t_result.value,"^(?<before>[\\d\\D\\n\\r]*" + t_url + ")(?<version>[0-9\\.]*)(?<after>[\\d\\D\\n\\r]*)$",System.Text.RegularExpressions.RegexOptions.Multiline);

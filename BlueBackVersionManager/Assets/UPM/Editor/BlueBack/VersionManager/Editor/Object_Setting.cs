@@ -170,7 +170,7 @@ namespace BlueBack.VersionManager.Editor
 			int t_nest = 0;
 
 			//LoadTextWithAssetsPath
-			BlueBack.AssetLib.MultiResult<bool,string> t_result = BlueBack.AssetLib.Editor.LoadTextWithAssetsPath.TryLoadNoBomUtf8(t_path);
+			BlueBack.AssetLib.MultiResult<bool,string> t_result = BlueBack.AssetLib.Editor.LoadTextWithAssetsPath.TryLoad(t_path);
 			if(t_result.result == true){
 				string[] t_line_list = t_result.value.Replace("\r","").Split('\n');
 				for(int ii=0;ii<t_line_list.Length;ii++){
