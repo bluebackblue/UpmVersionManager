@@ -126,6 +126,7 @@ namespace BlueBack.VersionManager.Editor
 						t_url_list.Add("* " + s_projectparam.asmdef_runtime.reference_list[ii].url);
 					}
 				}
+				t_list.AddRange(t_url_list);
 			}
 
 			t_list.Add("### エディター");
