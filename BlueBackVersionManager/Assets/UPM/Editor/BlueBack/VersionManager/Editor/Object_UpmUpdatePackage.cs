@@ -1,9 +1,9 @@
 
 
 /**
- * Copyright (c) blueback
- * Released under the MIT License
- * @brief 「UPM/Editor/<<NameSpace_Author>>/<<NameSpace_Package>>/Editor/UpdatePackage.cs」。
+	Copyright (c) blueback
+	Released under the MIT License
+	@brief 「UPM/Editor/<<NameSpace_Author>>/<<NameSpace_Package>>/Editor/UpdatePackage.cs」。
 */
 
 
@@ -29,9 +29,9 @@ namespace BlueBack.VersionManager.Editor
 				"",
 				"",
 				"/**",
-				" * Copyright (c) <<namespace_author>>",
-				" * Released under the MIT License",
-				" * @brief パッケージ更新。自動生成。",
+				"	Copyright (c) <<namespace_author>>",
+				"	Released under the MIT License",
+				"	@brief パッケージ更新。自動生成。",
 				"*/",
 				"",
 				"",

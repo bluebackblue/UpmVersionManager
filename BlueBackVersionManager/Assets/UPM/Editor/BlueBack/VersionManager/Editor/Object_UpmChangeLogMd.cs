@@ -1,9 +1,9 @@
 
 
 /**
- * Copyright (c) blueback
- * Released under the MIT License
- * @brief 「UPM/CHANGELOG.md」。
+	Copyright (c) blueback
+	Released under the MIT License
+	@brief 「UPM/CHANGELOG.md」。
 */
 
 

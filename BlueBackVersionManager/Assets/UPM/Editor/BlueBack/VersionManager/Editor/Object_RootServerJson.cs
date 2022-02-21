@@ -1,9 +1,9 @@
 
 
 /**
- * Copyright (c) blueback
- * Released under the MIT License
- * @brief 「Root/server.json」。
+	Copyright (c) blueback
+	Released under the MIT License
+	@brief 「Root/server.json」。
 */
 
 

@@ -1,9 +1,9 @@
 
 
 /**
- * Copyright (c) blueback
- * Released under the MIT License
- * @brief ProjectParam。
+	Copyright (c) blueback
+	Released under the MIT License
+	@brief ProjectParam。
 */
 
 

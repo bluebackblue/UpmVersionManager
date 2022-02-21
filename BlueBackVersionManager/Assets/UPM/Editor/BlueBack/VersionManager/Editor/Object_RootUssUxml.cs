@@ -1,9 +1,9 @@
 
 
 /**
- * Copyright (c) blueback
- * Released under the MIT License
- * @brief 「Root/*.VersionManagerWindow.uss」/「Root/*.UpmVersionManagerWindow.uxml」。
+	Copyright (c) blueback
+	Released under the MIT License
+	@brief 「Root/*.VersionManagerWindow.uss」/「Root/*.UpmVersionManagerWindow.uxml」。
 */
 
 

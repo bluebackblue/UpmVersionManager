@@ -1,9 +1,9 @@
 
 
 /**
- * Copyright (c) blueback
- * Released under the MIT License
- * @brief 「UPM/Documentation~/<<NameSpace_Author>>.<<NameSpace_Package>>.md」。
+	Copyright (c) blueback
+	Released under the MIT License
+	@brief 「UPM/Documentation~/<<NameSpace_Author>>.<<NameSpace_Package>>.md」。
 */
 
 
