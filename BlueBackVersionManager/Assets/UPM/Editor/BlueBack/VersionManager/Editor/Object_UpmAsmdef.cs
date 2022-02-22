@@ -26,21 +26,21 @@ namespace BlueBack.VersionManager.Editor
 			//asmdef_runtime
 			{
 				string t_name = Object_Setting.s_projectparam.namespace_author + "." + Object_Setting.s_projectparam.namespace_package;
-				string t_path = "UPM/Runtime/" + Object_Setting.s_projectparam.namespace_author + "/" + Object_Setting.s_projectparam.namespace_package + "/" +  Object_Setting.s_projectparam.namespace_author + "." + Object_Setting.s_projectparam.namespace_package + ".asmdef";
+				string t_path = "UPM/Runtime/" + Object_Setting.s_projectparam.namespace_author + "/" + Object_Setting.s_projectparam.namespace_package + "/" +  t_name + ".asmdef";
 				Inner_CreateAsmdef(t_guid_list,in Object_Setting.s_projectparam.asmdef_runtime,t_path,t_name);
 			}
 
 			//asmdef_editor
 			{
 				string t_name = Object_Setting.s_projectparam.namespace_author + "." + Object_Setting.s_projectparam.namespace_package + ".Editor";
-				string t_path = "UPM/Editor/" + Object_Setting.s_projectparam.namespace_author + "/" + Object_Setting.s_projectparam.namespace_package + "/Editor/" +  Object_Setting.s_projectparam.namespace_author + "." + Object_Setting.s_projectparam.namespace_package + ".Editor.asmdef";
+				string t_path = "UPM/Editor/" + Object_Setting.s_projectparam.namespace_author + "/" + Object_Setting.s_projectparam.namespace_package + "/Editor/" +  t_name + ".asmdef";
 				Inner_CreateAsmdef(t_guid_list,in Object_Setting.s_projectparam.asmdef_editor,t_path,t_name);
 			}
 
 			//asmdef_sample
 			{
-				string t_name = "Samples." + Object_Setting.s_projectparam.namespace_package;
-				string t_path = "Samples/" + Object_Setting.s_projectparam.namespace_author + "." + Object_Setting.s_projectparam.namespace_package + "/Samples." + Object_Setting.s_projectparam.namespace_package + ".asmdef";
+				string t_name = Object_Setting.s_projectparam.namespace_author + "." + Object_Setting.s_projectparam.namespace_package + ".Samples";
+				string t_path = "Samples/" + Object_Setting.s_projectparam.namespace_author + "." + Object_Setting.s_projectparam.namespace_package + "/" + t_name + ".asmdef";
 				Inner_CreateAsmdef(t_guid_list,in Object_Setting.s_projectparam.asmdef_sample,t_path,t_name);
 			}
 

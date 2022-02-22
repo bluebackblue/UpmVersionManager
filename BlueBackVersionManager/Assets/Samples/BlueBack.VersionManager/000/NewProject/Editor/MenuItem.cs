@@ -1,17 +1,17 @@
 
 
-/** Samples.VersionManager.NewProject
+/** BlueBack.VersionManager.Samples.NewProject
 */
-namespace Samples.VersionManager.NewProject
+namespace BlueBack.VersionManager.Samples.NewProject
 {
 	/** MenuItem
 	*/
 	#if(UNITY_EDITOR)
 	public static class MenuItem
 	{
-		/** MenuItem_NewProject
+		/** MenuItem_CreateVersionManagerSetting
 		*/
-		[UnityEditor.MenuItem("サンプル/BlueBack.VersionManager/NewProject/CreateVersionManagerSetting")]
+		[UnityEditor.MenuItem("Sample/BlueBack.VersionManager/NewProject/CreateVersionManagerSetting")]
 		private static void MenuItem_CreateVersionManagerSetting()
 		{
 			string[] t_text_list = new string[]{

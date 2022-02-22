@@ -20,7 +20,7 @@ namespace BlueBack.VersionManager.Editor
 		*/
 		public static void Initialize(UnityEngine.UIElements.Button a_button)
 		{
-			a_button.text = "[CreateUssUxml]";
+			a_button.text = "[CreateUssUxml]" + BlueBack.VersionManager.Version.packageversion;
 			a_button.clickable.clicked += () => {
 				#if(DEF_BLUEBACK_VERSIONMANAGER_LOG)
 				DebugTool.Log("CreateUssUxml");
