@@ -122,8 +122,12 @@ namespace BlueBack.VersionManager.Editor
 			{
 				System.Collections.Generic.HashSet<string> t_url_list = new System.Collections.Generic.HashSet<string>();
 				for(int ii=0;ii<s_projectparam.asmdef_runtime.reference_list.Length;ii++){
-					if(s_projectparam.asmdef_runtime.reference_list[ii].use != null){
-						t_url_list.Add("* " + s_projectparam.asmdef_runtime.reference_list[ii].url);
+					switch(s_projectparam.asmdef_runtime.reference_list[ii].mode){
+					case "package":
+					case "url":
+						{
+							t_url_list.Add("* " + s_projectparam.asmdef_runtime.reference_list[ii].url);
+						}break;
 					}
 				}
 				t_list.AddRange(t_url_list);
@@ -135,8 +139,12 @@ namespace BlueBack.VersionManager.Editor
 			{
 				System.Collections.Generic.HashSet<string> t_url_list = new System.Collections.Generic.HashSet<string>();
 				for(int ii=0;ii<s_projectparam.asmdef_editor.reference_list.Length;ii++){
-					if(s_projectparam.asmdef_editor.reference_list[ii].use != null){
-						t_url_list.Add("* " + s_projectparam.asmdef_editor.reference_list[ii].url);
+					switch(s_projectparam.asmdef_editor.reference_list[ii].mode){
+					case "package":
+					case "url":
+						{
+							t_url_list.Add("* " + s_projectparam.asmdef_editor.reference_list[ii].url);
+						}break;
 					}
 				}
 				t_list.AddRange(t_url_list);
@@ -148,8 +156,12 @@ namespace BlueBack.VersionManager.Editor
 			{
 				System.Collections.Generic.HashSet<string> t_url_list = new System.Collections.Generic.HashSet<string>();
 				for(int ii=0;ii<s_projectparam.asmdef_sample.reference_list.Length;ii++){
-					if(s_projectparam.asmdef_sample.reference_list[ii].use != null){
-						t_url_list.Add("* " + s_projectparam.asmdef_sample.reference_list[ii].url);
+					switch(s_projectparam.asmdef_sample.reference_list[ii].mode){
+					case "package":
+					case "url":
+						{
+							t_url_list.Add("* " + s_projectparam.asmdef_sample.reference_list[ii].url);
+						}break;
 					}
 				}
 				t_list.AddRange(t_url_list);

@@ -24,13 +24,13 @@ namespace BlueBack.VersionManager.Editor
 			*/
 			public struct Reference
 			{
-				public string use;
+				public string mode;
 				public string package_fullname;
 				public string url;
 			};
 			public struct Define
 			{
-				public string use;
+				public string mode;
 				public string package_pathname;
 				public string define;
 				public string expression;

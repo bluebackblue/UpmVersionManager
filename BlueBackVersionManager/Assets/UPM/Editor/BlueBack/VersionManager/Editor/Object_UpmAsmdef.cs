@@ -71,43 +71,52 @@ namespace BlueBack.VersionManager.Editor
 							
 					//asmdef_runtime
 					foreach(ProjectParam.Asmdef.Reference t_asmdef_reference_item in Object_Setting.s_projectparam.asmdef_runtime.reference_list){
-						if(t_asmdef_reference_item.use != null){
-							if(t_asmdef_reference_item.package_fullname ==  t_jsonitem.GetItem("name").GetStringData()){
-								if(t_guid_list.ContainsKey(t_asmdef_reference_item.package_fullname) == false){
-									string t_guid = BlueBack.AssetLib.Editor.LoadGuidWithFullPath.Load(t_filename + ".meta");
-									if(t_guid != null){
-										t_guid_list.Add(t_asmdef_reference_item.package_fullname,t_guid);
+						switch(t_asmdef_reference_item.mode){
+						case "package":
+							{
+								if(t_asmdef_reference_item.package_fullname ==  t_jsonitem.GetItem("name").GetStringData()){
+									if(t_guid_list.ContainsKey(t_asmdef_reference_item.package_fullname) == false){
+										string t_guid = BlueBack.AssetLib.Editor.LoadGuidWithFullPath.Load(t_filename + ".meta");
+										if(t_guid != null){
+											t_guid_list.Add(t_asmdef_reference_item.package_fullname,t_guid);
+										}
 									}
 								}
-							}
+							}break;
 						}
 					}
 
 					//asmdef_editor
 					foreach(ProjectParam.Asmdef.Reference t_asmdef_reference_item in Object_Setting.s_projectparam.asmdef_editor.reference_list){
-						if(t_asmdef_reference_item.use != null){
-							if(t_asmdef_reference_item.package_fullname ==  t_jsonitem.GetItem("name").GetStringData()){
-								if(t_guid_list.ContainsKey(t_asmdef_reference_item.package_fullname) == false){
-									string t_guid = BlueBack.AssetLib.Editor.LoadGuidWithFullPath.Load(t_filename + ".meta");
-									if(t_guid != null){
-										t_guid_list.Add(t_asmdef_reference_item.package_fullname,t_guid);
+						switch(t_asmdef_reference_item.mode){
+						case "package":
+							{
+								if(t_asmdef_reference_item.package_fullname ==  t_jsonitem.GetItem("name").GetStringData()){
+									if(t_guid_list.ContainsKey(t_asmdef_reference_item.package_fullname) == false){
+										string t_guid = BlueBack.AssetLib.Editor.LoadGuidWithFullPath.Load(t_filename + ".meta");
+										if(t_guid != null){
+											t_guid_list.Add(t_asmdef_reference_item.package_fullname,t_guid);
+										}
 									}
 								}
-							}
+							}break;
 						}
 					}
 
 					//asmdef_sample
 					foreach(ProjectParam.Asmdef.Reference t_asmdef_reference_item in Object_Setting.s_projectparam.asmdef_sample.reference_list){
-						if(t_asmdef_reference_item.use != null){
-							if(t_asmdef_reference_item.package_fullname ==  t_jsonitem.GetItem("name").GetStringData()){
-								if(t_guid_list.ContainsKey(t_asmdef_reference_item.package_fullname) == false){
-									string t_guid = BlueBack.AssetLib.Editor.LoadGuidWithFullPath.Load(t_filename + ".meta");
-									if(t_guid != null){
-										t_guid_list.Add(t_asmdef_reference_item.package_fullname,t_guid);
+						switch(t_asmdef_reference_item.mode){
+						case "package":
+							{
+								if(t_asmdef_reference_item.package_fullname ==  t_jsonitem.GetItem("name").GetStringData()){
+									if(t_guid_list.ContainsKey(t_asmdef_reference_item.package_fullname) == false){
+										string t_guid = BlueBack.AssetLib.Editor.LoadGuidWithFullPath.Load(t_filename + ".meta");
+										if(t_guid != null){
+											t_guid_list.Add(t_asmdef_reference_item.package_fullname,t_guid);
+										}
 									}
 								}
-							}
+							}break;
 						}
 					}
 				}
@@ -139,12 +148,15 @@ namespace BlueBack.VersionManager.Editor
 			{
 				System.Collections.Generic.List<AssetLib.Asmdef.VersionDefine> t_define_list = new System.Collections.Generic.List<AssetLib.Asmdef.VersionDefine>();
 				for(int ii=0;ii<a_asmdef_item.define_list.Length;ii++){
-					if(a_asmdef_item.define_list[ii].use != null){
-						t_define_list.Add(new AssetLib.Asmdef.VersionDefine(){
-							name = a_asmdef_item.define_list[ii].package_pathname,
-							define = a_asmdef_item.define_list[ii].define,
-							expression = a_asmdef_item.define_list[ii].expression,
-						});
+					switch(a_asmdef_item.define_list[ii].mode){
+					case "package":
+						{
+							t_define_list.Add(new AssetLib.Asmdef.VersionDefine(){
+								name = a_asmdef_item.define_list[ii].package_pathname,
+								define = a_asmdef_item.define_list[ii].define,
+								expression = a_asmdef_item.define_list[ii].expression,
+							});
+						}break;
 					}
 				}
 				t_asmdef.versionDefines = t_define_list.ToArray();
@@ -154,14 +166,17 @@ namespace BlueBack.VersionManager.Editor
 			{
 				System.Collections.Generic.List<string> t_reference_list = new System.Collections.Generic.List<string>();
 				for(int ii=0;ii<a_asmdef_item.reference_list.Length;ii++){
-					if(a_asmdef_item.reference_list[ii].use != null){
-						if(a_guid_list.TryGetValue(a_asmdef_item.reference_list[ii].package_fullname,out string t_guid) == true){
-							t_reference_list.Add("GUID:" + t_guid);
-						}else{
-							#if(DEF_BLUEBACK_VERSIONMANAGER_ASSERT)
-							DebugTool.EditorLogError(a_asmdef_item.reference_list[ii].package_fullname);
-							#endif
-						}
+					switch(a_asmdef_item.reference_list[ii].mode){
+					case "package":
+						{
+							if(a_guid_list.TryGetValue(a_asmdef_item.reference_list[ii].package_fullname,out string t_guid) == true){
+								t_reference_list.Add("GUID:" + t_guid);
+							}else{
+								#if(DEF_BLUEBACK_VERSIONMANAGER_ASSERT)
+								DebugTool.EditorLogError(a_asmdef_item.reference_list[ii].package_fullname);
+								#endif
+							}
+						}break;
 					}
 				}
 				t_asmdef.references = t_reference_list.ToArray();

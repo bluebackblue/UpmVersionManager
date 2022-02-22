@@ -33,27 +33,27 @@
         ],
         "reference_list":[
             {
-                "use":"use",
+                "mode":"package",
                 "package_fullname":"BlueBack.VersionManager",
                 "url":"https://github.com/bluebackblue/UpmVersionManager"
             },
             {
-                "use":"use",
+                "mode":"package",
                 "package_fullname":"BlueBack.AssetLib",
                 "url":"https://github.com/bluebackblue/UpmAssetLib"
             },
             {
-                "use":"use",
+                "mode":"package",
                 "package_fullname":"BlueBack.AssetLib.Editor",
                 "url":"https://github.com/bluebackblue/UpmAssetLib"
             },
             {
-                "use":"use",
+                "mode":"package",
                 "package_fullname":"BlueBack.JsonItem",
                 "url":"https://github.com/bluebackblue/UpmJsonItem"
             },
             {
-                "use":"use",
+                "mode":"package",
                 "package_fullname":"BlueBack.Code",
                 "url":"https://github.com/bluebackblue/UpmCode"
             }
@@ -64,17 +64,17 @@
         ],
         "reference_list":[
             {
-                "use":"use",
+                "mode":"package",
                 "package_fullname":"BlueBack.VersionManager.Editor",
                 "url":"https://github.com/bluebackblue/UpmVersionManager"
             },
             {
-                "use":"use",
+                "mode":"package",
                 "package_fullname":"BlueBack.AssetLib",
                 "url":"https://github.com/bluebackblue/UpmAssetLib"
             },
             {
-                "use":"use",
+                "mode":"package",
                 "package_fullname":"BlueBack.AssetLib.Editor",
                 "url":"https://github.com/bluebackblue/UpmAssetLib"
             }
