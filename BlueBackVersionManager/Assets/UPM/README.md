@@ -1,5 +1,5 @@
 # BlueBack.VersionManager
-バージョンマネージャ
+バージョンマネージャー
 * package.json出力
 
 ## ライセンス

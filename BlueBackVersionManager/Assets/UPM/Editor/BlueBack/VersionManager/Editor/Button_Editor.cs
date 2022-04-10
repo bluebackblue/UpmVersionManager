@@ -41,10 +41,12 @@ namespace BlueBack.VersionManager.Editor
 		{
 			UnityEditor.PlayerSettings.companyName = Object_Setting.s_projectparam.namespace_author;
 			UnityEditor.PlayerSettings.productName = Object_Setting.s_projectparam.namespace_author + Object_Setting.s_projectparam.namespace_package;
-			UnityEditor.PlayerSettings.bundleVersion = Object_RootServerJson.s_status.lasttag;
+			UnityEditor.PlayerSettings.bundleVersion = Object_Setting.GetPackageVersion();
 
 			UnityEditor.EditorSettings.enterPlayModeOptionsEnabled = true;
 			UnityEditor.EditorSettings.enterPlayModeOptions = (UnityEditor.EnterPlayModeOptions.DisableDomainReload | UnityEditor.EnterPlayModeOptions.DisableSceneReload);
+
+			BlueBack.AssetLib.Editor.RefreshAssetDatabase.ForceReserializeAssets();
 		}
 	}
 }
