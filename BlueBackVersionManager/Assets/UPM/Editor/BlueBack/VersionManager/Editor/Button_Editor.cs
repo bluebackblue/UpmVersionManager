@@ -47,6 +47,8 @@ namespace BlueBack.VersionManager.Editor
 			UnityEditor.EditorSettings.enterPlayModeOptions = (UnityEditor.EnterPlayModeOptions.DisableDomainReload | UnityEditor.EnterPlayModeOptions.DisableSceneReload);
 
 			UnityEditor.AssetDatabase.SaveAssets();
+
+			BlueBack.AssetLib.Editor.RefreshAssetDatabase.ForceReserializeAssets();
 		}
 	}
 }
