@@ -155,7 +155,7 @@ namespace BlueBack.VersionManager.Editor
 							{
 								string t_package_pathname = a_asmdef_item.reference_list[ii].define_package_pathname;
 								if(string.IsNullOrEmpty(t_package_pathname) == false){
-									string t_define = "ASMDEF_" + a_asmdef_item.reference_list[ii].package_fullname.Replace('.','_').ToUpper();
+									string t_define = "ASMDEF_" + t_package_pathname.Replace('.','_').ToUpper();
 
 									if(t_define_list.FindIndex((AssetLib.Asmdef.VersionDefine a_a_item)=>{
 										return (t_package_pathname == a_a_item.name)||(t_define == a_a_item.define);

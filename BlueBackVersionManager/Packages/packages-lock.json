@@ -5,21 +5,21 @@
       "depth": 0,
       "source": "git",
       "dependencies": {},
-      "hash": "525e567ed2a40cdcb0ab9474fa28e85ca1920d72"
+      "hash": "8b1e3d4a7566b828fde9462b77ae98fc16f1fa3c"
     },
     "blueback.code": {
       "version": "https://github.com/bluebackblue/UpmCode.git?path=BlueBackCode/Assets/UPM",
       "depth": 0,
       "source": "git",
       "dependencies": {},
-      "hash": "3d217e4d64b2f7e9c8788da62420e11ff4596e63"
+      "hash": "2ee438df8eb7a858b867588036e4c93b304a25cb"
     },
     "blueback.jsonitem": {
       "version": "https://github.com/bluebackblue/UpmJsonItem.git?path=BlueBackJsonItem/Assets/UPM",
       "depth": 0,
       "source": "git",
       "dependencies": {},
-      "hash": "5f9c90f7f604e330df574924873c058cbe8dc9de"
+      "hash": "797d3a9e090ad966587eced1d1c32843be862691"
     },
     "com.unity.ext.nunit": {
       "version": "1.0.6",
