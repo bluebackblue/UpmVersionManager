@@ -24,10 +24,35 @@ namespace BlueBack.VersionManager.Editor
 			*/
 			public struct Reference
 			{
+				/** mode
+
+					"package"	: 参照の追加。
+					"url"		: リンクのみ追加。
+
+				*/
 				public string mode;
+
+				/** package_fullname
+
+					例 : "BlueBack.VersionManager"
+
+				*/
 				public string package_fullname;
+
+				/** url
+
+					例 : "https://xxx"
+
+				*/
 				public string url;
+
+				/** define_package_pathname
+				*/
+				public string define_package_pathname;
 			};
+
+			/** Define
+			*/
 			public struct Define
 			{
 				public string mode;
@@ -35,7 +60,13 @@ namespace BlueBack.VersionManager.Editor
 				public string define;
 				public string expression;
 			};
+			
+			/** reference_list
+			*/
 			public Reference[] reference_list;
+
+			/** define_list
+			*/
 			public Define[] define_list;
 		};
 

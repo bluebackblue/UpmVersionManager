@@ -144,25 +144,49 @@ namespace BlueBack.VersionManager.Editor
 				noEngineReferences =  false,
 			};
 
-			//versionDefines
+			//define_list
 			{
 				System.Collections.Generic.List<AssetLib.Asmdef.VersionDefine> t_define_list = new System.Collections.Generic.List<AssetLib.Asmdef.VersionDefine>();
-				for(int ii=0;ii<a_asmdef_item.define_list.Length;ii++){
-					switch(a_asmdef_item.define_list[ii].mode){
-					case "package":
-						{
-							t_define_list.Add(new AssetLib.Asmdef.VersionDefine(){
-								name = a_asmdef_item.define_list[ii].package_pathname,
-								define = a_asmdef_item.define_list[ii].define,
-								expression = a_asmdef_item.define_list[ii].expression,
-							});
-						}break;
+
+				{
+					for(int ii=0;ii<a_asmdef_item.reference_list.Length;ii++){
+						switch(a_asmdef_item.reference_list[ii].mode){
+						case "package":
+							{
+								string t_package_pathname = a_asmdef_item.reference_list[ii].define_package_pathname;
+								if(string.IsNullOrEmpty(t_package_pathname) == false){
+									string t_define = "ASMDEF_" + a_asmdef_item.reference_list[ii].package_fullname.Replace('.','_').ToUpper();
+									t_define_list.Add(new AssetLib.Asmdef.VersionDefine(){
+										name = t_package_pathname,
+										define = t_define,
+										expression = null,
+
+									});
+								}
+							}break;
+						}
 					}
 				}
+
+				{
+					for(int ii=0;ii<a_asmdef_item.define_list.Length;ii++){
+						switch(a_asmdef_item.define_list[ii].mode){
+						case "package":
+							{
+								t_define_list.Add(new AssetLib.Asmdef.VersionDefine(){
+									name = a_asmdef_item.define_list[ii].package_pathname,
+									define = a_asmdef_item.define_list[ii].define,
+									expression = a_asmdef_item.define_list[ii].expression,
+								});
+							}break;
+						}
+					}
+				}
+
 				t_asmdef.versionDefines = t_define_list.ToArray();
 			}
 
-			//references
+			//reference_list
 			{
 				System.Collections.Generic.List<string> t_reference_list = new System.Collections.Generic.List<string>();
 				for(int ii=0;ii<a_asmdef_item.reference_list.Length;ii++){
