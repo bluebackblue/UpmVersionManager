@@ -156,12 +156,16 @@ namespace BlueBack.VersionManager.Editor
 								string t_package_pathname = a_asmdef_item.reference_list[ii].define_package_pathname;
 								if(string.IsNullOrEmpty(t_package_pathname) == false){
 									string t_define = "ASMDEF_" + a_asmdef_item.reference_list[ii].package_fullname.Replace('.','_').ToUpper();
-									t_define_list.Add(new AssetLib.Asmdef.VersionDefine(){
-										name = t_package_pathname,
-										define = t_define,
-										expression = null,
 
-									});
+									if(t_define_list.FindIndex((AssetLib.Asmdef.VersionDefine a_a_item)=>{
+										return (t_package_pathname == a_a_item.name)||(t_define == a_a_item.define);
+									}) < 0){
+										t_define_list.Add(new AssetLib.Asmdef.VersionDefine(){
+											name = t_package_pathname,
+											define = t_define,
+											expression = null,
+										});
+									}
 								}
 							}break;
 						}
