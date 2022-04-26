@@ -9,7 +9,7 @@
 
 /** BlueBack.VersionManager.Editor
 */
-#if(UNITY_EDITOR)
+#if((UNITY_EDITOR)&&(ASMDEF_BLUEBACK_ASSETLIB)&&(ASMDEF_BLUEBACK_JSONITEM))
 namespace BlueBack.VersionManager.Editor
 {
 	/** Button_Dummy

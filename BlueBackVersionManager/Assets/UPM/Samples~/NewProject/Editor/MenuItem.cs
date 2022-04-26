@@ -6,7 +6,7 @@ namespace BlueBack.VersionManager.Samples.NewProject
 {
 	/** MenuItem
 	*/
-	#if(UNITY_EDITOR)
+	#if((UNITY_EDITOR)&&(ASMDEF_BLUEBACK_ASSETLIB))
 	public static class MenuItem
 	{
 		/** MenuItem_CreateVersionManagerSetting

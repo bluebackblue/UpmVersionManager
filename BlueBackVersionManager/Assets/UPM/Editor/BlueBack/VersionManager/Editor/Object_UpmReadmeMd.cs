@@ -9,7 +9,7 @@
 
 /** BlueBack.VersionManager.Editor
 */
-#if(UNITY_EDITOR)
+#if((UNITY_EDITOR)&&(ASMDEF_BLUEBACK_ASSETLIB))
 namespace BlueBack.VersionManager.Editor
 {
 	/** Object_UpmReadmeMd
