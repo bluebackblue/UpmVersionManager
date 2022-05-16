@@ -7,6 +7,13 @@
 */
 
 
+/** define
+*/
+#if((ASMDEF_BLUEBACK_ASSETLIB||USERDEF_BLUEBACK_ASSETLIB)&&(ASMDEF_BLUEBACK_JSONITEM||USERDEF_BLUEBACK_JSONITEM))
+#define ASMDEF_TRUE
+#endif
+
+
 /** BlueBack.VersionManager.Editor
 */
 #if(UNITY_EDITOR)
@@ -156,36 +163,35 @@ namespace BlueBack.VersionManager.Editor
 		/** Load
 		*/
 		public static ProjectParam Load()
+		#if(ASMDEF_TRUE)
 		{
-			#if((ASMDEF_BLUEBACK_ASSETLIB)&&(ASMDEF_BLUEBACK_JSONITEM))
+			//path
+			string t_path = "Editor/ProejctParam.json.txt";
+
+			//LoadTextWithAssetsPath
 			{
-				//path
-				string t_path = "Editor/ProejctParam.json.txt";
-
-				//LoadTextWithAssetsPath
-				{
-					BlueBack.AssetLib.MultiResult<bool,string> t_result = BlueBack.AssetLib.Editor.LoadTextWithAssetsPath.TryLoad(t_path);
-					if(t_result.result == true){
-						return BlueBack.JsonItem.Convert.JsonStringToObject<BlueBack.VersionManager.Editor.ProjectParam>(BlueBack.JsonItem.Normalize.Convert(t_result.value));
-					}
-				}
-
-				//SaveTextWithAssetsPath
-				{
-					ProjectParam t_projectparam = new ProjectParam();
-					string t_jsonstring = BlueBack.JsonItem.Convert.ObjectToJsonString<ProjectParam>(t_projectparam);
-					t_jsonstring = BlueBack.JsonItem.Pretty.Convert(t_jsonstring,"    ");
-					BlueBack.AssetLib.Editor.SaveTextWithAssetsPath.SaveNoBomUtf8(t_jsonstring,t_path,BlueBack.AssetLib.LineFeedOption.CRLF);
-					BlueBack.AssetLib.Editor.RefreshAssetDatabase.Refresh();
-					return t_projectparam;
+				BlueBack.AssetLib.MultiResult<bool,string> t_result = BlueBack.AssetLib.Editor.LoadTextWithAssetsPath.TryLoad(t_path);
+				if(t_result.result == true){
+					return BlueBack.JsonItem.Convert.JsonStringToObject<BlueBack.VersionManager.Editor.ProjectParam>(BlueBack.JsonItem.Normalize.Convert(t_result.value));
 				}
 			}
-			#else
+
+			//SaveTextWithAssetsPath
 			{
-				return null;
+				ProjectParam t_projectparam = new ProjectParam();
+				string t_jsonstring = BlueBack.JsonItem.Convert.ObjectToJsonString<ProjectParam>(t_projectparam);
+				t_jsonstring = BlueBack.JsonItem.Pretty.Convert(t_jsonstring,"    ");
+				BlueBack.AssetLib.Editor.SaveTextWithAssetsPath.SaveNoBomUtf8(t_jsonstring,t_path,BlueBack.AssetLib.LineFeedOption.CRLF);
+				BlueBack.AssetLib.Editor.RefreshAssetDatabase.Refresh();
+				return t_projectparam;
 			}
-			#endif
 		}
+		#else
+		{
+			#warning "ASMDEF_TRUE"
+			return null;
+		}
+		#endif
 	}
 }
 #endif

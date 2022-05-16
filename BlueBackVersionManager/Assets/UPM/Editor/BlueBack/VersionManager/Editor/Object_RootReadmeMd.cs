@@ -7,9 +7,16 @@
 */
 
 
+/** define
+*/
+#if((ASMDEF_BLUEBACK_ASSETLIB||USERDEF_BLUEBACK_ASSETLIB))
+#define ASMDEF_TRUE
+#endif
+
+
 /** BlueBack.VersionManager.Editor
 */
-#if((UNITY_EDITOR)&&(ASMDEF_BLUEBACK_ASSETLIB))
+#if(UNITY_EDITOR)
 namespace BlueBack.VersionManager.Editor
 {
 	/** Object_RootReadmeMd
@@ -23,6 +30,7 @@ namespace BlueBack.VersionManager.Editor
 		/** Load
 		*/
 		public static void Load()
+		#if(ASMDEF_TRUE)
 		{
 			//path
 			string t_path = Object_Setting.s_projectparam.root_readmemd_path;
@@ -43,10 +51,16 @@ namespace BlueBack.VersionManager.Editor
 			s_version = "0.0.-1";
 			return;
 		}
+		#else
+		{
+			#warning "ASMDEF_TRUE"
+		}
+		#endif
 
 		/** Save
 		*/
 		public static void Save(string a_version)
+		#if(ASMDEF_TRUE)
 		{
 			//path
 			string t_path = Object_Setting.s_projectparam.root_readmemd_path;
@@ -69,6 +83,11 @@ namespace BlueBack.VersionManager.Editor
 				BlueBack.AssetLib.Editor.RefreshAssetDatabase.Refresh();
 			}
 		}
+		#else
+		{
+			#warning "ASMDEF_TRUE"
+		}
+		#endif
 	}
 }
 #endif

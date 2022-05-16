@@ -7,9 +7,16 @@
 */
 
 
+/** define
+*/
+#if((ASMDEF_BLUEBACK_ASSETLIB||USERDEF_BLUEBACK_ASSETLIB))
+#define ASMDEF_TRUE
+#endif
+
+
 /** BlueBack.VersionManager.Editor
 */
-#if((UNITY_EDITOR)&&(ASMDEF_BLUEBACK_ASSETLIB)&&(ASMDEF_BLUEBACK_JSONITEM))
+#if(UNITY_EDITOR)
 namespace BlueBack.VersionManager.Editor
 {
 	/** Button_Editor
@@ -38,6 +45,7 @@ namespace BlueBack.VersionManager.Editor
 		/** On
 		*/
 		private static void On()
+		#if(ASMDEF_TRUE)
 		{
 			UnityEditor.PlayerSettings.companyName = Object_Setting.s_projectparam.namespace_author;
 			UnityEditor.PlayerSettings.productName = Object_Setting.s_projectparam.namespace_author + Object_Setting.s_projectparam.namespace_package;
@@ -50,6 +58,11 @@ namespace BlueBack.VersionManager.Editor
 
 			BlueBack.AssetLib.Editor.RefreshAssetDatabase.ForceReserializeAssets();
 		}
+		#else
+		{
+			#warning "ASMDEF_TRUE"
+		}
+		#endif
 	}
 }
 #endif

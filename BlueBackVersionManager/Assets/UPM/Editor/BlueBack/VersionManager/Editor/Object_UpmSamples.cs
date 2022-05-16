@@ -7,9 +7,16 @@
 */
 
 
+/** define
+*/
+#if((ASMDEF_BLUEBACK_ASSETLIB||USERDEF_BLUEBACK_ASSETLIB))
+#define ASMDEF_TRUE
+#endif
+
+
 /** BlueBack.VersionManager.Editor
 */
-#if((UNITY_EDITOR)&&(ASMDEF_BLUEBACK_ASSETLIB))
+#if(UNITY_EDITOR)
 namespace BlueBack.VersionManager.Editor
 {
 	/** Object_UpmSamples
@@ -19,6 +26,7 @@ namespace BlueBack.VersionManager.Editor
 		/** Copy
 		*/
 		public static void Copy()
+		#if(ASMDEF_TRUE)
 		{
 			//path
 			string t_from_path = Object_Setting.Reprece("Samples\\<<NameSpace_Author>>.<<NameSpace_Package>>\\000");
@@ -54,6 +62,11 @@ namespace BlueBack.VersionManager.Editor
 				BlueBack.AssetLib.Editor.RefreshAssetDatabase.Refresh();
 			}
 		}
+		#else
+		{
+			#warning "ASMDEF_TRUE"
+		}
+		#endif
 	}
 }
 #endif

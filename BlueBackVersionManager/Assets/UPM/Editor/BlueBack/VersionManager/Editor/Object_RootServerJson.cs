@@ -7,9 +7,15 @@
 */
 
 
+/** define
+*/
+#if((ASMDEF_BLUEBACK_ASSETLIB||USERDEF_BLUEBACK_ASSETLIB)&&((ASMDEF_BLUEBACK_JSONITEM||USERDEF_BLUEBACK_JSONITEM)))
+#define ASMDEF_TRUE
+#endif
+
 /** BlueBack.VersionManager.Editor
 */
-#if((UNITY_EDITOR)&&(ASMDEF_BLUEBACK_ASSETLIB)&&(ASMDEF_BLUEBACK_JSONITEM))
+#if(UNITY_EDITOR)
 namespace BlueBack.VersionManager.Editor
 {
 	/** Object_RootServerJson
@@ -36,6 +42,7 @@ namespace BlueBack.VersionManager.Editor
 		/** Load
 		*/
 		public static void Load()
+		#if(ASMDEF_TRUE)
 		{
 			//path
 			string t_path = "server.json";
@@ -52,10 +59,16 @@ namespace BlueBack.VersionManager.Editor
 				time = "---",
 			};
 		}
+		#else
+		{
+			#warning "ASMDEF_TRUE"
+		}
+		#endif
 
 		/** DownloadAndSave
 		*/
 		public static void DownloadAndSave()
+		#if(ASMDEF_TRUE)
 		{
 			//url
 			string t_url = Object_Setting.s_projectparam.git_api + "/releases/latest";
@@ -77,6 +90,11 @@ namespace BlueBack.VersionManager.Editor
 				}
 			}
 		}
+		#else
+		{
+			#warning "ASMDEF_TRUE"
+		}
+		#endif
 	}
 }
 #endif

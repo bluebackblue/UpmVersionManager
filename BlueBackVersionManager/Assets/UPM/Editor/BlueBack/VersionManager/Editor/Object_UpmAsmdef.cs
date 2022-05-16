@@ -7,9 +7,16 @@
 */
 
 
+/** define
+*/
+#if((ASMDEF_BLUEBACK_ASSETLIB||USERDEF_BLUEBACK_ASSETLIB)&&(ASMDEF_BLUEBACK_JSONITEM||USERDEF_BLUEBACK_JSONITEM))
+#define ASMDEF_TRUE
+#endif
+
+
 /** BlueBack.VersionManager.Editor
 */
-#if((UNITY_EDITOR)&&(ASMDEF_BLUEBACK_ASSETLIB)&&(ASMDEF_BLUEBACK_JSONITEM))
+#if(UNITY_EDITOR)
 namespace BlueBack.VersionManager.Editor
 {
 	/** Object_UpmAsmdef
@@ -19,6 +26,7 @@ namespace BlueBack.VersionManager.Editor
 		/** Save
 		*/
 		public static void Save()
+		#if(ASMDEF_TRUE)
 		{
 			//guid_list
 			System.Collections.Generic.Dictionary<string,string> t_guid_list = Inner_CreateGuidList();
@@ -47,9 +55,15 @@ namespace BlueBack.VersionManager.Editor
 			//Refresh
 			BlueBack.AssetLib.Editor.RefreshAssetDatabase.Refresh();
 		}
+		#else
+		{
+			#warning "ASMDEF_TRUE"
+		}
+		#endif
 
 		/** Inner_CreateGuidList
 		*/
+		#if(ASMDEF_TRUE)
 		private static System.Collections.Generic.Dictionary<string,string> Inner_CreateGuidList()
 		{
 			//ＧＵＩＤを列挙。
@@ -124,9 +138,11 @@ namespace BlueBack.VersionManager.Editor
 
 			return t_guid_list;
 		}
+		#endif
 
 		/** Inner_CreateAsmdef
 		*/
+		#if(ASMDEF_TRUE)
 		private static void Inner_CreateAsmdef(System.Collections.Generic.Dictionary<string,string> a_guid_list,in ProjectParam.Asmdef a_asmdef_item,string a_path,string a_name)
 		{
 			AssetLib.Asmdef t_asmdef = new AssetLib.Asmdef(){
@@ -219,6 +235,7 @@ namespace BlueBack.VersionManager.Editor
 				a_guid_list.Add(a_name,BlueBack.AssetLib.Editor.LoadGuidWithAssetsPath.Load(a_path + ".meta"));
 			}
 		}
+		#endif
 	}
 }
 #endif

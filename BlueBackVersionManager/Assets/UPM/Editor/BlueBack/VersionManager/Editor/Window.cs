@@ -7,9 +7,16 @@
 */
 
 
+/** define
+*/
+#if((ASMDEF_BLUEBACK_ASSETLIB||USERDEF_BLUEBACK_ASSETLIB))
+#define ASMDEF_TRUE
+#endif
+
+
 /** BlueBack.VersionManager.Editor
 */
-#if((UNITY_EDITOR)&&(ASMDEF_BLUEBACK_ASSETLIB)&&(ASMDEF_BLUEBACK_JSONITEM)&&(ASMDEF_BLUEBACK_CODE))
+#if(UNITY_EDITOR)
 namespace BlueBack.VersionManager.Editor
 {
 	/** Window
@@ -67,6 +74,7 @@ namespace BlueBack.VersionManager.Editor
 		/** OnEnable
 		*/
 		public void OnEnable()
+		#if(ASMDEF_TRUE)
 		{
 			#if(DEF_BLUEBACK_VERSIONMANAGER_LOG)
 			DebugTool.Log("Window.OnEnable");
@@ -188,6 +196,11 @@ namespace BlueBack.VersionManager.Editor
 				}
 			}
 		}
+		#else
+		{
+			#warning "ASMDEF_TRUE"
+		}
+		#endif
 	}
 }
 #endif

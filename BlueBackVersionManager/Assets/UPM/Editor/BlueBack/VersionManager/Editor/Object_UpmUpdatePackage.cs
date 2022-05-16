@@ -7,9 +7,16 @@
 */
 
 
+/** define
+*/
+#if((ASMDEF_BLUEBACK_ASSETLIB||USERDEF_BLUEBACK_ASSETLIB)&&(ASMDEF_BLUEBACK_CODE||USERDEF_BLUEBACK_CODE))
+#define ASMDEF_TRUE
+#endif
+
+
 /** BlueBack.VersionManager.Editor
 */
-#if((UNITY_EDITOR)&&(ASMDEF_BLUEBACK_ASSETLIB)&&(ASMDEF_BLUEBACK_CODE))
+#if(UNITY_EDITOR)
 namespace BlueBack.VersionManager.Editor
 {
 	/** Object_UpmUpdatePackage
@@ -19,6 +26,7 @@ namespace BlueBack.VersionManager.Editor
 		/** Save
 		*/
 		public static void Save()
+		#if(ASMDEF_TRUE)
 		{
 			//path
 			string t_path = Object_Setting.Reprece("UPM/Editor/<<NameSpace_Author>>/<<NameSpace_Package>>/Editor/UpdatePackage.cs");
@@ -50,7 +58,7 @@ namespace BlueBack.VersionManager.Editor
 				"",
 				"		/** MenuItem_UpdatePackage_Develop",
 				"		*/",
-				"		#if(!DEF_USER_<<NAMESPACE_AUTHOR>>_<<NAMESPACE_PACKAGE>>)",
+				"		#if(!USERDEF_<<NAMESPACE_AUTHOR>>_<<NAMESPACE_PACKAGE>>)",
 				"		[UnityEditor.MenuItem(\"<<NameSpace_Author>>/<<NameSpace_Package>>/UpdatePackage/Develop\")]",
 				"		#endif",
 				"		public static void MenuItem_UpdatePackage_Develop()",
@@ -68,7 +76,7 @@ namespace BlueBack.VersionManager.Editor
 				"",
 				"		/** MenuItem_UpdatePackage_Last",
 				"		*/",
-				"		#if(!DEF_USER_<<NAMESPACE_AUTHOR>>_<<NAMESPACE_PACKAGE>>)",
+				"		#if(!USERDEF_<<NAMESPACE_AUTHOR>>_<<NAMESPACE_PACKAGE>>)",
 				"		[UnityEditor.MenuItem(\"<<NameSpace_Author>>/<<NameSpace_Package>>/UpdatePackage/Last \" + Version.packageversion)]",
 				"		#endif",
 				"		public static void MenuItem_UpdatePackage_Last()",
@@ -169,6 +177,11 @@ namespace BlueBack.VersionManager.Editor
 			BlueBack.AssetLib.Editor.SaveTextWithAssetsPath.SaveNoBomUtf8(t_stringbuilder.ToString(),t_path,BlueBack.AssetLib.LineFeedOption.CRLF);
 			BlueBack.AssetLib.Editor.RefreshAssetDatabase.Refresh();
 		}
+		#else
+		{
+			#warning "ASMDEF_TRUE"
+		}
+		#endif
 	}
 }
 #endif

@@ -2,11 +2,11 @@
 
 /** BlueBack.VersionManager.Samples.NewProject
 */
+#if((UNITY_EDITOR)&&(!DEF_BLUEBACK_VERSIONMANAGER_SAMPLES_DISABLE))
 namespace BlueBack.VersionManager.Samples.NewProject
 {
 	/** MenuItem
 	*/
-	#if((UNITY_EDITOR)&&(ASMDEF_BLUEBACK_ASSETLIB))
 	public static class MenuItem
 	{
 		/** MenuItem_CreateVersionManagerSetting
@@ -151,6 +151,6 @@ namespace BlueBack.VersionManager.Samples.NewProject
 			}
 		}
 	}
-	#endif
 }
+#endif
 

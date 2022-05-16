@@ -7,9 +7,16 @@
 */
 
 
+/** define
+*/
+#if((ASMDEF_BLUEBACK_ASSETLIB||USERDEF_BLUEBACK_ASSETLIB)&&(ASMDEF_BLUEBACK_JSONITEM||USERDEF_BLUEBACK_JSONITEM))
+#define ASMDEF_TRUE
+#endif
+
+
 /** BlueBack.VersionManager.Editor
 */
-#if((UNITY_EDITOR)&&(ASMDEF_BLUEBACK_ASSETLIB)&&(ASMDEF_BLUEBACK_JSONITEM))
+#if(UNITY_EDITOR)
 namespace BlueBack.VersionManager.Editor
 {
 	/** Object_UpmPackageJson
@@ -19,6 +26,7 @@ namespace BlueBack.VersionManager.Editor
 		/** Save
 		*/
 		public static void Save(string a_version)
+		#if(ASMDEF_TRUE)
 		{
 			//path
 			string t_path = "UPM/package.json";
@@ -78,6 +86,11 @@ namespace BlueBack.VersionManager.Editor
 			DebugTool.Log("save : " + t_path);
 			#endif
 		}
+		#else
+		{
+			#warning "ASMDEF_TRUE"
+		}
+		#endif
 	}
 }
 #endif
