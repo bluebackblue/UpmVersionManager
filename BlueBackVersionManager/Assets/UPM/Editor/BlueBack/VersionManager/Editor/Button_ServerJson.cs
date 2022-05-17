@@ -20,9 +20,10 @@ namespace BlueBack.VersionManager.Editor
 		*/
 		public static void Initialize(UnityEngine.UIElements.Button a_button)
 		{
-			a_button.text = "[ServerJson]";
+			if(Object_RootServerJson.s_status != null){
+				a_button.text = Object_RootServerJson.s_status.lasttag;
+			}
 
-			a_button.text = Object_RootServerJson.s_status.lasttag;
 			a_button.AddToClassList("red");
 
 			a_button.clickable.clicked += () => {

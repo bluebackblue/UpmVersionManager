@@ -132,7 +132,9 @@ namespace BlueBack.VersionManager.Editor
 					{
 						UnityEngine.UIElements.Label t_label = UnityEngine.UIElements.UQueryExtensions.Q<UnityEngine.UIElements.Label>(t_root,"label_a_value");
 						if(t_label != null){
-							t_label.text = Object_RootServerJson.s_status.time;
+							if(Object_RootServerJson.s_status != null){
+								t_label.text = Object_RootServerJson.s_status.time;
+							}
 						}
 					}
 

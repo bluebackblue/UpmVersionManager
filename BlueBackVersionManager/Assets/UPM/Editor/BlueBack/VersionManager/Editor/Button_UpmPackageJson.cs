@@ -20,29 +20,28 @@ namespace BlueBack.VersionManager.Editor
 		*/
 		public static void Initialize(UnityEngine.UIElements.Button a_button,int a_index)
 		{
-			string[] t_version_split = Object_RootServerJson.s_status.lasttag.Split('.');
-			int t_version_split_item2 = int.Parse(t_version_split[2]);
-
-			string t_version;
-
-			switch(a_index){
-			case 0:
-				{
-					t_version = string.Format("{0}.{1}.{2}",t_version_split[0],t_version_split[1],t_version_split_item2 - 1);
-				}break;
-			case 1:
-				{
-					t_version = string.Format("{0}.{1}.{2}",t_version_split[0],t_version_split[1],t_version_split_item2);
-				}break;
-			case 2:
-				{
-					t_version = string.Format("{0}.{1}.{2}",t_version_split[0],t_version_split[1],t_version_split_item2 + 1);
-				}break;
-			default:
-				{
-					t_version = "";
-					UnityEngine.Debug.Assert(false);
-				}break;
+			string t_version = "";
+			if(Object_RootServerJson.s_status != null){
+				string[] t_version_split = Object_RootServerJson.s_status.lasttag.Split('.');
+				int t_version_split_item2 = int.Parse(t_version_split[2]);
+				switch(a_index){
+				case 0:
+					{
+						t_version = string.Format("{0}.{1}.{2}",t_version_split[0],t_version_split[1],t_version_split_item2 - 1);
+					}break;
+				case 1:
+					{
+						t_version = string.Format("{0}.{1}.{2}",t_version_split[0],t_version_split[1],t_version_split_item2);
+					}break;
+				case 2:
+					{
+						t_version = string.Format("{0}.{1}.{2}",t_version_split[0],t_version_split[1],t_version_split_item2 + 1);
+					}break;
+				default:
+					{
+						UnityEngine.Debug.Assert(false);
+					}break;
+				}
 			}
 
 			a_button.text = t_version;
