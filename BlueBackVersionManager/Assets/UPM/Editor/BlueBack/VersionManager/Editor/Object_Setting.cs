@@ -91,13 +91,15 @@ namespace BlueBack.VersionManager.Editor
 		*/
 		public static string GetPackageVersion()
 		{
-			System.Type t_type = System.Type.GetType(s_projectparam.namespace_author + "."  + s_projectparam.namespace_package + ".Version," + s_projectparam.namespace_author + "."  + s_projectparam.namespace_package);
-			if(t_type != null){
-				System.Reflection.MethodInfo t_methodinfo = t_type.GetMethod("GetPackageVersion",System.Reflection.BindingFlags.Static|System.Reflection.BindingFlags.Public);
-				if(t_methodinfo != null){
-					System.Object t_object = t_methodinfo.Invoke(null,null);
-					if(t_object is string){
-						return (string)t_object;
+			if((s_projectparam.namespace_author != null)&&(s_projectparam.namespace_package != null)){
+				System.Type t_type = System.Type.GetType(s_projectparam.namespace_author + "."  + s_projectparam.namespace_package + ".Version," + s_projectparam.namespace_author + "."  + s_projectparam.namespace_package);
+				if(t_type != null){
+					System.Reflection.MethodInfo t_methodinfo = t_type.GetMethod("GetPackageVersion",System.Reflection.BindingFlags.Static|System.Reflection.BindingFlags.Public);
+					if(t_methodinfo != null){
+						System.Object t_object = t_methodinfo.Invoke(null,null);
+						if(t_object is string){
+							return (string)t_object;
+						}
 					}
 				}
 			}
