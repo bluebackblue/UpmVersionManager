@@ -33,7 +33,10 @@ namespace BlueBack.VersionManager.Editor
 		#if(ASMDEF_TRUE)
 		{
 			//path
-			string t_path = Object_Setting.s_projectparam.root_readmemd_path;
+			string t_path = "";
+			if(Object_Setting.s_projectparam != null){
+				t_path = Object_Setting.s_projectparam.root_readmemd_path;
+			}
 
 			//LoadTextWithAssetsPath
 			{
