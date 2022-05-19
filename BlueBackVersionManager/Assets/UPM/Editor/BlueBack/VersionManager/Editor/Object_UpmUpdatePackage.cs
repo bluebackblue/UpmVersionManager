@@ -172,7 +172,7 @@ namespace BlueBack.VersionManager.Editor
 
 			//SaveTextWithAssetsPath
 			System.Text.StringBuilder t_stringbuilder = new System.Text.StringBuilder();
-			BlueBack.Code.Convert.Replace(t_stringbuilder,t_replace_list,t_template);
+			BlueBack.Code.Convert.Add(t_stringbuilder,t_replace_list,t_template);
 			BlueBack.AssetLib.Editor.CreateDirectoryWithAssetsPath.Create(System.IO.Path.GetDirectoryName(t_path));
 			BlueBack.AssetLib.Editor.SaveTextWithAssetsPath.SaveNoBomUtf8(t_stringbuilder.ToString(),t_path,BlueBack.AssetLib.LineFeedOption.CRLF);
 			BlueBack.AssetLib.Editor.RefreshAssetDatabase.Refresh();
