@@ -21,8 +21,8 @@ namespace BlueBack.VersionManager.Editor
 		public static void Initialize(UnityEngine.UIElements.Button a_button,int a_index)
 		{
 			string t_version = "";
-			if(Object_RootServerJson.s_status != null){
-				string[] t_version_split = Object_RootServerJson.s_status.lasttag.Split('.');
+			if(Object_RootServerJson.status != null){
+				string[] t_version_split = Object_RootServerJson.status.lasttag.Split('.');
 				int t_version_split_item2 = int.Parse(t_version_split[2]);
 				switch(a_index){
 				case 0:
@@ -46,11 +46,11 @@ namespace BlueBack.VersionManager.Editor
 
 			a_button.text = t_version;
 
-			if(Object_RootReadmeMd.s_version == null){
+			if(Object_RootReadmeMd.version == null){
 				Object_RootReadmeMd.Load();
 			}
 
-			if(t_version == Object_RootReadmeMd.s_version){
+			if(t_version == Object_RootReadmeMd.version){
 				a_button.AddToClassList("red");
 			}
 
@@ -60,8 +60,8 @@ namespace BlueBack.VersionManager.Editor
 				DebugTool.Log("RootReadmeMd : " + t_version);
 				#endif
 
-				Object_Setting.s_projectparam = ProjectParam.Load();
-				if(Object_RootServerJson.s_status == null){
+				Object_Setting.projectparam = ProjectParam.Load();
+				if(Object_RootServerJson.status == null){
 					Object_RootServerJson.Load();
 				}
 
@@ -75,7 +75,7 @@ namespace BlueBack.VersionManager.Editor
 		{
 			Object_RootReadmeMd.Save(a_version);
 			Object_RootReadmeMd.Load();
-			Window.s_window.OnEnable();
+			Window.window.OnEnable();
 		}
 	}
 }

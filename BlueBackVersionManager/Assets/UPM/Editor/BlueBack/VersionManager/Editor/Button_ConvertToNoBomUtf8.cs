@@ -33,8 +33,8 @@ namespace BlueBack.VersionManager.Editor
 				DebugTool.Log("ConvertToUtf8");
 				#endif
 
-				Object_Setting.s_projectparam = ProjectParam.Load();
-				if(Object_RootServerJson.s_status == null){
+				Object_Setting.projectparam = ProjectParam.Load();
+				if(Object_RootServerJson.status == null){
 					Object_RootServerJson.Load();
 				}
 
@@ -48,7 +48,7 @@ namespace BlueBack.VersionManager.Editor
 		#if(ASMDEF_TRUE)
 		{
 			BlueBack.AssetLib.Editor.TextConvertWithAssetsPath.ConvertAll("",".*","^.*\\.(cs|meta|mesh|prefab|json|asmdef|mixer|anim)$",new System.Text.UTF8Encoding(false),BlueBack.AssetLib.LineFeedOption.CRLF);
-			Window.s_window.OnEnable();
+			Window.window.OnEnable();
 		}
 		#else
 		{

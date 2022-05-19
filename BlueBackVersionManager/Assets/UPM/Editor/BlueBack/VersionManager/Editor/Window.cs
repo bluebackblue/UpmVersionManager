@@ -23,9 +23,9 @@ namespace BlueBack.VersionManager.Editor
 	*/
 	public sealed class Window : UnityEditor.EditorWindow
 	{
-		/** s_window
+		/** window
 		*/
-		public static Window s_window = null;
+		public static Window window = null;
 
 		/** TEMPLATE
 		*/
@@ -39,9 +39,9 @@ namespace BlueBack.VersionManager.Editor
 		public static void MenuItem_Open()
 		{
 			Object_RootUssUxml.Save(true);
-			s_window = (Window)UnityEditor.EditorWindow.GetWindow(typeof(Window));
-			if(s_window != null){
-				s_window.Show();
+			Window.window = (Window)UnityEditor.EditorWindow.GetWindow(typeof(Window));
+			if(Window.window != null){
+				Window.window.Show();
 			}
 		}
 
@@ -50,9 +50,9 @@ namespace BlueBack.VersionManager.Editor
 		[UnityEditor.MenuItem("VersionManager/Close")]
 		public static void MenuItem_Close()
 		{
-			if(s_window != null){
-				s_window.Close();
-				s_window = null;
+			if(Window.window != null){
+				Window.window.Close();
+				Window.window = null;
 			}
 		}
 
@@ -64,8 +64,8 @@ namespace BlueBack.VersionManager.Editor
 			DebugTool.Log("Window.constructor");
 			#endif
 
-			//s_window
-			s_window = this;
+			//window
+			Window.window = this;
 
 			//タイトル。
 			this.titleContent.text = "VersionManager";
@@ -80,13 +80,13 @@ namespace BlueBack.VersionManager.Editor
 			DebugTool.Log("Window.OnEnable");
 			#endif
 			
-			Object_Setting.s_projectparam = ProjectParam.Load();
-			if(Object_RootServerJson.s_status == null){
+			Object_Setting.projectparam = ProjectParam.Load();
+			if(Object_RootServerJson.status == null){
 				Object_RootServerJson.Load();
 			}
 
 			{
-				UnityEngine.UIElements.VisualElement t_root = s_window.rootVisualElement;
+				UnityEngine.UIElements.VisualElement t_root = Window.window.rootVisualElement;
 				{
 					t_root.Clear();
 					UnityEngine.UIElements.VisualTreeAsset t_visualtree = BlueBack.AssetLib.Editor.LoadAssetWithAssetsPath.Load<UnityEngine.UIElements.VisualTreeAsset>(TEMPLATE_PATH + TEMPLATE_UXML);
@@ -132,8 +132,8 @@ namespace BlueBack.VersionManager.Editor
 					{
 						UnityEngine.UIElements.Label t_label = UnityEngine.UIElements.UQueryExtensions.Q<UnityEngine.UIElements.Label>(t_root,"label_a_value");
 						if(t_label != null){
-							if(Object_RootServerJson.s_status != null){
-								t_label.text = Object_RootServerJson.s_status.time;
+							if(Object_RootServerJson.status != null){
+								t_label.text = Object_RootServerJson.status.time;
 							}
 						}
 					}
@@ -156,10 +156,10 @@ namespace BlueBack.VersionManager.Editor
 					{
 						UnityEngine.UIElements.TextField t_textfield = UnityEngine.UIElements.UQueryExtensions.Q<UnityEngine.UIElements.TextField>(t_root,"textfield_b_value");
 						if(t_textfield != null){
-							if(Object_RootReadmeMd.s_version == null){
+							if(Object_RootReadmeMd.version == null){
 								Object_RootReadmeMd.Load();
 							}
-							t_textfield.value = Object_RootReadmeMd.s_version;
+							t_textfield.value = Object_RootReadmeMd.version;
 						}
 					}
 

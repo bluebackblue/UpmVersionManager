@@ -33,23 +33,23 @@ namespace BlueBack.VersionManager.Editor
 
 			//asmdef_runtime
 			{
-				string t_name = Object_Setting.s_projectparam.namespace_author + "." + Object_Setting.s_projectparam.namespace_package;
-				string t_path = "UPM/Runtime/" + Object_Setting.s_projectparam.namespace_author + "/" + Object_Setting.s_projectparam.namespace_package + "/" +  t_name + ".asmdef";
-				Inner_CreateAsmdef(t_guid_list,in Object_Setting.s_projectparam.asmdef_runtime,t_path,t_name);
+				string t_name = Object_Setting.projectparam.namespace_author + "." + Object_Setting.projectparam.namespace_package;
+				string t_path = "UPM/Runtime/" + Object_Setting.projectparam.namespace_author + "/" + Object_Setting.projectparam.namespace_package + "/" +  t_name + ".asmdef";
+				Inner_CreateAsmdef(t_guid_list,in Object_Setting.projectparam.asmdef_runtime,t_path,t_name);
 			}
 
 			//asmdef_editor
 			{
-				string t_name = Object_Setting.s_projectparam.namespace_author + "." + Object_Setting.s_projectparam.namespace_package + ".Editor";
-				string t_path = "UPM/Editor/" + Object_Setting.s_projectparam.namespace_author + "/" + Object_Setting.s_projectparam.namespace_package + "/Editor/" +  t_name + ".asmdef";
-				Inner_CreateAsmdef(t_guid_list,in Object_Setting.s_projectparam.asmdef_editor,t_path,t_name);
+				string t_name = Object_Setting.projectparam.namespace_author + "." + Object_Setting.projectparam.namespace_package + ".Editor";
+				string t_path = "UPM/Editor/" + Object_Setting.projectparam.namespace_author + "/" + Object_Setting.projectparam.namespace_package + "/Editor/" +  t_name + ".asmdef";
+				Inner_CreateAsmdef(t_guid_list,in Object_Setting.projectparam.asmdef_editor,t_path,t_name);
 			}
 
 			//asmdef_sample
 			{
-				string t_name = Object_Setting.s_projectparam.namespace_author + "." + Object_Setting.s_projectparam.namespace_package + ".Samples";
-				string t_path = "Samples/" + Object_Setting.s_projectparam.namespace_author + "." + Object_Setting.s_projectparam.namespace_package + "/" + t_name + ".asmdef";
-				Inner_CreateAsmdef(t_guid_list,in Object_Setting.s_projectparam.asmdef_sample,t_path,t_name);
+				string t_name = Object_Setting.projectparam.namespace_author + "." + Object_Setting.projectparam.namespace_package + ".Samples";
+				string t_path = "Samples/" + Object_Setting.projectparam.namespace_author + "." + Object_Setting.projectparam.namespace_package + "/" + t_name + ".asmdef";
+				Inner_CreateAsmdef(t_guid_list,in Object_Setting.projectparam.asmdef_sample,t_path,t_name);
 			}
 
 			//Refresh
@@ -84,7 +84,7 @@ namespace BlueBack.VersionManager.Editor
 					BlueBack.JsonItem.JsonItem t_jsonitem = new JsonItem.JsonItem(BlueBack.JsonItem.Normalize.Convert(BlueBack.AssetLib.LoadTextWithFullPath.Load(t_filename)));
 							
 					//asmdef_runtime
-					foreach(ProjectParam.Asmdef.Reference t_asmdef_reference_item in Object_Setting.s_projectparam.asmdef_runtime.reference_list){
+					foreach(ProjectParam.Asmdef.Reference t_asmdef_reference_item in Object_Setting.projectparam.asmdef_runtime.reference_list){
 						switch(t_asmdef_reference_item.mode){
 						case "package":
 							{
@@ -101,7 +101,7 @@ namespace BlueBack.VersionManager.Editor
 					}
 
 					//asmdef_editor
-					foreach(ProjectParam.Asmdef.Reference t_asmdef_reference_item in Object_Setting.s_projectparam.asmdef_editor.reference_list){
+					foreach(ProjectParam.Asmdef.Reference t_asmdef_reference_item in Object_Setting.projectparam.asmdef_editor.reference_list){
 						switch(t_asmdef_reference_item.mode){
 						case "package":
 							{
@@ -118,7 +118,7 @@ namespace BlueBack.VersionManager.Editor
 					}
 
 					//asmdef_sample
-					foreach(ProjectParam.Asmdef.Reference t_asmdef_reference_item in Object_Setting.s_projectparam.asmdef_sample.reference_list){
+					foreach(ProjectParam.Asmdef.Reference t_asmdef_reference_item in Object_Setting.projectparam.asmdef_sample.reference_list){
 						switch(t_asmdef_reference_item.mode){
 						case "package":
 							{

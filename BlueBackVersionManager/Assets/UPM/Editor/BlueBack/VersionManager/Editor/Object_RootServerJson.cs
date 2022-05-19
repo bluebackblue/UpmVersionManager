@@ -37,7 +37,7 @@ namespace BlueBack.VersionManager.Editor
 
 		/** status
 		*/
-		public static Status s_status = null;
+		public static Status status = null;
 
 		/** Load
 		*/
@@ -49,12 +49,12 @@ namespace BlueBack.VersionManager.Editor
 
 			//LoadNoBomUtf8
 			if(BlueBack.AssetLib.Editor.ExistFileWithAssetsPath.Check(t_path) == true){
-				s_status = BlueBack.JsonItem.Convert.JsonStringToObject<Status>(BlueBack.AssetLib.Editor.LoadTextWithAssetsPath.Load(t_path));
+				Object_RootServerJson.status = BlueBack.JsonItem.Convert.JsonStringToObject<Status>(BlueBack.AssetLib.Editor.LoadTextWithAssetsPath.Load(t_path));
 				return;
 			}
 			
-			//s_status
-			s_status = new Status(){
+			//status
+			Object_RootServerJson.status = new Status(){
 				lasttag = "0.0.-1",
 				time = "---",
 			};
@@ -71,7 +71,7 @@ namespace BlueBack.VersionManager.Editor
 		#if(ASMDEF_TRUE)
 		{
 			//url
-			string t_url = Object_Setting.s_projectparam.git_api + "/releases/latest";
+			string t_url = Object_Setting.projectparam.git_api + "/releases/latest";
 			
 			//path
 			string t_path = "server.json";
@@ -81,11 +81,11 @@ namespace BlueBack.VersionManager.Editor
 			if(t_result.result == true){
 				BlueBack.JsonItem.JsonItem t_jsonitem = new BlueBack.JsonItem.JsonItem(BlueBack.JsonItem.Normalize.Convert(t_result.value));
 				if(t_jsonitem.IsExistItem("tag_name") == true){
-					s_status.lasttag = t_jsonitem.GetItem("tag_name").GetStringData();
-					s_status.time = System.DateTime.Now.ToString();
+					Object_RootServerJson.status.lasttag = t_jsonitem.GetItem("tag_name").GetStringData();
+					Object_RootServerJson.status.time = System.DateTime.Now.ToString();
 
 					//SaveTextWithAssetsPath
-					BlueBack.AssetLib.Editor.SaveTextWithAssetsPath.SaveNoBomUtf8(BlueBack.JsonItem.Convert.ObjectToJsonString<Status>(s_status),t_path,BlueBack.AssetLib.LineFeedOption.CRLF);
+					BlueBack.AssetLib.Editor.SaveTextWithAssetsPath.SaveNoBomUtf8(BlueBack.JsonItem.Convert.ObjectToJsonString<Status>(Object_RootServerJson.status),t_path,BlueBack.AssetLib.LineFeedOption.CRLF);
 					BlueBack.AssetLib.Editor.RefreshAssetDatabase.Refresh();
 				}
 			}

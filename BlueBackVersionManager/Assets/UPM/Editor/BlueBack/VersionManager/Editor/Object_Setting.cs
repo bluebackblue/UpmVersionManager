@@ -43,13 +43,13 @@ namespace BlueBack.VersionManager.Editor
 		*/
 		public delegate string[] Creator_Type(in Creator_Argument a_argument);
 
-		/** s_projectparam
+		/** projectparam
 		*/
-		public static ProjectParam s_projectparam;
+		public static ProjectParam projectparam;
 
-		/** s_object_root_readme_md
+		/** object_root_readme_md
 		*/
-		public static Creator_Type[] s_object_root_readme_md;
+		public static Creator_Type[] object_root_readme_md;
 
 		/** CreateReplaceList
 		*/
@@ -58,19 +58,19 @@ namespace BlueBack.VersionManager.Editor
 			System.Collections.Generic.Dictionary<string,string> t_replace_list = new System.Collections.Generic.Dictionary<string,string>();
 			{
 				//パッケージ名。
-				t_replace_list.Add("<<NAMESPACE_PACKAGE>>",s_projectparam.namespace_package.ToUpper());
-				t_replace_list.Add("<<NameSpace_Package>>",s_projectparam.namespace_package);
-				t_replace_list.Add("<<namespace_package>>",s_projectparam.namespace_package.ToLower());
+				t_replace_list.Add("<<NAMESPACE_PACKAGE>>",Object_Setting.projectparam.namespace_package.ToUpper());
+				t_replace_list.Add("<<NameSpace_Package>>",Object_Setting.projectparam.namespace_package);
+				t_replace_list.Add("<<namespace_package>>",Object_Setting.projectparam.namespace_package.ToLower());
 
 				//管理者名。
-				t_replace_list.Add("<<NAMESPACE_AUTHOR>>",s_projectparam.namespace_author.ToUpper());
-				t_replace_list.Add("<<NameSpace_Author>>",s_projectparam.namespace_author);
-				t_replace_list.Add("<<namespace_author>>",s_projectparam.namespace_author.ToLower());
+				t_replace_list.Add("<<NAMESPACE_AUTHOR>>",Object_Setting.projectparam.namespace_author.ToUpper());
+				t_replace_list.Add("<<NameSpace_Author>>",Object_Setting.projectparam.namespace_author);
+				t_replace_list.Add("<<namespace_author>>",Object_Setting.projectparam.namespace_author.ToLower());
 
 				//ＧＩＴ。
-				t_replace_list.Add("<<git_url>>",s_projectparam.git_url);
-				t_replace_list.Add("<<git_api>>",s_projectparam.git_api);
-				t_replace_list.Add("<<git_path>>",s_projectparam.git_path);
+				t_replace_list.Add("<<git_url>>",Object_Setting.projectparam.git_url);
+				t_replace_list.Add("<<git_api>>",Object_Setting.projectparam.git_api);
+				t_replace_list.Add("<<git_path>>",Object_Setting.projectparam.git_path);
 			}
 			return t_replace_list;
 		}
@@ -91,8 +91,8 @@ namespace BlueBack.VersionManager.Editor
 		*/
 		public static string GetPackageVersion()
 		{
-			if(s_projectparam != null){
-				System.Type t_type = System.Type.GetType(s_projectparam.namespace_author + "."  + s_projectparam.namespace_package + ".Version," + s_projectparam.namespace_author + "."  + s_projectparam.namespace_package);
+			if(Object_Setting.projectparam != null){
+				System.Type t_type = System.Type.GetType(Object_Setting.projectparam.namespace_author + "."  + Object_Setting.projectparam.namespace_package + ".Version," + Object_Setting.projectparam.namespace_author + "."  + Object_Setting.projectparam.namespace_package);
 				if(t_type != null){
 					System.Reflection.MethodInfo t_methodinfo = t_type.GetMethod("GetPackageVersion",System.Reflection.BindingFlags.Static|System.Reflection.BindingFlags.Public);
 					if(t_methodinfo != null){
@@ -112,8 +112,8 @@ namespace BlueBack.VersionManager.Editor
 		{
 			System.Collections.Generic.List<string> t_list = new System.Collections.Generic.List<string>();
 			{
-				for(int ii=0;ii<s_projectparam.discription_detal.Length;ii++){
-					t_list.Add(s_projectparam.discription_detal[ii]);
+				for(int ii=0;ii<Object_Setting.projectparam.discription_detal.Length;ii++){
+					t_list.Add(Object_Setting.projectparam.discription_detal[ii]);
 				}
 			}
 			return t_list;
@@ -130,12 +130,12 @@ namespace BlueBack.VersionManager.Editor
 			//runtine
 			{
 				System.Collections.Generic.HashSet<string> t_url_list = new System.Collections.Generic.HashSet<string>();
-				for(int ii=0;ii<s_projectparam.asmdef_runtime.reference_list.Length;ii++){
-					switch(s_projectparam.asmdef_runtime.reference_list[ii].mode){
+				for(int ii=0;ii<Object_Setting.projectparam.asmdef_runtime.reference_list.Length;ii++){
+					switch(Object_Setting.projectparam.asmdef_runtime.reference_list[ii].mode){
 					case "package":
 					case "url":
 						{
-							t_url_list.Add("* " + s_projectparam.asmdef_runtime.reference_list[ii].url);
+							t_url_list.Add("* " + Object_Setting.projectparam.asmdef_runtime.reference_list[ii].url);
 						}break;
 					}
 				}
@@ -147,12 +147,12 @@ namespace BlueBack.VersionManager.Editor
 			//editor
 			{
 				System.Collections.Generic.HashSet<string> t_url_list = new System.Collections.Generic.HashSet<string>();
-				for(int ii=0;ii<s_projectparam.asmdef_editor.reference_list.Length;ii++){
-					switch(s_projectparam.asmdef_editor.reference_list[ii].mode){
+				for(int ii=0;ii<Object_Setting.projectparam.asmdef_editor.reference_list.Length;ii++){
+					switch(Object_Setting.projectparam.asmdef_editor.reference_list[ii].mode){
 					case "package":
 					case "url":
 						{
-							t_url_list.Add("* " + s_projectparam.asmdef_editor.reference_list[ii].url);
+							t_url_list.Add("* " + Object_Setting.projectparam.asmdef_editor.reference_list[ii].url);
 						}break;
 					}
 				}
@@ -164,12 +164,12 @@ namespace BlueBack.VersionManager.Editor
 			//sample
 			{
 				System.Collections.Generic.HashSet<string> t_url_list = new System.Collections.Generic.HashSet<string>();
-				for(int ii=0;ii<s_projectparam.asmdef_sample.reference_list.Length;ii++){
-					switch(s_projectparam.asmdef_sample.reference_list[ii].mode){
+				for(int ii=0;ii<Object_Setting.projectparam.asmdef_sample.reference_list.Length;ii++){
+					switch(Object_Setting.projectparam.asmdef_sample.reference_list[ii].mode){
 					case "package":
 					case "url":
 						{
-							t_url_list.Add("* " + s_projectparam.asmdef_sample.reference_list[ii].url);
+							t_url_list.Add("* " + Object_Setting.projectparam.asmdef_sample.reference_list[ii].url);
 						}break;
 					}
 				}

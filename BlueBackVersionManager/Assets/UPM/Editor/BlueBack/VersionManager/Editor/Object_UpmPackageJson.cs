@@ -44,17 +44,17 @@ namespace BlueBack.VersionManager.Editor
 				t_packagejson.version = a_version;
 
 				//unity
-				t_packagejson.unity = Object_Setting.s_projectparam.need_unity_version;
+				t_packagejson.unity = Object_Setting.projectparam.need_unity_version;
 
 				//discription
-				t_packagejson.discription = Object_Setting.s_projectparam.discription_simple;
+				t_packagejson.discription = Object_Setting.projectparam.discription_simple;
 
 				//author
-				t_packagejson.author.name = Object_Setting.s_projectparam.namespace_author;
-				t_packagejson.author.url =  Object_Setting.s_projectparam.git_url;
+				t_packagejson.author.name = Object_Setting.projectparam.namespace_author;
+				t_packagejson.author.url =  Object_Setting.projectparam.git_url;
 				
 				//keyword
-				t_packagejson.keyword = Object_Setting.s_projectparam.keyword;
+				t_packagejson.keyword = Object_Setting.projectparam.keyword;
 				
 				//dependencies
 				t_packagejson.dependencies = new System.Collections.Generic.Dictionary<string,string>();

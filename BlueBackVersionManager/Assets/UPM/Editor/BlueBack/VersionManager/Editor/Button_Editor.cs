@@ -33,8 +33,8 @@ namespace BlueBack.VersionManager.Editor
 				DebugTool.Log("OpenBrowser");
 				#endif
 
-				Object_Setting.s_projectparam = ProjectParam.Load();
-				if(Object_RootServerJson.s_status == null){
+				Object_Setting.projectparam = ProjectParam.Load();
+				if(Object_RootServerJson.status == null){
 					Object_RootServerJson.Load();
 				}
 
@@ -47,9 +47,9 @@ namespace BlueBack.VersionManager.Editor
 		private static void On()
 		#if(ASMDEF_TRUE)
 		{
-			UnityEditor.PlayerSettings.companyName = Object_Setting.s_projectparam.namespace_author;
-			UnityEditor.PlayerSettings.productName = Object_Setting.s_projectparam.namespace_author + Object_Setting.s_projectparam.namespace_package;
-			UnityEditor.PlayerSettings.bundleVersion = Object_RootReadmeMd.s_version;
+			UnityEditor.PlayerSettings.companyName = Object_Setting.projectparam.namespace_author;
+			UnityEditor.PlayerSettings.productName = Object_Setting.projectparam.namespace_author + Object_Setting.projectparam.namespace_package;
+			UnityEditor.PlayerSettings.bundleVersion = Object_RootReadmeMd.version;
 
 			UnityEditor.EditorSettings.enterPlayModeOptionsEnabled = true;
 			UnityEditor.EditorSettings.enterPlayModeOptions = (UnityEditor.EnterPlayModeOptions.DisableDomainReload | UnityEditor.EnterPlayModeOptions.DisableSceneReload);

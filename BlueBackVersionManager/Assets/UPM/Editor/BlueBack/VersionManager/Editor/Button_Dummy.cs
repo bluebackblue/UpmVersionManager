@@ -26,8 +26,8 @@ namespace BlueBack.VersionManager.Editor
 				DebugTool.Log("----");
 				#endif
 
-				Object_Setting.s_projectparam = ProjectParam.Load();
-				if(Object_RootServerJson.s_status == null){
+				Object_Setting.projectparam = ProjectParam.Load();
+				if(Object_RootServerJson.status == null){
 					Object_RootServerJson.Load();
 				}
 

@@ -20,8 +20,8 @@ namespace BlueBack.VersionManager.Editor
 		*/
 		public static void Initialize(UnityEngine.UIElements.Button a_button)
 		{
-			if(Object_RootServerJson.s_status != null){
-				a_button.text = Object_RootServerJson.s_status.lasttag;
+			if(Object_RootServerJson.status != null){
+				a_button.text = Object_RootServerJson.status.lasttag;
 			}
 
 			a_button.AddToClassList("red");
@@ -32,8 +32,8 @@ namespace BlueBack.VersionManager.Editor
 				DebugTool.Log("ServerJson");
 				#endif
 
-				Object_Setting.s_projectparam = ProjectParam.Load();
-				if(Object_RootServerJson.s_status == null){
+				Object_Setting.projectparam = ProjectParam.Load();
+				if(Object_RootServerJson.status == null){
 					Object_RootServerJson.Load();
 				}
 
@@ -47,7 +47,7 @@ namespace BlueBack.VersionManager.Editor
 		{
 			Object_RootServerJson.DownloadAndSave();
 			Object_RootServerJson.Load();
-			Window.s_window.OnEnable();
+			Window.window.OnEnable();
 		}
 	}
 }

@@ -26,8 +26,8 @@ namespace BlueBack.VersionManager.Editor
 				DebugTool.Log("OpenBrowser");
 				#endif
 
-				Object_Setting.s_projectparam = ProjectParam.Load();
-				if(Object_RootServerJson.s_status == null){
+				Object_Setting.projectparam = ProjectParam.Load();
+				if(Object_RootServerJson.status == null){
 					Object_RootServerJson.Load();
 				}
 
@@ -39,7 +39,7 @@ namespace BlueBack.VersionManager.Editor
 		*/
 		private static void On()
 		{
-			UnityEngine.Application.OpenURL(Object_Setting.s_projectparam.git_url);
+			UnityEngine.Application.OpenURL(Object_Setting.projectparam.git_url);
 		}
 	}
 }

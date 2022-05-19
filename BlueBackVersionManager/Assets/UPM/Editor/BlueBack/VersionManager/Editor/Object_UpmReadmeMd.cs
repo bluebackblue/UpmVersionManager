@@ -35,7 +35,7 @@ namespace BlueBack.VersionManager.Editor
 			System.Text.StringBuilder t_stringbuilder = new System.Text.StringBuilder();
 			{
 				Object_Setting.Creator_Argument t_argument = new Object_Setting.Creator_Argument(a_version);
-				foreach(Object_Setting.Creator_Type t_creator in Object_Setting.s_object_root_readme_md){
+				foreach(Object_Setting.Creator_Type t_creator in Object_Setting.object_root_readme_md){
 					string[] t_list = t_creator(in t_argument);
 					foreach(string t_line in t_list){
 						t_stringbuilder.Append(t_line);
