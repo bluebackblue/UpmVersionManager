@@ -77,7 +77,7 @@ namespace BlueBack.VersionManager.Editor
 			string t_path = "server.json";
 
 			//LoadTextWithUrl
-			BlueBack.AssetLib.MultiResult<bool,string> t_result = BlueBack.AssetLib.Editor.LoadTextWithUrl.TryLoad(t_url,null);
+			BlueBack.AssetLib.MultiResult<bool,string> t_result = BlueBack.AssetLib.LoadTextWithUrl.TryLoad(t_url,null);
 			if(t_result.result == true){
 				BlueBack.JsonItem.JsonItem t_jsonitem = new BlueBack.JsonItem.JsonItem(BlueBack.JsonItem.Normalize.Convert(t_result.value));
 				if(t_jsonitem.IsExistItem("tag_name") == true){

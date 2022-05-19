@@ -47,7 +47,7 @@ namespace BlueBack.VersionManager.Editor
 		private static void On()
 		#if(ASMDEF_TRUE)
 		{
-			BlueBack.AssetLib.Editor.TextConvertTool.ConvertAll("",".*","^.*\\.(cs|meta|mesh|prefab|json|asmdef|mixer|anim)$",new System.Text.UTF8Encoding(false),BlueBack.AssetLib.LineFeedOption.CRLF);
+			BlueBack.AssetLib.Editor.TextConvertWithAssetsPath.ConvertAll("",".*","^.*\\.(cs|meta|mesh|prefab|json|asmdef|mixer|anim)$",new System.Text.UTF8Encoding(false),BlueBack.AssetLib.LineFeedOption.CRLF);
 			Window.s_window.OnEnable();
 		}
 		#else
