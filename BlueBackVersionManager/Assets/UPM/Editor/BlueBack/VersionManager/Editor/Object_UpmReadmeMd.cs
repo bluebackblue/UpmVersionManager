@@ -44,7 +44,7 @@ namespace BlueBack.VersionManager.Editor
 					t_stringbuilder.Append("\n");
 				}
 			}
-			
+
 			//SaveTextWithAssetsPath
 			BlueBack.AssetLib.Editor.CreateDirectoryWithAssetsPath.Create(System.IO.Path.GetDirectoryName(t_path));
 			BlueBack.AssetLib.Editor.SaveTextWithAssetsPath.SaveNoBomUtf8(t_stringbuilder.ToString(),t_path,BlueBack.AssetLib.LineFeedOption.CRLF);

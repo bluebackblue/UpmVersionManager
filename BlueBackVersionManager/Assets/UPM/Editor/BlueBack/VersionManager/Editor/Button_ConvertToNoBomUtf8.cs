@@ -27,10 +27,10 @@ namespace BlueBack.VersionManager.Editor
 		*/
 		public static void Initialize(UnityEngine.UIElements.Button a_button)
 		{
-			a_button.text = "[ConvertToUtf8]";
+			a_button.text = "[Convert]";
 			a_button.clickable.clicked += () => {
 				#if(DEF_BLUEBACK_VERSIONMANAGER_LOG)
-				DebugTool.Log("ConvertToUtf8");
+				DebugTool.Log("Convert");
 				#endif
 
 				Object_Setting.projectparam = ProjectParam.Load();
@@ -48,6 +48,7 @@ namespace BlueBack.VersionManager.Editor
 		#if(ASMDEF_TRUE)
 		{
 			BlueBack.AssetLib.Editor.TextConvertWithAssetsPath.ConvertAll("",".*","^.*\\.(cs|meta|mesh|prefab|json|asmdef|mixer|anim)$",new System.Text.UTF8Encoding(false),BlueBack.AssetLib.LineFeedOption.CRLF);
+			BlueBack.Code.Editor.CodeConvert.Convert();
 			Window.window.OnEnable();
 		}
 		#else

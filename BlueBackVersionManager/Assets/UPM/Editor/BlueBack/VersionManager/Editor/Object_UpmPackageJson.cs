@@ -52,10 +52,10 @@ namespace BlueBack.VersionManager.Editor
 				//author
 				t_packagejson.author.name = Object_Setting.projectparam.namespace_author;
 				t_packagejson.author.url =  Object_Setting.projectparam.git_url;
-				
+
 				//keyword
 				t_packagejson.keyword = Object_Setting.projectparam.keyword;
-				
+
 				//dependencies
 				t_packagejson.dependencies = new System.Collections.Generic.Dictionary<string,string>();
 				{

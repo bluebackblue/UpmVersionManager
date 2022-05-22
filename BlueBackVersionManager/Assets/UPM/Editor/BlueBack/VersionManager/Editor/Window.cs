@@ -79,7 +79,7 @@ namespace BlueBack.VersionManager.Editor
 			#if(DEF_BLUEBACK_VERSIONMANAGER_LOG)
 			DebugTool.Log("Window.OnEnable");
 			#endif
-			
+
 			Object_Setting.projectparam = ProjectParam.Load();
 			if(Object_RootServerJson.status == null){
 				Object_RootServerJson.Load();

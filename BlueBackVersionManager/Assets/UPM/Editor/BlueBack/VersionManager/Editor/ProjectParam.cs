@@ -67,7 +67,7 @@ namespace BlueBack.VersionManager.Editor
 				public string define;
 				public string expression;
 			};
-			
+
 			/** reference_list
 			*/
 			public Reference[] reference_list;

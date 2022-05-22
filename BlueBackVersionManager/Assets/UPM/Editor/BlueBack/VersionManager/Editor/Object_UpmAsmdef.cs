@@ -82,7 +82,7 @@ namespace BlueBack.VersionManager.Editor
 
 				foreach(string t_filename in t_filename_list){
 					BlueBack.JsonItem.JsonItem t_jsonitem = new JsonItem.JsonItem(BlueBack.JsonItem.Normalize.Convert(BlueBack.AssetLib.LoadTextWithFullPath.Load(t_filename)));
-							
+
 					//asmdef_runtime
 					foreach(ProjectParam.Asmdef.Reference t_asmdef_reference_item in Object_Setting.projectparam.asmdef_runtime.reference_list){
 						switch(t_asmdef_reference_item.mode){

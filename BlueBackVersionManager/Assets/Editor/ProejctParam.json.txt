@@ -48,17 +48,23 @@
 				"mode":"package",
 				"package_fullname":"BlueBack.AssetLib.Editor",
 				"url":"https://github.com/bluebackblue/UpmAssetLib",
-				 "define_package_pathname":"blueback.assetlib"
-		   },
+				"define_package_pathname":"blueback.assetlib"
+			},
 			{
 				"mode":"package",
 				"package_fullname":"BlueBack.JsonItem",
 				"url":"https://github.com/bluebackblue/UpmJsonItem",
 				"define_package_pathname":"blueback.jsonitem"
-		   },
+			},
 			{
 				"mode":"package",
 				"package_fullname":"BlueBack.Code",
+				"url":"https://github.com/bluebackblue/UpmCode",
+				"define_package_pathname":"blueback.code"
+			},
+			{
+				"mode":"package",
+				"package_fullname":"BlueBack.Code.Editor",
 				"url":"https://github.com/bluebackblue/UpmCode",
 				"define_package_pathname":"blueback.code"
 			}

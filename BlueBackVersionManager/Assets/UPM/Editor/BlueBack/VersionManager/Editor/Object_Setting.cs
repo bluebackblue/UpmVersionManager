@@ -33,7 +33,7 @@ namespace BlueBack.VersionManager.Editor
 			{
 				this.version = a_version;
 			}
-			
+
 			/** version
 			*/
 			public string version;
@@ -160,7 +160,7 @@ namespace BlueBack.VersionManager.Editor
 			}
 
 			t_list.Add("### サンプル");
-			
+
 			//sample
 			{
 				System.Collections.Generic.HashSet<string> t_url_list = new System.Collections.Generic.HashSet<string>();

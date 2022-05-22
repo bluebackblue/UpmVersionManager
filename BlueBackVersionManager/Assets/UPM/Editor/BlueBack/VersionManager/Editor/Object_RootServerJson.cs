@@ -52,7 +52,7 @@ namespace BlueBack.VersionManager.Editor
 				Object_RootServerJson.status = BlueBack.JsonItem.Convert.JsonStringToObject<Status>(BlueBack.AssetLib.Editor.LoadTextWithAssetsPath.Load(t_path));
 				return;
 			}
-			
+
 			//status
 			Object_RootServerJson.status = new Status(){
 				lasttag = "0.0.-1",
@@ -72,7 +72,7 @@ namespace BlueBack.VersionManager.Editor
 		{
 			//url
 			string t_url = Object_Setting.projectparam.git_api + "/releases/latest";
-			
+
 			//path
 			string t_path = "server.json";
 
