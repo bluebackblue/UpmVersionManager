@@ -33,7 +33,7 @@ namespace BlueBack.VersionManager.Editor
 
 			//template
 			System.Collections.Generic.List<string> t_template = new System.Collections.Generic.List<string>();
-			BlueBack.Code.Convert.Add(t_template,new string[]{
+			BlueBack.Code.Convert.Add(t_template,null,new string[]{
 				"",
 				"",
 				"/**",
