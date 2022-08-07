@@ -11,6 +11,8 @@
 */
 #if((ASMDEF_BLUEBACK_ASSETLIB||USERDEF_BLUEBACK_ASSETLIB))
 #define ASMDEF_TRUE
+#else
+#warning "ASMDEF_TRUE"
 #endif
 
 

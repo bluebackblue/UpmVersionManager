@@ -41,7 +41,7 @@
 			{
 				"mode":"package",
 				"package_fullname":"BlueBack.AssetLib",
-				"url":"https://github.com/bluebackblue/UpmAssetLib",,
+				"url":"https://github.com/bluebackblue/UpmAssetLib",
 				"define_package_pathname":"blueback.assetlib"
 			},
 			{
