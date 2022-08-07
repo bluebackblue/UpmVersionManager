@@ -35,21 +35,21 @@ namespace BlueBack.VersionManager.Editor
 			{
 				string t_name = Object_Setting.projectparam.namespace_author + "." + Object_Setting.projectparam.namespace_package;
 				string t_path = "UPM/Runtime/" + Object_Setting.projectparam.namespace_author + "/" + Object_Setting.projectparam.namespace_package + "/" +  t_name + ".asmdef";
-				Inner_CreateAsmdef(t_guid_list,in Object_Setting.projectparam.asmdef_runtime,t_path,t_name);
+				Inner_CreateAsmdef(t_guid_list,in Object_Setting.projectparam.asmdef_runtime,t_path,t_name,false);
 			}
 
 			//asmdef_editor
 			{
 				string t_name = Object_Setting.projectparam.namespace_author + "." + Object_Setting.projectparam.namespace_package + ".Editor";
 				string t_path = "UPM/Editor/" + Object_Setting.projectparam.namespace_author + "/" + Object_Setting.projectparam.namespace_package + "/Editor/" +  t_name + ".asmdef";
-				Inner_CreateAsmdef(t_guid_list,in Object_Setting.projectparam.asmdef_editor,t_path,t_name);
+				Inner_CreateAsmdef(t_guid_list,in Object_Setting.projectparam.asmdef_editor,t_path,t_name,true);
 			}
 
 			//asmdef_sample
 			{
 				string t_name = Object_Setting.projectparam.namespace_author + "." + Object_Setting.projectparam.namespace_package + ".Samples";
 				string t_path = "Samples/" + Object_Setting.projectparam.namespace_author + "." + Object_Setting.projectparam.namespace_package + "/" + t_name + ".asmdef";
-				Inner_CreateAsmdef(t_guid_list,in Object_Setting.projectparam.asmdef_sample,t_path,t_name);
+				Inner_CreateAsmdef(t_guid_list,in Object_Setting.projectparam.asmdef_sample,t_path,t_name,false);
 			}
 
 			//Refresh
@@ -143,7 +143,7 @@ namespace BlueBack.VersionManager.Editor
 		/** Inner_CreateAsmdef
 		*/
 		#if(ASMDEF_TRUE)
-		private static void Inner_CreateAsmdef(System.Collections.Generic.Dictionary<string,string> a_guid_list,in ProjectParam.Asmdef a_asmdef_item,string a_path,string a_name)
+		private static void Inner_CreateAsmdef(System.Collections.Generic.Dictionary<string,string> a_guid_list,in ProjectParam.Asmdef a_asmdef_item,string a_path,string a_name,bool a_is_editor)
 		{
 			AssetLib.Asmdef t_asmdef = new AssetLib.Asmdef(){
 				name = a_name,
@@ -159,6 +159,17 @@ namespace BlueBack.VersionManager.Editor
 				versionDefines = null,
 				noEngineReferences =  false,
 			};
+
+			//includeplatforms
+			{
+				System.Collections.Generic.List<string> t_includeplatforms_list = new System.Collections.Generic.List<string>();
+
+				if(a_is_editor == true){
+					t_includeplatforms_list.Add("Editor");
+				}
+
+				t_asmdef.includePlatforms = t_includeplatforms_list.ToArray();
+			}
 
 			//define_list
 			{
