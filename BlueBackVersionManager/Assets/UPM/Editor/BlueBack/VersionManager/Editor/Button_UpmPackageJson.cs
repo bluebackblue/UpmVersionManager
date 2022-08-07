@@ -52,7 +52,7 @@ namespace BlueBack.VersionManager.Editor
 			//「package.json」作成。
 			a_button.clickable.clicked += () => {
 
-				#if(DEF_BLUEBACK_VERSIONMANAGER_LOG)
+				#if(DEF_BLUEBACK_LOG)
 				DebugTool.Log("UpmPackageJson : " + t_version);
 				#endif
 

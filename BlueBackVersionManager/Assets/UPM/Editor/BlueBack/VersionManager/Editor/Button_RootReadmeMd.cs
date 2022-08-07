@@ -56,7 +56,7 @@ namespace BlueBack.VersionManager.Editor
 
 			//「readme.md」作成。
 			a_button.clickable.clicked += () => {
-				#if(DEF_BLUEBACK_VERSIONMANAGER_LOG)
+				#if(DEF_BLUEBACK_LOG)
 				DebugTool.Log("RootReadmeMd : " + t_version);
 				#endif
 

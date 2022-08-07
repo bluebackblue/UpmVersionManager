@@ -28,7 +28,7 @@ namespace BlueBack.VersionManager.Editor
 
 			a_button.clickable.clicked += () => {
 
-				#if(DEF_BLUEBACK_VERSIONMANAGER_LOG)
+				#if(DEF_BLUEBACK_LOG)
 				DebugTool.Log("ServerJson");
 				#endif
 

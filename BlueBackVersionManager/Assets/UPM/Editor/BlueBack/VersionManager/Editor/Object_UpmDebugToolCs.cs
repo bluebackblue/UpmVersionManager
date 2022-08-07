@@ -53,7 +53,7 @@ namespace BlueBack.VersionManager.Editor
 				"	{",
 				"		/** assertproc",
 				"		*/",
-				"		#if(DEF_<<NAMESPACE_AUTHOR>>_<<NAMESPACE_PACKAGE>>_ASSERT)",
+				"		#if(DEF_<<NAMESPACE_AUTHOR>>_ASSERT)",
 				"		public static void DefaultAssertProc(System.Exception a_exception,string a_message)",
 				"		{",
 				"			if(a_message != null){",
@@ -72,7 +72,7 @@ namespace BlueBack.VersionManager.Editor
 				"",
 				"		/** logproc",
 				"		*/",
-				"		#if(DEF_<<NAMESPACE_AUTHOR>>_<<NAMESPACE_PACKAGE>>_LOG)",
+				"		#if(DEF_<<NAMESPACE_AUTHOR>>_LOG)",
 				"		public static void DefaultLogProc(string a_message)",
 				"		{",
 				"			UnityEngine.Debug.Log(a_message);",
@@ -83,7 +83,7 @@ namespace BlueBack.VersionManager.Editor
 				"",
 				"		/** Assert",
 				"		*/",
-				"		#if(DEF_<<NAMESPACE_AUTHOR>>_<<NAMESPACE_PACKAGE>>_ASSERT)",
+				"		#if(DEF_<<NAMESPACE_AUTHOR>>_ASSERT)",
 				"		public static void Assert(bool a_flag,System.Exception a_exception = null)",
 				"		{",
 				"			if(a_flag != true){",
@@ -94,7 +94,7 @@ namespace BlueBack.VersionManager.Editor
 				"",
 				"		/** Assert",
 				"		*/",
-				"		#if(DEF_<<NAMESPACE_AUTHOR>>_<<NAMESPACE_PACKAGE>>_ASSERT)",
+				"		#if(DEF_<<NAMESPACE_AUTHOR>>_ASSERT)",
 				"		public static void Assert(bool a_flag,string a_message)",
 				"		{",
 				"			if(a_flag != true){",
@@ -103,7 +103,7 @@ namespace BlueBack.VersionManager.Editor
 				"		}",
 				"		#endif",
 				"",
-				"		#if(DEF_<<NAMESPACE_AUTHOR>>_<<NAMESPACE_PACKAGE>>_LOG)",
+				"		#if(DEF_<<NAMESPACE_AUTHOR>>_LOG)",
 				"		public static void Log(string a_message)",
 				"		{",
 				"			DebugTool.logproc(a_message);",
@@ -142,7 +142,7 @@ namespace BlueBack.VersionManager.Editor
 			BlueBack.AssetLib.Editor.SaveTextWithAssetsPath.SaveNoBomUtf8(t_stringbuilder.ToString(),t_path,BlueBack.AssetLib.LineFeedOption.CRLF);
 			BlueBack.AssetLib.Editor.RefreshAssetDatabase.Refresh();
 
-			#if(DEF_BLUEBACK_VERSIONMANAGER_LOG)
+			#if(DEF_BLUEBACK_LOG)
 			DebugTool.Log("save : " + t_path);
 			#endif
 		}

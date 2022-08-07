@@ -43,7 +43,7 @@ namespace BlueBack.VersionManager.Editor
 			BlueBack.AssetLib.Editor.SaveTextWithAssetsPath.SaveNoBomUtf8(t_stringbuilder.ToString(),t_path,BlueBack.AssetLib.LineFeedOption.CRLF);
 			BlueBack.AssetLib.Editor.RefreshAssetDatabase.Refresh();
 
-			#if(DEF_BLUEBACK_VERSIONMANAGER_LOG)
+			#if(DEF_BLUEBACK_LOG)
 			DebugTool.Log("save : " + t_path);
 			#endif
 		}
