@@ -89,6 +89,7 @@ namespace BlueBack.VersionManager.Editor
 					foreach(ProjectParam.Asmdef.Reference t_asmdef_reference_item in Object_Setting.projectparam.asmdef_runtime.reference_list){
 						switch(t_asmdef_reference_item.mode){
 						case "package":
+						case "reference":
 							{
 								if(t_asmdef_reference_item.package_fullname ==  t_jsonitem.GetItem("name").GetStringData()){
 									if(t_guid_list.ContainsKey(t_asmdef_reference_item.package_fullname) == false){
@@ -98,6 +99,9 @@ namespace BlueBack.VersionManager.Editor
 										}
 									}
 								}
+							}break;
+						case "url":
+							{
 							}break;
 						}
 					}
@@ -106,6 +110,7 @@ namespace BlueBack.VersionManager.Editor
 					foreach(ProjectParam.Asmdef.Reference t_asmdef_reference_item in Object_Setting.projectparam.asmdef_editor.reference_list){
 						switch(t_asmdef_reference_item.mode){
 						case "package":
+						case "reference":
 							{
 								if(t_asmdef_reference_item.package_fullname ==  t_jsonitem.GetItem("name").GetStringData()){
 									if(t_guid_list.ContainsKey(t_asmdef_reference_item.package_fullname) == false){
@@ -116,6 +121,9 @@ namespace BlueBack.VersionManager.Editor
 									}
 								}
 							}break;
+						case "url":
+							{
+							}break;
 						}
 					}
 
@@ -123,6 +131,7 @@ namespace BlueBack.VersionManager.Editor
 					foreach(ProjectParam.Asmdef.Reference t_asmdef_reference_item in Object_Setting.projectparam.asmdef_sample.reference_list){
 						switch(t_asmdef_reference_item.mode){
 						case "package":
+						case "reference":
 							{
 								if(t_asmdef_reference_item.package_fullname ==  t_jsonitem.GetItem("name").GetStringData()){
 									if(t_guid_list.ContainsKey(t_asmdef_reference_item.package_fullname) == false){
@@ -132,6 +141,9 @@ namespace BlueBack.VersionManager.Editor
 										}
 									}
 								}
+							}break;
+						case "url":
+							{
 							}break;
 						}
 					}
@@ -197,6 +209,10 @@ namespace BlueBack.VersionManager.Editor
 									}
 								}
 							}break;
+						case "url":
+						case "reference":
+							{
+							}break;
 						}
 					}
 				}
@@ -211,6 +227,10 @@ namespace BlueBack.VersionManager.Editor
 									define = a_asmdef_item.define_list[ii].define,
 									expression = a_asmdef_item.define_list[ii].expression,
 								});
+							}break;
+						case "url":
+						case "reference":
+							{
 							}break;
 						}
 					}
@@ -233,6 +253,10 @@ namespace BlueBack.VersionManager.Editor
 								DebugTool.EditorLogError(a_asmdef_item.reference_list[ii].package_fullname);
 								#endif
 							}
+						}break;
+					case "url":
+					case "reference":
+						{
 						}break;
 					}
 				}

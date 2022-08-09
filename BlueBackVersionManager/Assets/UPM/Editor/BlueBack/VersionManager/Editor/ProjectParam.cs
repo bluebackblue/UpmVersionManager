@@ -35,8 +35,9 @@ namespace BlueBack.VersionManager.Editor
 			{
 				/** mode
 
-					"package"	: 参照の追加。
-					"url"		: リンクのみ追加。
+					"package"		: 「README」へ「URL」の追加。参照の追加。デファイン追加。
+					"url"			: 「README」へ「URL」の追加。のみ。
+					"reference"		: 参照の追加。のみ。
 
 				*/
 				public string mode;

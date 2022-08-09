@@ -139,6 +139,9 @@ namespace BlueBack.VersionManager.Editor
 						{
 							t_url_list.Add("* " + Object_Setting.projectparam.asmdef_runtime.reference_list[ii].url);
 						}break;
+					case "reference":
+						{
+						}break;
 					}
 				}
 				t_list.AddRange(t_url_list);
@@ -156,6 +159,9 @@ namespace BlueBack.VersionManager.Editor
 						{
 							t_url_list.Add("* " + Object_Setting.projectparam.asmdef_editor.reference_list[ii].url);
 						}break;
+					case "reference":
+						{
+						}break;
 					}
 				}
 				t_list.AddRange(t_url_list);
@@ -172,6 +178,9 @@ namespace BlueBack.VersionManager.Editor
 					case "url":
 						{
 							t_url_list.Add("* " + Object_Setting.projectparam.asmdef_sample.reference_list[ii].url);
+						}break;
+					case "reference":
+						{
 						}break;
 					}
 				}
