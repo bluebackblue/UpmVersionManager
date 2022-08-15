@@ -102,23 +102,23 @@ namespace BlueBack.VersionManager.Editor
 				//ＵＳＳＵＸＭＬ。
 				Button_CreateUssUxml.Initialize(UnityEngine.UIElements.UQueryExtensions.Q<UnityEngine.UIElements.Button>(t_root,"label_1"));
 
-				//ＵＴＦ８にコンバート。
-				Button_ConvertToUtf8.Initialize(UnityEngine.UIElements.UQueryExtensions.Q<UnityEngine.UIElements.Button>(t_root,"label_2_1"));
-
 				//ブラウザを開く。
-				Button_OpenBrowser.Initialize(UnityEngine.UIElements.UQueryExtensions.Q<UnityEngine.UIElements.Button>(t_root,"label_2_2"));
+				Button_OpenBrowser.Initialize(UnityEngine.UIElements.UQueryExtensions.Q<UnityEngine.UIElements.Button>(t_root,"label_2_1"));
 
 				//ディレクトリを開く。
-				Button_OpenDirectory.Initialize(UnityEngine.UIElements.UQueryExtensions.Q<UnityEngine.UIElements.Button>(t_root,"label_2_3"));
+				Button_OpenDirectory.Initialize(UnityEngine.UIElements.UQueryExtensions.Q<UnityEngine.UIElements.Button>(t_root,"label_2_2"));
 
 				//パッケージロックを削除。
-				Button_DeletePacakgeLock.Initialize(UnityEngine.UIElements.UQueryExtensions.Q<UnityEngine.UIElements.Button>(t_root,"label_3_1"));
+				Button_DeletePackageLock.Initialize(UnityEngine.UIElements.UQueryExtensions.Q<UnityEngine.UIElements.Button>(t_root,"label_2_3"));
 
-				//エディター。
-				Button_Editor.Initialize(UnityEngine.UIElements.UQueryExtensions.Q<UnityEngine.UIElements.Button>(t_root,"label_3_2"));
+				//コミット。
+				Button_Commit.Initialize(UnityEngine.UIElements.UQueryExtensions.Q<UnityEngine.UIElements.Button>(t_root,"label_3_1"));
 
-				//ダミー。
-				Button_Dummy.Initialize(UnityEngine.UIElements.UQueryExtensions.Q<UnityEngine.UIElements.Button>(t_root,"label_3_3"));
+				//プッシュ。
+				Button_Push.Initialize(UnityEngine.UIElements.UQueryExtensions.Q<UnityEngine.UIElements.Button>(t_root,"label_3_2"));
+
+				//タグ作成。
+				Button_CreateTag.Initialize(UnityEngine.UIElements.UQueryExtensions.Q<UnityEngine.UIElements.Button>(t_root,"label_3_3"));
 
 				//「server.json」。
 				{

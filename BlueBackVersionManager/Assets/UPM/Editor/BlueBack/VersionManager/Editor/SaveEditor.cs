@@ -3,7 +3,7 @@
 /**
 	Copyright (c) blueback
 	Released under the MIT License
-	@brief ボタン。
+	@brief セーブ。
 */
 
 
@@ -21,32 +21,13 @@
 #if(UNITY_EDITOR)
 namespace BlueBack.VersionManager.Editor
 {
-	/** Button_Editor
+	/** SaveEditor
 	*/
-	public static class Button_Editor
+	public static class SaveEditor
 	{
-		/** Initialize
+		/** Save
 		*/
-		public static void Initialize(UnityEngine.UIElements.Button a_button)
-		{
-			a_button.text = "[Editor]";
-			a_button.clickable.clicked += () => {
-				#if(DEF_BLUEBACK_LOG)
-				DebugTool.Log("OpenBrowser");
-				#endif
-
-				Object_Setting.projectparam = ProjectParam.Load();
-				if(Object_RootServerJson.status == null){
-					Object_RootServerJson.Load();
-				}
-
-				On();
-			};
-		}
-
-		/** On
-		*/
-		private static void On()
+		public static void Save()
 		#if(ASMDEF_TRUE)
 		{
 			UnityEditor.PlayerSettings.companyName = Object_Setting.projectparam.namespace_author;

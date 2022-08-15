@@ -69,7 +69,6 @@ namespace BlueBack.VersionManager.Editor
 		*/
 		private static void On(string a_version)
 		{
-
 			Object_UpmSamples.Copy();
 			Object_UpmChangeLogMd.Save();
 			Object_UpmDocumentation.Save(a_version);
@@ -79,6 +78,9 @@ namespace BlueBack.VersionManager.Editor
 			Object_UpmPackageJson.Save(a_version);
 			Object_UpmUpdatePackage.Save();
 			Object_UpmAsmdef.Save();
+			ConvertToNoBomUtf8.Convert();
+			BlueBack.Code.Editor.FileNameCheck.Check(null);
+			SaveEditor.Save();
 			Window.window.OnEnable();
 		}
 	}

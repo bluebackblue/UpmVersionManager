@@ -75,6 +75,9 @@ namespace BlueBack.VersionManager.Editor
 		{
 			Object_RootReadmeMd.Save(a_version);
 			Object_RootReadmeMd.Load();
+			ConvertToNoBomUtf8.Convert();
+			SaveEditor.Save();
+			BlueBack.Code.Editor.FileNameCheck.Check(null);
 			Window.window.OnEnable();
 		}
 	}
