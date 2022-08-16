@@ -19,7 +19,7 @@ namespace BlueBack.VersionManager
 
 		/** assertproc
 		*/
-		#if((DEF_BLUEBACK_DEBUG)&&(ASMDEF_BLUEBACK_DEBUG))
+		#if(ASMDEF_BLUEBACK_DEBUG)
 		public static BlueBack.Debug.Assert.ProcType assertproc = BlueBack.Debug.Assert.Default;
 		#endif
 
@@ -28,7 +28,7 @@ namespace BlueBack.VersionManager
 		public static void Assert(bool a_flag,System.Exception a_exception = null)
 		{
 			if(a_flag != true){
-				#if((DEF_BLUEBACK_DEBUG)&&(ASMDEF_BLUEBACK_DEBUG))
+				#if(ASMDEF_BLUEBACK_DEBUG)
 				DebugTool.assertproc(null,a_exception);
 				#endif
 			}
@@ -39,7 +39,7 @@ namespace BlueBack.VersionManager
 		public static void Assert(bool a_flag,string a_message)
 		{
 			if(a_flag != true){
-				#if((DEF_BLUEBACK_DEBUG)&&(ASMDEF_BLUEBACK_DEBUG))
+				#if(ASMDEF_BLUEBACK_DEBUG)
 				DebugTool.assertproc(a_message,null);
 				#endif
 			}
@@ -51,7 +51,7 @@ namespace BlueBack.VersionManager
 
 		/** logproc
 		*/
-		#if((DEF_BLUEBACK_DEBUG)&&(ASMDEF_BLUEBACK_DEBUG))
+		#if(ASMDEF_BLUEBACK_DEBUG)
 		public static BlueBack.Debug.Log.ProcType logproc = BlueBack.Debug.Log.Default;
 		#endif
 
@@ -59,7 +59,7 @@ namespace BlueBack.VersionManager
 		*/
 		public static void Log(string a_message)
 		{
-			#if((DEF_BLUEBACK_DEBUG)&&(ASMDEF_BLUEBACK_DEBUG))
+			#if(ASMDEF_BLUEBACK_DEBUG)
 			DebugTool.logproc(a_message);
 			#endif
 		}
@@ -70,7 +70,7 @@ namespace BlueBack.VersionManager
 
 		/** detailproc
 		*/
-		#if((DEF_BLUEBACK_DEBUG)&&(ASMDEF_BLUEBACK_DEBUG))
+		#if(ASMDEF_BLUEBACK_DEBUG)
 		public static BlueBack.Debug.Detail.ProcType detailproc = BlueBack.Debug.Detail.Default;
 		#endif
 
@@ -78,7 +78,7 @@ namespace BlueBack.VersionManager
 		*/
 		public static void Detail(string a_message)
 		{
-			#if((DEF_BLUEBACK_DEBUG)&&(ASMDEF_BLUEBACK_DEBUG))
+			#if(ASMDEF_BLUEBACK_DEBUG)
 			DebugTool.detailproc(a_message);
 			#endif
 		}
@@ -89,13 +89,13 @@ namespace BlueBack.VersionManager
 
 		/** editorlogproc
 		*/
-		#if((DEF_BLUEBACK_DEBUG)&&(ASMDEF_BLUEBACK_DEBUG))
+		#if(ASMDEF_BLUEBACK_DEBUG)
 		public static BlueBack.Debug.Log.ProcType editorlogproc = BlueBack.Debug.Log.Default;
 		#endif
 
 		/** editorerrorlogproc
 		*/
-		#if((DEF_BLUEBACK_DEBUG)&&(ASMDEF_BLUEBACK_DEBUG))
+		#if(ASMDEF_BLUEBACK_DEBUG)
 		public static BlueBack.Debug.ErrorLog.ProcType editorerrorlogproc = BlueBack.Debug.ErrorLog.Default;
 		#endif
 
@@ -103,7 +103,7 @@ namespace BlueBack.VersionManager
 		*/
 		public static void EditorLog(string a_message)
 		{
-			#if((DEF_BLUEBACK_DEBUG)&&(ASMDEF_BLUEBACK_DEBUG))
+			#if(ASMDEF_BLUEBACK_DEBUG)
 			DebugTool.editorlogproc(a_message);
 			#endif
 		}
@@ -112,7 +112,7 @@ namespace BlueBack.VersionManager
 		*/
 		public static void EditorErrorLog(string a_message)
 		{
-			#if((DEF_BLUEBACK_DEBUG)&&(ASMDEF_BLUEBACK_DEBUG))
+			#if(ASMDEF_BLUEBACK_DEBUG)
 			DebugTool.editorerrorlogproc(a_message);
 			#endif
 		}
