@@ -61,9 +61,9 @@ namespace BlueBack.VersionManager.Editor
 				public string define_package_pathname;
 			};
 
-			/** Define
+			/** VersionDefine
 			*/
-			public struct Define
+			public struct VersionDefine
 			{
 				public string mode;
 				public string package_pathname;
@@ -71,13 +71,17 @@ namespace BlueBack.VersionManager.Editor
 				public string expression;
 			};
 
+			/** define_constraint_list
+			*/
+			public string[] define_constraint_list;
+
 			/** reference_list
 			*/
 			public Reference[] reference_list;
 
-			/** define_list
+			/** version_define_list
 			*/
-			public Define[] define_list;
+			public VersionDefine[] version_define_list;
 		};
 
 		/** ネームスペース。
@@ -145,21 +149,24 @@ namespace BlueBack.VersionManager.Editor
 			this.root_readmemd_path = "";
 			this.need_unity_version = "2020.1";
 			this.asmdef_runtime = new Asmdef(){
+				define_constraint_list = new string[]{},
 				reference_list = new Asmdef.Reference[]{},
-				define_list = new Asmdef.Define[]{},
+				version_define_list = new Asmdef.VersionDefine[]{},
 			};
 			this.asmdef_editor = new Asmdef(){
+				define_constraint_list = new string[]{},
 				reference_list = new Asmdef.Reference[]{
 					new Asmdef.Reference(){
 						package_fullname = "xxxxx.xxxxx",
 						url = "https://xxxxx",
 					}
 				},
-				define_list = new Asmdef.Define[]{},
+				version_define_list = new Asmdef.VersionDefine[]{},
 			};
 			this.asmdef_sample = new Asmdef(){
+				define_constraint_list = new string[]{},
 				reference_list = new Asmdef.Reference[]{},
-				define_list = new Asmdef.Define[]{},
+				version_define_list = new Asmdef.VersionDefine[]{},
 			};
 		}
 

@@ -185,9 +185,22 @@ namespace BlueBack.VersionManager.Editor
 				t_asmdef.includePlatforms = t_includeplatforms_list.ToArray();
 			}
 
-			//define_list
+			//version_define_list
 			{
-				System.Collections.Generic.List<AssetLib.Asmdef.VersionDefine> t_define_list = new System.Collections.Generic.List<AssetLib.Asmdef.VersionDefine>();
+				System.Collections.Generic.List<string> t_version_define_list = new System.Collections.Generic.List<string>();
+
+				{
+					for(int ii=0;ii<a_asmdef_item.define_constraint_list.Length;ii++){
+						t_version_define_list.Add(a_asmdef_item.define_constraint_list[ii]);
+					}
+				}
+
+				t_asmdef.defineConstraints = t_version_define_list.ToArray();
+			}
+
+			//version_define_list
+			{
+				System.Collections.Generic.List<AssetLib.Asmdef.VersionDefine> t_version_define_list = new System.Collections.Generic.List<AssetLib.Asmdef.VersionDefine>();
 
 				{
 					for(int ii=0;ii<a_asmdef_item.reference_list.Length;ii++){
@@ -198,10 +211,10 @@ namespace BlueBack.VersionManager.Editor
 								if(string.IsNullOrEmpty(t_package_pathname) == false){
 									string t_define = "ASMDEF_" + t_package_pathname.Replace('.','_').ToUpper();
 
-									if(t_define_list.FindIndex((AssetLib.Asmdef.VersionDefine a_a_item)=>{
+									if(t_version_define_list.FindIndex((AssetLib.Asmdef.VersionDefine a_a_item)=>{
 										return (t_package_pathname == a_a_item.name)||(t_define == a_a_item.define);
 									}) < 0){
-										t_define_list.Add(new AssetLib.Asmdef.VersionDefine(){
+										t_version_define_list.Add(new AssetLib.Asmdef.VersionDefine(){
 											name = t_package_pathname,
 											define = t_define,
 											expression = null,
@@ -218,14 +231,14 @@ namespace BlueBack.VersionManager.Editor
 				}
 
 				{
-					for(int ii=0;ii<a_asmdef_item.define_list.Length;ii++){
-						switch(a_asmdef_item.define_list[ii].mode){
+					for(int ii=0;ii<a_asmdef_item.version_define_list.Length;ii++){
+						switch(a_asmdef_item.version_define_list[ii].mode){
 						case "package":
 							{
-								t_define_list.Add(new AssetLib.Asmdef.VersionDefine(){
-									name = a_asmdef_item.define_list[ii].package_pathname,
-									define = a_asmdef_item.define_list[ii].define,
-									expression = a_asmdef_item.define_list[ii].expression,
+								t_version_define_list.Add(new AssetLib.Asmdef.VersionDefine(){
+									name = a_asmdef_item.version_define_list[ii].package_pathname,
+									define = a_asmdef_item.version_define_list[ii].define,
+									expression = a_asmdef_item.version_define_list[ii].expression,
 								});
 							}break;
 						case "url":
@@ -236,7 +249,7 @@ namespace BlueBack.VersionManager.Editor
 					}
 				}
 
-				t_asmdef.versionDefines = t_define_list.ToArray();
+				t_asmdef.versionDefines = t_version_define_list.ToArray();
 			}
 
 			//reference_list
