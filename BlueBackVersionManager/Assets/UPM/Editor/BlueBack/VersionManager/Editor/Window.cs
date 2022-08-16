@@ -62,7 +62,7 @@ namespace BlueBack.VersionManager.Editor
 		*/
 		public Window()
 		{
-			#if(DEF_BLUEBACK_LOG)
+			#if(DEF_BLUEBACK_DEBUG_LOG)
 			DebugTool.Log("Window.constructor");
 			#endif
 
@@ -78,7 +78,7 @@ namespace BlueBack.VersionManager.Editor
 		public void OnEnable()
 		#if(ASMDEF_TRUE)
 		{
-			#if(DEF_BLUEBACK_LOG)
+			#if(DEF_BLUEBACK_DEBUG_LOG)
 			DebugTool.Log("Window.OnEnable");
 			#endif
 

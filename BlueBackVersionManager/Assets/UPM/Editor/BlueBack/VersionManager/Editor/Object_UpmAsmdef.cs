@@ -262,8 +262,8 @@ namespace BlueBack.VersionManager.Editor
 							if(a_guid_list.TryGetValue(a_asmdef_item.reference_list[ii].package_fullname,out string t_guid) == true){
 								t_reference_list.Add("GUID:" + t_guid);
 							}else{
-								#if(DEF_BLUEBACK_ASSERT)
-								DebugTool.EditorLogError(a_asmdef_item.reference_list[ii].package_fullname);
+								#if(DEF_BLUEBACK_DEBUG_ASSERT)
+								DebugTool.EditorErrorLog(a_asmdef_item.reference_list[ii].package_fullname);
 								#endif
 							}
 						}break;

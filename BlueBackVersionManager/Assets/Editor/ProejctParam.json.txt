@@ -28,6 +28,12 @@
 		"version_define_list":[
 		],
 		"reference_list":[
+			{
+				"mode":"package",
+				"package_fullname":"BlueBack.Debug",
+				"url":"https://github.com/bluebackblue/UpmDebug",
+				"define_package_pathname":"blueback.debug"
+			}
 		]
 	},
 	"asmdef_editor":{

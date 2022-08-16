@@ -84,7 +84,7 @@ namespace BlueBack.VersionManager.Editor
 			BlueBack.AssetLib.Editor.SaveTextWithAssetsPath.SaveNoBomUtf8(BlueBack.JsonItem.Convert.ObjectToJsonString<PackageJson>(t_packagejson),t_path,BlueBack.AssetLib.LineFeedOption.CRLF);
 			BlueBack.AssetLib.Editor.RefreshAssetDatabase.Refresh();
 
-			#if(DEF_BLUEBACK_LOG)
+			#if(DEF_BLUEBACK_DEBUG_LOG)
 			DebugTool.Log("save : " + t_path);
 			#endif
 		}

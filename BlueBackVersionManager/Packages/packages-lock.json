@@ -14,6 +14,13 @@
       "dependencies": {},
       "hash": "df2a5897b1f6e083c23792b2b19a065557979601"
     },
+    "blueback.debug": {
+      "version": "https://github.com/bluebackblue/UpmDebug.git?path=BlueBackDebug/Assets/UPM",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "7e2924d890ec3c8f215c10a3b209ce90237a9ff0"
+    },
     "blueback.install": {
       "version": "https://github.com/bluebackblue/UpmInstall.git?path=BlueBackInstall/Assets/UPM",
       "depth": 0,
@@ -36,7 +43,7 @@
       "url": "https://packages.unity.com"
     },
     "com.unity.ide.visualstudio": {
-      "version": "2.0.15",
+      "version": "2.0.16",
       "depth": 0,
       "source": "registry",
       "dependencies": {

@@ -22,7 +22,7 @@ namespace BlueBack.VersionManager.Editor
 		{
 			a_button.text = "[Commit]";
 			a_button.clickable.clicked += () => {
-				#if(DEF_BLUEBACK_LOG)
+				#if(DEF_BLUEBACK_DEBUG_LOG)
 				DebugTool.Log("Commit");
 				#endif
 
