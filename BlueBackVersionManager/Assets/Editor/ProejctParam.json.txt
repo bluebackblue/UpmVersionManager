@@ -22,6 +22,8 @@
 	],
 	"root_readmemd_path":"../../README.md",
 	"need_unity_version":"2020.1",
+	"debugtool_generate":"true",
+	"license":"MIT License",
 	"asmdef_runtime":{
 		"define_constraint_list":[
 		],
@@ -46,37 +48,43 @@
 				"mode":"package",
 				"package_fullname":"BlueBack.VersionManager",
 				"url":"https://github.com/bluebackblue/UpmVersionManager",
-				"define_package_pathname":"blueback.versionmanager"
+				"define_package_pathname":"blueback.versionmanager",
+				"dependence_value":null
 			},
 			{
 				"mode":"package",
 				"package_fullname":"BlueBack.AssetLib",
 				"url":"https://github.com/bluebackblue/UpmAssetLib",
-				"define_package_pathname":"blueback.assetlib"
+				"define_package_pathname":"blueback.assetlib",
+				"dependence_value":"https://github.com/bluebackblue/UpmAssetLib.git?path=BlueBackAssetLib/Assets/UPM"
 			},
 			{
 				"mode":"package",
 				"package_fullname":"BlueBack.AssetLib.Editor",
 				"url":"https://github.com/bluebackblue/UpmAssetLib",
-				"define_package_pathname":"blueback.assetlib"
+				"define_package_pathname":"blueback.assetlib",
+				"dependence_value":"https://github.com/bluebackblue/UpmAssetLib.git?path=BlueBackAssetLib/Assets/UPM"
 			},
 			{
 				"mode":"package",
 				"package_fullname":"BlueBack.JsonItem",
 				"url":"https://github.com/bluebackblue/UpmJsonItem",
-				"define_package_pathname":"blueback.jsonitem"
+				"define_package_pathname":"blueback.jsonitem",
+				"dependence_value":"https://github.com/bluebackblue/UpmJsonItem.git?path=BlueBackJsonItem/Assets/UPM"
 			},
 			{
 				"mode":"package",
 				"package_fullname":"BlueBack.Code",
 				"url":"https://github.com/bluebackblue/UpmCode",
-				"define_package_pathname":"blueback.code"
+				"define_package_pathname":"blueback.code",
+				"dependence_value":"https://github.com/bluebackblue/UpmCode.git?path=BlueBackCode/Assets/UPM"
 			},
 			{
 				"mode":"package",
 				"package_fullname":"BlueBack.Code.Editor",
 				"url":"https://github.com/bluebackblue/UpmCode",
-				"define_package_pathname":"blueback.code"
+				"define_package_pathname":"blueback.code",
+				"dependence_value":"https://github.com/bluebackblue/UpmCode.git?path=BlueBackCode/Assets/UPM"
 			}
 		]
 	},

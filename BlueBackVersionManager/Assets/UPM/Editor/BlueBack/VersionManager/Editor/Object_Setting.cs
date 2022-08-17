@@ -114,8 +114,8 @@ namespace BlueBack.VersionManager.Editor
 		{
 			System.Collections.Generic.List<string> t_list = new System.Collections.Generic.List<string>();
 			{
-				for(int ii=0;ii<Object_Setting.projectparam.discription_detal.Length;ii++){
-					t_list.Add(Object_Setting.projectparam.discription_detal[ii]);
+				for(int ii=0;ii<Object_Setting.projectparam.description_detal.Length;ii++){
+					t_list.Add(Object_Setting.projectparam.description_detal[ii]);
 				}
 			}
 			return t_list;

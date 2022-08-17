@@ -1,6 +1,7 @@
 # BlueBack.VersionManager
-バージョンマネージャー
-* package.json出力
+xxxxx
+* xxxxx
+* xxxxx
 
 ## ライセンス
 MIT License
@@ -23,7 +24,7 @@ Unity 2022.1.0b16
 
 ## UPM
 ### 最新
-* https://github.com/bluebackblue/UpmVersionManager.git?path=BlueBackVersionManager/Assets/UPM#0.0.79
+* https://github.com/bluebackblue/UpmVersionManager.git?path=BlueBackVersionManager/Assets/UPM#0.0.80
 ### 開発
 * https://github.com/bluebackblue/UpmVersionManager.git?path=BlueBackVersionManager/Assets/UPM
 

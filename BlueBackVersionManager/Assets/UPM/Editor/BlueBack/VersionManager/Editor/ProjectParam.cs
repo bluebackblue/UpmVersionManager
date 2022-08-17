@@ -57,8 +57,15 @@ namespace BlueBack.VersionManager.Editor
 				public string url;
 
 				/** define_package_pathname
+
+					例 : "blueback.versionmanager"
+
 				*/
 				public string define_package_pathname;
+
+				/** dependence_value
+				*/
+				public string dependence_value;
 			};
 
 			/** VersionDefine
@@ -97,8 +104,8 @@ namespace BlueBack.VersionManager.Editor
 
 		/** 説明。
 		*/
-		public string discription_simple;
-		public string[] discription_detal;
+		public string description_simple;
+		public string[] description_detal;
 
 		/** キーワード。
 		*/
@@ -116,6 +123,14 @@ namespace BlueBack.VersionManager.Editor
 		*/
 		public string need_unity_version;
 
+		/** デバッグツール生成。
+		*/
+		public bool debugtool_generate;
+
+		/** license
+		*/
+		public string license;
+
 		/** asmdef
 		*/
 		public Asmdef asmdef_runtime;
@@ -131,8 +146,8 @@ namespace BlueBack.VersionManager.Editor
 			this.git_url = "https://github.com/xxxxx/xxxxx";
 			this.git_api = "https://api.github.com/repos/xxxxx/xxxxx";
 			this.git_path = "xxxxx/Assets/UPM";
-			this.discription_simple = "xxxxx";
-			this.discription_detal = new string[]{
+			this.description_simple = "xxxxx";
+			this.description_detal = new string[]{
 				"xxxxx",
 				"* xxxxx",
 				"* xxxxx",

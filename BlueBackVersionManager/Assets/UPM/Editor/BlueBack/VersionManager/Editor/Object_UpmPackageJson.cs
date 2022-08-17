@@ -39,29 +39,81 @@ namespace BlueBack.VersionManager.Editor
 				//name
 				t_packagejson.name = Object_Setting.Reprece("<<namespace_author>>.<<namespace_package>>");
 
-				//displayName
-				t_packagejson.displayName = Object_Setting.Reprece("<<NameSpace_Author>>.<<NameSpace_Package>>");
-
 				//version
 				t_packagejson.version = a_version;
+
+				//description
+				t_packagejson.description = Object_Setting.projectparam.description_simple;
+
+				//displayName
+				t_packagejson.displayName = Object_Setting.Reprece("<<NameSpace_Author>>.<<NameSpace_Package>>");
 
 				//unity
 				t_packagejson.unity = Object_Setting.projectparam.need_unity_version;
 
-				//discription
-				t_packagejson.discription = Object_Setting.projectparam.discription_simple;
-
 				//author
 				t_packagejson.author.name = Object_Setting.projectparam.namespace_author;
+				t_packagejson.author.email = null;
 				t_packagejson.author.url =  Object_Setting.projectparam.git_url;
 
-				//keyword
-				t_packagejson.keyword = Object_Setting.projectparam.keyword;
+				//changelogUrl
+				t_packagejson.changelogUrl = null;
 
 				//dependencies
 				t_packagejson.dependencies = new System.Collections.Generic.Dictionary<string,string>();
 				{
+					//asmdef_runtime
+					for(int ii=0;ii<Object_Setting.projectparam.asmdef_runtime.reference_list.Length;ii++){
+						{
+							string t_package_pathname = Object_Setting.projectparam.asmdef_runtime.reference_list[ii].define_package_pathname;
+							string t_dependence_value = Object_Setting.projectparam.asmdef_runtime.reference_list[ii].dependence_value;
+							if(t_package_pathname != t_packagejson.name){
+								if(t_packagejson.dependencies.ContainsKey(t_package_pathname) == false){
+									t_packagejson.dependencies.Add(t_package_pathname,t_dependence_value);
+								}
+							}
+						}
+					}
+					//asmdef_editor
+					for(int ii=0;ii<Object_Setting.projectparam.asmdef_editor.reference_list.Length;ii++){
+						{
+							string t_package_pathname = Object_Setting.projectparam.asmdef_editor.reference_list[ii].define_package_pathname;
+							string t_dependence_value = Object_Setting.projectparam.asmdef_editor.reference_list[ii].dependence_value;
+							if(t_package_pathname != t_packagejson.name){
+								if(t_packagejson.dependencies.ContainsKey(t_package_pathname) == false){
+									t_packagejson.dependencies.Add(t_package_pathname,t_dependence_value);
+								}
+							}
+						}
+					}
+					//asmdef_sample
+					for(int ii=0;ii<Object_Setting.projectparam.asmdef_sample.reference_list.Length;ii++){
+						{
+							string t_package_pathname = Object_Setting.projectparam.asmdef_sample.reference_list[ii].define_package_pathname;
+							string t_dependence_value = Object_Setting.projectparam.asmdef_sample.reference_list[ii].dependence_value;
+							if(t_package_pathname != t_packagejson.name){
+								if(t_packagejson.dependencies.ContainsKey(t_package_pathname) == false){
+									t_packagejson.dependencies.Add(t_package_pathname,t_dependence_value);
+								}
+							}
+						}
+					}
 				}
+
+				//documentationUrl
+				t_packagejson.documentationUrl = null;
+
+				//hideInEditor
+				t_packagejson.hideInEditor = false;
+
+				//keyword
+				t_packagejson.keywords = Object_Setting.projectparam.keyword;
+
+				//license
+				t_packagejson.license = Object_Setting.projectparam.license;
+
+				//licensesUrl
+				t_packagejson.licensesUrl = null;
 
 				//samples
 				t_packagejson.samples = new System.Collections.Generic.List<PackageJson.Samples>();
@@ -77,11 +129,20 @@ namespace BlueBack.VersionManager.Editor
 						t_packagejson.samples.Add(t_sample_item);
 					}
 				}
+
+				//t_packagejson
+				t_packagejson.type = null;
+
+				//t_packagejson
+				t_packagejson.unityRelease = null;
 			}
+
+			//packagejsonitem
+			BlueBack.JsonItem.JsonItem t_packagejsonitem = BlueBack.JsonItem.Convert.ObjectToJsonItem<PackageJson>(t_packagejson);
 
 			//SaveTextWithAssetsPath
 			BlueBack.AssetLib.Editor.CreateDirectoryWithAssetsPath.Create(System.IO.Path.GetDirectoryName(t_path));
-			BlueBack.AssetLib.Editor.SaveTextWithAssetsPath.SaveNoBomUtf8(BlueBack.JsonItem.Convert.ObjectToJsonString<PackageJson>(t_packagejson),t_path,BlueBack.AssetLib.LineFeedOption.CRLF);
+			BlueBack.AssetLib.Editor.SaveTextWithAssetsPath.SaveNoBomUtf8(t_packagejsonitem.ConvertToJsonString(),t_path,BlueBack.AssetLib.LineFeedOption.CRLF);
 			BlueBack.AssetLib.Editor.RefreshAssetDatabase.Refresh();
 
 			#if(DEF_BLUEBACK_DEBUG_LOG)
