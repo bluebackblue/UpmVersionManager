@@ -33,47 +33,35 @@ namespace BlueBack.VersionManager.Editor
 			*/
 			public struct Reference
 			{
-				/** mode
-
-					"package"		: 「README」へ「URL」の追加。参照の追加。デファイン追加。
-					"url"			: 「README」へ「URL」の追加。のみ。
-					"reference"		: 参照の追加。のみ。
-
-				*/
-				public string mode;
-
-				/** package_fullname
+				/** rootnamespace
 
 					例 : "BlueBack.VersionManager"
 
 				*/
-				public string package_fullname;
+				public string rootnamespace;
 
-				/** url
-
-					例 : "https://xxx"
-
+				/** 「README.MD」。依存関係ＵＲＬを追加。
 				*/
-				public string url;
+				public bool readmemd_dependence_url;
 
-				/** define_package_pathname
-
-					例 : "blueback.versionmanager"
-
+				/** 「ASMDEF」。依存関係アセンブリーを追加。
 				*/
-				public string define_package_pathname;
+				public bool asmdef_reference_assembly;
 
-				/** dependence_value
+				/**「ASMDEF」。バージョンデファインを追加。
 				*/
-				public string dependence_value;
+				public bool asmdef_version_define;
+
+				/** 「package.json」。依存を追加。
+				*/
+				public bool package_dependence;
 			};
 
 			/** VersionDefine
 			*/
 			public struct VersionDefine
 			{
-				public string mode;
-				public string package_pathname;
+				public string domain;
 				public string define;
 				public string expression;
 			};
@@ -91,6 +79,16 @@ namespace BlueBack.VersionManager.Editor
 			public VersionDefine[] version_define_list;
 		};
 
+		/** DataItem
+		*/
+		public struct DataItem
+		{
+			public string rootnamespace;
+			public string domain;
+			public string url;
+			public string dependence;
+		}
+
 		/** ネームスペース。
 		*/
 		public string namespace_author;
@@ -101,6 +99,10 @@ namespace BlueBack.VersionManager.Editor
 		public string git_url;
 		public string git_api;
 		public string git_path;
+
+		/** changelog_url
+		*/
+		public string changelog_url;
 
 		/** 説明。
 		*/
@@ -137,6 +139,10 @@ namespace BlueBack.VersionManager.Editor
 		public Asmdef asmdef_editor;
 		public Asmdef asmdef_sample;
 
+		/** datalist
+		*/
+		public System.Collections.Generic.Dictionary<string,DataItem> datalist;
+
 		/** constructor
 		*/
 		public ProjectParam()
@@ -163,6 +169,9 @@ namespace BlueBack.VersionManager.Editor
 			};
 			this.root_readmemd_path = "";
 			this.need_unity_version = "2020.1";
+			this.debugtool_generate = true;
+			this.license = "MIT License";
+			this.datalist = new System.Collections.Generic.Dictionary<string,DataItem>();
 			this.asmdef_runtime = new Asmdef(){
 				define_constraint_list = new string[]{},
 				reference_list = new Asmdef.Reference[]{},
@@ -172,8 +181,8 @@ namespace BlueBack.VersionManager.Editor
 				define_constraint_list = new string[]{},
 				reference_list = new Asmdef.Reference[]{
 					new Asmdef.Reference(){
-						package_fullname = "xxxxx.xxxxx",
-						url = "https://xxxxx",
+						rootnamespace = "xxxxx.xxxxx",
+						//TODO:url = "https://xxxxx",
 					}
 				},
 				version_define_list = new Asmdef.VersionDefine[]{},

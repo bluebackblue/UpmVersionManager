@@ -57,54 +57,69 @@ namespace BlueBack.VersionManager.Editor
 				t_packagejson.author.url =  Object_Setting.projectparam.git_url;
 
 				//changelogUrl
-				t_packagejson.changelogUrl = null;
+				t_packagejson.changelogUrl = Object_Setting.projectparam.changelog_url;
 
 				//dependencies
 				t_packagejson.dependencies = new System.Collections.Generic.Dictionary<string,string>();
 				{
 					//asmdef_runtime
 					for(int ii=0;ii<Object_Setting.projectparam.asmdef_runtime.reference_list.Length;ii++){
-						{
-							string t_package_pathname = Object_Setting.projectparam.asmdef_runtime.reference_list[ii].define_package_pathname;
-							string t_dependence_value = Object_Setting.projectparam.asmdef_runtime.reference_list[ii].dependence_value;
-							if((t_dependence_value != null)&&(t_package_pathname != t_packagejson.name)){
-								if(t_packagejson.dependencies.ContainsKey(t_package_pathname) == false){
-									t_packagejson.dependencies.Add(t_package_pathname,t_dependence_value);
-									#if(DEF_BLUEBACK_DEBUG_LOG)
-									DebugTool.Log(string.Format("dependencies : {0} : {1}",t_package_pathname,t_dependence_value));
-									#endif
+						ref ProjectParam.Asmdef.Reference t_reference  = ref Object_Setting.projectparam.asmdef_runtime.reference_list[ii];
+						if(Object_Setting.projectparam.datalist.TryGetValue(t_reference.rootnamespace,out ProjectParam.DataItem t_dataitem) == true){
+							if(t_reference.package_dependence == true){
+								if(t_dataitem.domain != t_packagejson.name){
+									if(t_packagejson.dependencies.ContainsKey(t_dataitem.domain) == false){
+										t_packagejson.dependencies.Add(t_dataitem.domain,t_dataitem.dependence);
+										#if(DEF_BLUEBACK_DEBUG_LOG)
+										DebugTool.Log(string.Format("dependencies : {0} : {1}",t_dataitem.domain,t_dataitem.dependence));
+										#endif
+									}
 								}
 							}
+						}else{
+							#if(UNITY_EDITOR)
+							DebugTool.EditorErrorLog(t_reference.rootnamespace);
+							#endif
 						}
 					}
 					//asmdef_editor
 					for(int ii=0;ii<Object_Setting.projectparam.asmdef_editor.reference_list.Length;ii++){
-						{
-							string t_package_pathname = Object_Setting.projectparam.asmdef_editor.reference_list[ii].define_package_pathname;
-							string t_dependence_value = Object_Setting.projectparam.asmdef_editor.reference_list[ii].dependence_value;
-							if((t_dependence_value != null)&&(t_package_pathname != t_packagejson.name)){
-								if(t_packagejson.dependencies.ContainsKey(t_package_pathname) == false){
-									t_packagejson.dependencies.Add(t_package_pathname,t_dependence_value);
-									#if(DEF_BLUEBACK_DEBUG_LOG)
-									DebugTool.Log(string.Format("dependencies : {0} : {1}",t_package_pathname,t_dependence_value));
-									#endif
+						ref ProjectParam.Asmdef.Reference t_reference  = ref Object_Setting.projectparam.asmdef_editor.reference_list[ii];
+						if(Object_Setting.projectparam.datalist.TryGetValue(t_reference.rootnamespace,out ProjectParam.DataItem t_dataitem) == true){
+							if(t_reference.package_dependence == true){
+								if(t_dataitem.domain != t_packagejson.name){
+									if(t_packagejson.dependencies.ContainsKey(t_dataitem.domain) == false){
+										t_packagejson.dependencies.Add(t_dataitem.domain,t_dataitem.dependence);
+										#if(DEF_BLUEBACK_DEBUG_LOG)
+										DebugTool.Log(string.Format("dependencies : {0} : {1}",t_dataitem.domain,t_dataitem.dependence));
+										#endif
+									}
 								}
 							}
+						}else{
+							#if(UNITY_EDITOR)
+							DebugTool.EditorErrorLog(t_reference.rootnamespace);
+							#endif
 						}
 					}
 					//asmdef_sample
 					for(int ii=0;ii<Object_Setting.projectparam.asmdef_sample.reference_list.Length;ii++){
-						{
-							string t_package_pathname = Object_Setting.projectparam.asmdef_sample.reference_list[ii].define_package_pathname;
-							string t_dependence_value = Object_Setting.projectparam.asmdef_sample.reference_list[ii].dependence_value;
-							if((t_dependence_value != null)&&(t_package_pathname != t_packagejson.name)){
-								if(t_packagejson.dependencies.ContainsKey(t_package_pathname) == false){
-									t_packagejson.dependencies.Add(t_package_pathname,t_dependence_value);
-									#if(DEF_BLUEBACK_DEBUG_LOG)
-									DebugTool.Log(string.Format("dependencies : {0} : {1}",t_package_pathname,t_dependence_value));
-									#endif
+						ref ProjectParam.Asmdef.Reference t_reference  = ref Object_Setting.projectparam.asmdef_sample.reference_list[ii];
+						if(Object_Setting.projectparam.datalist.TryGetValue(t_reference.rootnamespace,out ProjectParam.DataItem t_dataitem) == true){
+							if(t_reference.package_dependence == true){
+								if(t_dataitem.domain != t_packagejson.name){
+									if(t_packagejson.dependencies.ContainsKey(t_dataitem.domain) == false){
+										t_packagejson.dependencies.Add(t_dataitem.domain,t_dataitem.dependence);
+										#if(DEF_BLUEBACK_DEBUG_LOG)
+										DebugTool.Log(string.Format("dependencies : {0} : {1}",t_dataitem.domain,t_dataitem.dependence));
+										#endif
+									}
 								}
 							}
+						}else{
+							#if(UNITY_EDITOR)
+							DebugTool.EditorErrorLog(t_reference.rootnamespace);
+							#endif
 						}
 					}
 				}

@@ -71,81 +71,24 @@ namespace BlueBack.VersionManager.Editor
 			//ＧＵＩＤを列挙。
 			System.Collections.Generic.Dictionary<string,string> t_guid_list = new System.Collections.Generic.Dictionary<string,string>();
 
+			//「*.asmdef」を列挙。
+			System.Collections.Generic.List<string> t_asmdef_filename_list = new System.Collections.Generic.List<string>();
 			{
-				//「*.asmdef」を列挙。
-				System.Collections.Generic.List<string> t_filename_list = new System.Collections.Generic.List<string>();
-				{
-					t_filename_list.AddRange(BlueBack.AssetLib.FindFileWithFullPath.FindAll(UnityEngine.Application.dataPath,".*","^.*\\.asmdef$"));
-					System.Collections.Generic.List<UnityEditor.PackageManager.PackageInfo> t_packagelist = BlueBack.AssetLib.Editor.CreatePackageList.Create(true,false);
-					foreach(UnityEditor.PackageManager.PackageInfo t_pacakge in t_packagelist){
-						t_filename_list.AddRange(BlueBack.AssetLib.FindFileWithFullPath.FindAll(t_pacakge.resolvedPath,".*","^.*\\.asmdef$"));
-					}
+				t_asmdef_filename_list.AddRange(BlueBack.AssetLib.FindFileWithFullPath.FindAll(UnityEngine.Application.dataPath,".*","^.*\\.asmdef$"));
+				System.Collections.Generic.List<UnityEditor.PackageManager.PackageInfo> t_packagelist = BlueBack.AssetLib.Editor.CreatePackageList.Create(true,false);
+				foreach(UnityEditor.PackageManager.PackageInfo t_pacakge in t_packagelist){
+					t_asmdef_filename_list.AddRange(BlueBack.AssetLib.FindFileWithFullPath.FindAll(t_pacakge.resolvedPath,".*","^.*\\.asmdef$"));
 				}
+			}
 
-				foreach(string t_filename in t_filename_list){
-					BlueBack.JsonItem.JsonItem t_jsonitem = new JsonItem.JsonItem(BlueBack.JsonItem.Normalize.Convert(BlueBack.AssetLib.LoadTextWithFullPath.Load(t_filename)));
-
-					//asmdef_runtime
-					foreach(ProjectParam.Asmdef.Reference t_asmdef_reference_item in Object_Setting.projectparam.asmdef_runtime.reference_list){
-						switch(t_asmdef_reference_item.mode){
-						case "package":
-						case "reference":
-							{
-								if(t_asmdef_reference_item.package_fullname ==  t_jsonitem.GetItem("name").GetStringData()){
-									if(t_guid_list.ContainsKey(t_asmdef_reference_item.package_fullname) == false){
-										string t_guid = BlueBack.AssetLib.LoadGuidWithFullPath.Load(t_filename + ".meta");
-										if(t_guid != null){
-											t_guid_list.Add(t_asmdef_reference_item.package_fullname,t_guid);
-										}
-									}
-								}
-							}break;
-						case "url":
-							{
-							}break;
-						}
-					}
-
-					//asmdef_editor
-					foreach(ProjectParam.Asmdef.Reference t_asmdef_reference_item in Object_Setting.projectparam.asmdef_editor.reference_list){
-						switch(t_asmdef_reference_item.mode){
-						case "package":
-						case "reference":
-							{
-								if(t_asmdef_reference_item.package_fullname ==  t_jsonitem.GetItem("name").GetStringData()){
-									if(t_guid_list.ContainsKey(t_asmdef_reference_item.package_fullname) == false){
-										string t_guid = BlueBack.AssetLib.LoadGuidWithFullPath.Load(t_filename + ".meta");
-										if(t_guid != null){
-											t_guid_list.Add(t_asmdef_reference_item.package_fullname,t_guid);
-										}
-									}
-								}
-							}break;
-						case "url":
-							{
-							}break;
-						}
-					}
-
-					//asmdef_sample
-					foreach(ProjectParam.Asmdef.Reference t_asmdef_reference_item in Object_Setting.projectparam.asmdef_sample.reference_list){
-						switch(t_asmdef_reference_item.mode){
-						case "package":
-						case "reference":
-							{
-								if(t_asmdef_reference_item.package_fullname ==  t_jsonitem.GetItem("name").GetStringData()){
-									if(t_guid_list.ContainsKey(t_asmdef_reference_item.package_fullname) == false){
-										string t_guid = BlueBack.AssetLib.LoadGuidWithFullPath.Load(t_filename + ".meta");
-										if(t_guid != null){
-											t_guid_list.Add(t_asmdef_reference_item.package_fullname,t_guid);
-										}
-									}
-								}
-							}break;
-						case "url":
-							{
-							}break;
-						}
+			//guid_list
+			foreach(string t_asmdef_filename in t_asmdef_filename_list){
+				BlueBack.JsonItem.JsonItem t_asmdef_jsonitem = new JsonItem.JsonItem(BlueBack.JsonItem.Normalize.Convert(BlueBack.AssetLib.LoadTextWithFullPath.Load(t_asmdef_filename)));
+				string t_asmdef_name = t_asmdef_jsonitem.GetItem("name").GetStringData();
+				if(t_guid_list.ContainsKey(t_asmdef_name) == false){
+					string t_guid = BlueBack.AssetLib.LoadGuidWithFullPath.Load(t_asmdef_filename + ".meta");
+					if(t_guid != null){
+						t_guid_list.Add(t_asmdef_name,t_guid);
 					}
 				}
 			}
@@ -204,48 +147,38 @@ namespace BlueBack.VersionManager.Editor
 
 				{
 					for(int ii=0;ii<a_asmdef_item.reference_list.Length;ii++){
-						switch(a_asmdef_item.reference_list[ii].mode){
-						case "package":
-							{
-								string t_package_pathname = a_asmdef_item.reference_list[ii].define_package_pathname;
-								if(string.IsNullOrEmpty(t_package_pathname) == false){
-									string t_define = "ASMDEF_" + t_package_pathname.Replace('.','_').ToUpper();
+						ref ProjectParam.Asmdef.Reference t_item  = ref a_asmdef_item.reference_list[ii];
+						if(t_item.asmdef_version_define == true){
+							if(Object_Setting.projectparam.datalist.TryGetValue(t_item.rootnamespace,out ProjectParam.DataItem t_dataitem) == true){
+								if(string.IsNullOrEmpty(t_dataitem.domain) == false){
+									string t_define = "ASMDEF_" + t_dataitem.domain.Replace('.','_').ToUpper();
 
 									if(t_version_define_list.FindIndex((AssetLib.Asmdef.VersionDefine a_a_item)=>{
-										return (t_package_pathname == a_a_item.name)||(t_define == a_a_item.define);
+										return (t_dataitem.domain == a_a_item.name)||(t_define == a_a_item.define);
 									}) < 0){
 										t_version_define_list.Add(new AssetLib.Asmdef.VersionDefine(){
-											name = t_package_pathname,
+											name = t_dataitem.domain,
 											define = t_define,
 											expression = null,
 										});
 									}
-								}
-							}break;
-						case "url":
-						case "reference":
-							{
-							}break;
+								}							
+							}else{
+								#if(UNITY_EDITOR)
+								DebugTool.EditorErrorLog(t_item.rootnamespace);
+								#endif
+							}
 						}
 					}
 				}
 
 				{
 					for(int ii=0;ii<a_asmdef_item.version_define_list.Length;ii++){
-						switch(a_asmdef_item.version_define_list[ii].mode){
-						case "package":
-							{
-								t_version_define_list.Add(new AssetLib.Asmdef.VersionDefine(){
-									name = a_asmdef_item.version_define_list[ii].package_pathname,
-									define = a_asmdef_item.version_define_list[ii].define,
-									expression = a_asmdef_item.version_define_list[ii].expression,
-								});
-							}break;
-						case "url":
-						case "reference":
-							{
-							}break;
-						}
+						t_version_define_list.Add(new AssetLib.Asmdef.VersionDefine(){
+							name = a_asmdef_item.version_define_list[ii].domain,
+							define = a_asmdef_item.version_define_list[ii].define,
+							expression = a_asmdef_item.version_define_list[ii].expression,
+						});
 					}
 				}
 
@@ -255,22 +188,17 @@ namespace BlueBack.VersionManager.Editor
 			//reference_list
 			{
 				System.Collections.Generic.List<string> t_reference_list = new System.Collections.Generic.List<string>();
-				for(int ii=0;ii<a_asmdef_item.reference_list.Length;ii++){
-					switch(a_asmdef_item.reference_list[ii].mode){
-					case "package":
-						{
-							if(a_guid_list.TryGetValue(a_asmdef_item.reference_list[ii].package_fullname,out string t_guid) == true){
+				foreach(ProjectParam.Asmdef.Reference t_reference in a_asmdef_item.reference_list){
+					if(t_reference.asmdef_reference_assembly == true){
+						if(Object_Setting.projectparam.datalist.TryGetValue(t_reference.rootnamespace,out ProjectParam.DataItem t_dataitem) == true){
+							if(a_guid_list.TryGetValue(t_reference.rootnamespace,out string t_guid) == true){
 								t_reference_list.Add("GUID:" + t_guid);
 							}else{
 								#if(DEF_BLUEBACK_DEBUG_ASSERT)
-								DebugTool.EditorErrorLog(a_asmdef_item.reference_list[ii].package_fullname);
+								DebugTool.EditorErrorLog(t_reference.rootnamespace);
 								#endif
 							}
-						}break;
-					case "url":
-					case "reference":
-						{
-						}break;
+						}
 					}
 				}
 				t_asmdef.references = t_reference_list.ToArray();

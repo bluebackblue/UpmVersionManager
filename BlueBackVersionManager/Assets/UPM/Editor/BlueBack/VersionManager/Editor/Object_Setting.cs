@@ -129,19 +129,19 @@ namespace BlueBack.VersionManager.Editor
 
 			t_list.Add("### ランタイム");
 
-			//runtine
+			//asmdef_runtime
 			{
 				System.Collections.Generic.HashSet<string> t_url_list = new System.Collections.Generic.HashSet<string>();
 				for(int ii=0;ii<Object_Setting.projectparam.asmdef_runtime.reference_list.Length;ii++){
-					switch(Object_Setting.projectparam.asmdef_runtime.reference_list[ii].mode){
-					case "package":
-					case "url":
-						{
-							t_url_list.Add("* " + Object_Setting.projectparam.asmdef_runtime.reference_list[ii].url);
-						}break;
-					case "reference":
-						{
-						}break;
+					ref ProjectParam.Asmdef.Reference t_reference = ref Object_Setting.projectparam.asmdef_runtime.reference_list[ii];
+					if(t_reference.readmemd_dependence_url == true){
+						if(Object_Setting.projectparam.datalist.TryGetValue(t_reference.rootnamespace,out ProjectParam.DataItem t_dataitem) == true){
+							t_url_list.Add("* " + t_dataitem.url);
+						}else{
+							#if(UNITY_EDITOR)
+							DebugTool.EditorErrorLog(t_reference.rootnamespace);
+							#endif
+						}
 					}
 				}
 				t_list.AddRange(t_url_list);
@@ -149,19 +149,19 @@ namespace BlueBack.VersionManager.Editor
 
 			t_list.Add("### エディター");
 
-			//editor
+			//asmdef_editor
 			{
 				System.Collections.Generic.HashSet<string> t_url_list = new System.Collections.Generic.HashSet<string>();
 				for(int ii=0;ii<Object_Setting.projectparam.asmdef_editor.reference_list.Length;ii++){
-					switch(Object_Setting.projectparam.asmdef_editor.reference_list[ii].mode){
-					case "package":
-					case "url":
-						{
-							t_url_list.Add("* " + Object_Setting.projectparam.asmdef_editor.reference_list[ii].url);
-						}break;
-					case "reference":
-						{
-						}break;
+					ref ProjectParam.Asmdef.Reference t_reference = ref Object_Setting.projectparam.asmdef_editor.reference_list[ii];
+					if(t_reference.readmemd_dependence_url == true){
+						if(Object_Setting.projectparam.datalist.TryGetValue(t_reference.rootnamespace,out ProjectParam.DataItem t_dataitem) == true){
+							t_url_list.Add("* " + t_dataitem.url);
+						}else{
+							#if(UNITY_EDITOR)
+							DebugTool.EditorErrorLog(t_reference.rootnamespace);
+							#endif
+						}
 					}
 				}
 				t_list.AddRange(t_url_list);
@@ -169,19 +169,19 @@ namespace BlueBack.VersionManager.Editor
 
 			t_list.Add("### サンプル");
 
-			//sample
+			//asmdef_sample
 			{
 				System.Collections.Generic.HashSet<string> t_url_list = new System.Collections.Generic.HashSet<string>();
 				for(int ii=0;ii<Object_Setting.projectparam.asmdef_sample.reference_list.Length;ii++){
-					switch(Object_Setting.projectparam.asmdef_sample.reference_list[ii].mode){
-					case "package":
-					case "url":
-						{
-							t_url_list.Add("* " + Object_Setting.projectparam.asmdef_sample.reference_list[ii].url);
-						}break;
-					case "reference":
-						{
-						}break;
+					ref ProjectParam.Asmdef.Reference t_reference = ref Object_Setting.projectparam.asmdef_sample.reference_list[ii];
+					if(t_reference.readmemd_dependence_url == true){
+						if(Object_Setting.projectparam.datalist.TryGetValue(t_reference.rootnamespace,out ProjectParam.DataItem t_dataitem) == true){
+							t_url_list.Add("* " + t_dataitem.url);
+						}else{
+							#if(UNITY_EDITOR)
+							DebugTool.EditorErrorLog(t_reference.rootnamespace);
+							#endif
+						}
 					}
 				}
 				t_list.AddRange(t_url_list);
