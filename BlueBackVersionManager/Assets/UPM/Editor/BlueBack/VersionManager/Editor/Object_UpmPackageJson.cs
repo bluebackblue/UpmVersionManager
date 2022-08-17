@@ -67,9 +67,12 @@ namespace BlueBack.VersionManager.Editor
 						{
 							string t_package_pathname = Object_Setting.projectparam.asmdef_runtime.reference_list[ii].define_package_pathname;
 							string t_dependence_value = Object_Setting.projectparam.asmdef_runtime.reference_list[ii].dependence_value;
-							if(t_package_pathname != t_packagejson.name){
+							if((t_dependence_value != null)&&(t_package_pathname != t_packagejson.name)){
 								if(t_packagejson.dependencies.ContainsKey(t_package_pathname) == false){
 									t_packagejson.dependencies.Add(t_package_pathname,t_dependence_value);
+									#if(DEF_BLUEBACK_DEBUG_LOG)
+									DebugTool.Log(string.Format("dependencies : {0} : {1}",t_package_pathname,t_dependence_value));
+									#endif
 								}
 							}
 						}
@@ -79,9 +82,12 @@ namespace BlueBack.VersionManager.Editor
 						{
 							string t_package_pathname = Object_Setting.projectparam.asmdef_editor.reference_list[ii].define_package_pathname;
 							string t_dependence_value = Object_Setting.projectparam.asmdef_editor.reference_list[ii].dependence_value;
-							if(t_package_pathname != t_packagejson.name){
+							if((t_dependence_value != null)&&(t_package_pathname != t_packagejson.name)){
 								if(t_packagejson.dependencies.ContainsKey(t_package_pathname) == false){
 									t_packagejson.dependencies.Add(t_package_pathname,t_dependence_value);
+									#if(DEF_BLUEBACK_DEBUG_LOG)
+									DebugTool.Log(string.Format("dependencies : {0} : {1}",t_package_pathname,t_dependence_value));
+									#endif
 								}
 							}
 						}
@@ -91,9 +97,12 @@ namespace BlueBack.VersionManager.Editor
 						{
 							string t_package_pathname = Object_Setting.projectparam.asmdef_sample.reference_list[ii].define_package_pathname;
 							string t_dependence_value = Object_Setting.projectparam.asmdef_sample.reference_list[ii].dependence_value;
-							if(t_package_pathname != t_packagejson.name){
+							if((t_dependence_value != null)&&(t_package_pathname != t_packagejson.name)){
 								if(t_packagejson.dependencies.ContainsKey(t_package_pathname) == false){
 									t_packagejson.dependencies.Add(t_package_pathname,t_dependence_value);
+									#if(DEF_BLUEBACK_DEBUG_LOG)
+									DebugTool.Log(string.Format("dependencies : {0} : {1}",t_package_pathname,t_dependence_value));
+									#endif
 								}
 							}
 						}
