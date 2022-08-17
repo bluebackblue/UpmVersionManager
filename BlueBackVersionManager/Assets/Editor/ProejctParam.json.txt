@@ -4,8 +4,8 @@
 	"git_url":"https://github.com/bluebackblue/UpmVersionManager",
 	"git_api":"https://api.github.com/repos/bluebackblue/UpmVersionManager",
 	"git_path":"BlueBackVersionManager/Assets/UPM",
-	"discription_simple":"バージョンマネージャー",
-	"discription_detal":[
+	"description_simple":"バージョンマネージャー",
+	"description_detal":[
 		"バージョンマネージャー",
 		"* package.json出力"
 	],

@@ -1,7 +1,6 @@
 # BlueBack.VersionManager
-xxxxx
-* xxxxx
-* xxxxx
+バージョンマネージャー
+* package.json出力
 
 ## ライセンス
 MIT License
