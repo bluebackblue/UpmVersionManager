@@ -4,7 +4,6 @@
 	"git_url":"https://github.com/bluebackblue/UpmVersionManager",
 	"git_api":"https://api.github.com/repos/bluebackblue/UpmVersionManager",
 	"git_path":"BlueBackVersionManager/Assets/UPM",
-	"changelog_url":"https://github.com/bluebackblue/UpmVersionManager/releases",
 	"description_simple":"バージョンマネージャー",
 	"description_detal":[
 		"バージョンマネージャー",
@@ -13,6 +12,7 @@
 	"keyword":[
 		"version"
 	],
+	"changelog_url":"https://github.com/bluebackblue/UpmVersionManager/releases",
 	"changelog":[
 		"# Changelog",
 		""
@@ -450,6 +450,41 @@
 			"rootnamespace":"BlueBack.Vosk",
 			"url":"https://github.com/bluebackblue/UpmVosk",
 			"dependence":"https://github.com/bluebackblue/UpmVosk.git?path=BlueBackVosk/Assets/UPM",
+			"info":""
+		},
+		"ExcelDataReader":{
+			"domain":"exceldatareader",
+			"rootnamespace":"ExcelDataReader",
+			"url":"https://github.com/ExcelDataReader/ExcelDataReader",
+			"dependence":null,
+			"info":""
+		},
+		"Unity.InputSystem":{
+			"domain":"com.unity.inputsystem",
+			"rootnamespace":"Unity.InputSystem",
+			"url":"https://docs.unity3d.com/Packages/com.unity.inputsystem@latest/index.html",
+			"dependence":null,
+			"info":""
+		},
+		"Unity.Mathematics":{
+			"domain":"com.unity.mathematics",
+			"rootnamespace":"Unity.Mathematics",
+			"url":"https://docs.unity3d.com/Packages/com.unity.mathematics@latest/index.html",
+			"dependence":null,
+			"info":""
+		},
+		"Maou.Audio":{
+			"domain":"maou.audio",
+			"rootnamespace":"Maou.Audio",
+			"url":"https://maou.audio/rule/",
+			"dependence":null,
+			"info":""
+		},
+		"Vosk":{
+			"domain":"vosk",
+			"rootnamespace":"Vosk",
+			"url":"https://github.com/alphacep/vosk-api",
+			"dependence":null,
 			"info":""
 		}
 	}
