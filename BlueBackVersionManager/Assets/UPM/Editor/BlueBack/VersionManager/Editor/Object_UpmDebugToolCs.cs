@@ -47,7 +47,7 @@ namespace BlueBack.VersionManager.Editor
 				"",
 				"/** define",
 				"*/",
-				"#if((ASMDEF_BLUEBACK_DEBUG||USERDEF_BLUEBACK_DEBUG))",
+				"#if(ASMDEF_BLUEBACK_DEBUG)",
 				"#define ASMDEF_TRUE",
 				"#else",
 				"#warning \"ASMDEF_TRUE\"",
@@ -64,10 +64,10 @@ namespace BlueBack.VersionManager.Editor
 				"	{",
 				"		#if(DEF_BLUEBACK_DEBUG_ASSERT)",
 				"",
-				"		/** assertproc",
+				"		/** assert",
 				"		*/",
 				"		#if(ASMDEF_TRUE)",
-				"		public static BlueBack.Debug.Assert.ProcType assertproc = BlueBack.Debug.Assert.Default;",
+				"		public static BlueBack.Debug.Assert.CallBackType assert = BlueBack.Debug.Assert.Execute;",
 				"		#endif",
 				"",
 				"		/** Assert",
@@ -76,7 +76,7 @@ namespace BlueBack.VersionManager.Editor
 				"		{",
 				"			if(a_flag != true){",
 				"				#if(ASMDEF_TRUE)",
-				"				DebugTool.assertproc(null,a_exception);",
+				"				DebugTool.assert(null,a_exception);",
 				"				#endif",
 				"			}",
 				"		}",
@@ -87,7 +87,7 @@ namespace BlueBack.VersionManager.Editor
 				"		{",
 				"			if(a_flag != true){",
 				"				#if(ASMDEF_TRUE)",
-				"				DebugTool.assertproc(a_message,null);",
+				"				DebugTool.assert(a_message,null);",
 				"				#endif",
 				"			}",
 				"		}",
@@ -96,10 +96,10 @@ namespace BlueBack.VersionManager.Editor
 				"",
 				"		#if(DEF_BLUEBACK_DEBUG_LOG)",
 				"",
-				"		/** logproc",
+				"		/** log",
 				"		*/",
 				"		#if(ASMDEF_TRUE)",
-				"		public static BlueBack.Debug.Log.ProcType logproc = BlueBack.Debug.Log.Default;",
+				"		public static BlueBack.Debug.Log.CallBackType log = BlueBack.Debug.Log.Execute;",
 				"		#endif",
 				"",
 				"		/** Log",
@@ -107,7 +107,7 @@ namespace BlueBack.VersionManager.Editor
 				"		public static void Log(string a_message)",
 				"		{",
 				"			#if(ASMDEF_TRUE)",
-				"			DebugTool.logproc(a_message);",
+				"			DebugTool.log(a_message);",
 				"			#endif",
 				"		}",
 				"",
@@ -115,10 +115,10 @@ namespace BlueBack.VersionManager.Editor
 				"",
 				"		#if(DEF_BLUEBACK_DEBUG_DETAIL)",
 				"",
-				"		/** detailproc",
+				"		/** detail",
 				"		*/",
 				"		#if(ASMDEF_TRUE)",
-				"		public static BlueBack.Debug.Detail.ProcType detailproc = BlueBack.Debug.Detail.Default;",
+				"		public static BlueBack.Debug.Detail.CallBackType detail = BlueBack.Debug.Detail.Execute;",
 				"		#endif",
 				"",
 				"		/** Detail",
@@ -126,7 +126,7 @@ namespace BlueBack.VersionManager.Editor
 				"		public static void Detail(string a_message)",
 				"		{",
 				"			#if(ASMDEF_TRUE)",
-				"			DebugTool.detailproc(a_message);",
+				"			DebugTool.detail(a_message);",
 				"			#endif",
 				"		}",
 				"",
@@ -134,16 +134,16 @@ namespace BlueBack.VersionManager.Editor
 				"",
 				"		#if(UNITY_EDITOR)",
 				"",
-				"		/** editorlogproc",
+				"		/** editorlog",
 				"		*/",
 				"		#if(ASMDEF_TRUE)",
-				"		public static BlueBack.Debug.Log.ProcType editorlogproc = BlueBack.Debug.Log.Default;",
+				"		public static BlueBack.Debug.Log.CallBackType editorlog = BlueBack.Debug.Log.Execute;",
 				"		#endif",
 				"",
-				"		/** editorerrorlogproc",
+				"		/** editorerrorlog",
 				"		*/",
 				"		#if(ASMDEF_TRUE)",
-				"		public static BlueBack.Debug.ErrorLog.ProcType editorerrorlogproc = BlueBack.Debug.ErrorLog.Default;",
+				"		public static BlueBack.Debug.ErrorLog.CallBackType editorerrorlog = BlueBack.Debug.ErrorLog.Execute;",
 				"		#endif",
 				"",
 				"		/** EditorLog",
@@ -151,7 +151,7 @@ namespace BlueBack.VersionManager.Editor
 				"		public static void EditorLog(string a_message)",
 				"		{",
 				"			#if(ASMDEF_TRUE)",
-				"			DebugTool.editorlogproc(a_message);",
+				"			DebugTool.editorlog(a_message);",
 				"			#endif",
 				"		}",
 				"",
@@ -160,7 +160,7 @@ namespace BlueBack.VersionManager.Editor
 				"		public static void EditorErrorLog(string a_message)",
 				"		{",
 				"			#if(ASMDEF_TRUE)",
-				"			DebugTool.editorerrorlogproc(a_message);",
+				"			DebugTool.editorerrorlog(a_message);",
 				"			#endif",
 				"		}",
 				"",
@@ -170,19 +170,24 @@ namespace BlueBack.VersionManager.Editor
 				"",
 			});
 
-			//replace_list
-			System.Collections.Generic.Dictionary<string,string> t_replace_list = Object_Setting.CreateReplaceList();
 
-			//SaveTextWithAssetsPath
-			System.Text.StringBuilder t_stringbuilder = new System.Text.StringBuilder();
-			BlueBack.Code.Convert.Add(t_stringbuilder,t_replace_list,t_template);
-			BlueBack.AssetLib.Editor.CreateDirectoryWithAssetsPath.Create(System.IO.Path.GetDirectoryName(t_path));
-			BlueBack.AssetLib.Editor.SaveTextWithAssetsPath.SaveNoBomUtf8(t_stringbuilder.ToString(),t_path,BlueBack.AssetLib.LineFeedOption.CRLF);
-			BlueBack.AssetLib.Editor.RefreshAssetDatabase.Refresh();
+			if(Object_Setting.projectparam.debugtool_generate == true){
+				//replace_list
+				System.Collections.Generic.Dictionary<string,string> t_replace_list = Object_Setting.CreateReplaceList();
 
-			#if(DEF_BLUEBACK_DEBUG_LOG)
-			DebugTool.Log("save : " + t_path);
-			#endif
+				//SaveTextWithAssetsPath
+				System.Text.StringBuilder t_stringbuilder = new System.Text.StringBuilder();
+
+				BlueBack.Code.Convert.Add(t_stringbuilder,t_replace_list,t_template);
+
+				BlueBack.AssetLib.Editor.CreateDirectoryWithAssetsPath.Create(System.IO.Path.GetDirectoryName(t_path));
+				BlueBack.AssetLib.Editor.SaveTextWithAssetsPath.SaveNoBomUtf8(t_stringbuilder.ToString(),t_path,BlueBack.AssetLib.LineFeedOption.CRLF);
+				BlueBack.AssetLib.Editor.RefreshAssetDatabase.Refresh();
+
+				#if(DEF_BLUEBACK_DEBUG_LOG)
+				DebugTool.Log("save : " + t_path);
+				#endif
+			}
 		}
 		#else
 		{

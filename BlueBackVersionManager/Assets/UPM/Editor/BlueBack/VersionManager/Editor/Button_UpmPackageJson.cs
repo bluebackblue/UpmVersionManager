@@ -74,15 +74,7 @@ namespace BlueBack.VersionManager.Editor
 			Object_UpmDocumentation.Save(a_version);
 			Object_UpmReadmeMd.Save(a_version);
 			Object_UpmVersionCs.Save(a_version);
-
-			#if(DEF_BLUEBACK_DEBUG_LOG)
-			DebugTool.Log(string.Format("debugtool_generate : {0}",Object_Setting.projectparam.debugtool_generate));
-			#endif
-
-			if(Object_Setting.projectparam.debugtool_generate == true){
-				Object_UpmDebugToolCs.Save();
-			}
-
+			Object_UpmDebugToolCs.Save();
 			Object_UpmPackageJson.Save(a_version);
 			Object_UpmUpdatePackage.Save();
 			Object_UpmAsmdef.Save();
