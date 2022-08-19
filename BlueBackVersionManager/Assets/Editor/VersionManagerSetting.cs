@@ -29,9 +29,10 @@ namespace Editor
 		/** VersionManagerSetting
 		*/
 		static VersionManagerSetting()
-		#if(ASMDEF_TRUE)
 		{
-			//Object_RootUssUxml
+			#if(ASMDEF_TRUE)
+
+			//UssUxml保存。
 			BlueBack.VersionManager.Editor.Execute_Root_UssUxml_Save.Execute(false);
 
 			//projectparam
@@ -107,12 +108,9 @@ namespace Editor
 					return t_list.ToArray();
 				},
 			};
+
+			#endif
 		}
-		#else
-		{
-			#warning "ASMDEF_TRUE"
-		}
-		#endif
 	}
 }
 #endif

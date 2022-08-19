@@ -31,9 +31,11 @@ namespace BlueBack.VersionManager.Editor
 		{
 			#if(ASMDEF_TRUE)
 
+			//replace_list
+			System.Collections.Generic.Dictionary<string,string> t_replace_list = Tool.CreateReplaceList();
+
 			//path
-			Execute_Create_ReplaceList.Execute();
-			string t_path = Tool.Reprece("UPM/Documentation~/<<NameSpace_Author>>.<<NameSpace_Package>>.md",StaticValue.replace_list);
+			string t_path = Tool.Reprece("UPM/Documentation~/<<NameSpace_Author>>.<<NameSpace_Package>>.md",t_replace_list);
 
 			//DeleteDirectoryWithAssetsPath
 			BlueBack.AssetLib.Editor.DeleteDirectoryWithAssetsPath.TryDelete("UPM/Documentation~");

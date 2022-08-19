@@ -16,7 +16,6 @@
 #endif
 
 
-
 /** BlueBack.VersionManager.Editor
 */
 #if(UNITY_EDITOR)

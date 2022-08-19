@@ -31,10 +31,6 @@ namespace BlueBack.VersionManager.Editor
 		{
 			#if(ASMDEF_TRUE)
 
-			//path
-			Execute_Create_ReplaceList.Execute();
-			string t_path = Tool.Reprece("UPM/Editor/<<NameSpace_Author>>/<<NameSpace_Package>>/Editor/UpdatePackage.cs",StaticValue.replace_list);
-
 			//template
 			System.Collections.Generic.List<string> t_template = new System.Collections.Generic.List<string>();
 			BlueBack.Code.Convert.Add(t_template,null,new string[]{
@@ -171,12 +167,15 @@ namespace BlueBack.VersionManager.Editor
 				"",
 			});
 
+			//replace_list
+			System.Collections.Generic.Dictionary<string,string> t_replace_list = Tool.CreateReplaceList();
+
+			//path
+			string t_path = Tool.Reprece("UPM/Editor/<<NameSpace_Author>>/<<NameSpace_Package>>/Editor/UpdatePackage.cs",t_replace_list);
+
 			//SaveTextWithAssetsPath
 			System.Text.StringBuilder t_stringbuilder = new System.Text.StringBuilder();
-
-			Execute_Create_ReplaceList.Execute();
-			BlueBack.Code.Convert.Add(t_stringbuilder,StaticValue.replace_list,t_template);
-
+			BlueBack.Code.Convert.Add(t_stringbuilder,t_replace_list,t_template);
 			BlueBack.AssetLib.Editor.CreateDirectoryWithAssetsPath.Create(System.IO.Path.GetDirectoryName(t_path));
 			BlueBack.AssetLib.Editor.SaveTextWithAssetsPath.SaveNoBomUtf8(t_stringbuilder.ToString(),t_path,BlueBack.AssetLib.LineFeedOption.CRLF);
 			BlueBack.AssetLib.Editor.RefreshAssetDatabase.Refresh();

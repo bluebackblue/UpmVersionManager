@@ -38,14 +38,14 @@ namespace BlueBack.VersionManager.Editor
 			//path
 			string t_path = "UPM/package.json";
 
-			//StaticValue.replace_list
-			Execute_Create_ReplaceList.Execute();
+			//replace_list
+			System.Collections.Generic.Dictionary<string,string> t_replace_list = Tool.CreateReplaceList();
 
 			//package
 			PackageJson t_packagejson;
 			{
 				//name
-				t_packagejson.name = Tool.Reprece("<<namespace_author>>.<<namespace_package>>",StaticValue.replace_list);
+				t_packagejson.name = Tool.Reprece("<<namespace_author>>.<<namespace_package>>",t_replace_list);
 
 				//version
 				t_packagejson.version = a_version;
@@ -54,7 +54,7 @@ namespace BlueBack.VersionManager.Editor
 				t_packagejson.description = StaticValue.editor_projectparam_json.description_simple;
 
 				//displayName
-				t_packagejson.displayName = Tool.Reprece("<<NameSpace_Author>>.<<NameSpace_Package>>",StaticValue.replace_list);
+				t_packagejson.displayName = Tool.Reprece("<<NameSpace_Author>>.<<NameSpace_Package>>",t_replace_list);
 
 				//unity
 				t_packagejson.unity = StaticValue.editor_projectparam_json.need_unity_version;
@@ -104,8 +104,7 @@ namespace BlueBack.VersionManager.Editor
 
 			//packagejson.samples
 			{
-				Execute_Create_ReplaceList.Execute();
-				string t_path_sampletop = Tool.Reprece("Samples/<<NameSpace_Author>>.<<NameSpace_Package>>/000",StaticValue.replace_list);
+				string t_path_sampletop = Tool.Reprece("Samples/<<NameSpace_Author>>.<<NameSpace_Package>>/000",t_replace_list);
 
 				System.Collections.Generic.List<string> t_sample_directory_list = BlueBack.AssetLib.Editor.CreateDirectoryNameListWithAssetsPath.CreateTopOnly(t_path_sampletop);
 				for(int ii=0;ii<t_sample_directory_list.Count;ii++){

@@ -188,7 +188,7 @@ namespace BlueBack.VersionManager.Editor
 								t_class = "red";
 							}
 
-							new Button(t_root,"label_b_button_1",t_version,t_class,new Execute_Apply_RootReadmeMd(t_version));
+							new Button(t_root,"label_b_button_1",t_version,t_class,new Execute_VersionApply_RootReadmeMd(t_version));
 						}
 
 						{
@@ -201,7 +201,7 @@ namespace BlueBack.VersionManager.Editor
 								t_class = "red";
 							}
 
-							new Button(t_root,"label_b_button_2",t_version,t_class,new Execute_Apply_RootReadmeMd(t_version));
+							new Button(t_root,"label_b_button_2",t_version,t_class,new Execute_VersionApply_RootReadmeMd(t_version));
 						}
 
 						{
@@ -214,7 +214,7 @@ namespace BlueBack.VersionManager.Editor
 								t_class = "red";
 							}
 
-							new Button(t_root,"label_b_button_3",t_version,t_class,new Execute_Apply_RootReadmeMd(t_version));
+							new Button(t_root,"label_b_button_3",t_version,t_class,new Execute_VersionApply_RootReadmeMd(t_version));
 						}
 					}
 				}

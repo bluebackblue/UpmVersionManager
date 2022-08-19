@@ -28,10 +28,6 @@ namespace BlueBack.VersionManager.Editor
 		*/
 		public static File_Editor_ProjectParamJson editor_projectparam_json;
 
-		/** replace_list
-		*/
-		public static System.Collections.Generic.Dictionary<string,string> replace_list;
-
 		/** readmemd_creator_callback
 		*/
 		public static ReadmeMdCreator.CallBackType[] readmemd_creator_callback;

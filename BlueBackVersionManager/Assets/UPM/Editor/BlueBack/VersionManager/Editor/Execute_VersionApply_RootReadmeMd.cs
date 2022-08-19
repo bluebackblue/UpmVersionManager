@@ -12,9 +12,9 @@
 #if(UNITY_EDITOR)
 namespace BlueBack.VersionManager.Editor
 {
-	/** Execute_Apply_RootReadmeMd
+	/** Execute_VersionApply_RootReadmeMd
 	*/
-	public sealed class Execute_Apply_RootReadmeMd : Execute_Base
+	public sealed class Execute_VersionApply_RootReadmeMd : Execute_Base
 	{
 		/** version
 		*/
@@ -22,7 +22,7 @@ namespace BlueBack.VersionManager.Editor
 
 		/** constructor
 		*/
-		public Execute_Apply_RootReadmeMd(string a_version)
+		public Execute_VersionApply_RootReadmeMd(string a_version)
 		{
 			this.version = a_version;
 		}
@@ -31,6 +31,8 @@ namespace BlueBack.VersionManager.Editor
 		*/
 		public void CallBack()
 		{
+			Execute_Editor_ProjectParamJson_Load.Execute();
+
 			Execute_Root_ReadmeMd_Save.Execute(this.version);
 			Execute_Root_ReadmeMd_Load.Execute();
 			Execute_Convert_NoBomUtf8.Execute();
