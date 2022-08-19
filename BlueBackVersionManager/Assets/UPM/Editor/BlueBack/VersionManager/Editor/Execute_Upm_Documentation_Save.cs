@@ -23,7 +23,7 @@ namespace BlueBack.VersionManager.Editor
 {
 	/** Execute_Upm_Documentation_Save
 	*/
-	public static class Execute_Upm_Documentation_Save
+	public sealed class Execute_Upm_Documentation_Save
 	{
 		/** Execute
 		*/
@@ -32,7 +32,8 @@ namespace BlueBack.VersionManager.Editor
 			#if(ASMDEF_TRUE)
 
 			//path
-			string t_path = Object_Setting.Reprece("UPM/Documentation~/<<NameSpace_Author>>.<<NameSpace_Package>>.md");
+			Execute_Create_ReplaceList.Execute();
+			string t_path = Tool.Reprece("UPM/Documentation~/<<NameSpace_Author>>.<<NameSpace_Package>>.md",StaticValue.replace_list);
 
 			//DeleteDirectoryWithAssetsPath
 			BlueBack.AssetLib.Editor.DeleteDirectoryWithAssetsPath.TryDelete("UPM/Documentation~");
@@ -40,9 +41,9 @@ namespace BlueBack.VersionManager.Editor
 			//stringbuilder
 			System.Text.StringBuilder t_stringbuilder = new System.Text.StringBuilder();
 			{
-				Object_Setting.Creator_Argument t_argument = new Object_Setting.Creator_Argument(a_version);
-				foreach(Object_Setting.Creator_Type t_creator in Object_Setting.object_root_readme_md){
-					string[] t_list = t_creator(in t_argument);
+				ReadmeMdCreator.Argument t_argument = new ReadmeMdCreator.Argument(a_version);
+				foreach(ReadmeMdCreator.CallBackType t_callback in StaticValue.readmemd_creator_callback){
+					string[] t_list = t_callback(in t_argument);
 					foreach(string t_line in t_list){
 						t_stringbuilder.Append(t_line);
 						t_stringbuilder.Append("\n");

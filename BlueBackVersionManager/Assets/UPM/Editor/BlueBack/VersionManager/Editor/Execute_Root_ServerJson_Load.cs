@@ -31,20 +31,24 @@ namespace BlueBack.VersionManager.Editor
 		{
 			#if(ASMDEF_TRUE)
 
+			File_Root_ServerJson t_file = null;
+
 			//path
 			string t_path = "server.json";
 
 			//LoadNoBomUtf8
 			if(BlueBack.AssetLib.Editor.ExistFileWithAssetsPath.Check(t_path) == true){
-				Object_RootServerJson.status = BlueBack.JsonItem.Convert.JsonStringToObject<Object_RootServerJson.Status>(BlueBack.AssetLib.Editor.LoadTextWithAssetsPath.Load(t_path));
-				return;
+				t_file = BlueBack.JsonItem.Convert.JsonStringToObject<File_Root_ServerJson>(BlueBack.AssetLib.Editor.LoadTextWithAssetsPath.Load(t_path));
 			}
 
-			//status
-			Object_RootServerJson.status = new Object_RootServerJson.Status(){
-				lasttag = "0.0.-1",
-				time = "---",
-			};
+			if(t_file == null){
+				t_file = new File_Root_ServerJson(){
+					lasttag = "0.0.-1",
+					time = "---",
+				};
+			}
+
+			StaticValue.root_server_json = t_file;
 
 			#endif
 		}

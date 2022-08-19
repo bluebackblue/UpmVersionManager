@@ -23,7 +23,7 @@ namespace BlueBack.VersionManager.Editor
 {
 	/** Execute_Convert_NoBomUtf8
 	*/
-	public static class Execute_Convert_NoBomUtf8
+	public sealed class Execute_Convert_NoBomUtf8
 	{
 		/** Execute
 		*/

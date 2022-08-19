@@ -23,7 +23,7 @@ namespace BlueBack.VersionManager.Editor
 {
 	/** Execute_Upm_Samples_Copy
 	*/
-	public static class Execute_Upm_Samples_Copy
+	public sealed class Execute_Upm_Samples_Copy
 	{
 		/** Execute
 		*/
@@ -32,7 +32,8 @@ namespace BlueBack.VersionManager.Editor
 			#if(ASMDEF_TRUE)
 
 			//path
-			string t_from_path = Object_Setting.Reprece("Samples\\<<NameSpace_Author>>.<<NameSpace_Package>>\\000");
+			Execute_Create_ReplaceList.Execute();
+			string t_from_path = Tool.Reprece("Samples\\<<NameSpace_Author>>.<<NameSpace_Package>>\\000",StaticValue.replace_list);
 			string t_to_path = "UPM\\Samples~";
 
 			//DeleteDirectoryWithAssetsPath

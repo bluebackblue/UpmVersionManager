@@ -12,13 +12,13 @@
 #if(UNITY_EDITOR)
 namespace BlueBack.VersionManager.Editor
 {
-	/** Object_RootReadmeMd
+	/** File_Root_ReadmeMd
 	*/
-	public static class Object_RootReadmeMd
+	public sealed class File_Root_ReadmeMd
 	{
 		/** version
 		*/
-		public static string version = null;
+		public string version = null;
 	}
 }
 #endif

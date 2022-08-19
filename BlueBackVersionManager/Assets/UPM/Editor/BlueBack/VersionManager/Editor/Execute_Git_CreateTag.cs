@@ -20,7 +20,7 @@ namespace BlueBack.VersionManager.Editor
 		*/
 		public void CallBack()
 		{
-			System.Diagnostics.Process.Start("TortoiseGitProc",string.Format("/command:{0} /path:\"{1}\" /name:\"{2}\"","tag",(UnityEngine.Application.dataPath + "/../../").Replace("/","\\"),Object_RootReadmeMd.version));
+			System.Diagnostics.Process.Start("TortoiseGitProc",string.Format("/command:{0} /path:\"{1}\" /name:\"{2}\"","tag",(UnityEngine.Application.dataPath + "/../../").Replace("/","\\"),StaticValue.root_readme_md.version));
 		}
 	}
 }

@@ -23,7 +23,7 @@ namespace BlueBack.VersionManager.Editor
 {
 	/** Execute_Upm_PackageJson_Save
 	*/
-	public static class Execute_Upm_PackageJson_Save
+	public sealed class Execute_Upm_PackageJson_Save
 	{
 		/** Execute
 		*/
@@ -31,34 +31,41 @@ namespace BlueBack.VersionManager.Editor
 		{
 			#if(ASMDEF_TRUE)
 
+			if(StaticValue.editor_projectparam_json == null){
+				Execute_Editor_ProjectParamJson_Load.Execute();
+			}
+
 			//path
 			string t_path = "UPM/package.json";
+
+			//StaticValue.replace_list
+			Execute_Create_ReplaceList.Execute();
 
 			//package
 			PackageJson t_packagejson;
 			{
 				//name
-				t_packagejson.name = Object_Setting.Reprece("<<namespace_author>>.<<namespace_package>>");
+				t_packagejson.name = Tool.Reprece("<<namespace_author>>.<<namespace_package>>",StaticValue.replace_list);
 
 				//version
 				t_packagejson.version = a_version;
 
 				//description
-				t_packagejson.description = Object_Setting.projectparam.description_simple;
+				t_packagejson.description = StaticValue.editor_projectparam_json.description_simple;
 
 				//displayName
-				t_packagejson.displayName = Object_Setting.Reprece("<<NameSpace_Author>>.<<NameSpace_Package>>");
+				t_packagejson.displayName = Tool.Reprece("<<NameSpace_Author>>.<<NameSpace_Package>>",StaticValue.replace_list);
 
 				//unity
-				t_packagejson.unity = Object_Setting.projectparam.need_unity_version;
+				t_packagejson.unity = StaticValue.editor_projectparam_json.need_unity_version;
 
 				//author
-				t_packagejson.author.name = Object_Setting.projectparam.namespace_author;
+				t_packagejson.author.name = StaticValue.editor_projectparam_json.namespace_author;
 				t_packagejson.author.email = null;
-				t_packagejson.author.url =  Object_Setting.projectparam.git_url;
+				t_packagejson.author.url =  StaticValue.editor_projectparam_json.git_url;
 
 				//changelogUrl
-				t_packagejson.changelogUrl = Object_Setting.projectparam.changelog_url;
+				t_packagejson.changelogUrl = StaticValue.editor_projectparam_json.changelog_url;
 
 				//dependencies
 				t_packagejson.dependencies = new System.Collections.Generic.Dictionary<string,string>();
@@ -70,10 +77,10 @@ namespace BlueBack.VersionManager.Editor
 				t_packagejson.hideInEditor = false;
 
 				//keyword
-				t_packagejson.keywords = Object_Setting.projectparam.keyword;
+				t_packagejson.keywords = StaticValue.editor_projectparam_json.keyword;
 
 				//license
-				t_packagejson.license = Object_Setting.projectparam.license;
+				t_packagejson.license = StaticValue.editor_projectparam_json.license;
 
 				//licensesUrl
 				t_packagejson.licensesUrl = null;
@@ -90,14 +97,16 @@ namespace BlueBack.VersionManager.Editor
 
 			//packagejson.dependencies
 			{
-				Inner_AddToDependenciesList(ref t_packagejson,Object_Setting.projectparam.asmdef_runtime.reference_list);
-				Inner_AddToDependenciesList(ref t_packagejson,Object_Setting.projectparam.asmdef_editor.reference_list);
-				Inner_AddToDependenciesList(ref t_packagejson,Object_Setting.projectparam.asmdef_sample.reference_list);
+				Inner_AddToDependenciesList(ref t_packagejson,StaticValue.editor_projectparam_json.asmdef_runtime.reference_list);
+				Inner_AddToDependenciesList(ref t_packagejson,StaticValue.editor_projectparam_json.asmdef_editor.reference_list);
+				Inner_AddToDependenciesList(ref t_packagejson,StaticValue.editor_projectparam_json.asmdef_sample.reference_list);
 			}
 
 			//packagejson.samples
 			{
-				string t_path_sampletop = Object_Setting.Reprece("Samples/<<NameSpace_Author>>.<<NameSpace_Package>>/000");
+				Execute_Create_ReplaceList.Execute();
+				string t_path_sampletop = Tool.Reprece("Samples/<<NameSpace_Author>>.<<NameSpace_Package>>/000",StaticValue.replace_list);
+
 				System.Collections.Generic.List<string> t_sample_directory_list = BlueBack.AssetLib.Editor.CreateDirectoryNameListWithAssetsPath.CreateTopOnly(t_path_sampletop);
 				for(int ii=0;ii<t_sample_directory_list.Count;ii++){
 					PackageJson.Samples t_sample_item = new PackageJson.Samples();
@@ -126,12 +135,12 @@ namespace BlueBack.VersionManager.Editor
 
 		/** Inner_AddToDependenciesList
 		*/
-		private static void Inner_AddToDependenciesList(ref PackageJson a_packagejson,ProjectParam.Asmdef.Reference[] a_reference_list)
+		private static void Inner_AddToDependenciesList(ref PackageJson a_packagejson,File_Editor_ProjectParamJson.Asmdef.Reference[] a_reference_list)
 		{
 			//asmdef_runtime
 			for(int ii=0;ii<a_reference_list.Length;ii++){
-				ref ProjectParam.Asmdef.Reference t_reference  = ref a_reference_list[ii];
-				if(Object_Setting.projectparam.datalist.TryGetValue(t_reference.rootnamespace,out ProjectParam.DataItem t_dataitem) == true){
+				ref File_Editor_ProjectParamJson.Asmdef.Reference t_reference  = ref a_reference_list[ii];
+				if(StaticValue.editor_projectparam_json.datalist.TryGetValue(t_reference.rootnamespace,out File_Editor_ProjectParamJson.DataItem t_dataitem) == true){
 					if(t_reference.package_dependence == true){
 						if(t_dataitem.domain != a_packagejson.name){
 							if(a_packagejson.dependencies.ContainsKey(t_dataitem.domain) == false){

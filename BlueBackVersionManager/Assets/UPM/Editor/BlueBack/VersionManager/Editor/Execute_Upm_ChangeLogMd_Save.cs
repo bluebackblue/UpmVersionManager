@@ -23,7 +23,7 @@ namespace BlueBack.VersionManager.Editor
 {
 	/** Execute_Upm_ChangeLogMd_Save
 	*/
-	public static class Execute_Upm_ChangeLogMd_Save
+	public sealed class Execute_Upm_ChangeLogMd_Save
 	{
 		/** Execute
 		*/
@@ -31,12 +31,16 @@ namespace BlueBack.VersionManager.Editor
 		{
 			#if(ASMDEF_TRUE)
 
+			if(StaticValue.editor_projectparam_json == null){
+				Execute_Editor_ProjectParamJson_Load.Execute();
+			}
+
 			//path
 			string t_path = "UPM/CHANGELOG.md";
 
 			//stringbuilder
 			System.Text.StringBuilder t_stringbuilder = new System.Text.StringBuilder(1024);
-			foreach(string t_line in Object_Setting.projectparam.changelog){
+			foreach(string t_line in StaticValue.editor_projectparam_json.changelog){
 				t_stringbuilder.Append(t_line);
 				t_stringbuilder.Append("\n");
 			}

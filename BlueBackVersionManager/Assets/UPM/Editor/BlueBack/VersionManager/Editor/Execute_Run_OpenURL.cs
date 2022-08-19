@@ -20,7 +20,11 @@ namespace BlueBack.VersionManager.Editor
 		*/
 		public void CallBack()
 		{
-			UnityEngine.Application.OpenURL(Object_Setting.projectparam.git_url);
+			if(StaticValue.editor_projectparam_json == null){
+				Execute_Editor_ProjectParamJson_Load.Execute();
+			}
+
+			UnityEngine.Application.OpenURL(StaticValue.editor_projectparam_json.git_url);
 		}
 	}
 }

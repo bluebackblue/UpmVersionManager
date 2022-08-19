@@ -42,7 +42,7 @@ namespace BlueBack.VersionManager.Samples.NewProject
 				"			BlueBack.VersionManager.Editor.Object_RootUssUxml.Save(false);",
 				"",
 				"			//projectparam",
-				"			BlueBack.VersionManager.Editor.Object_Setting.projectparam = BlueBack.VersionManager.Editor.ProjectParam.Load();",
+				"			BlueBack.VersionManager.Editor.Object_ProjectParamJson.status = BlueBack.VersionManager.Editor.ProjectParam.Load();",
 				"",
 				"			//object_root_readme_md",
 				"			BlueBack.VersionManager.Editor.Object_Setting.object_root_readme_md = new BlueBack.VersionManager.Editor.Object_Setting.Creator_Type[]{",
@@ -50,7 +50,7 @@ namespace BlueBack.VersionManager.Samples.NewProject
 				"				//概要。",
 				"				(in BlueBack.VersionManager.Editor.Object_Setting.Creator_Argument a_argument) => {",
 				"					System.Collections.Generic.List<string> t_list = new System.Collections.Generic.List<string>();",
-				"					t_list.Add(\"# \" + BlueBack.VersionManager.Editor.Object_Setting.projectparam.namespace_author + \".\" + BlueBack.VersionManager.Editor.Object_Setting.projectparam.namespace_package);",
+				"					t_list.Add(\"# \" + BlueBack.VersionManager.Editor.Object_ProjectParamJson.status.namespace_author + \".\" + BlueBack.VersionManager.Editor.Object_ProjectParamJson.status.namespace_package);",
 				"					t_list.AddRange(BlueBack.VersionManager.Editor.Object_Setting.Create_RootReadMd_Overview(a_argument));",
 				"					return t_list.ToArray();",
 				"				},",
@@ -60,7 +60,7 @@ namespace BlueBack.VersionManager.Samples.NewProject
 				"					return new string[]{",
 				"						\"## ライセンス\",",
 				"						\"MIT License\",",
-				"						\"* \" + BlueBack.VersionManager.Editor.Object_Setting.projectparam.git_url + \"/blob/main/LICENSE\",",
+				"						\"* \" + BlueBack.VersionManager.Editor.Object_ProjectParamJson.status.git_url + \"/blob/main/LICENSE\",",
 				"					};",
 				"				},",
 				"",
@@ -85,9 +85,9 @@ namespace BlueBack.VersionManager.Samples.NewProject
 				"					return new string[]{",
 				"						\"## UPM\",",
 				"						\"### 最新\",",
-				"						\"* \" + BlueBack.VersionManager.Editor.Object_Setting.projectparam.git_url + \".git?path=\" + BlueBack.VersionManager.Editor.Object_Setting.projectparam.git_path + \"#\" + a_argument.version,",
+				"						\"* \" + BlueBack.VersionManager.Editor.Object_ProjectParamJson.status.git_url + \".git?path=\" + BlueBack.VersionManager.Editor.Object_ProjectParamJson.status.git_path + \"#\" + a_argument.version,",
 				"						\"### 開発\",",
-				"						\"* \" + BlueBack.VersionManager.Editor.Object_Setting.projectparam.git_url + \".git?path=\" + BlueBack.VersionManager.Editor.Object_Setting.projectparam.git_path,",
+				"						\"* \" + BlueBack.VersionManager.Editor.Object_ProjectParamJson.status.git_url + \".git?path=\" + BlueBack.VersionManager.Editor.Object_ProjectParamJson.status.git_path,",
 				"					};",
 				"				},",
 				"",
@@ -120,9 +120,6 @@ namespace BlueBack.VersionManager.Samples.NewProject
 				"#endif",
 				"",
 			};
-
-			//projectparam
-			BlueBack.VersionManager.Editor.ProjectParam t_projectparam = BlueBack.VersionManager.Editor.ProjectParam.Load();
 
 			//replace_list
 			System.Collections.Generic.Dictionary<string,string> t_replace_list = new System.Collections.Generic.Dictionary<string,string>();

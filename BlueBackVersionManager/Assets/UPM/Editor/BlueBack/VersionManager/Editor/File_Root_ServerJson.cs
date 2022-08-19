@@ -21,26 +21,17 @@
 #if(UNITY_EDITOR)
 namespace BlueBack.VersionManager.Editor
 {
-	/** Object_RootServerJson
+	/** File_Root_ServerJson
 	*/
-	public static class Object_RootServerJson
+	public sealed class File_Root_ServerJson
 	{
-		/** Status
+		/** lasttag
 		*/
-		public sealed class Status
-		{
-			/** lasttag
-			*/
-			public string lasttag;
+		public string lasttag;
 
-			/** time
-			*/
-			public string time;
-		}
-
-		/** status
+		/** time
 		*/
-		public static Status status = null;
+		public string time;
 	}
 }
 #endif

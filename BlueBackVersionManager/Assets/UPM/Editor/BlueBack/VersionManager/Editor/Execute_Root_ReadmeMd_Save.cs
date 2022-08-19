@@ -34,16 +34,20 @@ namespace BlueBack.VersionManager.Editor
 		{
 			#if(ASMDEF_TRUE)
 
+			if(StaticValue.editor_projectparam_json == null){
+				Execute_Editor_ProjectParamJson_Load.Execute();
+			}
+
 			//path
-			string t_path = Object_Setting.projectparam.root_readmemd_path;
+			string t_path = StaticValue.editor_projectparam_json.root_readmemd_path;
 
 			//SaveTextWithAssetsPath
 			{
 				System.Text.StringBuilder t_stringbuilder = new System.Text.StringBuilder();
 				{
-					Object_Setting.Creator_Argument t_argument = new Object_Setting.Creator_Argument(a_version);
-					foreach(Object_Setting.Creator_Type t_creator in Object_Setting.object_root_readme_md){
-						string[] t_list = t_creator(in t_argument);
+					ReadmeMdCreator.Argument t_argument = new ReadmeMdCreator.Argument(a_version);
+					foreach(ReadmeMdCreator.CallBackType t_callback in StaticValue.readmemd_creator_callback){
+						string[] t_list = t_callback(in t_argument);
 						foreach(string t_line in t_list){
 							t_stringbuilder.Append(t_line);
 							t_stringbuilder.Append("\n");

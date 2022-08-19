@@ -29,9 +29,17 @@ namespace BlueBack.VersionManager.Editor
 		*/
 		public static void Execute()
 		{
-			UnityEditor.PlayerSettings.companyName = Object_Setting.projectparam.namespace_author;
-			UnityEditor.PlayerSettings.productName = Object_Setting.projectparam.namespace_author + Object_Setting.projectparam.namespace_package;
-			UnityEditor.PlayerSettings.bundleVersion = Object_RootReadmeMd.version;
+			if(StaticValue.editor_projectparam_json == null){
+				Execute_Editor_ProjectParamJson_Load.Execute();
+			}
+
+			if(StaticValue.root_readme_md == null){
+				Execute_Root_ReadmeMd_Load.Execute();
+			}
+
+			UnityEditor.PlayerSettings.companyName = StaticValue.editor_projectparam_json.namespace_author;
+			UnityEditor.PlayerSettings.productName = StaticValue.editor_projectparam_json.namespace_author + StaticValue.editor_projectparam_json.namespace_package;
+			UnityEditor.PlayerSettings.bundleVersion = StaticValue.root_readme_md.version;
 
 			UnityEditor.EditorSettings.enterPlayModeOptionsEnabled = true;
 			UnityEditor.EditorSettings.enterPlayModeOptions = (UnityEditor.EnterPlayModeOptions.DisableDomainReload | UnityEditor.EnterPlayModeOptions.DisableSceneReload);

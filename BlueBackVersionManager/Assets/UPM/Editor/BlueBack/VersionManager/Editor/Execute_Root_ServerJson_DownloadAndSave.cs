@@ -31,8 +31,12 @@ namespace BlueBack.VersionManager.Editor
 		{
 			#if(ASMDEF_TRUE)
 
+			if(StaticValue.editor_projectparam_json == null){
+				Execute_Editor_ProjectParamJson_Load.Execute();
+			}
+
 			//url
-			string t_url = Object_Setting.projectparam.git_api + "/releases/latest";
+			string t_url = StaticValue.editor_projectparam_json.git_api + "/releases/latest";
 
 			//path
 			string t_path = "server.json";
@@ -42,11 +46,12 @@ namespace BlueBack.VersionManager.Editor
 			if(t_result.result == true){
 				BlueBack.JsonItem.JsonItem t_jsonitem = new BlueBack.JsonItem.JsonItem(BlueBack.JsonItem.Normalize.Convert(t_result.value));
 				if(t_jsonitem.IsExistItem("tag_name") == true){
-					Object_RootServerJson.status.lasttag = t_jsonitem.GetItem("tag_name").GetStringData();
-					Object_RootServerJson.status.time = System.DateTime.Now.ToString();
+					StaticValue.root_server_json = new File_Root_ServerJson();
+					StaticValue.root_server_json.lasttag = t_jsonitem.GetItem("tag_name").GetStringData();
+					StaticValue.root_server_json.time = System.DateTime.Now.ToString();
 
 					//SaveTextWithAssetsPath
-					BlueBack.AssetLib.Editor.SaveTextWithAssetsPath.SaveNoBomUtf8(BlueBack.JsonItem.Convert.ObjectToJsonString<Object_RootServerJson.Status>(Object_RootServerJson.status),t_path,BlueBack.AssetLib.LineFeedOption.CRLF);
+					BlueBack.AssetLib.Editor.SaveTextWithAssetsPath.SaveNoBomUtf8(BlueBack.JsonItem.Convert.ObjectToJsonString<File_Root_ServerJson>(StaticValue.root_server_json),t_path,BlueBack.AssetLib.LineFeedOption.CRLF);
 					BlueBack.AssetLib.Editor.RefreshAssetDatabase.Refresh();
 				}
 			}
