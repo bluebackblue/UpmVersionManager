@@ -3,7 +3,7 @@
 /**
 	Copyright (c) blueback
 	Released under the MIT License
-	@brief 「UPM/Documentation~/<<NameSpace_Author>>.<<NameSpace_Package>>.md」。
+	@brief 実行。「UPM/Documentation~/<<NameSpace_Author>>.<<NameSpace_Package>>.md」。セーブ。
 */
 
 
@@ -21,15 +21,16 @@
 #if(UNITY_EDITOR)
 namespace BlueBack.VersionManager.Editor
 {
-	/** Object_UpmDocumentation
+	/** Execute_Upm_Documentation_Save
 	*/
-	public static class Object_UpmDocumentation
+	public static class Execute_Upm_Documentation_Save
 	{
-		/** Save
+		/** Execute
 		*/
-		public static void Save(string a_version)
-		#if(ASMDEF_TRUE)
+		public static void Execute(string a_version)
 		{
+			#if(ASMDEF_TRUE)
+
 			//path
 			string t_path = Object_Setting.Reprece("UPM/Documentation~/<<NameSpace_Author>>.<<NameSpace_Package>>.md");
 
@@ -54,12 +55,9 @@ namespace BlueBack.VersionManager.Editor
 			BlueBack.AssetLib.Editor.CreateDirectoryWithAssetsPath.Create(System.IO.Path.GetDirectoryName(t_path));
 			BlueBack.AssetLib.Editor.SaveTextWithAssetsPath.SaveNoBomUtf8(t_stringbuilder.ToString(),t_path,BlueBack.AssetLib.LineFeedOption.CRLF);
 			BlueBack.AssetLib.Editor.RefreshAssetDatabase.Refresh();
+
+			#endif
 		}
-		#else
-		{
-			#warning "ASMDEF_TRUE"
-		}
-		#endif
 	}
 }
 #endif

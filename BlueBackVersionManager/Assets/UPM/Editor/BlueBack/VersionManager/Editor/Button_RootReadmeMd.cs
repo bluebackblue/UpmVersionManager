@@ -47,7 +47,7 @@ namespace BlueBack.VersionManager.Editor
 			a_button.text = t_version;
 
 			if(Object_RootReadmeMd.version == null){
-				Object_RootReadmeMd.Load();
+				Execute_Root_ReadmeMd_Load.Execute();
 			}
 
 			if(t_version == Object_RootReadmeMd.version){
@@ -60,11 +60,6 @@ namespace BlueBack.VersionManager.Editor
 				DebugTool.Log("RootReadmeMd : " + t_version);
 				#endif
 
-				Object_Setting.projectparam = ProjectParam.Load();
-				if(Object_RootServerJson.status == null){
-					Object_RootServerJson.Load();
-				}
-
 				On(t_version);
 			};
 		}
@@ -73,10 +68,10 @@ namespace BlueBack.VersionManager.Editor
 		*/
 		private static void On(string a_version)
 		{
-			Object_RootReadmeMd.Save(a_version);
-			Object_RootReadmeMd.Load();
-			Execute_ConvertToNoBomUtf8.Execute();
-			Execute_Save_Editor.Execute();
+			Execute_Root_ReadmeMd_Save.Execute(a_version);
+			Execute_Root_ReadmeMd_Load.Execute();
+			Execute_Convert_NoBomUtf8.Execute();
+			Execute_EditorSetting_Save.Execute();
 			BlueBack.Code.Editor.FileNameCheck.Check(null);
 			Window.window.OnEnable();
 		}

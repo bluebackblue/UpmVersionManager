@@ -56,11 +56,6 @@ namespace BlueBack.VersionManager.Editor
 				DebugTool.Log("UpmPackageJson : " + t_version);
 				#endif
 
-				Object_Setting.projectparam = ProjectParam.Load();
-				if(Object_RootServerJson.status == null){
-					Object_RootServerJson.Load();
-				}
-
 				On(t_version);
 			};
 		}
@@ -69,18 +64,22 @@ namespace BlueBack.VersionManager.Editor
 		*/
 		private static void On(string a_version)
 		{
-			Object_UpmSamples.Copy();
-			Object_UpmChangeLogMd.Save();
-			Object_UpmDocumentation.Save(a_version);
-			Object_UpmReadmeMd.Save(a_version);
-			Object_UpmVersionCs.Save(a_version);
-			Object_UpmDebugToolCs.Save();
-			Object_UpmPackageJson.Save(a_version);
-			Object_UpmUpdatePackage.Save();
+			Execute_Upm_Samples_Copy.Execute();
+			Execute_Upm_ChangeLogMd_Save.Execute();
+			Execute_Upm_Documentation_Save.Execute(a_version);
+			Execute_Upm_ReadmeMd_Save.Execute(a_version);
+			Execute_Upm_VersionCs_Save.Execute(a_version);
+
+			if(Object_Setting.projectparam.debugtool_generate == true){
+				Execute_Upm_DebugToolCs_Save.Execute();
+			}
+
+			Execute_Upm_PackageJson_Save.Execute(a_version);
+			Execute_Upm_UpdatePackageCs_Save.Execute();
 			Object_UpmAsmdef.Save();
-			Execute_ConvertToNoBomUtf8.Execute();
+			Execute_Convert_NoBomUtf8.Execute();
 			BlueBack.Code.Editor.FileNameCheck.Check(null);
-			Execute_Save_Editor.Execute();
+			Execute_EditorSetting_Save.Execute();
 			Window.window.OnEnable();
 		}
 	}

@@ -3,7 +3,7 @@
 /**
 	Copyright (c) blueback
 	Released under the MIT License
-	@brief 「UPM/Runtime/<<NameSpace_Author>>/<<NameSpace_Package>>/Version.cs」。
+	@brief 「UPM/Runtime/<<NameSpace_Author>>/<<NameSpace_Package>>/Version.cs」。セーブ。
 */
 
 
@@ -21,15 +21,19 @@
 #if(UNITY_EDITOR)
 namespace BlueBack.VersionManager.Editor
 {
-	/** Object_UpmVersionCs
+	/** Execute_Upm_VersionCs_Save
 	*/
-	public static class Object_UpmVersionCs
+	public static class Execute_Upm_VersionCs_Save
 	{
-		/** Save
+		/** Execute
+
+			a_packageversion : バージョン。
+
 		*/
-		public static void Save(string a_packageversion)
-		#if(ASMDEF_TRUE)
+		public static void Execute(string a_packageversion)
 		{
+			#if(ASMDEF_TRUE)
+
 			//path
 			string t_path = Object_Setting.Reprece("UPM/Runtime/<<NameSpace_Author>>/<<NameSpace_Package>>/Version.cs");
 
@@ -84,11 +88,9 @@ namespace BlueBack.VersionManager.Editor
 			BlueBack.AssetLib.Editor.CreateDirectoryWithAssetsPath.Create(System.IO.Path.GetDirectoryName(t_path));
 			BlueBack.AssetLib.Editor.SaveTextWithAssetsPath.SaveNoBomUtf8(t_stringbuilder.ToString(),t_path,BlueBack.AssetLib.LineFeedOption.CRLF);
 			BlueBack.AssetLib.Editor.RefreshAssetDatabase.Refresh();
+
+			#endif
 		}
-		#else
-		{
-		}
-		#endif
 	}
 }
 #endif

@@ -3,7 +3,7 @@
 /**
 	Copyright (c) blueback
 	Released under the MIT License
-	@brief 実行。「packages-lock.json」を削除。
+	@brief 実行。「packages-lock.json」。削除。
 */
 
 

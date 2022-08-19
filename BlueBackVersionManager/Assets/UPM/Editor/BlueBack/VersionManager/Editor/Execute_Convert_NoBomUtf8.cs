@@ -3,7 +3,7 @@
 /**
 	Copyright (c) blueback
 	Released under the MIT License
-	@brief 実行。テキストコンバート。
+	@brief 実行。「NoBomUtf8」。コンバート。
 */
 
 
@@ -21,9 +21,9 @@
 #if(UNITY_EDITOR)
 namespace BlueBack.VersionManager.Editor
 {
-	/** Execute_ConvertToNoBomUtf8
+	/** Execute_Convert_NoBomUtf8
 	*/
-	public static class Execute_ConvertToNoBomUtf8
+	public static class Execute_Convert_NoBomUtf8
 	{
 		/** Execute
 		*/

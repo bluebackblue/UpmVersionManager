@@ -3,7 +3,7 @@
 /**
 	Copyright (c) blueback
 	Released under the MIT License
-	@brief 「Root/*.VersionManagerWindow.uss」/「Root/*.UpmVersionManagerWindow.uxml」。
+	@brief 実行。「Root/*.VersionManagerWindow.uss」/「Root/*.UpmVersionManagerWindow.uxml」。セーブ。
 */
 
 
@@ -21,15 +21,16 @@
 #if(UNITY_EDITOR)
 namespace BlueBack.VersionManager.Editor
 {
-	/** Object_RootUssUxml
+	/** Execute_Root_UssUxml_Save
 	*/
-	public static class Object_RootUssUxml
+	public sealed class Execute_Root_UssUxml_Save
 	{
-		/** Save
+		/** Execute
 		*/
-		public static void Save(bool a_must)
-		#if(ASMDEF_TRUE)
+		public static void Execute(bool a_must)
 		{
+			#if(ASMDEF_TRUE)
+
 			//template
 			string[] t_uss_template = {
 				"Button",
@@ -176,12 +177,9 @@ namespace BlueBack.VersionManager.Editor
 					BlueBack.AssetLib.Editor.RefreshAssetDatabase.Refresh();
 				}
 			}
+
+			#endif
 		}
-		#else
-		{
-			#warning "ASMDEF_TRUE"
-		}
-		#endif
 	}
 }
 #endif

@@ -3,7 +3,7 @@
 /**
 	Copyright (c) blueback
 	Released under the MIT License
-	@brief 実行。「server.json」更新。
+	@brief 実行。ＵＲＬを開く。
 */
 
 
@@ -12,17 +12,15 @@
 #if(UNITY_EDITOR)
 namespace BlueBack.VersionManager.Editor
 {
-	/** Execute_Update_ServerJson
+	/** Execute_Run_OpenURL
 	*/
-	public sealed class Execute_Update_ServerJson : Execute_Base
+	public sealed class Execute_Run_OpenURL : Execute_Base
 	{
 		/** [BlueBack.VersionManager.Editor.Execute_Base]CallBack
 		*/
 		public void CallBack()
 		{
-			Object_RootServerJson.DownloadAndSave();
-			Object_RootServerJson.Load();
-			Window.window.OnEnable();
+			UnityEngine.Application.OpenURL(Object_Setting.projectparam.git_url);
 		}
 	}
 }

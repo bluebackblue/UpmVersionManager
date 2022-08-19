@@ -3,7 +3,7 @@
 /**
 	Copyright (c) blueback
 	Released under the MIT License
-	@brief 「UPM/CHANGELOG.md」。
+	@brief 実行。「UPM/CHANGELOG.md」。セーブ。
 */
 
 
@@ -21,15 +21,16 @@
 #if(UNITY_EDITOR)
 namespace BlueBack.VersionManager.Editor
 {
-	/** Object_UpmChangeLogMd
+	/** Execute_Upm_ChangeLogMd_Save
 	*/
-	public static class Object_UpmChangeLogMd
+	public static class Execute_Upm_ChangeLogMd_Save
 	{
-		/** Save
+		/** Execute
 		*/
-		public static void Save()
-		#if(ASMDEF_TRUE)
+		public static void Execute()
 		{
+			#if(ASMDEF_TRUE)
+
 			//path
 			string t_path = "UPM/CHANGELOG.md";
 
@@ -48,12 +49,9 @@ namespace BlueBack.VersionManager.Editor
 			#if(DEF_BLUEBACK_DEBUG_LOG)
 			DebugTool.Log("save : " + t_path);
 			#endif
+
+			#endif
 		}
-		#else
-		{
-			#warning "ASMDEF_TRUE"
-		}
-		#endif
 	}
 }
 #endif

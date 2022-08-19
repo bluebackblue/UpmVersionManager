@@ -32,11 +32,6 @@ namespace BlueBack.VersionManager.Editor
 				DebugTool.Log(a_text);
 				#endif
 
-				Object_Setting.projectparam = ProjectParam.Load();
-				if(Object_RootServerJson.status == null){
-					Object_RootServerJson.Load();
-				}
-
 				a_execute.CallBack();
 			};
 		}

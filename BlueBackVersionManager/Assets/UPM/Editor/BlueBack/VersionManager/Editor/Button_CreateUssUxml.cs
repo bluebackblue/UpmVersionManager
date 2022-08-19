@@ -26,11 +26,6 @@ namespace BlueBack.VersionManager.Editor
 				DebugTool.Log("CreateUssUxml");
 				#endif
 
-				Object_Setting.projectparam = ProjectParam.Load();
-				if(Object_RootServerJson.status == null){
-					Object_RootServerJson.Load();
-				}
-
 				On();
 			};
 		}
@@ -39,7 +34,7 @@ namespace BlueBack.VersionManager.Editor
 		*/
 		private static void On()
 		{
-			Object_RootUssUxml.Save(true);
+			Execute_Root_UssUxml_Save.Execute(true);
 			Window.window.OnEnable();
 		}
 	}

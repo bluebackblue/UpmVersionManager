@@ -3,7 +3,7 @@
 /**
 	Copyright (c) blueback
 	Released under the MIT License
-	@brief 実行。コミット。
+	@brief 実行。「TortoiseGitProc」。コミット。
 */
 
 
@@ -12,9 +12,9 @@
 #if(UNITY_EDITOR)
 namespace BlueBack.VersionManager.Editor
 {
-	/** Execute_Commit
+	/** Execute_Git_Commit
 	*/
-	public sealed class Execute_Commit : Execute_Base
+	public sealed class Execute_Git_Commit : Execute_Base
 	{
 		/** [BlueBack.VersionManager.Editor.Execute_Base]CallBack
 		*/

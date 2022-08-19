@@ -40,7 +40,7 @@ namespace BlueBack.VersionManager.Editor
 		[UnityEditor.MenuItem("VersionManager/Open")]
 		public static void MenuItem_Open()
 		{
-			Object_RootUssUxml.Save(true);
+			Execute_Root_UssUxml_Save.Execute(true);
 			Window.window = (Window)UnityEditor.EditorWindow.GetWindow(typeof(Window));
 			if(Window.window != null){
 				Window.window.Show();
@@ -82,9 +82,12 @@ namespace BlueBack.VersionManager.Editor
 			DebugTool.Log("Window.OnEnable");
 			#endif
 
+			//projectparam
 			Object_Setting.projectparam = ProjectParam.Load();
+
+			//Object_RootServerJson.status
 			if(Object_RootServerJson.status == null){
-				Object_RootServerJson.Load();
+				Execute_Root_ServerJson_Load.Execute();
 			}
 
 			{
@@ -103,22 +106,22 @@ namespace BlueBack.VersionManager.Editor
 				Button_CreateUssUxml.Initialize(UnityEngine.UIElements.UQueryExtensions.Q<UnityEngine.UIElements.Button>(t_root,"label_1"));
 
 				//ＵＲＬを開く。
-				new Button(t_root,"label_2_1","[Open URL]",null,new Execute_OpenURL());
+				new Button(t_root,"label_2_1","[Open URL]",null,new Execute_Run_OpenURL());
 
 				//ディレクトリを開く。
-				new Button(t_root,"label_2_2","[Open Directory]",null,new Execute_OpenDirectory());
+				new Button(t_root,"label_2_2","[Open Directory]",null,new Execute_Run_OpenDirectory());
 
 				//パッケージロックを削除。
 				new Button(t_root,"label_2_3","[Del PackagesLock]",null,new Execute_Delete_PackagesLockJson());
 
 				//コミット。
-				new Button(t_root,"label_3_1","[Commit]",null,new Execute_Commit());
+				new Button(t_root,"label_3_1","[Commit]",null,new Execute_Git_Commit());
 
 				//タグ作成。
-				new Button(t_root,"label_3_2","[CreateTag]",null,new Execute_CreateTag());
+				new Button(t_root,"label_3_2","[CreateTag]",null,new Execute_Git_CreateTag());
 
 				//プッシュ。
-				new Button(t_root,"label_3_3","[Push]",null,new Execute_Push());
+				new Button(t_root,"label_3_3","[Push]",null,new Execute_Git_Push());
 
 				//「server.json」。
 				{
@@ -145,7 +148,7 @@ namespace BlueBack.VersionManager.Editor
 						t_text = Object_RootServerJson.status.lasttag;
 					}
 
-					new Button(t_root,"label_a_button",t_text,"red",new Execute_Update_ServerJson());
+					new Button(t_root,"label_a_button",t_text,"red",new Execute_Root_ServerJson_Update());
 				}
 
 				//「readme.md」。
@@ -163,7 +166,7 @@ namespace BlueBack.VersionManager.Editor
 						UnityEngine.UIElements.TextField t_textfield = UnityEngine.UIElements.UQueryExtensions.Q<UnityEngine.UIElements.TextField>(t_root,"textfield_b_value");
 						if(t_textfield != null){
 							if(Object_RootReadmeMd.version == null){
-								Object_RootReadmeMd.Load();
+								Execute_Root_ReadmeMd_Load.Execute();
 							}
 							t_textfield.value = Object_RootReadmeMd.version;
 						}

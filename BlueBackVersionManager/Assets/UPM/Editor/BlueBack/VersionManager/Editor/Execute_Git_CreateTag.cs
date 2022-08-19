@@ -3,7 +3,7 @@
 /**
 	Copyright (c) blueback
 	Released under the MIT License
-	@brief 実行。タグ作成。
+	@brief 実行。「TortoiseGitProc」。タグ作成。
 */
 
 
@@ -12,9 +12,9 @@
 #if(UNITY_EDITOR)
 namespace BlueBack.VersionManager.Editor
 {
-	/** Execute_CreateTag
+	/** Execute_Git_CreateTag
 	*/
-	public sealed class Execute_CreateTag : Execute_Base
+	public sealed class Execute_Git_CreateTag : Execute_Base
 	{
 		/** [BlueBack.VersionManager.Editor.Execute_Base]CallBack
 		*/

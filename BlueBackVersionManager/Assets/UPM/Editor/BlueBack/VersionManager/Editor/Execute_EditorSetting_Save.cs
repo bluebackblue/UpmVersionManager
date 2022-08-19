@@ -3,7 +3,7 @@
 /**
 	Copyright (c) blueback
 	Released under the MIT License
-	@brief 実行。エディター情報のセーブ。
+	@brief 実行。エディター設定。セーブ。
 */
 
 
@@ -21,9 +21,9 @@
 #if(UNITY_EDITOR)
 namespace BlueBack.VersionManager.Editor
 {
-	/** Execute_Save_Editor
+	/** Execute_EditorSetting_Save
 	*/
-	public sealed class Execute_Save_Editor
+	public sealed class Execute_EditorSetting_Save
 	{
 		/** Execute
 		*/

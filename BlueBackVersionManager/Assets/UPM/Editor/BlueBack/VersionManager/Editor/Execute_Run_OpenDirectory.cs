@@ -3,7 +3,7 @@
 /**
 	Copyright (c) blueback
 	Released under the MIT License
-	@brief 実行。ＵＲＬを開く。
+	@brief 実行。ディレクトリを開く。
 */
 
 
@@ -12,15 +12,15 @@
 #if(UNITY_EDITOR)
 namespace BlueBack.VersionManager.Editor
 {
-	/** Execute_OpenURL
+	/** Execute_Run_OpenDirectory
 	*/
-	public sealed class Execute_OpenURL : Execute_Base
+	public sealed class Execute_Run_OpenDirectory : Execute_Base
 	{
 		/** [BlueBack.VersionManager.Editor.Execute_Base]CallBack
 		*/
 		public void CallBack()
 		{
-			UnityEngine.Application.OpenURL(Object_Setting.projectparam.git_url);
+			System.Diagnostics.Process.Start("explorer","/select," + (UnityEngine.Application.dataPath + "/../").Replace("/","\\"));
 		}
 	}
 }

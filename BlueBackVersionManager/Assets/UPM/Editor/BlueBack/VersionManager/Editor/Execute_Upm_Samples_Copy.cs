@@ -3,7 +3,7 @@
 /**
 	Copyright (c) blueback
 	Released under the MIT License
-	@brief 「UPM/Samples~」。
+	@brief 実行。「UPM/Samples~」。コピー。
 */
 
 
@@ -21,15 +21,16 @@
 #if(UNITY_EDITOR)
 namespace BlueBack.VersionManager.Editor
 {
-	/** Object_UpmSamples
+	/** Execute_Upm_Samples_Copy
 	*/
-	public static class Object_UpmSamples
+	public static class Execute_Upm_Samples_Copy
 	{
-		/** Copy
+		/** Execute
 		*/
-		public static void Copy()
-		#if(ASMDEF_TRUE)
+		public static void Execute()
 		{
+			#if(ASMDEF_TRUE)
+
 			//path
 			string t_from_path = Object_Setting.Reprece("Samples\\<<NameSpace_Author>>.<<NameSpace_Package>>\\000");
 			string t_to_path = "UPM\\Samples~";
@@ -63,12 +64,9 @@ namespace BlueBack.VersionManager.Editor
 				}
 				BlueBack.AssetLib.Editor.RefreshAssetDatabase.Refresh();
 			}
+
+			#endif
 		}
-		#else
-		{
-			#warning "ASMDEF_TRUE"
-		}
-		#endif
 	}
 }
 #endif

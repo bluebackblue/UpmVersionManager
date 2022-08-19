@@ -32,7 +32,7 @@ namespace Editor
 		#if(ASMDEF_TRUE)
 		{
 			//Object_RootUssUxml
-			BlueBack.VersionManager.Editor.Object_RootUssUxml.Save(false);
+			BlueBack.VersionManager.Editor.Execute_Root_UssUxml_Save.Execute(false);
 
 			//projectparam
 			BlueBack.VersionManager.Editor.Object_Setting.projectparam = BlueBack.VersionManager.Editor.ProjectParam.Load();

@@ -3,7 +3,7 @@
 /**
 	Copyright (c) blueback
 	Released under the MIT License
-	@brief 「UPM/Runtime/<<NameSpace_Author>>/<<NameSpace_Package>>/Version.cs」。
+	@brief 実行。「UPM/Runtime/<<NameSpace_Author>>/<<NameSpace_Package>>/Version.cs」。セーブ。
 */
 
 
@@ -21,15 +21,16 @@
 #if(UNITY_EDITOR)
 namespace BlueBack.VersionManager.Editor
 {
-	/** Object_UpmDebugToolCs
+	/** Execute_Upm_DebugToolCs_Save
 	*/
-	public static class Object_UpmDebugToolCs
+	public static class Execute_Upm_DebugToolCs_Save
 	{
-		/** Save
+		/** Execute
 		*/
-		public static void Save()
-		#if(ASMDEF_TRUE)
+		public static void Execute()
 		{
+			#if(ASMDEF_TRUE)
+
 			//path
 			string t_path = Object_Setting.Reprece("UPM/Runtime/<<NameSpace_Author>>/<<NameSpace_Package>>/DebugTool.cs");
 
@@ -64,19 +65,19 @@ namespace BlueBack.VersionManager.Editor
 				"	{",
 				"		#if(DEF_BLUEBACK_DEBUG_ASSERT)",
 				"",
-				"		/** assert",
+				"		/** callback_assert",
 				"		*/",
 				"		#if(ASMDEF_TRUE)",
-				"		public static BlueBack.Debug.Assert.CallBackType assert = BlueBack.Debug.Assert.Execute;",
+				"		public static BlueBack.Debug.Assert.CallBackType callback_assert = BlueBack.Debug.Assert.Execute;",
 				"		#endif",
 				"",
 				"		/** Assert",
 				"		*/",
-				"		public static void Assert(bool a_flag,System.Exception a_exception = null)",
+				"		public static void Assert(bool a_flag,string a_message = null,System.Exception a_exception = null)",
 				"		{",
 				"			if(a_flag != true){",
 				"				#if(ASMDEF_TRUE)",
-				"				DebugTool.assert(null,a_exception);",
+				"				DebugTool.callback_assert(a_message,a_exception);",
 				"				#endif",
 				"			}",
 				"		}",
@@ -87,7 +88,18 @@ namespace BlueBack.VersionManager.Editor
 				"		{",
 				"			if(a_flag != true){",
 				"				#if(ASMDEF_TRUE)",
-				"				DebugTool.assert(a_message,null);",
+				"				DebugTool.callback_assert(a_message,null);",
+				"				#endif",
+				"			}",
+				"		}",
+				"",
+				"		/** Assert",
+				"		*/",
+				"		public static void Assert(bool a_flag,System.Exception a_exception)",
+				"		{",
+				"			if(a_flag != true){",
+				"				#if(ASMDEF_TRUE)",
+				"				DebugTool.callback_assert(null,a_exception);",
 				"				#endif",
 				"			}",
 				"		}",
@@ -96,10 +108,10 @@ namespace BlueBack.VersionManager.Editor
 				"",
 				"		#if(DEF_BLUEBACK_DEBUG_LOG)",
 				"",
-				"		/** log",
+				"		/** callback_log",
 				"		*/",
 				"		#if(ASMDEF_TRUE)",
-				"		public static BlueBack.Debug.Log.CallBackType log = BlueBack.Debug.Log.Execute;",
+				"		public static BlueBack.Debug.Log.CallBackType callback_log = BlueBack.Debug.Log.Execute;",
 				"		#endif",
 				"",
 				"		/** Log",
@@ -107,7 +119,7 @@ namespace BlueBack.VersionManager.Editor
 				"		public static void Log(string a_message)",
 				"		{",
 				"			#if(ASMDEF_TRUE)",
-				"			DebugTool.log(a_message);",
+				"			DebugTool.callback_log(a_message);",
 				"			#endif",
 				"		}",
 				"",
@@ -115,10 +127,10 @@ namespace BlueBack.VersionManager.Editor
 				"",
 				"		#if(DEF_BLUEBACK_DEBUG_DETAIL)",
 				"",
-				"		/** detail",
+				"		/** callback_detail",
 				"		*/",
 				"		#if(ASMDEF_TRUE)",
-				"		public static BlueBack.Debug.Detail.CallBackType detail = BlueBack.Debug.Detail.Execute;",
+				"		public static BlueBack.Debug.Detail.CallBackType callback_detail = BlueBack.Debug.Detail.Execute;",
 				"		#endif",
 				"",
 				"		/** Detail",
@@ -126,7 +138,7 @@ namespace BlueBack.VersionManager.Editor
 				"		public static void Detail(string a_message)",
 				"		{",
 				"			#if(ASMDEF_TRUE)",
-				"			DebugTool.detail(a_message);",
+				"			DebugTool.callback_detail(a_message);",
 				"			#endif",
 				"		}",
 				"",
@@ -134,16 +146,16 @@ namespace BlueBack.VersionManager.Editor
 				"",
 				"		#if(UNITY_EDITOR)",
 				"",
-				"		/** editorlog",
+				"		/** callback_editorlog",
 				"		*/",
 				"		#if(ASMDEF_TRUE)",
-				"		public static BlueBack.Debug.EditorLog.CallBackType editorlog = BlueBack.Debug.EditorLog.Execute;",
+				"		public static BlueBack.Debug.EditorLog.CallBackType callback_editorlog = BlueBack.Debug.EditorLog.Execute;",
 				"		#endif",
 				"",
-				"		/** editorerrorlog",
+				"		/** callback_editorerrorlog",
 				"		*/",
 				"		#if(ASMDEF_TRUE)",
-				"		public static BlueBack.Debug.EditorErrorLog.CallBackType editorerrorlog = BlueBack.Debug.EditorErrorLog.Execute;",
+				"		public static BlueBack.Debug.EditorErrorLog.CallBackType callback_editorerrorlog = BlueBack.Debug.EditorErrorLog.Execute;",
 				"		#endif",
 				"",
 				"		/** EditorLog",
@@ -151,7 +163,7 @@ namespace BlueBack.VersionManager.Editor
 				"		public static void EditorLog(string a_message)",
 				"		{",
 				"			#if(ASMDEF_TRUE)",
-				"			DebugTool.editorlog(a_message);",
+				"			DebugTool.callback_editorlog(a_message);",
 				"			#endif",
 				"		}",
 				"",
@@ -160,7 +172,7 @@ namespace BlueBack.VersionManager.Editor
 				"		public static void EditorErrorLog(string a_message)",
 				"		{",
 				"			#if(ASMDEF_TRUE)",
-				"			DebugTool.editorerrorlog(a_message);",
+				"			DebugTool.callback_editorerrorlog(a_message);",
 				"			#endif",
 				"		}",
 				"",
@@ -170,30 +182,24 @@ namespace BlueBack.VersionManager.Editor
 				"",
 			});
 
+			//replace_list
+			System.Collections.Generic.Dictionary<string,string> t_replace_list = Object_Setting.CreateReplaceList();
 
-			if(Object_Setting.projectparam.debugtool_generate == true){
-				//replace_list
-				System.Collections.Generic.Dictionary<string,string> t_replace_list = Object_Setting.CreateReplaceList();
+			//SaveTextWithAssetsPath
+			System.Text.StringBuilder t_stringbuilder = new System.Text.StringBuilder();
 
-				//SaveTextWithAssetsPath
-				System.Text.StringBuilder t_stringbuilder = new System.Text.StringBuilder();
+			BlueBack.Code.Convert.Add(t_stringbuilder,t_replace_list,t_template);
 
-				BlueBack.Code.Convert.Add(t_stringbuilder,t_replace_list,t_template);
+			BlueBack.AssetLib.Editor.CreateDirectoryWithAssetsPath.Create(System.IO.Path.GetDirectoryName(t_path));
+			BlueBack.AssetLib.Editor.SaveTextWithAssetsPath.SaveNoBomUtf8(t_stringbuilder.ToString(),t_path,BlueBack.AssetLib.LineFeedOption.CRLF);
+			BlueBack.AssetLib.Editor.RefreshAssetDatabase.Refresh();
 
-				BlueBack.AssetLib.Editor.CreateDirectoryWithAssetsPath.Create(System.IO.Path.GetDirectoryName(t_path));
-				BlueBack.AssetLib.Editor.SaveTextWithAssetsPath.SaveNoBomUtf8(t_stringbuilder.ToString(),t_path,BlueBack.AssetLib.LineFeedOption.CRLF);
-				BlueBack.AssetLib.Editor.RefreshAssetDatabase.Refresh();
+			#if(DEF_BLUEBACK_DEBUG_LOG)
+			DebugTool.Log("save : " + t_path);
+			#endif
 
-				#if(DEF_BLUEBACK_DEBUG_LOG)
-				DebugTool.Log("save : " + t_path);
-				#endif
-			}
+			#endif
 		}
-		#else
-		{
-			#warning "ASMDEF_TRUE"
-		}
-		#endif
 	}
 }
 #endif
