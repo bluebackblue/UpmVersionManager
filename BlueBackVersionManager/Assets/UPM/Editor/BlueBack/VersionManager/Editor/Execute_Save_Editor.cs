@@ -3,7 +3,7 @@
 /**
 	Copyright (c) blueback
 	Released under the MIT License
-	@brief セーブ。
+	@brief 実行。エディター情報のセーブ。
 */
 
 
@@ -21,14 +21,13 @@
 #if(UNITY_EDITOR)
 namespace BlueBack.VersionManager.Editor
 {
-	/** SaveEditor
+	/** Execute_Save_Editor
 	*/
-	public static class SaveEditor
+	public sealed class Execute_Save_Editor
 	{
-		/** Save
+		/** Execute
 		*/
-		public static void Save()
-		#if(ASMDEF_TRUE)
+		public static void Execute()
 		{
 			UnityEditor.PlayerSettings.companyName = Object_Setting.projectparam.namespace_author;
 			UnityEditor.PlayerSettings.productName = Object_Setting.projectparam.namespace_author + Object_Setting.projectparam.namespace_package;
@@ -39,13 +38,10 @@ namespace BlueBack.VersionManager.Editor
 
 			UnityEditor.AssetDatabase.SaveAssets();
 
+			#if(ASMDEF_TRUE)
 			BlueBack.AssetLib.Editor.RefreshAssetDatabase.ForceReserializeAssets();
+			#endif
 		}
-		#else
-		{
-			#warning "ASMDEF_TRUE"
-		}
-		#endif
 	}
 }
 #endif

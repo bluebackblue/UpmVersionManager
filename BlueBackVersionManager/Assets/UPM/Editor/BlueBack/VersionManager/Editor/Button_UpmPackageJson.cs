@@ -78,9 +78,9 @@ namespace BlueBack.VersionManager.Editor
 			Object_UpmPackageJson.Save(a_version);
 			Object_UpmUpdatePackage.Save();
 			Object_UpmAsmdef.Save();
-			ConvertToNoBomUtf8.Convert();
+			Execute_ConvertToNoBomUtf8.Execute();
 			BlueBack.Code.Editor.FileNameCheck.Check(null);
-			SaveEditor.Save();
+			Execute_Save_Editor.Execute();
 			Window.window.OnEnable();
 		}
 	}

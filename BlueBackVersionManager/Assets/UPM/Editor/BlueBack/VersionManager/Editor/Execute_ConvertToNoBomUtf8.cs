@@ -3,7 +3,7 @@
 /**
 	Copyright (c) blueback
 	Released under the MIT License
-	@brief コンバート。
+	@brief 実行。テキストコンバート。
 */
 
 
@@ -21,24 +21,20 @@
 #if(UNITY_EDITOR)
 namespace BlueBack.VersionManager.Editor
 {
-	/** ConvertToNoBomUtf8
+	/** Execute_ConvertToNoBomUtf8
 	*/
-	public static class ConvertToNoBomUtf8
+	public static class Execute_ConvertToNoBomUtf8
 	{
-		/** Convert
+		/** Execute
 		*/
-		public static void Convert()
-		#if(ASMDEF_TRUE)
+		public static void Execute()
 		{
+			#if(ASMDEF_TRUE)
 			BlueBack.AssetLib.Editor.TextConvertWithAssetsPath.ConvertAll("",".*","^.*\\.(cs|meta|mesh|prefab|json|asmdef|mixer|anim)$",new System.Text.UTF8Encoding(false),BlueBack.AssetLib.LineFeedOption.CRLF);
 			BlueBack.Code.Editor.CodeConvert.Convert();
 			Window.window.OnEnable();
+			#endif
 		}
-		#else
-		{
-			#warning "ASMDEF_TRUE"
-		}
-		#endif
 	}
 }
 #endif

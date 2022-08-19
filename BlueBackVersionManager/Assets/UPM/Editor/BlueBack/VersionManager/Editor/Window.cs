@@ -102,23 +102,23 @@ namespace BlueBack.VersionManager.Editor
 				//ＵＳＳＵＸＭＬ。
 				Button_CreateUssUxml.Initialize(UnityEngine.UIElements.UQueryExtensions.Q<UnityEngine.UIElements.Button>(t_root,"label_1"));
 
-				//ブラウザを開く。
-				Button_OpenBrowser.Initialize(UnityEngine.UIElements.UQueryExtensions.Q<UnityEngine.UIElements.Button>(t_root,"label_2_1"));
+				//ＵＲＬを開く。
+				new Button(t_root,"label_2_1","[Open URL]",null,new Execute_OpenURL());
 
 				//ディレクトリを開く。
-				Button_OpenDirectory.Initialize(UnityEngine.UIElements.UQueryExtensions.Q<UnityEngine.UIElements.Button>(t_root,"label_2_2"));
+				new Button(t_root,"label_2_2","[Open Directory]",null,new Execute_OpenDirectory());
 
 				//パッケージロックを削除。
-				Button_DeletePackageLock.Initialize(UnityEngine.UIElements.UQueryExtensions.Q<UnityEngine.UIElements.Button>(t_root,"label_2_3"));
+				new Button(t_root,"label_2_3","[Del PackagesLock]",null,new Execute_Delete_PackagesLockJson());
 
 				//コミット。
-				Button_Commit.Initialize(UnityEngine.UIElements.UQueryExtensions.Q<UnityEngine.UIElements.Button>(t_root,"label_3_1"));
+				new Button(t_root,"label_3_1","[Commit]",null,new Execute_Commit());
 
 				//タグ作成。
-				Button_CreateTag.Initialize(UnityEngine.UIElements.UQueryExtensions.Q<UnityEngine.UIElements.Button>(t_root,"label_3_2"));
+				new Button(t_root,"label_3_2","[CreateTag]",null,new Execute_CreateTag());
 
 				//プッシュ。
-				Button_Push.Initialize(UnityEngine.UIElements.UQueryExtensions.Q<UnityEngine.UIElements.Button>(t_root,"label_3_3"));
+				new Button(t_root,"label_3_3","[Push]",null,new Execute_Push());
 
 				//「server.json」。
 				{
@@ -140,8 +140,12 @@ namespace BlueBack.VersionManager.Editor
 						}
 					}
 
-					//ボタン。
-					Button_ServerJson.Initialize(UnityEngine.UIElements.UQueryExtensions.Q<UnityEngine.UIElements.Button>(t_root,"label_a_button"));
+					string t_text = "null";
+					if(Object_RootServerJson.status != null){
+						t_text = Object_RootServerJson.status.lasttag;
+					}
+
+					new Button(t_root,"label_a_button",t_text,"red",new Execute_Update_ServerJson());
 				}
 
 				//「readme.md」。
