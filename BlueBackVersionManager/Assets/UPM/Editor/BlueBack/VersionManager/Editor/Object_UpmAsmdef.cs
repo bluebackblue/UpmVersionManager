@@ -31,7 +31,19 @@ namespace BlueBack.VersionManager.Editor
 		#if(ASMDEF_TRUE)
 		{
 			//guid_list
-			System.Collections.Generic.Dictionary<string,string> t_guid_list = Inner_CreateGuidList();
+			System.Collections.Generic.Dictionary<string,string> t_guid_list = new System.Collections.Generic.Dictionary<string,string>();
+			{
+				System.Collections.Generic.List<BlueBack.AssetLib.PathResult<string>> t_list = new System.Collections.Generic.List<AssetLib.PathResult<string>>();
+				t_list.AddRange(BlueBack.AssetLib.Editor.CreateGuidListWithAssetsPath.Create(".*","^.*\\.asmdef$"));
+				t_list.AddRange(BlueBack.AssetLib.Editor.CreateGuidListWithPackagesPath.Create(".*","^.*\\.asmdef$"));
+				foreach(BlueBack.AssetLib.PathResult<string> t_pair in t_list){
+					BlueBack.JsonItem.JsonItem t_asmdef_jsonitem = new JsonItem.JsonItem(BlueBack.JsonItem.Normalize.Convert(BlueBack.AssetLib.LoadTextWithFullPath.Load(t_pair.path)));
+					string t_asmdef_name = t_asmdef_jsonitem.GetItem("name").GetStringData();
+					if(t_guid_list.ContainsKey(t_asmdef_name) == false){
+						t_guid_list.Add(t_asmdef_name,t_pair.value);
+					}
+				}
+			}
 
 			//asmdef_runtime
 			{
@@ -60,40 +72,6 @@ namespace BlueBack.VersionManager.Editor
 		#else
 		{
 			#warning "ASMDEF_TRUE"
-		}
-		#endif
-
-		/** Inner_CreateGuidList
-		*/
-		#if(ASMDEF_TRUE)
-		private static System.Collections.Generic.Dictionary<string,string> Inner_CreateGuidList()
-		{
-			//ＧＵＩＤを列挙。
-			System.Collections.Generic.Dictionary<string,string> t_guid_list = new System.Collections.Generic.Dictionary<string,string>();
-
-			//「*.asmdef」を列挙。
-			System.Collections.Generic.List<string> t_asmdef_filename_list = new System.Collections.Generic.List<string>();
-			{
-				t_asmdef_filename_list.AddRange(BlueBack.AssetLib.FindFileWithFullPath.FindAll(UnityEngine.Application.dataPath,".*","^.*\\.asmdef$"));
-				System.Collections.Generic.List<UnityEditor.PackageManager.PackageInfo> t_packagelist = BlueBack.AssetLib.Editor.CreatePackageList.Create(true,false);
-				foreach(UnityEditor.PackageManager.PackageInfo t_pacakge in t_packagelist){
-					t_asmdef_filename_list.AddRange(BlueBack.AssetLib.FindFileWithFullPath.FindAll(t_pacakge.resolvedPath,".*","^.*\\.asmdef$"));
-				}
-			}
-
-			//guid_list
-			foreach(string t_asmdef_filename in t_asmdef_filename_list){
-				BlueBack.JsonItem.JsonItem t_asmdef_jsonitem = new JsonItem.JsonItem(BlueBack.JsonItem.Normalize.Convert(BlueBack.AssetLib.LoadTextWithFullPath.Load(t_asmdef_filename)));
-				string t_asmdef_name = t_asmdef_jsonitem.GetItem("name").GetStringData();
-				if(t_guid_list.ContainsKey(t_asmdef_name) == false){
-					string t_guid = BlueBack.AssetLib.LoadGuidWithFullPath.Load(t_asmdef_filename + ".meta");
-					if(t_guid != null){
-						t_guid_list.Add(t_asmdef_name,t_guid);
-					}
-				}
-			}
-
-			return t_guid_list;
 		}
 		#endif
 
