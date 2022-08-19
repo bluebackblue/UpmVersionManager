@@ -114,11 +114,11 @@ namespace BlueBack.VersionManager.Editor
 				//コミット。
 				Button_Commit.Initialize(UnityEngine.UIElements.UQueryExtensions.Q<UnityEngine.UIElements.Button>(t_root,"label_3_1"));
 
-				//プッシュ。
-				Button_Push.Initialize(UnityEngine.UIElements.UQueryExtensions.Q<UnityEngine.UIElements.Button>(t_root,"label_3_2"));
-
 				//タグ作成。
-				Button_CreateTag.Initialize(UnityEngine.UIElements.UQueryExtensions.Q<UnityEngine.UIElements.Button>(t_root,"label_3_3"));
+				Button_CreateTag.Initialize(UnityEngine.UIElements.UQueryExtensions.Q<UnityEngine.UIElements.Button>(t_root,"label_3_2"));
+
+				//プッシュ。
+				Button_Push.Initialize(UnityEngine.UIElements.UQueryExtensions.Q<UnityEngine.UIElements.Button>(t_root,"label_3_3"));
 
 				//「server.json」。
 				{
