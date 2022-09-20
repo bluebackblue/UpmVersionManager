@@ -20,7 +20,7 @@ namespace BlueBack.VersionManager.Editor
 		*/
 		public void CallBack()
 		{
-			System.Diagnostics.Process.Start("explorer","/select," + (UnityEngine.Application.dataPath + "/../").Replace("/","\\"));
+			System.Diagnostics.Process.Start("explorer","/e," + (UnityEngine.Application.dataPath + "/../../").Replace("/","\\"));
 		}
 	}
 }
